@@ -7,9 +7,9 @@ Uses
 Procedure SmallXit(X:Boolean);
 Function  Xit:Boolean;
 
-{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+{Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„}
                                IMPLEMENTATION
-{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+{Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„}
 
 Uses
  Adele,Memories,Systems,Video,Mouse,Arcade,Dialex,Dials,Tools,Isatex,
@@ -46,16 +46,16 @@ Procedure SmallXit;Begin
  {$ENDIF}
 End;
 
-{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
- ³                          Fonction Xit                          Û
- ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+{ÃšÃ„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ãœ
+ Â³                          Fonction Xit                          Ã›
+ Ã€ÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃœÃ›
 
 
  Description
- ÍÍÍÍÍÍÍÍÍÍÍ
+ ÃÃÃÃÃÃÃÃÃÃÃ
 
-  Cette fonction effectue toutes les op‚rations de terminaisons, de
- restitution  vid‚o,  de desktop  et de  fermeture  des fenˆtres si
+  Cette fonction effectue toutes les opâ€šrations de terminaisons, de
+ restitution  vidâ€šo,  de desktop  et de  fermeture  des fenË†tres si
  l'utilisateur ne l'interrompt pas.
 }
 
@@ -80,9 +80,9 @@ Begin
     Break;
    End;
   End;
-   { Cr‚ation du desktop }
+   { Crâ€šation du desktop }
   If StrUp(PathDesktop)<>'NONE'Then Begin
-   If Windows.Lst.Count=0Then DeleteFile(PathDesktop) { Pas fenˆtre donc pas desktop...}
+   If Windows.Lst.Count=0Then DeleteFile(PathDesktop) { Pas fenË†tre donc pas desktop...}
     Else
    Begin
     Handle:=FileCreate(PathDesktop);
@@ -135,7 +135,7 @@ Begin
    End;
   End;
  End;
- {D‚branche tous les joujoux...}
+ {Dâ€šbranche tous les joujoux...}
  If Not RunFunc(cmdCloseAllExit)Then Begin
   Exit;
  End;
@@ -151,21 +151,16 @@ Begin
   WriteLn;
   WriteLn(MultChr('*',79));
   WriteLn;
-  WriteLn('Version "FreeWare" du programme ®MonsterBook¯ Version ',VerPrg);
+  WriteLn('Version "FreeWare" du programme Â®MonsterBookÂ¯ Version ',VerPrg);
   WriteLn;
   WriteLn('Ce programme est gratuit. Il est le fruit de mes efforts depuis');
-  WriteLn('les dix derniŠres ann‚es. Si vous voulez m''aider … poursuivre le');
-  WriteLn('d‚veloppement de se logiciel vous pouvez me faire parvenir un 20$');
-  WriteLn('… l''adresse mentionn‚:');
+  WriteLn('les dix derniÅ res annâ€šes. Si vous voulez m''aider â€¦ poursuivre le');
+  WriteLn('dâ€šveloppement de se logiciel vous pouvez me faire parvenir un 20$');
+  WriteLn('â€¦ l''adresse mentionnâ€š:');
   WriteLn;
   WriteLn(' Les Chevaliers de Malte');
-  WriteLn(' ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ');
-  WriteLn(' Site officiel: http://gladir.multimania.com/');
-  WriteLn(' Courriel: gladir@hotmail.com');
+  WriteLn(' ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃ');
   WriteLn(' Sylvain Maltais');
-  WriteLn(' 1080 violette');
-  WriteLn(' Ste-Doroth‚e, Laval, Qu‚bec');
-  WriteLn(' H7X 2G2');
   WriteLn;
   WriteLn(MultChr('*',79));
  End;
