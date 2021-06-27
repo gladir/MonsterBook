@@ -4,6 +4,9 @@ Le progiciel MonsterBook (L'oeuvre inhumaine) est un logiciel que j'ai développ
 Il ne fonctionne qu'en mode réel du 8086 et n'est compilable qu'avec le Turbo Pascal 7 en mode protégé.
 Il s'agit d'un environnement graphique avec des applications intégrés, tableur, traitement de texte, dessin en bitmap, dessin en fil de fer, interpréteur BASIC, terminal avec les commandes DOS, UNIX, ...
 
+![image](https://user-images.githubusercontent.com/11842176/123555177-171d0500-d752-11eb-926f-2e3c47487d62.png)
+
+
 J'ai mis une licence MIT avec le projet. Fait des fork, autant que voulez, le projet est dépassez maintenant. Mais il peut être fort instructif.
 Il y a du code de cacher, comme mon arbre généalogique, car je voulais être certain que le code me serait pas volé. Mais les choses ont changés, et je ne crois plus poursuivre son projet pour le moment.
 
