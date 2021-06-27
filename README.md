@@ -9,9 +9,14 @@ Il y a du code de cacher, comme mon arbre généalogique, car je voulais être c
 
 A l'origine, j'utilisais le titre les Chevaliers de Malte, plutôt que Gladir.com. J'utilisais un nom au pluriels, mais j'ai toujours été un seul développeur.
 
-Le programme principale est MB.PAS
+<h3>Compilation</h3>
+  
+Le programme principale est MB.PAS. Personnellement, j'utilisais Borland Pascal 7. Vous pouvez par exemple utiliser DOSBox et lancer BP a l'intérieur de celui-ci.
 
 Le code MB.PAS est situé dans le dossier "\Source\Chantal\" et est la racine projet. Il n'est pas compilable en dehors de ce dossier.
+
+![image](https://user-images.githubusercontent.com/11842176/123555081-80504880-d751-11eb-82d1-3797346e3c65.png)
+
 
 <h3>Documentation</h3>
 
