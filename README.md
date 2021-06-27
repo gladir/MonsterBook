@@ -13,6 +13,10 @@ Le programme principale est MB.PAS
 
 Le code MB.PAS est situé dans le dossier "\Source\Chantal\" et est la racine projet. Il n'est pas compilable en dehors de ce dossier.
 
+<h3>Documentation</h3>
+
+https://www.gladir.com/CODER/MONSTERBOOK/index.htm
+
 <h3>Auteur</h3>
 
 Sylvain Maltais
