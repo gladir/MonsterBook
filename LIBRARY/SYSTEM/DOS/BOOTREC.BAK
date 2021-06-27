@@ -1,0 +1,26 @@
+{\Source\Chantal\Library\System\Dos\BootRec.Inc}
+
+Type
+ BootRec=Record{Structure du secteur "booteur"}
+  JmpCode:Array[0..2]of Byte;    {Code au saut ex‚cutable}
+  OEMName:Array[0..7]of Char;    {Nom OEM et Version}
+  BytesPerSec:Word;              {Octets par secteur}
+  SecPerCluster:Byte;            {Secteur par cluster}
+  NmResSecs:Word;                {Nombre de secteur r‚serv‚}
+  NmFAT:Byte;                    {Nombre de FAT}
+  NmRootDirEntries:Word;         {Nombre d'entr‚e dans le r‚pertoire "\"}
+  NmTotSec:Word;                 {Nombre total de secteur}
+  Media:Byte;                    {Type de m‚dia (dskMedia???)}
+  SecPerFAT:Word;                {Secteur par FAT}
+  SecPerTrk:Word;                {Dos 3.0+: Secteur par cylindre}
+  NmHeads:Word;                  {Dos 3.0+: Nombre de tˆtes}
+  NmHiddenSec:Word;              {Dos 3.0+: Nombre de secteur cach‚}
+  ResA:Word;                     {R‚serv‚}
+  HughNmSec:LongInt;             {Dos 4+: Nombre de secteur si NmSec=0}
+  PhysDrvNm:Byte;                {Dos 4+: Num‚ro physique du volume}
+  ResB:Byte;                     {Dos 4+: R‚serv‚}
+  Sign:Byte;                     {Dos 4+: Octet de signature (29h)}
+  SerialNm:LongInt;              {Dos 4+: Num‚ro de s‚rie du volume}
+  VolumeName:Array[0..10]of Char;{Dos 4+: Nom du volume}
+  ResC:Array[0..457]of Byte;     {Relatif,g‚n‚ralement du code machine...}
+ End;

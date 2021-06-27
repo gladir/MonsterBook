@@ -1,0 +1,90 @@
+// BibliothŠque d'aide du Shell Unix
+// Ensemble Malte Genesis IV & V: Chantal & AdŠle
+// Tous droits r‚serv‚ par les Chevaliers de Malte (C) 1995 … 1998
+// __________________________________________________________________________
+//
+//
+// Description
+// ÍÍÍÍÍÍÍÍÍÍÍ
+//
+//  Cette ressource contient tous les ressources d'aide disponible pour le
+// shell Unix.
+
+NumberIndex=5
+
+Copyright 'Shell Malte/Unix Version 1.01 '
+Copyright 'Tous droits r‚serv‚s par les Chevaliers de Malte (C) 1995 … 1998.'
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                          Aide ®basename¯                       Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 0
+Cette commande permet de connaŒtre le nom d'un fichier … travers un
+chemin.
+
+Syntaxe: basename [chemin]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                          Aide ®dirname¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 1
+Cette commande permet de connaŒtre le r‚pertoire d'un fichier …
+travers un chemin.
+
+Syntaxe: dirname [chemin]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®help¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 2
+Commande de compatibilit‚ avec le systŠme d''exploitation Xenix.
+Cette commande permet d''obtenir de l''aide sur une commande
+quelconque de Unix. La v‚ritable commande … utiliser devrait
+ˆtre ®man¯.
+
+Syntaxe: help [commande]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®Index¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 3
+banner
+basename
+cd
+clear
+cp
+csh
+dirname
+echo
+exit
+help
+logout
+ls
+man
+pwd
+whoami
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                             Aide ®ls¯                          Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 4
+Cette commande permet d'afficher la liste des fichiers d'un r‚pertoire
+particulier ou du r‚pertoire si non sp‚cifi‚e.
+
+Syntaxe: ls [chemin] [-s] [-t] [-F] [-R] [-P[AUSE]]
+
+ -s        Affiche la taille en secteur (1 secteur=512 octets).
+ -t        Affiche le temps (date et heure).
+ -F        Ajoute une barre oblique … la fin des noms de r‚pertoires.
+ -R        Recherche r‚cursivement dans ses sous-r‚pertoires.
+ -P[AUSE]  Effectue une pause lorsque l'‚cran est pleine.
+End

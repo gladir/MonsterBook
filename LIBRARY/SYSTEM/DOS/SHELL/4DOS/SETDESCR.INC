@@ -1,0 +1,71 @@
+{\Source\Chantal\Library\System\Dos\Shell\4Dos\SetDescr.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                 Malte Genesis/BibliothŠque individuel                 Û
+ ³                    dition Chantal/IV - Version 1.1                   Û
+ ³                             1997/04/01                                Û
+ ³                                                                       Û
+ ³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Nom des programmeurs
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  Sylvain Maltais
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette inclusion vise  … permettre une universialisation des donn‚es …
+ compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+ traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+ on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+ bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+ ou sa plante comme jamais avant...
+}
+
+{$IFNDEF __SetDescription}
+ {$DEFINE __SetDescription}
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                     Proc‚dure SetDescription                      Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure permet d'additionner une description … un fichier de
+  description de format ASCII de 4DOS ou NDOS.
+ }
+
+ Procedure SetDescription(Path:String;Var Descr:String);
+ Var
+  S,N2:String;
+  Handle:Hdl;
+  Exst:Boolean;
+ Begin
+  _DelAllSpcRight(Descr);
+  Descr:=LTrim(Descr);
+  If Descr<>''Then Begin
+   S:=Path2Dir(Path);
+   N2:=Path2NoDir(Path);
+   AddStr(S,'DESCRIPT.ION');
+   Exst:=FileExist(S);
+   If Not(Exst)Then Handle:=New_(S,faHidden+faArchive)
+    Else
+   Begin
+    FileSetAttr(S,faArchive);
+    Handle:=FileOpen(S,fmWrite);
+   End;
+   If(Handle<>errHdl)Then Begin
+    PutFileTxtLn(Handle,StrDn(Path2NoDir(Path))+' '+Descr);
+    FileClose(Handle);
+    If(Exst)Then FileSetAttr(S,faHidden+faArchive);
+   End;
+  End;
+ End;
+
+{$ENDIF}

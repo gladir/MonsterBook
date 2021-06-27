@@ -1,0 +1,10 @@
+CREATE TABLE Editeurs (
+   NoEditeur  INTEGER,
+   Nom        VARCHAR
+);
+
+CREATE INDEX;
+
+
+INSERT INTO Editeurs VALUES (100000000,'Marabout');
+INSERT INTO Editeurs VALUES (200000000,'P.S.I.');

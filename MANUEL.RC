@@ -1,0 +1,1937 @@
+// BibliothŠque d'aide pour le MonsterBook/PowerHacken (PH)
+// Ensemble Malte Genesis IV: Chantal
+// Tous droits r‚serv‚ par les Chevaliers de Malte (C) 1995 … 1997
+// ___________________________________________________________________
+//
+//
+// Description
+// ÍÍÍÍÍÍÍÍÍÍÍ
+//
+//  Cette ressource contient tous les ‚l‚ments n‚cessaire … un service
+// d'aide.
+//
+//
+// Remarque
+// ÍÍÍÍÍÍÍÍ
+//
+//  ş Il r‚clame simplement le petit  programme ®CRLL¯: Compilateur de
+//    ®Real - Link- Library¯  pour ˆtre compil‚  en aide recevable par
+//    l'application.
+
+NumberIndex=33
+
+IndexAscii 0
+             ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+             ³                                                 ³
+             ³           ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿            ³
+             ³           ³                        ³            ³
+             ³           ³  Manuel d'Instruction  ³            ³
+             ³           ³                        ³            ³
+             ³           ³           du           ³            ³
+             ³           ³                        ³            ³
+             ³           ³ M o n s t e r  B o o k ³            ³
+             ³           ³  (L'Oeuvre Inhumaine)  ³            ³
+             ³           ³                        ³            ³
+             ³           ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ            ³
+             ³                                                 ³
+             ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+              MonsterBook Version 1.0, Alias l'Oeuvre Inhumaine
+          Tous droits r‚serv‚s par les Chevaliers de Malte (C) 1997
+                              FaŒte au Qu‚bec!!!
+
+
+L'emballage de fichier doit contenir:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Fichier(s)        ³ Description                                           ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ INSTALL.EXE       ³ Installateur du MonsterBook (lancer se programme pour ³
+³                   ³ installer l'application  MonsterBook sur votre disque ³
+³                   ³ dur...).                                              ³
+³ MB.EXE            ³ Logiciel central (lan‡ant le MonsterBook)             ³
+³ MANUEL.DOC        ³ Vous me voyez … nu en ce moment!                      ³
+³ FLAGS.ICN         ³ Icon de drapeaux de pays                              ³
+³ ISABEL.COL        ³ Palette de couleur de modŠle Isabel                   ³
+³ ISABEL.KEY        ³ Des raccourcis clavier de modŠle Isabel               ³
+³ MARBLE.MBF        ³ Tapiserie pour en mode graphique                      ³
+³ VERBES.DTA        ³ Bescherelle de verbe                                  ³
+³ VIDEO.DRC         ³ BibliothŠque centrale de gestion vid‚o                ³
+³ *.RLL             ³ BibliothŠques de gestions divers                      ³
+³ *.HLP             ³ Des fichiers d'aide pour l'application                ³
+³ *.FNT             ³ Police de caractŠres pour l'application               ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+End
+
+IndexAscii 1
+Qu'est-ce que ce programme?
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Avant de continuer,  je tiens  … pr‚ciser  qu'il ne s'agit pas  d'un monstre
+dans le sens de poubelle, ou dans le sens de compliquer mais dans le sens que
+l'auteur en … ‚crit du code pour en arriver au ®MonsterBook¯.
+
+ C'est essentiellement (pour l'instant) surtout un traŒtement de texte multi-
+fenˆtre pour les machines peu performante.  Il comprend aussi quelques petits
+jouets int‚ressant pour certains (Gestionnaire de fichier, Regardeur ASCII et
+Hexad‚cimal, Calulatrice programmable,  Information technique sur le systŠme,
+Menu pour lancer  d'autre application,...).  Pour le reste  c'est  encore  en
+d‚veloppement.
+
+ Bref, un traŒtement au rein solide supportant  des textes plus grand  que 64
+Ko par exemple.  Il  offre  de  nombreuses possibilit‚s mais  il faut  savoir
+comment l'utiliser car sinon il s'est ais‚ment comment se faire d‚tester! Car
+si vous utilisez mal  l'application,  il est difficile  de garantir  qu'il ne
+vous cr‚ra pas de problŠme...
+
+ Statistiques personnel,  16 000 000  de caractŠres on ‚crit  dans  plusieurs
+centaines de fichiers et il a su bien ce tenir.  Tandis que pour d'autre (que
+nous  tenons  …  garder  anonyme)   ‚crire  un  document  s'est  r‚v‚ler  une
+catastrophe monumental... En faŒte, nous n'arrivons pas … imaginer comment le
+deuxiŠme cas est possible, toutefois, si vous avez peur d'ˆtre de la deuxiŠme
+cat‚gorie abstenez-vous de l'utiliser: Fiable...pas invisible!
+
+End
+
+IndexAscii 2
+Quel genre de machine a-t-il besoin pour fonctionner?
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Bien s–r plus votre machine est puissante,  plus  il  sera  rapide,  mais en
+th‚orie  il peut fonctionner sur  l'IBM PC original  (IBM PC modŠle G).  Donc
+un simple micro-processeur de 8088 (8-bits) permet de l'utiliser. C“t‚ vid‚o,
+il  fonctionne  sur  presque  tous  les  cartes  vid‚o  (sauf quelques unes …
+problŠme au niveau des Super VGA):  MDA,  CGA,  EGA,  VGA.  Il est pr‚f‚rable
+d'avoir  une  carte  EGA   ou  plus  puissante  histoire  d'avoir  une  image
+ressemblant … quelque chose! Tandis qu'un disque  dur  sous  le  32 Mo  c'est
+souffrant & nous dirions mˆme que vous ˆtes du genre cruel avec ce programme.
+Imprimante … 9 aiguilles  ‡a  va,  mais les nouveaux modŠles  "Laser - Dolby-
+Sorone" c'est pas aussi certains que ‡a marche bien avec cette application...
+
+ Personnellement ce logiciel a ‚t‚ test‚ sur un 80386SX-33Mhz, 80386DX-40Mhz,
+80486SX-33Mhz. Ils ‚taient ‚quip‚ de carte vid‚o Tseng Labs ET4000 et Cirrus.
+4 megaoctets, 16 m‚gaoctets et 3,7 m‚gaoctets de m‚moire vive. Disque dur MFM
+et IDE: 32 Mo, 1,2 Go, 250 Mo.  Imprimante Panasonic KX-1180 et Roland DG Pr-
+1215.
+
+ Franchement,  sur  bien  des  points,  il  pourrait  r‚ssucciter  les  morts
+con‡ernant les vielles machines. Donc, ne vous rendez pas malade si vous avez
+l'impression qu'il fonctionne aussi vite sur un vieux  PC Junior  que  sur un
+Pentium!
+
+End
+
+
+IndexAscii 3
+Quitter
+ÍÍÍÍÍÍÍ
+
+ Le point commun  avec toutes les autres applications existant  c'est bien de
+comment quitter ("Exit") le programme. Pour ce faire, il suffit d'utiliser le
+menu d‚roulant ®Fichier¯ … l'aide des combinaisons de touche ®Alt+F¯. Ensuite
+appuyer sur la  lettre  ®Q¯  majuscule  ou minuscule  (c'est sens  importance
+puisqu'il ne fait pas la diff‚rence). Vous verrez alors une boŒte de dialogue
+(de couleur  rouge  si vous avez  de la couleur  sur votre moniteur)  avec le
+message  ®Etes-vous certain de quitter?¯.  Vous pressez sur ®Enter¯ (<ÄÙ)  et
+voil… le tour est jouer!
+
+ Vous pouvez aussi utiliser le raccourci clavier ®Alt+X¯ pour les habituer du
+®WordStar¯.  Toutefois, il vous demandera quand mˆme une confirmation si vous
+utilisez ce raccourci clavier.  Comme ‡a vous n'aurez pas  de surprise si vos
+doigts d‚rappennt parfois...
+
+ La morale de cette histoire,  vous ne pouvez quitter  ce programme sans vous
+confronter … un message de confirmation!
+
+End
+
+IndexAscii 4
+Les menus d‚roulants
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Le menu d‚roulant est la barre  sous le titre  (deuxiŠme ligne en partant du
+haut) ‚tant toujours visible pendant le fonctionnement de l'application. Vous
+avez des mots ‚crit:  ®Fichier  Dessin  Edite...¯.  Vous remarquez que chaque
+mots commencent par une majuscule pour indiquer  qu'ils sont autonomes (ne se
+confondent pas avec le pr‚c‚dent).Vous voyez une lettre de couleur diff‚rente
+dans  chacun  des mots.  Cette couleur  diff‚rente  indique  que  vous pouvez
+utiliser  ce caractŠre  comme  touche  combiner  avec la  touche  ®Alt¯  pour
+l'actionner.  Par exemple,  si vous  souhaitez  actionner  le menu  d‚roulant
+®Fichier¯,  la lettre au style de couleur diff‚rent est  ®F¯,  vous appuyerez
+donc d'abord sur la touche  ®Alt¯  sans la relƒch‚,  appuyer un cours instant
+sur la lettre ®F¯, relƒch‚ la touche ®Alt¯.  Vous  avez  donc  fait  ce qu'on
+appelle une combinaison ®Alt+F¯.
+
+ AprŠs avoir effectuer la premiŠre ‚tape d'appelle d'un menu d‚roulant,  vous
+pouvez vous d‚placer  … l'aide des flŠches mont‚e et descendre pour bouger la
+barre  de s‚lection  (cette  barre  … une  couleur invers‚  du reste  du menu
+d‚roulant venant d'ˆtre affich‚). Lorsque vous avez choisie  votre item  (une
+ligne si vous pr‚f‚rez),appuyez sur ®Enter¯ (<Ù) pour confirmer que vous avez
+choisie cette item. Si vous vous ˆtes tromp‚ ou que vous avez changer d'avis,
+vous pouvez appuyer sur la touche  ®Esc¯ pour abandonner l'op‚ration  et rien
+ne se passera  mˆme si  vous ˆtes  un item  du genre  ®autodestruction¯. D'un
+autre c“t‚,  vous pouvez utilisez ‚galement les flŠches droite et gauche pour
+vous d‚placer  au menu suivant  ou pr‚c‚dent.  Cette derniŠre  solution,  est
+souvent pratique quand on modifie tout simplement notre d‚cision.
+
+ Il peut arriver que vous choisissez un item avec  ®>¯  … la fin de la ligne.
+Ce symbole  vous indique  qu'il n'y a pas  de r‚action imm‚diate  mais plut“t
+l'enclenchement  d'un autre menu  (sous-menu)  … votre  disposition  pour une
+action demandant plus de pr‚cision.  Le mˆme principe  s'applique  … celui-ci
+qu'aux menus d‚roulant de basse.
+
+ Lorsque vous voyez  des messages ressemblant  … des combinaisons de touche …
+la fin  d'un  item  (g‚n‚ralement  de couleur  diff‚rente,  comme  rouge  par
+exemple),ce sont des raccourcis pour le clavier vous permettant de reproduire
+l'effet de l'item sans passer par le menu.  Ce derniŠre  n'empˆche  pas faire
+fonctionner  le programme  sauf que ‡a fait gagner beaucoup  de temps pour un
+routinier. Par exemple vous avez s–rement remarquer ®Shift+F3¯ pour ouvrir un
+document,  il vous suffit d'appuyer sur  ®Shift¯ sans le relƒcher,  d'appuyer
+sur la touche de fonction ®F3¯ un cours instant, de relƒcher ®Shift¯ une fois
+que vous avez appuyer sur ®F3¯.
+
+ Un dernier  petit d‚tail insignifiant  … propos  des menus d‚roulants,  vous
+pouvez avoir l'impression  que les menus ne sont pas toujours  de mˆme taille
+et  avec les mˆmes ‚l‚ments,  c'est  qu'ils  sont  adapt‚s  en fonction de la
+fenˆtre  actuellement en usage.  Car si  tous les items ‚taient  ‚crit … tous
+moment et dans n'importe quel situation, vous seriez oblig‚s d'avoir un ‚cran
+de 60 lignes! C'est donc un genre de compromis...
+
+End
+
+IndexAscii 5
+Les multiples fenˆtres
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ PremiŠrement,  on  entend  par  fenˆtre,  un  genre  d'‚cran  destin‚  …  un
+application propre  (un seul texte, un seul gestionnaire de fichier,...).  Il
+n'y a qu'une op‚ration … la fois par fenˆtre!  Pour ‚diter plusieurs fichiers
+… la fois  il faut plusieurs fenˆtres:  Les multiples fenˆtres.  Ce n'est pas
+obligatoire  mais ‡a aide grandement  … la simplification  de  r‚f‚rence  par
+exemple.
+
+ Cette application supporte de multiple fenˆtre d'‚dition, de gestionnaire de
+fichiers, de regarde rapide ASCII ou Hexad‚cimal et ainsi de suite.  Ils sont
+reconnue comme une simple liste.  A chaque fois  que vous ouvrez une nouvelle
+fenˆtre, vous ˆtes comme incr‚ment‚ dans cette liste. Vous pouvez passez … la
+pr‚c‚dente … l'aide de la combinaison de touche clavier ®Shift+F6¯ et revenir
+ou vous ‚tiez grƒce … la touche ®F6¯.
+
+ Si vous avez de la difficult‚ … vous repr‚senter cette liste, vous pouvez la
+voir de fa‡on claire et nette au complet … l'aide de la combinaison de touche
+clavier  ®Alt+0¯.  Elle affichera  une boŒte  de dialogue vous  permettant de
+choisir parmi tous les fenˆtres pr‚sentements ouverte. Vous n'aurez qu'… vous
+d‚placez … l'aide des flŠches mont‚e (/³\)  et descendre (\³/) et appuyez sur
+la touche ®Enter¯ lorsque votre choix est fait.  Dans le cas contraire,  vous
+pouvez abandonner  votre action en pressant la touche  ®Esc¯.  La fenˆtre  de
+dialogue disparaŒtra comme si rien ne s'‚tait jamais passer.
+
+ Lorsque vous ˆtes dans une fenˆtes et que vous en avez terminez. Vous voulez
+donc la fermer,  l'enlever de la m‚moire et qu'elle ne soit que sur disque en
+quelques sortes.  Vous pouvez  utilisez  la  combinaison  de  touche  clavier
+®Alt+F3¯.  Celle-ci  ferme  la  fenˆtre  actuellement en usage  et passe … la
+fenˆtre pr‚c‚dente  s'il y a en une.  Sinon vous vous retrouvez avec la toile
+de fond:  C'est quand  il n'y a pas  de fenˆtre ouverte.  Toutefois,  il peut
+arriver qu'une question du genre  ®D‚sirez-vous sauvegarder ... le contenu de
+la fenˆtre¯  apparaisse.  C'est que  vous avez  effectuer  des  modifications
+depuis  votre derniŠre sauvegarde sur disque.  Si vous ne voulez rien perdre,
+il est pr‚f‚rable d'accepter la proposition.
+
+End
+
+IndexAscii 6
+TraŒtement de texte
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Le traŒtement de texte est un ‚diteur  permettant l'‚criture de texte un peu
+comme dans un livre.  Toutefois,  contrairement,  par exemple, … une ancienne
+machine  … ‚crire,  vous pouvez  modifier  votre texte  … volont‚.  Rajouter,
+enlever,  reculer,  avancer,  subdiviser  en  plusieurs lignes,  paragraphes,
+fichiers,...
+
+ Le traŒtement de texte  est disponible  … partir  du  menu  ®Fichier¯,  item
+®Nouveau Document¯ pour cr‚er un nouveau document ou l'item  ®Ouvre Document¯
+pour ouvrir (ou cr‚er directement)  un  nouveau  document  de  traŒtement  de
+texte.
+
+
+Cr‚er un document de traŒtement de texte
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Si vous avez bien compris,  il existe  2  chemins  possible  pour  cr‚er  un
+document,  la premiŠre m‚thode  avec  ®Nouveau Document¯  (vous d‚finissez la
+taille de la page seulement le reste se passe  quand vous sauvegarderez votre
+document) ou la deuxiŠme, vous … partir d'®Ouvrir Document¯  (®Shift+F3¯ pour
+son  raccourci  clavier)  si  vous  ‚crivez  le nom  de fichier  et que  vous
+autorisez la cr‚ation.
+
+ Revenons … notre premiŠre m‚thode,  vous pressez donc d'abord  ®Alt¯ sens le
+lƒcher et vous appuyer qu'un court instant sur ®F¯: Ceci pour Alt+F. Ensuite,
+aprŠs avoir lƒch‚ vos touches, vous appuyez sur ®m¯. Vous voyez imm‚diatement
+une fenˆtre s'afficher dans le milieu de l'‚cran avec une bande blanche … son
+sommet o— il est ‚crit  ®Pasnom¯.  L'histoire ne s'arrˆte  pas l….  Vous avez
+‚galement une petite fenˆtre  de dialogue s'affichant  avec comme entˆte  (la
+fabuleuse  petite  bande  blanche)  un titre   ®Format  Page¯.   Vous  pouvez
+s‚lectionner votre dimension de page standard en appuyant 2 fois de suite sur
+®Enter¯ (<ÄÙ) ou avec le  ®Tab¯ pour vous d‚placer d'un "prompt" … l'autre en
+modifiant les chiffres  dans chacune des taille  par d‚faut.  AprŠs cela vous
+‚crire le texte que vous d‚sirez dans le traŒtement de texte...
+
+ La deuxiŠme m‚thode consiste … s‚lectionner l'ouverture d'un document.  Pour
+se faire il faut appuyer encore une fois sur ®Alt+F¯, relƒcher,  puis appuyez
+sur la lettre ®u¯.  Une boŒte  de  dialogue  avec  2  listes  de  8  fichiers
+apparait. Son titre affiche ®Ouvre un document¯.  Son le titre, une banderole
+avec un genre d'ombrage o— est marqu‚ un r‚pertoire  (machin avec des \ et *,
+des  lettres  et  des  chiffres)  se trouve l… avec un curseur attendant  (Le
+curseur  est un ligne  ou  un carr‚  clignotant).  Vous vous d‚placez avec la
+flŠche recule (<-) jusqu'… la position du '*' (ast‚rsique)  se trouvant avant
+®.GAT;*.DOC¯.  Vous  vous assurez ensuite,  que  le curseur  est bien en mode
+d'insertion (carr‚ clignotant de la taille de la moiti‚ du caractŠre).  Si ce
+n'est pas le cas, appuyer sur la touche  ®Insert¯.  Le  curseur  changera  de
+taille et c'est la plus grande des 2 tailles que vous choisissez. Un fois que
+vous ˆtes en insertion vous pressez la touche  ®Delete¯  pour  effacer le '*'
+(ast‚risque) se trouvant l…. Vous ‚crivez le nom de votre document (8 lettres
+maximum).  Ensuite vous pressez sur la touche ®Enter¯.  Une boŒte de dialogue
+(couleur jaune si vous avez de la couleur) apparaŒt et vous  demande  si vous
+souhaŒtez cr‚er un document  sous le nom  que vous avez sp‚cifi‚.  Pressez la
+touche ®Enter¯ (<ÄÙ)  si vous souhaitez  que ce soit  le cas sinon ®Esc¯ pour
+abandonner. Ensuite, … la fenˆtre ®Format Page¯  appuyez 2 fois sur la touche
+®Enter¯ (<ÄÙ) et vous pouvez ‚crire du texte … votre guise.
+
+ AprŠs avoir sut cela,  votre principale question n'est toujours pas r‚pondu:
+®Pourquoi  2 chemins  pour la mˆme  pour la  mˆme  maison?¯  Nous allons vous
+r‚v‚ler  quelques  choses,  le programme a  ‚t‚ ‚crit  par un routinier de la
+programmation, ceux-ci sont du genre, je hais les d‚tours! Ainsi, de nombreux
+classiques pour  les programmeurs,  supporte les  2 chemins dans  le but sens
+doute de ne pas ce faire d'ennemi. Nous c'est seulement par caprice.
+
+
+dition
+ÄÄÄÄÄÄÄ
+
+ Vous pouvez utilisez les flŠches pour vous d‚placez dans votre texte … votre
+guise. Toutefois, si vous voulez ins‚rez une ligne il vous faudra pressez sur
+®Enter¯.
+
+ De fa‡on concrŠte,  vous pouvez simplement ‚crit  des phrases  comme si rien
+n'‚tait  et  le  traŒtement  de  texte  se  charge  de les diviser  en lignes
+suppl‚mentaires  lorsqu'il  s'apper‡oit  que votre ligne  d‚fonce la fenˆtre.
+Vous vous retrouverez avec des mots s‚p‚r‚s entre le traŒt  d'union lorsqu'il
+rencontra ce genre de cas.
+
+ Vous remarquerez,  si vous retournez au ligne pr‚c‚dement ‚crite,  qu'il y a
+un espaces  aprŠs la fin  de chaque  ligne  tant  qu'il ne  s'agit  pas d'une
+finissions de paragraphe.  C'est normal, c'est la fa‡on dont ce traŒtement de
+texte  se  repŠre  pour  savoir  s'il  doit  justifier  vos  lignes  lors  de
+l'impression sur imprimante.  A chaque fois que l'imprimeur d‚tecte un espace
+… la fin d'une ligne,  il comprend qu'il doit l'aligner (justification gauche
+et droite) la ligne comme les autres de pleine longueur.
+
+ Attention!  Toutefois,  la justification  ne pas lieu  lorsque  vous ‚crivez
+votre texte,  mais seulement  lors  de l'impression.  Cette  op‚ration  n'est 
+possible qu'avec des ‚crans graphiques, pas en mode texte!  Ce programme n'en
+fait pas exception!
+
+ Voici,  maintenant  un bref  r‚sumer  de  touche  et  combinaison  de touche
+classique dans presse n'importe quel traŒtement de texte, accompagner de leur
+comportement:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Touche       ³ Description                                                ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ /³\          ³ Monte … la ligne  pr‚c‚dente  … condition  que  ce ne soit ³
+³  ³           ³ pas la premiŠre ligne.                                     ³
+³ <ÄÄ          ³ D‚placement vers la gauche … condition  que le pointeur ne ³
+³              ³ soit pas un d‚but de ligne.                                ³
+³ ÄÄ>          ³ D‚placement vers la droite … condition  que le pointeur ne ³
+³              ³ soit par rendu … la fin de la ligne.                       ³
+³  ³           ³ Descend … la prochaine ligne,  sauf  dans  le cas  o— vous ³
+³ \³/          ³ ˆtes rendu … la fin du texte.  Il ne permet  donc  pas  la ³
+³              ³ cr‚ation de nouvelle ligne...                              ³
+³ Bar d'espace ³ Bar d'espacement ou la plus grande touche du clavier,  met ³
+³              ³ espace dans la ligne, un peu comme si c'‚tait une lettre.  ³
+³ BackSpace    ³ D‚placement vers la gauche,  puis efface le caractŠre … la ³
+³              ³ nouvelle position du curseur.                              ³
+³ Ctrl+End     ³ Aller … la fin complŠtement du texte.                      ³
+³ Ctrl+F1      ³ Demande des informations techniques sur le document.       ³
+³ Ctrl+Home    ³ Aller au d‚but complŠtement du texte.                      ³
+³ Ctrl+<-      ³ Retourne au mot pr‚c‚dent.                                 ³
+³ Ctrl+->      ³ Aller au mot suivant. S'il est rendu … la fin de ligne, il ³
+³              ³ passe … la ligne pr‚c‚dente.                               ³
+³ Delete       ³ Efface le caractŠre … la position actuel du curseur.       ³
+³ End          ³ Va … la fin de la ligne.                                   ³
+³ Enter (<ÄÙ)  ³ Insert  une  ligne  en  mode  insertion,  passe … la ligne ³
+³              ³ suivant dans le cas  du  mode  ‚crasment  (genre  de  non- ³
+³              ³ insert).                                                   ³
+³ Home         ³ Va au d‚but de la ligne.                                   ³
+³ Insert       ³ Change de mode insertion/‚crasement ou vice versa.         ³
+³ PageUp       ³ Passer … l'‚cran pr‚cente du texte.                        ³
+³ PageDown     ³ Passer … l'‚cran suivante du texte.                        ³
+³ ScrollLock   ³ Par d‚faut,  le texte s'‚dite  avec  ce mode,  il interdit ³
+³              ³ d'‚crire dans les marges.  Toutefois si vous pressez cette ³
+³              ³ touche de fa‡on  … avoir une l'indicateur  (petite lumiŠre ³
+³              ³ sur le  clavier)  ‚teinte,  vous pourrez  vous  promenez … ³
+³              ³ votre guise dans le texte dans les marges.                 ³
+³ Shift+End    ³ Fixe la fin  de  la  marge droite  du traŒtement  de texte ³
+³              ³ manuellement … partir  de la position  du curseur.  Il  ne ³
+³              ³ doit pas non plus ˆtre en mode  ®ScrollLock¯.  Votre marge ³
+³              ³ par d‚faut  en traŒtement  de texte pour document est  70, ³
+³              ³ mais dans le cas de l'‚dition de autre genre,  par exemple ³
+³              ³ Normal (ASCII-DOS), Pascal, C,...,  il n'est pas ind‚finit ³
+³              ³ jusqu'… ce que vous utilisez cette combinaison de touche.  ³
+³ Shift+Home   ³ Fixe le d‚but  de la marge gauche  du traŒtement  de texte ³
+³              ³ manuellement  … partir  de la position  du curseur.  Il ne ³
+³              ³ doit pas non plus ˆtre en mode ®ScrollLock¯.               ³
+³ Tab ³<ÄÄ     ³ crit  8  espaces.  Toutefois  il  existe  une  excention, ³
+³     ÄÄ>³     ³ lorsque vous ˆtes sur la premiŠre colonne ‚ditable en mode ³
+³              ³ ®ScrollLock¯  et que dans la marge  il existe du texte que ³
+³              ³ vous avez ‚crit,  cette touche permet  de la sortie  de la ³
+³              ³ marge  et  ainsi d'‚diter ce  que vous ne pouviez touche … ³
+³              ³ cause du ®ScrollLock¯.                                     ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Il est existe naturellement une infinit‚  d'autre combinaisons possibles sur
+le clavier,  mais dans  ces cas,  vous  devrez  plut“t  consulter  les titres
+souligner pour en connaŒtre  leurs utilisations.  Comme par exemple consulter
+Soulignement pour souligner un mot par l'entremise  de la combinaison clavier
+®Ctrl+U¯,...
+
+
+Sauvegarder (Sauve)
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette ‚tape permet de sauvegarde sur disque le texte contenu en m‚moire.  Il
+seront  accessible  par  la  suite  par  l'op‚ration   d'®Ouverture¯   (Ouvir
+document).  Pressez sur la touche ®F2¯ pour ordonner une sauvegarde.  Si vous
+n'avez pas sp‚cifi‚e son nom, le traŒtement de texte vous le demandera. Sinon
+il le sauvegardera sous son nom d'origine.
+
+ Quand vous n'avez  pas sp‚cifiez le nom  de votre document dŠs le d‚but,  il
+apparaŒt une boŒte de dialogue avec un titre  ®Sauvegarde sous¯ (le nom).  En
+dessous de ce titre,  une bandelette  o— le curseur attend est affich‚.  Vous
+voyez le r‚pertoire courant r‚serv‚ pour les documents  et un  '*' suivie par
+l'extension  ".GAT".  L'extension est utiliser pour reconnaŒtre  qu'il s'agit
+d'un document de traŒtement de texte.  Vous ne devez le changer,  car de tous
+fa‡on, le traŒtement de texte le changera pour ".GAT". Mˆme s'il n'y a pas de
+'.' (point) aprŠs votre nom … cause que vous l'avez effacer par m‚gard!
+
+ Vous rencontrerez  ‚galement  une fenˆtre  avec une demande  de description.
+C'est le titre non officiel pour votre fichier. Le DOS n'accepte que des noms
+de 8 caractŠres.  Une description est d'une caractŠre de 40 caractŠres.  Vous
+‚crivez n'importe  quoi pouvant vous aidez  … comprendre votre cours nom de 8
+caractŠres.
+
+
+Soulignement
+ÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Quand vous ˆtes  en ‚cran texte en mode couleur,  il n'est  pas possible  de
+voir explicitement que votre mot est soulign‚.  Toutefois s'il est de couleur
+bleu, c'est qu'il l'est.
+
+ Comment en arriver … un soulignement,  il suffit de ce placer sur votre mot,
+sur sa premiŠre lettre.  Appuyez  aprŠs cela  sur  la  combinaison  de touche
+clavier ®Ctrl+U¯. Vous verrez alors votre mot devenir bleu (souligner si vous
+ˆtes en mode monochrome).  Le curseur,  se d‚placera en plus  sur le prochain
+mot  (ceci  pourra  faire gagner du temps,  si vous en souligner plusieurs de
+suite dans une phrase).
+
+
+Double largeur
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ La double largeur est quelque peu suptile … comprendre.  Vous n'avez pas des
+caractŠre  d'une double largeur  de fa‡on clairement ‚vidente afficher devant
+vous.  Vous verrez plut“t un mot  sous le genre de  ®D o u b l e¯  pour  vous
+indiquer qu'il s'agit d'un mot double largeur.
+
+ Pour  obtenir  cet  effet,  il  faut  d'abord  placer  son  curseur  sur  la
+position  du d‚but  o—  vous voulez  que votre  mot deviennent  d'une  double
+largeur,  soit g‚n‚ralement … la premiŠre lettre  de votre mot.  Une fois que
+vous ˆtes … l'endroit de d‚part,  vous devez utilisez la combinaisons clavier
+®Alt+F4¯ pour indiquer au traŒtement de texte que vous souhaŒtez avoir ce mot
+double largeur.  Vous verrez  alors  votre mot s'‚tirer.  ®Double¯  deviendra
+®D o u b l e¯.  Lorsque votre mot sera  totalement doubler,  le traŒtement de
+texte prendra  l'initiative  de d‚placer  votre curseur  sur le  prochain mot
+(ceci pourra faire gagner du temps,  si vous en souligner  plusieurs de suite
+dans une phrase).
+
+
+Recherche d'un mot … l'int‚rieur du texte
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Pour permettre la recherche d'un mot … l'int‚rieur de votre texte vous devez
+d'abord  utiliser  la boŒte  de  dialogue  accessible  via  le menu d‚roulant
+®Recherche¯.  Vous commencez donc avec la combinaison de touche clavier ®Alt+
+R¯. Vous s‚lectionnez ®Trouve¯ … l'aide de la lettre  ®T¯.  Vous verrez alors
+la boŒte de dialogue avec comme titre  ®Recherche¯.  Vous ‚crivez votre mot …
+chercher et pressez 2 fois sur ®Enter¯ (<ÄÙ). Il recherchera votre mot, si le
+trouve,  il pointera dessus avec le curseur,  sinon,  il affichera un message
+vous disant qu'il ne l'a pas trouver.
+
+ Il peut arriver  que ce ne soit le bon mot  mais pas la bonne place trouver.
+Vous pouvez alors poursuivre la recherche en appuyant sur  ®Ctrl+L¯,  par son
+raccourci clavier ou par le menu ®Recherche¯, item  ®Essaie Encore¯.  S'il en
+trouve un autre,  il pointera dessus comme pr‚c‚demment.  Sinon il affiche le
+message de recherche infrutueuse.  Vous pouvez  donc utiliser ®Essaie encore¯
+(Ctrl+L) tant qu'il ne vous indique pas de message qu'il ne trouve plus rien.
+Et encore l… pourtant,  il recommence au d‚but du texte, la fois suivante que
+vous demandez encore un essaie s'il a affich‚ un message de rien trouv‚.
+
+
+Remplacement de mots … l'int‚rieur du texte
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette op‚ration, est en quelque sorte une approfondissement de la ®Recherche
+d'un mot¯. Dans la recherche d'un mot,  elle se content  de fouiller  dans la
+liste  du d‚but  vers la fin et lorsqu'elle  trouve son mot elle s'arrˆte l….
+Dans le cas  d'un remplacement,  lorsqu'elle trouve son mot  elle le remplace
+par un autre,  celui dont  vous  d‚finis  sous  l'entr‚e de recherche  de mot
+(texte … trouver), nouveau texte.
+
+ Vous  pouvez  acc‚dez  … cette possibilit‚,  par l'entremise  du  mˆme menu:
+®Recherche¯  par la combinaison clavier ®Alt+R¯.  Ensuite s‚lectionnez l'item
+®Remplace¯ … l'aide de la touche ®R¯.  Vous verrez une boŒte de dialogue avec
+un titre ®Remplace¯.
+
+
+Dessiner
+ÄÄÄÄÄÄÄÄ
+
+ Ce traŒtement vous permet,  si vous le d‚sirer de dessin avec les caractŠres
+de ligne pr‚d‚finit dans le standard des caractŠres IBM, des codes 179 … 218.
+Ce n'est pas un r‚el dessin, mais des lignes droite,  par ci par l…,  ‡a aide
+parfois.  Vous pouvez enclech‚  ou interrompre se mode avec la combinaison de
+touche ®Shift+F9¯. Vous verrez alors votre curseur changer en mode inverse de
+ce  qu'il  est  pr‚sentement,  s'il  est  mode insertion,  il  sera  en  mode
+‚crasement  (c'est probablement le cas  lorsque vous ferrez  ce teste)  ou en 
+mode insertion  s'il ‚tait en mode ‚crassement.  En  plus,  vous  verrez  une
+lettre apparaŒtre, la lettre ®D¯ dans la indicateur (en bas … gauche de votre
+fenˆtre, juste … c“t‚ des chiffres entre parenthŠses).  Ce  petite indicateur
+vous indiquer qu'il est prˆt … dessiner.  Si  vous  souhaŒtez  passer au mode
+normal (comme avant), il suffit de presser encore une fois sur ®Shift+F9¯.
+
+ Lorsque vous ˆtes en mode dessin, vous n'avez qu'… utiliser les flŠches vous
+d‚placer comme bon vous sembles et une ligne suivra votre trƒce tant que vous
+ne quitterez pas ce mode.  Dans la plupart des cas, si vous croisez une ligne
+d‚j… existante,  il la jumellera  … la nouvelle ligne  que vous  tracez en ce
+moment. Vous pourrez ainsi, par exemple, ajouter des cadres des listes,...
+
+ De fa‡on claire nette pr‚cise, voici des "barbos" faŒte avec ce mode:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³        ÚÄÄ¿       ÚÄÄÄ¿  ÚÄÄÄ¿     ÚÄÄÄÄ¿  ÚÄÄÄÄ¿                         ³
+³        ³  ³       ³   ÃÄÄ´   ³     ³  ³ ³  ³  ³ ³                         ³
+³        ÀÄÄÙ       ÀÄÄÄÙ  ÀÄÄÄÙ     ÀÄÄÅÄÙ  ÀÄÄÅÄÙ                         ³
+³                                       ÀÄÄÄÄÄÄÄÙ                           ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+
+Page pas assez grande: Changer de dimension!
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette m‚thode consiste … changer la taille de la feuille  par l'entremise du
+menu ®Option¯  (Alt+O),  item ®Dimension¯  (en pressant la lettre ®D¯).  Vous
+verrez alors  … ce moment,  une boŒte  de dialogue apparaŒtre  et  afficher 4
+chiffres  en colonne vertical.  Le premier chiffre r‚serv‚ pour la  ®Marge de
+gauche¯, ensuite la ®Marge de droite¯,  la ®Marge du haut¯ et enfin la ®Marge
+du bas¯.
+
+ Vous vous d‚placer … l'aide de la touche ®Tab¯ d'une entr‚e de chiffre … une
+autres. Dans l'une des 4 entr‚es de chiffres, vous pouvez effacer les anciens
+chiffres … l'aide de la touche ®Delete¯ ou  ®BackSpace¯.  Appuyez sur ®Enter¯
+sur le bouton ®Correcte¯ pour confirmer la nouvelle mesure. Si vous souhaŒtez
+abandonne l'op‚ration  par l'entremise de la touche ®Esc¯.
+
+ Pour obtenir un mode de feuille avec des lignes plus serrer, il faut changer
+la marge du haut  pour le chiffre  ®6¯  et la marge du bas  pour  ®82¯.  Vous
+obtiendez lors de l'impression un changement de ligne de  1/8 de pouce,  plus
+que le mode standard. Attention, c'est seulement si vous avez une longueur de
+papier de 11" (Menu ®Option¯, item ®Imprimante¯,  dans ®Dimension du papier¯, 
+chiffre aprŠs le ®x¯),  si vous avez un feuille de papier de longueur de 14",
+cela ne  s'applique  pas,  car votre  marge  du bas  n'est  pas  encore assez
+grandes.
+
+ Pour obtenir  une pleine  ligne compresser,  il faut marquer  comme marge de
+gauche ®10¯ et ®120¯  (ou une petit peu plus grand si ‡a vous arrange)  comme
+marge de droite.
+
+
+Protection par mot de passe
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Vous pouvez ajoutez un mot de passe … votre document,  si vous ne voulez pas
+que n'importe quel personne lise vos textes pour mille et une raison. Pour se
+faire,  il faut s‚lectionner le menu  ®Option¯  … l'aide de la combinaison de
+touche  ®Alt+O¯.  Vous appuyez  ensuite  sur  la  lettre  ®M¯ et vous  verrez
+imm‚diatement aprŠs une boŒte de dialogue s'afficher avec comme titre dans la
+barre blanche  ®Protection¯.  Dans la boŒte, il y est ‚crit ®Entrez le mot de
+passe¯.  Vous  ‚crivez votre mot  de  passe  (Vous  voyez  toujours  le  mˆme
+caractŠre s'‚crire  peu importe la lettre,  c'est normalement,  c'est pour ne
+pas que quelqu'un le voie).  Il  vous  demandera une seconde fois d'entrez le
+mot  de passe.  Pour voir  si vous avez ‚crit  la mˆme chose  que la premiŠre
+fois.  Cette mesure existe  pour ‚viter que par inadvertance vous fassiez une
+faute d'orthographe  de votre mot de passe  et que vous ne soyez plus capable
+de r‚cup‚rer votre fichier...
+
+ Dor‚navant, … chaque fois que vous ouvriez ce fichier, o— qu'il sera charger
+par  le  ®Desktop¯  il  r‚clamera  le  mot  de passe que vous avez ‚crit.  Il
+refusera obstin‚ment de vous le livrer autrement.
+
+ Pour les personnes inquiŠtes,  vous vous demandez si c'est facile de voir le
+mot de passe?  Pour un programmeur "crackant" 10 programmes  par  jours  oui,
+mais pas pour un utilisateur ou mˆme un programmeur normal.  Si vous lisez  …
+l'aide d'une commande ®TYPE¯ du Dos votre fichier,  vous verrez qu'il ne peut
+pas ˆtre lu quoi que ce soit,  c'est normal,  c'est que votre fichier est bel
+et bien prot‚g‚!
+
+
+Indicateur
+ÄÄÄÄÄÄÄÄÄÄ
+
+ Dans la partie inf‚rieure (en bas)  … gauche  de votre fenˆtre  d'‚dition de
+traŒtement  contient  2 nombres en  parenthŠse,  ce sont  respectivement  les
+coordonn‚es de colonnes  et de lignes.  Dans l'‚ventualit‚  o—  vous voyez un
+chiffre devant ces 2 l… (en mode document Gat), il y a un chiffre accompagner
+de deux-points (:),  le chiffre en question d‚signe  la  page  courante  dans
+votre ‚dition du texte.
+
+ Le sens du fabuleux ®ast‚ristique¯:  AprŠs ces les nombres en parenthŠse, il
+peut arriver  qu'un ast‚risque soit affich‚,  celui indique que votre texte a
+‚t‚ modifi‚ depuis sa cr‚ation ou son chargement en m‚moire.  Lorsqu'il n'est
+plus afficher  c'est  que le texte  est conforme  (identique)  au contenu sur
+disque.
+
+ Dans le mˆme coin, en bas … c“t‚ de la gauche,  vous  voyez  s–rement une ou
+des lettres.  Ces lettres ne sont pas un terrible stratagŠme  diabolique pour
+cr‚er une  d‚coration  dans une partie vide!  Elles servent  vraiment  … quel
+chose en voici les v‚ritables repr‚sentations:
+ÚÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³Lettre ³Description                                                        ³
+ÆÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ D     ³Mode dessin. Lorsque vous d‚placez le curseur … l'aide des flŠches ³
+³       ³il trace des lignes...                                             ³
+³ I     ³L'‚diteur de traŒtement se trouve pr‚sentement en mode d'insertion ³
+³ L     ³Quand ce lettre est affich‚,  c'est  que la modification  du texte ³
+³       ³est interdite: mode lecture seulement (Read Only). S'applique qu'… ³
+³       ³l'‚dition seulement et non pas au fichier...                       ³
+³ S     ³®Scroll Lock¯:  C'est pour indiquer  que l'‚diteur interdit en  ce ³
+³       ³moment  l'‚dition  dans les marges.  Zones  en pratique  ou aucune ³
+³       ³lettre … envoyer par la poste ne devrait contenir  des caractŠres. ³
+³       ³Mais des fois ‡a arranges des affaires sans trop sacrifice!        ³
+ÀÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ A c“t‚  de ces  multiples  indicateurs,  ce trouve,  un mot entre  2  barres
+verticales. Ce mot indique le style de texte  en ‚dition  (Mode d'affichage).
+Le mode devant ˆtre ‚crit  lorsque vous ‚crivez un document est  ®Gat¯.  Dans
+les autres cas:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Indicateur     ³ Description                                              ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ Normal         ³ C'est le mode par d‚faut du DOS (ASCII).                 ³
+³ Assembleur     ³ Mode  pour  une  liste   de  langage   de  programmation ³
+³                ³ Assembleur (code machine...).                            ³
+³ Basic          ³ Mode pour une liste de langage de programmation Basic.   ³
+³ Batch          ³ Mode pour une liste de fichier Batch du DOS.             ³
+³ C/C++          ³ Mode pour une liste de langage de programmation C ou C++.³
+³ Fortran        ³ Mode pour une liste de langage de programmation Fortran. ³
+³ Ini            ³ Mode pour un fichier  d'initiation  (Windows,  Geoworks, ³
+³                ³ ...) ou  si  vous  pr‚f‚rer  de configuration  pour  ces ³
+³                ³ environnements graphiques multitƒche.                    ³
+³ Pascal         ³ Mode pour une liste de langage Pascal.                   ³
+³ PopMenu        ³ Mode pour une liste de fichier pour Souris.              ³
+³ Ressource      ³ Mode pour une liste de Ressource (style RC).             ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ La quatriŠme zone,  celle avec 2 chiffres  multipli‚s  (??x??)  suivie par 2
+point est utiliser  pour indiquer  … l'utilisateur  la persception  totale du
+fichier.  Le premier chiffre  indique la ligne  la plus longue  du texte.  Le 
+deuxiŠme chiffre  (celui aprŠs le "x")  indique le nombre de ligne du contenu
+dans ce texte (ou liste).  Le troisiŠmes chiffres,  aprŠs le deux-points (:),
+avant le message "octet(s)",  indique la taille en octets que devrait occuper
+ce document (ou texte ou liste) sur votre unit‚ disque en octet(s)  bien s–r!
+Octet dans ce cas si peut ˆtre consid‚rer comme caractŠre,  lettre,  chiffre,
+si vous pr‚f‚rez.
+
+End
+
+IndexAscii 7
+Macro
+ÄÄÄÄÄ
+
+ Les macros  son la partie  la plus difficile  … comprendre  du traŒtement de
+texte si vous en composer. Toutefois, si vous les utilisez prŠs … servir, ils
+sont n‚cessaires simple … vos. Si vous ˆtes du genre de ne pas voir l'utilit‚
+des macros,  qu'on peut qualifier  de raccourci clavier programmable,  passer
+au point suivant, sinon, poursuiver la lecture de ceci.
+
+ Tous d'abord,  un macro  sa sert  … faire gagner  du temps  dans  des tƒches
+r‚p‚tive  et  relativement simple.  Il s'agit  d'une forme  de  langage  pour
+programmer le traŒtement en fonction de l'entr‚e de combinaisons de touche ou
+de raccourci.
+
+ Il existe  dans le menu  ®Commande¯  accessible via la combinaison de touche
+®Alt+C¯, 2 items vous permettant de les manipulers: ®Execute Macro¯ et ®Ouvre
+un Macro¯.  ®Execute Macro¯, ou si vous pr‚f‚rer l'ex‚cution d'un macro, vous
+permet  d'ex‚cute en pratique  votre macro contenue  dans un fichier.  De son
+c“t‚, l'ouverture du macro (Ouvre un Macro),  est utilis‚ pour cr‚er un macro
+ou en charger un d‚j… existant.
+
+ Dans  le  premier  cas,   l'ex‚cution  du  macro,  il  faut  que  vous  ayez
+naturellement  un texte  en ‚dition  charger  en m‚moire.  Il interprŠte  les
+instructions  contenu  dans le fichier macro  et les exprimes sur votre texte
+s'‚ditant pr‚sentement.  Il existe ‚galement un raccourci pour ex‚cuter cette
+item, le combinaison ®Shift+F10¯.
+
+ Dans le  deuxiŠme cas,  de loin  le plus complexe  pour l'utilisateur  de ce
+traŒtement  de texte,  l'‚dition  d'un macro  (car vous  l'avez  pr‚c‚demment
+ouvert  par l'entremise  de la  combinaison  de touche ®Ctrl+F10¯),  il  faut
+s'armer d'une bonne dauce de patience.  Le traŒtement de texte s'attend … des
+instructions pr‚cises et rien d'autres.
+
+ Voici maintenant une courte description des instructions disponible:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Instruction   ³ Description                                               ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ For           ³ Pour produire un effet r‚p‚titif.                         ³
+³ Ln            ³ Saute d'une ligne. L'‚quivalent de la touche ®Enter¯ (<Ù).³
+³ PageFormat    ³ Cette instruction indique au traŒtement de texte que vous ³
+³               ³ voulez sp‚cifiez le format (ou la dimension de votre page ³
+³               ³ pour  permettre  de ne pas produire  de conflier  de trop ³
+³               ³ petite ou grande taille de page...                        ³
+³ PageNm        ³ ®PageNumber¯,  num‚ro  de page,  indique  votre num‚ro de ³
+³               ³ page additionner lors de l'impression de votre texte.     ³
+³ Put           ³ Affiche du texte(s) mais sans passer … la ligne suivante. ³
+³               ³ Il  attend  bien  sagement  aprŠs le texte venant  d'ˆtre ³
+³               ³ ‚crit.                                                    ³
+³ PutLn         ³ Affiche du texte(s) et passe … la ligne suivante.         ³
+³ SetDblChr     ³ ®SetDoubleCharacter¯,   fixe   en   double   largeur  les ³
+³               ³ prochains  caractŠres,   change  le  mode   d'‚dition  du ³
+³               ³ traŒtement  de  texte.   Les  caractŠres  suivant  seront ³
+³               ³ automatiquement d'une largeur double (®‚ t i r e r¯).     ³
+³ SetNorChr     ³ ®SetNormalCharacter¯,  fixe en mode normal, s'en attribue ³
+³               ³ particulier  les  prochains  caractŠres.  Les  caractŠres ³
+³               ³ suivant ne seront plus double largeur, gras,  italique ou ³
+³               ³ quelque chose du mˆme genre,  ils seront ordinaire,  sans ³
+³               ³ charme, par d‚faut...                                     ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+
+L'instruction PageFormat
+ÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅ
+
+ Sa syntaxe ne permet qu'un style possible ®PageFormat¯ suivi d'un num‚ro 4
+4 chiffres s‚par‚es par des virgules comme ce format ci:
+
+  ®PageFormat X1,Y1,X2,Y2¯
+
+Vous ne pouvez naturel  pas placer  des lettres  dans cette instruction,  ils
+sont l… juste  comme identificateur.  Le premier  ®X1¯ indique  la coordonn‚e
+(marge de)  gauche de la feuille.  Le deuxiŠme ®Y1¯  indique la coordonn‚e du
+haut de la feuille.  Le troisiŠme ®X2¯ indique la marge de droite, en partant
+de la gauche, en caractŠres. Et nous pas de droite vers la gauche! Le dernier
+(®Y2¯) est naturel la position  du bas en partant du haut.  Et surtout pas la
+marge  de bas  de la  feuille  vers  le haut,  sinon  vous  rencontrerez  des
+dimensions  de feuilles n‚gative,  soit th‚oriquement  impossible  dans notre
+univers!
+
+ Par exemple  si vous  souhaŒtez  ardamment  garder  une  feuille  de  format
+standard, voici ce qu'il faut marquer:  ®PageFormat 10,6,70,60¯, pour en mode
+compress‚ ®PageFormat 10,6,120,82¯.
+
+
+Les instructions Put et PutLn
+ÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ
+
+ Ces 2 instructions s'applique  de la mˆme maniŠre  … la seule diff‚rence que
+l'un saute une ligne aprŠs  (PutLn) et l'autre pas (Put).  Il suffit d'‚crire
+entre  guillemet (")  votre  message  …  transmettre.  Si  par  exemple  vous
+souhaŒtez faire ‚crire le message  ®Je d‚teste les macros!¯.  Vous ‚crirez le
+l'instruction suivante:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Put "Je d‚teste les macros!"                                              ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ L'interpr‚teur  de macro  n'‚crit pas  les guillemets!  C'est  seulement une
+d‚limitation pour lui...
+
+End
+
+IndexAscii 8
+Des petites secrets du traŒtement de texte
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Le texte que vous ‚crivez,  si la ligne n'est pas terminer  et se continue …
+la ligne suivante, il contient tout naturellement un espace … la fin. Si vous
+l'enlever,  lors de l'impression,  il ne justifiera pas le texte  si vous lui
+demandez.
+
+ Si  vous  voyez  une ligne de 3 mots ou peu prŠs de ce genre l… s'‚tirer sur
+toute une ligne pendant  l'impression c'est que la ligne contenu  dans  votre
+texte se termine  pas un espace,  donc il s'attend  que le texte ne finit pas
+l… vous voyez le genre...?
+
+Les petits cercle … la fin des lignes justifi‚es vous ‚tourdisse, vous n'ˆtes
+plus capable de les voirs, alors il existe un moyen d'arriver … vos fin, sens
+que vos doigt est des crampes! S‚lectionner le menu ®Option¯ … l'aide d'®Alt+
+O¯. AprŠs le notre fabuleux relƒche, pressez sur la touche ®d¯ (comme d‚tail)
+Vous  voil…  en face  d'une  option  de  configuration  de l'‚diteur.  Il y a
+n‚cessairement un X entre crochet ([X]),  vous l'enlever … l'aide de la barre
+d'espace  (irr‚futablement  la plus grande  touche  du  clavier)  et  votre X
+s'enlŠve comme par magie.  Lorsque cette p‚nible ‚tape est accomplis, je vous
+le dis, la moiti‚ du chemin,  est accomplit,  l'autre desogne c'est d'appuyer
+sur ®Enter¯ histoire  de confermer  pour qu'… l'avenir le traŒtement de texte
+en tiennent compte  (j'aurais bien rajouter:  ®histoire de confirmer que vous
+n'ˆtes pas psychotique¯,  mais la franchement je crois que l'‚motition aurait
+‚t‚ trop forte, voir mˆme "d‚placer").
+
+ Vous d‚tester  les espaces  se trouvant  entre votre curseur  et le prochain
+mot. Vous avez raz-le-bol  de presser la touche  ®Delete¯ … point tel quel ne
+marche  plus.  Il y a peu  ˆtre  un  solution  plus  efficace.  Il existe  un
+raccourci clavier sp‚cifique … ce programme.  Appuyez sur ®Ctrl+S¯.  Tous les
+espaces son extermin‚ … ce instant sans pit‚e jusqu'… ce qu'il ne reste plus!
+Heureusement,  pour vous,  le programme comprend  que vous ˆtes  tendu  et il
+n'effectue pas d'autre ‚crassement  si vous oubliez vos doigts sur le clavier
+(puisse  qu'une seule fois est possible).  Les caractŠres  ne sont  donc  pas
+affect‚ seulement  les espaces.  D‚‡us, abussez,  par la solution,  j'ai bien
+peur que  je ne puis plus  vous aidez,  consulter plut“t  un gourou  ou votre
+cr‚ateur!
+
+End
+
+IndexAscii 9
+Gestionnaire de fichiers
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Le gestionnaire  de fichiers  est accessible  par le  menu  ®Fenˆtre¯,  item
+®Gestionnaire Fichiers¯.  Soit les touches ®Alt+N¯, puis aprŠs relƒchememt la
+touche  ®G¯.  Dans ces  2 cas,  la lettre d'alphabet  pour la touche peu ˆtre
+aussi minuscule que majuscule.  Si vous pr‚f‚rez le raccourcis clavier, c'est
+facile pour les habituer, appuyez sur ®Ctrl+F3¯.
+
+ L…, soudainement, voici qu'aparraŒt une effrayante couleur magenta (genre de
+violette, rose ou couleur du sang ne passant plus). En haut une barre avec la
+fabuleuse couleur encore plus stridente est affich‚e avec le spectaculaire et
+non le moindre titre r‚v‚lateur ®Gestionnaire de Fichiers¯. Vous voyez 2 sous
+fenˆtre dont une avec myst‚rieusement des fichiers du r‚pertoire ou vous vous
+trouviez  lors  du lancement  du programme.  Votre stupeur  est fond‚e  je le
+crains... VOUS AVEZ RUSSIS!!
+
+ Vous avez 2 tableaux dans le mˆme fenˆtre. Chaque tableau peut soit afficher
+une liste  de fichier,  des informations  ou  un arbre  des r‚pertoires d'une
+unit‚.  Par  d‚faut,  c'est une liste  de fichier  … la gauche  et un tableau
+d'information … votre droite.
+
+ Le tableau de "liste de fichier" affiche les fichiers contenu dans une seule
+r‚pertoire, celui ‚tant ‚crit en au de ce tableau.  Vous pouvez vous d‚placer
+… l'aide des touches mont‚ (/³\)  ou descendre  (\³/) pour choisir ou voir un
+fichier ou  un  r‚pertoire.  Vous  pouvez  …  l'aide  des  touches  suivantes
+effectuer de nombreuses op‚rations:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Touche       ³ Description                                                ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ Delete       ³ Efface un/des fichier(s) ou r‚pertoire s‚lectionner.       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ F5           ³ Copier  le fichier  pointer  par  la barre  si vous n'avez ³
+³              ³ s‚lectionner aucun fichier … l'aide de la touche ®Insert¯. ³
+³              ³ Sinon il copie le(s) fichier(s) s‚lectionner par la touche ³
+³              ³ Insert. Si votre tableau de l'autre c“t‚ est ‚galement une ³
+³              ³ liste de fichier, il vous suggerera de le(s) copi‚(s) dans ³
+³              ³ sont r‚pertoire  sinon il vous demandera manuellement dans ³
+³              ³ quel r‚pertoire il doit copi‚ votre/vos fichier(s).        ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ F7           ³ Cr‚e un nouveau  r‚pertoire  dans le r‚pertoire courant du ³
+³              ³ tableau.                                                   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ F9           ³ D‚place  ou  renomme   un/des   fichier(s)  ou  r‚pertoire ³
+³              ³ (seulement renomme pour le r‚pertoire) s‚lectionner.       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Insert       ³ S‚lectionne un fichier,  s'il est d‚j… s‚lectionn‚, il est ³
+³              ³ enlever de la liste des s‚lections (d‚s‚letionn‚).         ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+End
+
+IndexAscii 10
+SystŠme d'information
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Le systŠme d'information est accessible via le menu ®Info(rmation)¯ … l'aide
+de la  combinaison  de touche  clavier  ®Alt+I¯.  Il permet  de connaŒtre une
+vari‚t‚ d'information sur le systŠme et la persception du celui-ci.
+
+End
+
+IndexAscii 11
+Information Pays
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ L'®Information Pays¯ est l'information contenu par le systŠme d'exploitation
+pour ce repr‚senter le pays ou la r‚gion actuellement ‚tabli. Chaque pays, ou
+mˆme parfois des r‚gions ont leur propre code entre les chiffres, l'heure,...
+Par exemple au tats-Unis, on retrouve un point pour s‚parer la partie entier
+de la partie d‚cimal,  tandis qu'au Qu‚bec au utilise plut“t la virgule.  Ces
+informations compiler au lancement du programme par l'entremise du fichier de
+configuration du systŠme de d'exploitation sont accessibles aux applications.
+Le MonsterBook permet de vous les repr‚senter de fa‡on courtoise.
+
+ Vous pouvez acc‚der … ce information,  comme pr‚c‚demment expliquer grƒce au
+menu ®Info¯, … l'aide de la combinaison de touche ®Alt+I¯. Vous devez ensuite
+sp‚cifier l'item ®Pays¯ … l'aide de la touche ®P¯ (minuscule ou majuscule).
+
+ Vous verrez donc une boŒte de dialogue avec le titre ®Information Pays¯ vous
+permettant de connaŒtre diverses  information des pays.  Prenez note  que les
+donn‚es suivants les renseignements sont tout … fait relatif au systŠme.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Nom du pays (ou de la r‚gion): Qu‚bec, (002)                              ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Le code r‚gional  n'est pas un code  de t‚l‚phone  ou quelque chose  du mˆme
+genre,  c'est plut“t  un code  du Dos permettant  de nous renseigner sur quel
+r‚gime on fonctionne (g‚n‚ralement congruant avec le pays).
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Le code de page: 863                                                      ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ C'est le modŠle de police de caractŠre sugg‚r‚ par le Dos pour la r‚gion. Ce
+code est utilis‚  pratiquement que par le  Dos et n'a pas  vraiment d'int‚rˆt
+dans un programme quelconque.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Format du temps: AA-MM-JJ, 24:00                                          ³
+³                   ^  ^  ^    ^                                            ³
+³                   ³  ³  ³    ÀÄÄ 2 format d'heures existe,                ³
+³                   ³  ³  ÀÄÄÄÄÄÄ¿ 12 heures (avec am/pm) ou                ³
+³                   ³  ÀÄÄÄ¿     ³ 24 heures (international).               ³
+³                   ³      ³     ³                                          ³
+³                  Ann‚e  Mois  Jour                                        ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Le format du temps est divis‚ en 2 parties,  la premiŠre c'est la date et la
+seconde l'heure.  Tous d'abord la date,  c'est la syntaxe sous laquel la date
+doit ˆtre ‚crite.  La position de l'ann‚e (AA),  du mois (MM) et du jour (JJ)
+peuvent vari‚ ‚galement le s‚parateur de date.  Celui ‚tant "-"  peut changer
+pour "/" (ou autre) dans d'autre pays (ou systŠme, Dos,...).
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Syntaxe de la monnaie: $1 000,00                                          ³
+³                        ^ ^   ^ÀÙ                                          ³
+³                        ³ ³   ³ ÀÄ Nombre de d‚cimal                       ³
+³                        ³ ³   ÀÄÄÄ CaractŠre s‚parateur de d‚cimal.        ³
+³                        ³ ÀÄÄÄÄÄÄÄ CaractŠre s‚parateur de millier.        ³
+³                        ÀÄÄÄÄÄÄÄÄÄ Symbole de la monnaie.                  ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ La symbole  de la  monnaie  c'est  le caractŠre  utilis‚  avant  ou aprŠs un
+chiffre  pour indiquer  qu'il s'agit d'argent,  de monnaie,  de "cash",... Le
+s‚parateur  de millier est tant  qu'… lui utilis‚ pour s‚parer  les milliers,
+millions,  milliards,...  Le s‚parateur de d‚cimal de son c“t‚ non apporte le
+s‚parateur entre les entiers et les d‚cimal. Et enfin le nombre de d‚cimal le
+nombre de d‚cimal en vigueur dans la r‚gion ou pays pour l'argent indiqu‚.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Le format des nombres: 1 234 567,890 123                                  ³
+³                         ^   ^   ^   ^                                     ³
+³                         ÀÄÄÄÁÄÄÄ)ÄÄÄÁÄÄÄ S‚parateur de millier.           ³
+³                                 ÀÄÄÄÄÄÄÄ S‚parateur de d‚cimal.           ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ S'applique de la mˆme fa‡on que pour la monnaie.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ S‚parateur de donn‚e: ";"                                                 ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Ce caractŠre  est  utilis‚ pour  s‚par‚e  des  paragraphes.  Il quelque peut
+n‚gliger  par les applications,  ‚tant donn‚e que personne ne  s'est vraiment
+qu'est ce que les concepteurs du systŠme d'exploitation entende par l…...
+
+End
+
+IndexAscii 12
+Information Sommaire
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette partie est r‚serv‚e  pour repr‚senter la machine  en mat‚riel sous une
+vue d'ensemble. Il s'agit d'une introduction pour mieux comprendre son aspect
+mat‚riel,  et trŠs peu  au niveau logiciel.  C'est  la  porte  d'entrer  pour
+connaŒtre votre processeur, carte vid‚o, m‚moire,... Vous pouvez acc‚der … ce
+service par l'entremise du menu  ®Info(rmation)¯  … l'aide de la combinaisons
+clavier ®Alt+I¯,  item ®Information Sommaire¯ en pressant seulement la lettre
+®I¯ (minuscule ou majuscule) cette fois.
+
+End
+
+IndexAscii 13
+Sommaire du (systŠme) Vid‚o Primaire
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ On d‚signe par ®Primaire¯ l'‚cran utilis‚ par le Dos et le Secondaire  (s'il
+y a lieu)  l'autre systŠme d'affichage,  g‚n‚ralement inactif et trŠs souvent
+inutilis‚.
+
+ Cette boŒte de dialogue permet de connaŒtre de fa‡on trŠs d‚tailler quel est
+l'‚tat  de votre  carte vid‚o principal  (souvent la seule install‚ sur votre
+machine).  Elle retourne  sa marque,  sa composition  mat‚riel  ainsi que des
+donn‚es technique sur le mode vid‚o actuellement en usage.
+
+ Il est accessible  par le menu  ®Info¯  par la combinaison clavier  ®Alt+I¯.
+Ensuite  pressez  la  touche  ®S¯  donnant accŠs … l'item  ®Sommaire du Vid‚o
+Primaire¯.  Vous  verrez  ensuite  apparaŒtre  une fenˆtre  de dialogue nomm‚
+®Information du systŠme vid‚o primaire¯.
+
+ Prenez note que les donn‚es suivants les pr‚fixes  sont relatif aux systŠmes
+vid‚o.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Carte vid‚o: Inform-Tech Video Graphics Array                             ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ C'est le modŠle  de la carte  (modŠle de manufacture).  Il ne s'agit pas ici
+d'un standard mais bien d'une marque.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ quivalence vid‚o: Super VGA                                              ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ C'est le standard … laquel on peut se r‚f‚rer.  Soit CGA, MDA, HGC, EGA, VGA
+et SVGA (ou Super VGA).
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Moniteur: Analogue Couleur                                                ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Type de moniteur reli‚ … la carte.  Prenez bien note  que certaines  vielles
+cartes ne nous donne gŠre d'information … ce niveau et il faudra se r‚f‚rer …
+cette information comme la perception que la machine a d'elle-mˆme et non une
+v‚rit‚ absolue.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Bios de la carte vid‚o: C000h, 16-bits                                    ³
+³                          ^      ^                                         ³
+³                          ³      À AccŠs en bits … la Bios                 ³
+³                          ³        de la carte vid‚o.                      ³
+³                          À Segment d'adressage du Bios de la carte vid‚o. ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Cette ligne retourne des informations s'appliquant au Bios de la carte vid‚o
+s'il est existe. Rassurez-vous, autre les ancienne carte MDA, CGA et Hercule,
+pratiquement tous les cartes vid‚o ont leur propre Bios.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ M‚moire de la carte vid‚o: 1024 Ko (Libre: 0 Ko)                          ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Cette  item  retourne  le nombre  de m‚moire  vid‚o d‚tect‚  sur votre carte
+vid‚o, lors  du lancement  du programme.  Elle est suivie  d'un ‚l‚ment entre
+parenthŠse indiquant la m‚moire  que l'application n'utilise pas encore de ce
+mode vid‚o  (prenez note que la taille de la m‚moire de libre est variable en
+fonction  de  l'utilisation du  programme,  comme  par  exemple  le nombre de
+fenˆtre ouvert,...).
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Taille d'un DAC: 18-bits (262144 variantes de couleurs)                   ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Cette ligne retourne en  bit(s),  la taille qu'occupe un registre de palette
+Rouge-Vert-Bleu dans la carte vid‚o. Ce nombre ce divise n‚cessairement par 3
+pour se donn‚e un id‚e  d'une seul des  3 couleurs  RVB.  Prenez note que les
+registres de palette DAC  n'existe pas sur toute les cartes.  Remarquez entre
+parenthŠse le nombre  de varantes disponible avant votre DAC de couleurs,  ce
+nombre est g‚n‚ralement impressionnant toutefois,  vous n'avez accŠs qu'… une
+quantit‚ limit‚ de ce tout.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ AccŠs RAM vid‚o: 16-bits, Segment B800h                                   ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Cette item retourne des informations concernant l'utilisation par le  Micro-
+Processeur  de la carte vid‚o.  Tout d'abord la taille  de l'accŠs … la plage
+RAM que peut supporter la carte vid‚o,  suivit du segment d'adressage utilis‚
+pour le mode vid‚o actuel pour le traitement de l'image vid‚o.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Mode vid‚o courant: Texte 80x25, 16 couleurs                              ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Ceci permet de nous renseigner  sur le mode vid‚o actuellement en cours.  Le
+permier mot d‚signe  la cat‚gorie:  texte ou graphique,  dans le premier cas,
+seul le texte est support‚  et la taille en colonne  et  en ligne est calcul‚
+comme tel,  ®80x25¯  par exemple.  Pour le graphique la taille est exprim‚ en
+pixels,  ensuite,  aprŠs la virgule,  le nombre de couleurs  (ou  d'attribut)
+support‚ par le mode est indiqu‚.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Mode support‚ par le Bios: Oui                                            ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Indique  si le mode vid‚o  est reconnu par le Bios.  Aussi bizzard  que cela
+puisse paraŒtre,  certains modes vid‚os,  comme  par  exemple,  640x200 en 16
+couleurs sur un Graphics Solution  d'ATI ne sont pas reconnu par le Bios,  et
+cette valeur bool‚enne est l… pour l'indiquer.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Nombre pages: 256 (Taille: 4 Ko)                                          ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Nombre  de page  disponible  dans ce  mode vid‚o  (en th‚orie).  En g‚n‚ral,
+l'‚cran  de  texte  en supporte  ais‚ment une centaine,  tandis que les modes
+graphique  en ont environ 8.  Entre parenthŠse,  ont retrouve  la taille  que
+chaque page r‚clame. G‚n‚ralement cette caract‚ristique n'est jamais exploit‚
+… sa juste mesure,  et c'est pourquoi,  il est pr‚f‚rable d'utilis‚ les pages
+comme tampon de sauvegarde des images plut“t que comme page.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Police Programme: Oui                                                     ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Indique si la carte supporte une reprogrammation  de la police de caractŠre.
+Cette caract‚ristique  est trŠs  utile  pour  donner  l'illusion  qu'un ‚cran
+graphique est un ‚cran de texte.
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Taille caractŠre: 8x16                                                    ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Montre la taille  d'un  caractŠre  affich‚ …  l'‚cran en pixel.  Le  premier
+chiffre indique la largeur et le second la hauteur.
+
+
+Sommaire du (systŠme) Vid‚o Secondaire
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette boŒte de dialogue est similaire  … la pr‚c‚dente  (Sommaire du systŠme
+vid‚o primaire)  … la diff‚rente de celle-ci  qu'elle  s'applique  … la carte
+vid‚o   d'affiche  secondaire,   dit  souvent   "inactif"   par  le   systŠme
+d'exploitation DOS.  Elle n'est pas install‚ dans tout les systŠmes (car elle
+n'est pas indispensable … son fonctionnement) et pour cette raison il se peut
+que l'application  vous r‚pondes par  ®SystŠme vid‚o secondaire inexistant!¯.
+Dans ce cas,  il ne peut pas  vous d‚crire  votre  systŠme  vid‚o  secondaire
+puisqu'il n'existe physiquement pas!
+
+ Pour l'accessibilit‚  … cette fonction,  il faut utilisez  les flŠches aprŠs
+activation du menu ®Info¯, contrairement … son pr‚d‚cesseur.  AprŠs vous ˆtre
+d‚placer par l'entremise  des flŠches mont‚e  (/³\)  et descendre  (\³/)  sur
+l'item ®Sommaire du Vid‚o Secondaire¯.  Vous appuyez sur ®Enter¯. Vous verrez
+apparaŒtre une fenˆtre de dialogue avec comme titre ®Information du systŠme
+vid‚o secondaire¯
+
+End
+
+IndexAscii 14
+Calculatrice Programmable
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ La calculatrice  programme  est comme la  calulatrice  normal sauf  que vous
+devez ‚crire vous calcul  … la maniŠre de  l'interpr‚teur BASIC:  ®5+6...¯ et
+non pas en pressant  des boutons.  En gros,  on peut dire que la calculatrice
+programmable  est une fenˆtre  permettant  de r‚soudre  des calculs primaire,
+mais essentiel.  Elle est comme une calculatrice normal, sauf que l'op‚ration
+doit complŠtement ˆtre ‚crite avant d'ˆtre r‚solue.
+
+ Vous pouvez obtenir la calculatrice programmable  … l'aide du menu d‚roulant
+®Fenˆtre¯ accessible par la combinaison clavier ®Alt+N¯  (et non pas  ®Alt+F¯
+‚tant   utilis‚   par   un  autre  menu).   Vous  choisissez  ensuite  l'item
+®Calculatrice Programmable¯ … l'aide de la touche clavier ®A¯.
+
+Tout d'abord la syntaxe des nombres:
+
+ ş En Hexad‚cimal: $nombre ou 0xnombre
+          Exemple: $FFFF=0xFFFF=65535
+   La syntaxe est donc la mˆme  que celle des langages de programmation C/C++
+   ou Pascal.
+
+ ş En binaire: 0bnombre
+      Exemple: 0b110=6
+   La syntaxe est donc la mˆme que celle du langage de programmation C/C++.
+
+ ş En d‚cimal: nombre
+      Exemple: 8=8
+
+Il supporte ‚galement les priorit‚s d'op‚ration respectivement comme suit:
+ÚÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ ()       ³ ParenthŠse                                                     ³
+³ []       ³ Valeur entiŠre (exemple: [3,59])                               ³
+³ ³³       ³ Valeur absolue (Code Ascii 179)                                ³
+³ ^        ³ Exponentiel                                                    ³
+³ *, ú, ù  ³ Multiplication (Code Ascii 42, 250, 249)                       ³
+³ / ou ö   ³ Division r‚el (normal) (Code Ascii 47, 246)                    ³
+³ \        ³ Division entiŠre (il ne reste pas de d‚cimal)                  ³
+³ %        ³ Modulo (restant)                                               ³
+³ +        ³ Plus                                                           ³
+³ -        ³ Moins                                                          ³
+³ ï ou AND ³ Et binaire (Code Ascii 239)                                    ³
+³ | ou OR  ³ Ou binaire                                                     ³
+³ ı        ³ Le carr‚ d'un nombre (Code Ascii 253)                          ³
+ÀÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+Les diff‚rentes fonctions disponibles sont (‚crit en minuscule  ou majuscule,
+c'est sens importances):
+
+ Abs(nombre)    Cette fonction est l'‚quivalent de ³nombre³, elle retourne la
+                valeur absolue de nombre.
+ Asc(chaŒne de  Cette fonction retourne le code Ascii du premier caractŠre de
+     caractŠre) la chaŒne de caractŠre.  Si la chaŒne  de caractŠre est vide,
+                une valeur num‚rique est ausi retourn‚, soit 0.
+ ATN(nombre)    Cette fonction retourne  l'Arc Tangente  de nombre en radian.
+                Si le symbole 'ø'  (Code Ascii 248)  suit le nombre, alors la
+                valeur retourn‚e est en degr‚.
+ COS(nombre)    Cette fonction retourne le cosinus de nombre en radian. Si le
+                symbole 'ø' (Code Ascii 248)  suit le nombre, alors la valeur
+                retourn‚ est en degr‚.
+ INT(nombre)    Cette fonction est  l'‚quivalent de  [nombre],  elle retourne
+                donc la valeur entiŠre de nombre.
+ JOYSTK(nombre) Cette  fonction  retourne  la  position  potentiomŠtre  de la
+                manette de jeu. Les nombres affluent de la fa‡on suivante:
+                 0: PremiŠre manette de jeu, position X,
+                 1: PremiŠre manette de jeu, position Y,
+                 2: DeuxiŠme manette de jeu, position X,
+                 3: DeuxiŠme manette de jeu, position Y,
+                les autres  valeur  provoque  l'erreur:  "Erreur de num‚ro de
+                dispositif".
+ Len(nombre)    Cette fonction retourne le logarithme de nombre.
+ RND(nombre)    Cette fonction  retourne  une  valeur  al‚atoire  entre  0 et
+                nombre.
+ SGN(nombre)    Cette fonction retourne 1  si le nombre est plus grand que 0,
+                0 si le nombre est 0 et -1 si le nombre est inf‚rieur … 0.
+ SIN(nombre)    Cette fonction retourne le sinus  de nombre en radian.  Si le
+                symbole 'ø' (Code ASCII 248)  suit le nombre, alors la valeur
+                retourn‚ est en degr‚.
+ SQR(nombre)    Cette fonction retourne la racine carr‚ de nombre.
+ TAN(nombre)    Cette fonction retourne la tangente  de nombre en radian.  Si
+                le symbole  'ø'  (Code Ascii 248)  suit le  nombre,  alors la
+                valeur retourn‚ est en degr‚.
+ VAL(chaŒne de  Cette fonction retourne  la valeur num‚rique  de la chaŒne de
+     caractŠre) caractŠre.
+
+ Il existe  ‚galement une constante  permettant  de r‚soudre des problŠmes de
+fonction trigonom‚trique:
+ÚÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ ã        ³ Connu sous le nom de PI = ÷3,1415926535897932385               ³
+³          ³ (Code Ascii 227)                                               ³
+ÀÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+Remarque:  Lorsque la partie fractionnaire  n'existe pas dans la r‚ponse,  le
+nombre est donc un entier, et il r‚pond comme tel.
+
+End
+
+IndexAscii 15
+Menu Application
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Le menu d'application est une fenˆtre  de dialogue permettant  d'appeler des
+programmes externe  (souvant application)  sans sortir  du MonsterBook.  Pour
+avoir accŠs cette fenˆtre, on presse ®Shift+F2¯,  pour l… quitter,  on presse
+Esc. Les flŠches Mont‚e (Up)  et descendre (Down)  permettent de s‚lectionner
+le programme ou la cat‚gorie voulu. Enter lance le programme s‚lectionner, si
+celui-ci est un programme ou rentre … l'int‚rieur d'une section,  si celle-ci
+est  une  section.  ®BackSpace¯  fait  l'inverse  d'®Enter¯,  concernant  les
+sections, il revient doncx … sa section parente.
+
+ Votre appelant  (programme fils)  doit  entrer  dans  la  m‚moire  de  libre
+(disponible) indiqu‚ … la fin de l'avant derniŠre ligne:
+ÚÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÂÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ 00:00:00 ³ 00:00:00 ³ 00:00:00 ³     ³     ³ m‚moire disponible           ³
+ÀÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÁÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+Edition
+ÄÄÄÄÄÄÄ
+
+ L'‚dition se fait … partir du menu Option,  Edite le Menu ou en enfonc‚e les
+touches  ®Ctrl+F2¯.  Il affiche alors une fenˆtre de traitement de texte dans
+lequel s'affiche la liste de  Menu  d'Application.  Le traitement de la liste
+s'effectue naturellement comme celle d'un traitement de texte.
+
+La syntaxe pour un Item de programme est la suivante:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ nom du programme                                                          ³
+³ chemin du programme paramŠtre du programme                                ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+Si … la fin de la seconde ligne,  le paramŠtre  ®$CHPATH¯ est pr‚sent,  alors
+cela signifie  que le r‚pertoire courant  doit correspondre  au r‚pertoire de
+lancement du programme.
+
+Exemple
+ÄÄÄÄÄÄÄ
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Turbo Pascal                                                              ³
+³ C:\TP\BIN\TURBO.EXE                                                       ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+Ces 2 lignes explique au Malte Book que le programme s'appelle Turbo Pascal.
+
+La syntaxe d'une section est la suivante:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ nom de la section                                                         ³
+³ {                                                                         ³
+³  item                                                                     ³
+³   .                                                                       ³
+³   .                                                                       ³
+³   .                                                                       ³
+³ }                                                                         ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ Un nombre de ligne vierge (vide) ind‚finit peut ˆtre ins‚r‚ entre les Items.
+Une  section  peut  aiss‚ment  contenir  une  autre  section,   cette  limite
+d'emboŒtement est fix‚ … 250.
+
+End
+
+IndexAscii 16
+dite/Regarde Hexad‚cimal
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Cette option permet de visualiser  d'une fa‡on brute une fichier ou un unit‚
+disque. Pour se faire il permet de visualiser au d‚part en une tranche de 256
+octets.  A la gauche sont contenu  hexad‚cimal.  A la droite son caractŠre au
+standard ASCII d'IBM.
+
+ Si vous s‚lectionner le mode pleine ‚cran  (1024 octets)  vous ne pouvez pas
+voir en mˆme temps la partie en hexad‚cimal.
+
+ Si  vous  souhaŒtez  vous  directement un  disque,  vous  utilisez  le  mˆme
+cheminement  que  pour  ouvrir  un fichier  sauf  que lorsque  vous entrez le
+fichier, marqu‚ votre lettre d'unit‚ suivis par ®[dsk]¯. La syntaxe est donc:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ ?:[dsk]                                                                   ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+Par exemple si vous voulez voir votre disque dur: ®C:[dsk]¯.
+
+Voici maintenant les touches ayant des effets sur ce fenˆtre:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Touche     ³ Description                                                  ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³  A         ³ Effectue un ®Et 80h¯ … chaques caractŠres avant de l'afficher³
+³            ³ (Efface le 7iŠme bit).                                       ³
+³  O         ³ Effectue un ®Ou 80h) … chaques caractŠres avant de l'afficher³
+³            ³ (Fixe … le 7iŠme bit).                                       ³
+³  N         ³ Effectue une inversion binaire de chaques caractŠres avant de³
+³            ³ l'afficher (Not).                                            ³
+³  X         ³ Effectue un  ®Ou exclusif 80h¯  … chaques caractŠres avant de³
+³            ³ l'afficher (XOR 80h: Inverse le 7iŠme bit).                  ³
+³  F10       ³ Balance de mode  pleine  ‚cran avec  2  secteurs affich‚es en³
+³            ³ mˆme  temps  sans vue  hexad‚cimal  ou  «  secteur  avec  vue³
+³            ³ hexad‚cimal du c“t‚ gauche.                                  ³
+³ Ctrl+End   ³ Va … la fin du fichier/disque.                               ³
+³ Ctrl+F1    ³ D‚compose le secteur de d‚marrage si vous ˆtes dessus en mode³
+³            ³ ‚dition disque plut“t quand mode fichier.                    ³
+³ Ctrl+Home  ³ Va au d‚but du fichier/disque.                               ³
+³ PageDown   ³ Passe … l'‚cran pr‚c‚dente.                                  ³
+³ PageUp     ³ Passe … l'‚cran suivante.                                    ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+End
+
+IndexAscii 17
+cran de sortie
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ L'‚cran de sortie est l'‚cran d'o— l'application MonsterBook est arriv‚. Ces
+en g‚n‚rale un ‚cran de style DOS. Elle rudimentaire puisqu'elle est … charge
+d'un prompt du systŠme d'exploitation.  Vous  pouvez  l… voir  en pressant la
+combinaison  de touche  ®Alt+F5¯  puis pressez  n'importe  quel  touche  pour
+revenir au MonsterBook.
+
+ Vous pouvez  ainsi voir  … la suite d'une de  vos derriŠres  op‚rations sous
+l'interpr‚teur de commande DOS  (menu ®Fichier¯,  item ®Interpr‚teur Dos¯) ou
+sur l'ex‚cution  d'une commande Dos  (par la combinaisons de touche  ®Alt+=¯)
+les r‚sultats sans sortir r‚ellement du programme. vitant une perte de temps
+inimaginable sur les vieux disque dur MFM par exemple.
+
+End
+
+IndexAscii 18
+Configuration
+ÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Qu'est-ce que sa fait dans la vie une configuration (appelez souvent ®Setup¯
+en anglais),  ‡a permet de choisir des techniques  d'approches particuliŠre …
+des machines … problŠme  ou  … personnalis‚ cette  application  un peu plus …
+votre go–t!
+
+ La configuration se  situe  dans  son  ensemble,  dans  la  partie  du  menu
+®Option¯. Accessible via la combinaison ®Alt+O¯. La partie la compliquer … la
+gestion est au niveau des r‚pertoires, lorsque vous comprendrez ‡a, les items
+ne seront  que des insignifiances  … vos yeux.  Je ne dis pas cela  pour vous
+d‚couragez,  mais pour vous pr‚venir  que nous avons bien  de la difficult‚ …
+l'expliquer!
+
+End
+
+IndexAscii 19
+R‚pertoire
+ÄÄÄÄÄÄÄÄÄÄ
+
+ Les r‚pertoires sont  des chemins donnant  accŠs  … des fichiers,  ‚galement
+appeler ®Path¯ ou ®Dir(ectory)¯ en anglais.  Ces canaux sont trŠs structur‚s,
+vous pouvez  … l'int‚rieur  d'un mˆme r‚pertoire avoir  plusieurs fichiers ou
+mˆme un/des  autre(s) r‚pertoire(s).  Ces r‚pertoires sont tous reli‚s par le
+r‚pertoire  principal  ("root"  en anglais)  par la  barre  "\".  Les noms de
+r‚pertoires suivant  sont ‚galement incrust‚  par cette barre  de s‚paration.
+Exemple, pour avoir le r‚pertoire du DOS cette application c'est g‚n‚ralement
+®\MALTE¯.  L'utilit‚  de ces  chemins  compliqu‚s est  de vous  permettre une
+meilleur classement de vos fichiers, par cat‚gorie, si l'on veut!
+
+ Comme les pr‚c‚dentes explications (dans ®Configuration¯,  il est n‚cessaire
+d'appuyer d'abord sur la combinaison de touche clavier  ®Alt+O¯.  Ensuite, il
+faut choisir bien entendu r‚pertoire … l'aide de la touche ®R¯.
+
+ Vous accostez  dans une partie  … peine vraisemblable,  les r‚pertoires sont
+divis‚s par cat‚gorie  tellement il y en a!  C'est un des d‚tails difficile …
+expliquer... Il faut accepter toutes les autres applications se faire de brou
+ha! ha!  et ‡a  donne cela!  Pour  choisir  votre cat‚gorie,  vous devez vous
+d‚placer … l'aide des flŠches haut et bas.  Vous voyez … chaque fois que vous
+faŒte cela des radicales changements sous la fenˆtre o— vous ˆtes, vous voyez
+2, 1, 1, 3, 1, 4, 9, 4, 4, 1 r‚pertoires diff‚rents … la fois.  C'est normal,
+en vous d‚placez vous n'affectez pas encore le r‚pertoire.
+
+ Lorsque vous avez choisie la cat‚gorie,  vous pouvez changer les r‚pertoires
+voulu en vous d‚pla‡ant  … l'aide de la touche  ®Tab¯  une premiŠre fois pour
+atteindre les r‚pertoires. Les fois succ‚dantes de l'utilisation de la touche
+®Tab¯  s'applique  s'il  existe  plusieurs  r‚pertoires:  Vous  changez  d'un
+r‚pertoire … un autre grƒce … cette touche.
+
+End
+
+IndexAscii 20
+Change de Mode Vid‚o
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette option  permet  de changer le mode  vid‚o actuellement  en action dans
+l'application MonsterBook.  Lorsque vous red‚marrez  cette application,  vous
+vous trouverez … nouveau dans ce mode vid‚o.
+
+End
+
+IndexAscii 21
+Change de Police
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette  option  permet  de changer  le style  de caractŠre  courant.  Si vous
+n'aimez  pas  le genre standard,  vous pouvez  en choisir  en lettre attach‚,
+Ordinateur, d'antiquit‚,...
+
+End
+
+IndexAscii 22
+Screen Saver
+ÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Le "Screen Saver" est un minimiseur d'‚cran,  il permet d'‚viter que l'‚cran
+affiche constamment la mˆme chose lorsque l'utilisateur ne fait rien aprŠs un
+certain moment.  Car si vous affichez  constamment  la mˆme chose  … l'‚cran,
+celle-ci  ce mettra  … afficher  l'image  (de fa‡on  trŠs pƒles)  mˆme  aprŠs
+qu'elle soit ‚teinte.  C'est humiliant  quand on sorte d'un programme  et que
+l'on voit encore la mˆme chose ou presse en toile de fond, non? Mais rassurez
+vous,  ce ph‚nomŠne  se produit  … long  terme,  et  s'applique  surtout  aux
+entreprises  laissant  ouvert leur machine toujours  … la mˆme ‚cran tous les
+jours. Dans le cas d'une utilisateur normal, c'est trŠs trŠs rares!
+
+ Si  vous  ne voulez  plus  avoir  … affronter le  "screen saver"  … tous les
+minutes, il suffit  de le d‚sactiver  … partir  du menu ®Option¯ (en appuyant
+sur ®Alt+O¯), choisir l'item ®Vid‚o¯, sous-item ®Screen Saver¯.  Vous pressez
+sur la barre d'espacement  pour  ‚liminer le  X  en crochet.  Appuyez  sur la
+touche ®Enter¯ (<ÄÙ) pour confirmer.  Maintenant, il est inactif.  Il ne vous
+enbˆtera mais aprŠs une siŠcle!
+
+End
+
+IndexAscii 23
+Vid‚o Environnement
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette option permet d'autoriser  ou interdire la d‚tection des  cartes Super
+VGA  (Trident, Tseng, ATI, Cirrus,...) lors du d‚marrage de ce programme.  Si
+votre  application  plante  lors  de  la  d‚tection  des  Super  VGA,  il est
+pr‚f‚rable de d‚sactiver cette option.
+
+End
+
+IndexAscii 24
+Imprimantes
+ÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette  option  permet  de sp‚cifier  la longueur  et  la  largeur  du papier
+d'imprimante  et  d'indiquer  s'il s'agit de  papier continue  ou  de feuille
+individuel et la sortie courante … utiliser pour l'impression,...
+
+End
+
+IndexAscii 25
+Edite le Menu
+ÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette option permet d'‚diter ou modifier le menu d'application permettant le
+chargement et l'ex‚cution d'autre application externe.
+
+End
+
+IndexAscii 26
+SystŠme
+ÄÄÄÄÄÄÄ
+
+ Cette option  permet  de s‚lectionner  de quel  fa‡on  doit ˆtre  utilise le
+systŠme d'exploitation.  Si vous autorisez ou interdisez l'accŠs directe sans
+passer par le  DOS lors  de la lecture  des partitions  de disque durs.  Ceci
+permet une lecture l‚gŠrement plus rapide mais pas n‚cessairement compatible.
+
+End
+
+IndexAscii 27
+Souris
+ÄÄÄÄÄÄ
+
+ Cette option permet  de s‚lectionner le style  de curseur en ‚cran de texte.
+Si vous d‚sirez un pointeur de style graphique ou standard.
+
+End
+
+IndexAscii 28
+Environnement
+ÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Cette  option  permet  d'autoriser  ou interdire un  journal  de  bord,  les
+descriptions  suppl‚mentaire  pour  les  fichiers,  du desktop  permettant de
+restaurer comme l'‚tat des fenˆtres et les copies de s‚curit‚.
+
+End
+
+IndexAscii 29
+L'importance des fichiers du MonsterBook
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Nous tenons … pr‚ciser  qu'il n'est pas vraiment possible d'effacer certains
+des  fichiers  fournit  et  s'attendre  …  ce  que  l'application  fonctionne
+normalement.  Chaque fichier … son importance,  aussi minime soit-il.  Ainsi,
+sans les ".RLL" ou ".DRC", il est impensable de partir cette application.
+
+ En plus certain fichier son cr‚er temporaire  et pour la configuration aprŠs
+avoir  install‚   cette   application.   Les   fichiers    temporaires   sont
+automatiquement  effacer  aprŠs chaque sortie  de programme.  Le  fichier  de
+configuration  reste  dans le  but  irr‚futable  de  ne  pas  ˆtre  oblig‚ de
+r‚adapter  chaque  fois  ce programme  pour les systŠmes  …  problŠme  ou vos
+ajustements dont vous pr‚f‚rez.
+
+
+ISABEL.COL
+ÄÄÄÄÄÄÄÄÄÄ
+
+ Si  ce fichier disparaŒt  vos couleurs  … l'‚cran disparaŒtrons,  aussi bien
+votre ‚criture que vos toiles de fond. Vous verrez noir sur fond noir, ‡a use
+moins le moniteur, h‚las vous voyez plus rien...
+
+
+ISABEL.KEY
+ÄÄÄÄÄÄÄÄÄÄ
+
+ Ce fichier, si vous le souhaŒtez peut ˆtre effacer, mais attention, car vous
+effacerez par la mˆme occasion  vos raccourcis clavier.  Pas  vos  macros  je
+tiens … le pr‚ciser,  plut“t vos combinaisons de genre ®Shift+F3¯ pour ouvrir
+un document...
+
+End
+
+IndexAscii 30
+MB.INI
+ÄÄÄÄÄÄ
+
+ C'est le  fichier  de configuration  proprement  dit.  C'est le coeur  de la
+configuration  du  MonsterBook.  Ne l'effacer pas  car il le recr‚ra de toute
+fa‡on et il est indispensable  pour comprendre son environnement  lors de son
+propre lancement.
+
+ Lors du lancement du MonsterBook vous pouvez … l'aide du prompt:  ®?:>MB /V¯
+connaŒtre  les informations pertinente  lors de son autoconfiguration.  Voici
+une vue d'ensemble de ce que peut ˆtre ces messages:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³MonsterBook Version ?.?  Tous droits r‚serv‚ par les Chevaliers de Malte   ³
+³                                                                           ³
+³Lecture du fichier d'initialisation: MB.INI ou MB.CFG                      ³
+³CPU: ?                                                                     ³
+³SystŠme d'exploitation:                                                    ³
+³ DOS Version ?.?                                                           ³
+³V‚rification de la possibilit‚ de chargement du recouvremement en EMS...   ³
+³Initialise le PC Speaker                                                   ³
+³D‚tection des cartes de son:                                               ³
+³ ?                                                                         ³
+³P‚riph‚rique:                                                              ³
+³ Souris: ?                                                                 ³
+³ Clavier: ?                                                                ³
+³ Modem par d‚faut:                                                         ³
+³Cr‚ation d'un Spooler: SPOOLER.PR$                                         ³
+³Initialisation des ressources de m‚moire ‚tendue:                          ³
+³ ExtBios: ? Ko                                                             ³
+³ EMS: ? Ko                                                                 ³
+³ XMS: ? Ko                                                                 ³
+³ Disque "?:...\MB.$$$": ? Ko                                               ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+La premiŠre ligne indique  le nom  du programme  "MonsterBook"  et la version
+"Version" de ce programme.  AprŠs vous retrouvez le nom du groupe ayant mit …
+jour ce programme.
+
+ La ligne suivante affiche "Lecture du fichier d'initialisation:". Ce message
+est suivi d'un nom de fichier n‚cessairement "MB.INI" ou "MB.CFG". Le premier
+comprend est tel un fichier de configuration Dos,  Geoworks,  Windows,  OS/2,
+avec un format ASCII des informations contenu. Plusieurs section existe ‚tant
+donn‚ l'immense vari‚t‚  de possibilit‚  que renferme le MonsterBook:  (Disk,
+Video, Systems, Printers et Modem). Chacun de ses sections doivent ˆtre entre
+crochet "[" "]"  pour lui permettre de comprendre  qu'il s'agit  d'un section
+justement.
+
+
+Section: ®[Systems]¯
+--------------------
+
+ Cette section est  utilis‚  pour  d‚finir  les bases mˆmes  de fondations de
+l'application.  Elle  s'occupe  de  fonctionnement  phylosophique,  s'il  est
+possible de s'exprimer ainsi...
+
+
+OvrEms
+ùùùùùù
+
+ L'option de chargement de recouvrement (overlay)  en m‚moire EMS est r‚gable
+dans le fichier de configuration ®MB.INI¯ sous la variable OvrEMS=Yes|No.  Si
+cette variable est … ®Yes¯, vous  verrez  en  mode  "/V"  le message suivante
+apparaŒtre:  ®V‚rification de la possibilit‚ de chargement du recouvrement en
+EMS¯.
+
+
+SwapEMS
+ùùùùùùù
+
+ L'option SwapEMS (par d‚faut Yes (actif)) autorise ou interdit l'utilisation
+de la m‚moire EMS pour les donn‚es  de type temporaire  ou pour le traitement
+d'image et de certaine information  plus particuliŠre mais demandant de vaste
+zone de m‚moire.  Si cette variable est … ®No¯,  le gestionnaire de ressource
+indiquera 0 Ko lors du mode "/V".
+
+
+Section: ®[Video]¯
+------------------
+
+ Cette section destin‚  … r‚gler la carte vid‚o,  le moniteur  en fonction du
+mode vid‚o et de l'environnement souhaŒter.
+
+
+DefaultMode
+ùùùùùùùùùùù
+
+ Cette variable sert … initialiser le mode vid‚o de d‚part du MonsterBook. Si
+le nombre 65534 est sp‚cifi‚,  il utilise le mode  vid‚o courant fonctionnant
+avant le lancement du l'application.
+
+End
+
+IndexAscii 31
+MB.DSK
+ÄÄÄÄÄÄ
+
+ Ce fichier  est  utiliser  pour ce rem‚morer  qu'elle ‚tait  vos fichiers en
+‚dition lors  de la  entretien avec ce programme.  Il s'appelle le ®Desktop¯.
+Grƒce … ce fichier vous n'aurez pas besoin  de r‚ouvrir par un long processus
+vos fichiers puisqu'il s'en chargera automatiquement.
+
+
+*.MAC
+ÄÄÄÄÄ
+
+ Ce sont des fichiers  Macro  utiliser par le traŒtement  pour les raccourcis
+clavier utilisateur. Si vous ˆtes programmeur, il est possible qu'il s'agisse
+‚galement de fichier d'assembleur d'inclusion.
+
+End
+
+// Description 
+// ÍÍÍÍÍÍÍÍÍÍÍ
+//
+//  Le texte  suivant  indique  les raccourcis  clavier  utiliser par le
+// MonsterBook.  Il est n‚cessaire de lui  attribuer un index … lui tout
+// seul car le menu d‚roulant ®Aide¯, item ®Touche clavier¯ lui attribue
+// un titre.
+
+IndexAscii 32
+MonsterBook - Liste des combinaisons clavier (Format Isabel)
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ Touche(s)       ³ Description                                             ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³5(Pav‚ num‚rique)³ diteur:  Quand le  ®NumLock¯  n'est  pas enclench‚, la ³
+³                 ³ touche 5 renvoie un carr‚ (ş).                          ³
+³ Alt+0           ³ Permet de choisir parmi la liste des fenˆtres ouverte.  ³
+³ Alt+A           ³ Donne accŠs au menu d‚roulant ®Aide¯.                   ³
+³ Alt+C           ³ Donne accŠs au menu d‚roulant ®Commande¯.               ³
+³ Alt+D           ³ Donne accŠs au menu d‚roulant ®Dessin¯.                 ³
+³ Alt+E           ³ Donne accŠs au  menu  d‚roulant  ®Edite¯  (Il peut ˆtre ³
+³                 ³ aussi nomm‚  ®Edition¯ en  un ‚cran  plus large  que 80 ³
+³                 ³ colonnes).                                              ³
+³ Alt+F           ³ Donne accŠs au menu d‚roulant ®Fichier¯.                ³
+³ Alt+I           ³ Donne accŠs au  menu  d‚roulant  ®Info¯  (Il peut aussi ³
+³                 ³ ˆtre appeller ®Information¯  en un ‚cran plus large que ³
+³                 ³ 80 colonnes).                                           ³
+³ Alt+N           ³ Donne accŠs au menu d‚roulant ®fenˆtre¯.                ³
+³ Alt+O           ³ Donne accŠs au menu d‚roulant ®Option¯.                 ³
+³ Alt+R           ³ Donne accŠs au menu d‚roulant ®Recherche¯.              ³
+³ Alt+X           ³ Quitter  l'application  ®MonsterBook¯, alias  ®L'Oeuvre ³
+³                 ³ Inhumaine¯.                                             ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Alt+F1          ³ Sous le Gestionnaire de fichier:                        ³
+³                 ³  ş Change le premier tableau pour une vision fichier du ³
+³                 ³    disque … sp‚cifier.                                  ³
+³ Alt+F2          ³ Sous le Gestionnaire de fichier:                        ³
+³                 ³  ş Change le  deuxiŠme tableau  pour une vision fichier ³
+³                 ³    du disque … sp‚cifier.                               ³
+³ Alt+F3          ³ Ferme la fenˆtre courante.                              ³
+³ Alt+F4          ³ Double la largeur du mots … la droite du curseur et ci- ³
+³                 ³ positionne … la fin.                                    ³
+³ Alt+F5          ³ Regarde la sortie (Output).                             ³
+³ Alt+F7          ³ Ouvre un Dessin.                                        ³
+³ Alt+F8          ³ Met le mode en mode exposant  … la droite du curseur et ³
+³                 ³ ci-postionne … la fin.                                  ³
+³ Alt+F9          ³ Compilation le fichier contenu dans le fenˆtre en cours ³
+³                 ³ d'utilisation  ou  le  fichier  s‚lectionner  dans  une ³
+³                 ³ ®Gestionnaire de fichiers¯.                             ³
+³ Alt+F10         ³ Inverse le mot … la droite du curseur  et ci-positionne ³
+³                 ³ … la fin.                                               ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Alt+'<'         ³ diteur: Envoie le caractŠre ó                          ³
+³ Alt+'>'         ³ diteur: Envoie le caractŠre ò                          ³
+³ Alt+'?'         ³ diteur: Envoie le caractŠre ¨                          ³
+³ Alt+'['         ³ diteur: Envoie le caractŠre ® (Code ASCII 174)         ³
+³ Alt+']'         ³ diteur: Envoie le caractŠre ¯ (Code ASCII 175)         ³
+³ Alt+'~'         ³ diteur: Envoie le caractŠre ÷                          ³
+³ Alt+'-'         ³ diteur: Envoie le caractŠre Í (Code ASCII 205)         ³
+³ Alt+'=' ('+')   ³ Ex‚cute une commande de l'interpr‚teur DOS.             ³
+³ Alt+'"'         ³ diteur: Convertie la lettre courante avec  des tremats ³
+³                 ³          si possible.                                   ³
+³Alt+'-'(Pav‚ num.³ diteur: Envoie le caractŠre Ä (Code ASCII 196)         ³
+³Alt+'+'(Pav‚ num.³ diteur: Envoie le caractŠre ñ (Code ASCII 241)         ³
+³Alt+'/'(Pav‚ num.³ diteur: Envoie le caractŠre ö (Code ASCII 246)         ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+2          ³ diteur: Envoie le caractŠre: … (Code ASCII 133)        ³
+³ Ctrl+6          ³ diteur: Convertie  la lettre courante  avec un chapeau ³
+³                 ³          (^) si possible.                               ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+A          ³ quivalent de la flŠche de gauche dans un traŒtement de ³
+³                 ³ texte.                                                  ³
+³ Ctrl+B          ³ Met en caractŠre gras le mots … droite du curseur.      ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+C & Ctrl+A ³ Ferme toutes les fenˆtres ouverte.                      ³
+³ Ctrl+C & Ctrl+B ³ Conversion en langage Basic.                            ³
+³ Ctrl+C & Ctrl+C ³ Une page ‚cran vers le haut.                            ³
+³ Ctrl+C & Ctrl+D ³ Mode caractŠre double.                                  ³
+³ Ctrl+C & Ctrl+F ³ Conversion en langage de programmation Fortran.         ³
+³ Ctrl+C & Ctrl+G ³ Mode caractŠre gras                                     ³
+³ Ctrl+C & Ctrl+I ³ Mode caractŠre inverse                                  ³
+³ Ctrl+C & Ctrl+K ³ Conversion en langage de programmation AC.              ³
+³ Ctrl+C & Ctrl+L ³ Conversion en langage de programmation Cobol.           ³
+³ Ctrl+C & Ctrl+P ³ Conversion en langage de programmation Pascal.          ³
+³ Ctrl+C & Ctrl+R ³ Conversion en Ressource.                                ³
+³ Ctrl+C & Ctrl+S ³ Ferme toutes les fenˆtres sauvegard‚e                   ³
+³ Ctrl+C & Ctrl+T ³ Mode caractŠre italique                                 ³
+³ Ctrl+C & Ctrl+U ³ Mode caractŠre soulign‚                                 ³
+³ Ctrl+C & Ctrl+Z ³ Conversion en langage C/C++                             ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+D & Ctrl+C ³ Change de disque courant.                               ³
+³ Ctrl+D & Ctrl+D ³ Docteur Disque.                                         ³
+³ Ctrl+D & Ctrl+E ³ Regarde/Edit le disque.                                 ³
+³ Ctrl+D & Ctrl+F ³ Format un disque.                                       ³
+³ Ctrl+D & Ctrl+H ³ Disque Hex-Regarde/Edit.                                ³
+³ Ctrl+D & Ctrl+I ³ Information disque.                                     ³
+³ Ctrl+D & Ctrl+O ³ Disque Option (V‚rify On/Off, ajustement...).           ³
+³ Ctrl+D & Ctrl+S ³ Docteur SystŠme.                                        ³
+³ Ctrl+D & Ctrl+V ³ Docteur Virus.                                          ³
+³ Ctrl+D & Ctrl+X ³ Efface la colonne courant marqu‚.                       ³
+³ Ctrl+D & Ctrl+Y ³ Efface la ligne courant marqu‚.                         ³
+³ Ctrl+D & Ctrl+Z ³ Efface le tableau courant.                              ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+E & Ctrl+A ³ (Non-support‚ par cette version) mulateur Apple ][.    ³
+³ Ctrl+E & Ctrl+C ³ (Non-support‚ par cette version) mulateur Coco 3.      ³
+³ Ctrl+E & Ctrl+E ³ 2 ligne vers le haut.                                   ³
+³ Ctrl+E & Ctrl+H ³ Hex-Editeur.                                            ³
+³ Ctrl+E & Ctrl+K ³ (Non-support‚ par cette version) mulateur du Commodore ³
+³                 ³ 64K.                                                    ³
+³ Ctrl+E & Ctrl+M ³ Ex‚cute un macro.                                       ³
+³ Ctrl+E & Ctrl+V ³ (Non-support‚ par cette version) mulateur du Commodore ³
+³                 ³ Vic-20.                                                 ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+F & Ctrl+A ³ Assignation d'un unit‚ … ‚muler (Assign Dos).           ³
+³ Ctrl+F & Ctrl+B ³ Traitement d'un fichier ligne par ligne (awk Unix).     ³
+³ Ctrl+F & Ctrl+C ³ Lance un fichier executable.                            ³
+³ Ctrl+F & Ctrl+D ³ Malte-Dos.                                              ³
+³ Ctrl+F & Ctrl+E ³ Efface un fichier.                                      ³
+³ Ctrl+F & Ctrl+F ³ Gestionnaire fichier.                                   ³
+³ Ctrl+F & Ctrl+G ³ Recherche une  chaine  de  caractŠre dans  des fichiers ³
+³                 ³ (quivalent du ®Grep¯ pour les programmeurs...).        ³
+³ Ctrl+F & Ctrl+L ³ Liste de fichier du r‚pertoire courant.                 ³
+³ Ctrl+F & Ctrl+M ³ Cr‚e un r‚pertoire (MkDir Dos).                         ³
+³ Ctrl+F & Ctrl+U ³ Malte-Unix.                                             ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+G          ³ Dans le traŒtement  de texte,  permet la suppression du ³
+³                 ³ caractŠre sur lequel se trouve le curseur.              ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+H & Ctrl+P ³ Partition du disque dur.                                ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+I & Ctrl+C ³ Information Cmos.                                       ³
+³ Ctrl+I & Ctrl+I ³ Information Interne sur ce programme.                   ³
+³ Ctrl+I & Ctrl+M ³ Information MCB.                                        ³
+³ Ctrl+I & Ctrl+P ³ Information Pays.                                       ³
+³ Ctrl+I & Ctrl+S ³ Information Sommaire.                                   ³
+³ Ctrl+I & Ctrl+V ³ Information Vid‚o.                                      ³
+³ Ctrl+I & Ctrl+X ³ InsŠre une colonne dans le bloc marqu‚.                 ³
+³ Ctrl+I & Ctrl+Y ³ InsŠre une ligne dans le bloc marqu‚.                   ³
+³ Ctrl+I & Ctrl+Z ³ InsŠre un tableau.                                      ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+J & Ctrl+C ³ Saute … l'interpr‚teur Dos (Jump to dos/Command/Shell)  ³
+³ Ctrl+J & Ctrl+D ³ Joint un disque … un autre                              ³
+³ Ctrl+J & Ctrl+P ³ Joint un r‚pertoire … un autre                          ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+K & Ctrl+B ³ Marque le d‚but d'un bloc.                              ³
+³ Ctrl+K & Ctrl+C ³ Copie du bloc marqu‚.                                   ³
+³ Ctrl+K & Ctrl+D ³ Quitter l'application ®MonsterBook¯.                    ³
+³ Ctrl+K & Ctrl+H ³ Bloc cach‚ (Cut).                                       ³
+³ Ctrl+K & Ctrl+K ³ Marque la fin d'un bloc.                                ³
+³ Ctrl+K & Ctrl+P ³ Imprime le bloc.                                        ³
+³ Ctrl+K & Ctrl+R ³ InsŠre un fichier.                                      ³
+³ Ctrl+K & Ctrl+S ³ Sauvegarder.                                            ³
+³ Ctrl+K & Ctrl+T ³ Marque d'un mots.                                       ³
+³ Ctrl+K & Ctrl+V ³ D‚placement d'un bloc marqu‚.                           ³
+³ Ctrl+K & Ctrl+W ³ crit dans un fichier le bloc marqu‚.                   ³
+³ Ctrl+K & Ctrl+Y ³ Effacement d'un bloc marqu‚.                            ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+K & Ctrl+Z ³                                                         ³
+³ & Lettre        ³ InsŠre une colonne de lettre au bloc marqu‚.            ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+L          ³ Continue la recherche.                                  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+M & Ctrl+A ³ Fixe le mode d'‚dition en langage de programmation      ³
+³                 ³ Assembleur (code machine...).                           ³
+³ Ctrl+M & Ctrl+B ³ Mode Edition Basic.                                     ³
+³ Ctrl+M & Ctrl+C ³ Mode Edition Cobol.                                     ³
+³ Ctrl+M & Ctrl+E ³ Mode Edition Euphoria.                                  ³
+³ Ctrl+M & Ctrl+F ³ Mode Edition Fortran.                                   ³
+³ Ctrl+M & Ctrl+K ³ Change de couleur.                                      ³
+³ Ctrl+M & Ctrl+L ³ Centre … gauche.                                        ³
+³ Ctrl+M & Ctrl+H ³ Mode Host.                                              ³
+³ Ctrl+M & Ctrl+I ³ Mode Edition Ini (Configuration).                       ³
+³ Ctrl+M & Ctrl+M ³ Mode Edition Mouse.                                     ³
+³ Ctrl+M & Ctrl+P ³ Mode Edition Pascal.                                    ³
+³ Ctrl+M & Ctrl+R ³ Centre … droite.                                        ³
+³ Ctrl+M & Ctrl+U ³ Souligne le mot courant.                                ³
+³ Ctrl+M & Ctrl+Z ³ Mode dition C/C++.                                     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+N & Ctrl+A ³ Nouveau fichier assembleur.                             ³
+³ Ctrl+N & Ctrl+B ³ Nouveau Icon.                                           ³
+³ Ctrl+N & Ctrl+C ³ Nouveau SuperCalc.                                      ³
+³ Ctrl+N & Ctrl+D ³ Nouveau Dessin.                                         ³
+³ Ctrl+N & Ctrl+E ³ Nouveau fichier Euphoria.                               ³
+³ Ctrl+N & Ctrl+F ³ Nouveau fichier Fortran.                                ³
+³ Ctrl+N & Ctrl+G ³ Nouveau Gat.                                            ³
+³ Ctrl+N & Ctrl+H ³ Nouvelle entˆte C/C++.                                  ³
+³ Ctrl+N & Ctrl+K ³ Nouveau fichier AC.                                     ³
+³ Ctrl+N & Ctrl+L ³ Nouveau fichier Cobol.                                  ³
+³ Ctrl+N & Ctrl+M ³ Nouveau ".MOD".                                         ³
+³ Ctrl+N & Ctrl+N ³ Liste des nouveaux.                                     ³
+³ Ctrl+N & Ctrl+P ³ Nouveau fichier Pascal.                                 ³
+³ Ctrl+N & Ctrl+Q ³ Nouveau fichier Basic.                                  ³
+³ Ctrl+N & Ctrl+R ³ Nouveau fichier Resource.                               ³
+³ Ctrl+N & Ctrl+W ³ Nouveau fichier Basic Apple ][.                         ³
+³ Ctrl+N & Ctrl+X ³ Nouveau fichier Basic Commodore 64K.                    ³
+³ Ctrl+N & Ctrl+Y ³ Nouveau fichier Basic Coco 3.                           ³
+³ Ctrl+N & Ctrl+Z ³ Nouveau fichier C/C++.                                  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+O & Ctrl+A ³ Ouvre un fichier assembleur.                            ³
+³ Ctrl+O & Ctrl+B ³ Ouvre un Icon.                                          ³
+³ Ctrl+O & Ctrl+C ³ Ouvre un chiffrier ‚lectronique (tableur).              ³
+³ Ctrl+O & Ctrl+D ³ Ouvre un dessin.                                        ³
+³ Ctrl+O & Ctrl+E ³ Ouvre un fichier Euphoria.                              ³
+³ Ctrl+O & Ctrl+F ³ Ouvre un fichier Fortran.                               ³
+³ Ctrl+O & Ctrl+G ³ Ouvre un Gatt.                                          ³
+³ Ctrl+O & Ctrl+H ³ Ouvre un entˆte C/C++.                                  ³
+³ Ctrl+O & Ctrl+I ³ Mode d'auto-indentation actif/inactif.                  ³
+³ Ctrl+O & Ctrl+K ³ Ouvre un fichier AC.                                    ³
+³ Ctrl+O & Ctrl+L ³ Ouvre un fichier Cobol.                                 ³
+³ Ctrl+O & Ctrl+O ³ Liste des ouvertures.                                   ³
+³ Ctrl+O & Ctrl+M ³ Ouvre ".MOD".                                           ³
+³ Ctrl+O & Ctrl+P ³ Ouvre un fichier Pascal.                                ³
+³ Ctrl+O & Ctrl+Q ³ Ouvre un fichier Basic.                                 ³
+³ Ctrl+O & Ctrl+R ³ Ouvre un fichier Resource.                              ³
+³ Ctrl+O & Ctrl+S ³ Gestionnaire Op‚rateur SystŠme.                         ³
+³ Ctrl+O & Ctrl+T ³ Mode de tabulation actif/inactif.                       ³
+³ Ctrl+O & Ctrl+W ³ Ouvre un fichier Basic Apple ][.                        ³
+³ Ctrl+O & Ctrl+X ³ Ouvre un fichier Basic Commodore 64K.                   ³
+³ Ctrl+O & Ctrl+Y ³ Ouvre un fichier Basic Coco 3.                          ³
+³ Ctrl+O & Ctrl+Z ³ Ouvre un fichier C/C++.                                 ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+P & Ctrl+A ³ Ouvre un fichier  sur disque  Assembleur  et l'‚dite en ³
+³                 ³ format compress‚ en m‚moire.                            ³
+³ Ctrl+P & Ctrl+E ³ Ouvre  un  fichier  sur  disque Euphoria  et l'‚dite en ³
+³                 ³ format compress‚ en m‚moire.                            ³
+³ Ctrl+P & Ctrl+F ³ Ouvre  un  fichier  sur  disque Fortran  et  l'‚dite en ³
+³                 ³ format compress‚ en m‚moire.                            ³
+³ Ctrl+P & Ctrl+H ³ Stationne les tˆtes de(s) disque(s) dur.                ³
+³ Ctrl+P & Ctrl+K ³ Ouvre un fichier  sur  disque  AC et l'‚dite  en format ³
+³                 ³ compress‚ en m‚moire.                                   ³
+³ Ctrl+P & Ctrl+J ³ Journal Personnel.                                      ³
+³ Ctrl+P & Ctrl+L ³ Ouvre un fichier sur disque  Cobol et l'‚dite en format ³
+³                 ³ compress‚ en m‚moire.                                   ³
+³ Ctrl+P & Ctrl+M ³ Fait jouer un fichier de musique ".MOD".                ³
+³ Ctrl+P & Ctrl+P ³ Ouvre un fichier sur disque Pascal et l'‚dite en format ³
+³                 ³ compress‚ en m‚moire.                                   ³
+³ Ctrl+P & Ctrl+Q ³ Ouvre un fichier sur disque Basic  et l'‚dite en format ³
+³                 ³ compress‚ en m‚moire.                                   ³
+³ Ctrl+P & Ctrl+S ³ Arrˆte le ".MOD".                                       ³
+³ Ctrl+P & Ctrl+Z ³ Ouvre un fichier sur disque C/C++  et l'‚dite en format ³
+³                 ³ compress‚ en m‚moire.                                   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+Q & Ctrl+A ³ Recherche et remplacement.                              ³
+³ Ctrl+Q & Ctrl+B ³ Va au d‚but du bloc.                                    ³
+³ Ctrl+Q & Ctrl+C ³ Va … la fin du fichier.                                 ³
+³ Ctrl+Q & Ctrl+D ³ Va … la fin de la ligne.                                ³
+³ Ctrl+Q & Ctrl+E ³ Va au d‚but de la page ‚cran.                           ³
+³ Ctrl+Q & Ctrl+F ³ Recherche de chaine de caractŠre.                       ³
+³ Ctrl+Q & Ctrl+K ³ Va … la fin du bloc.                                    ³
+³ Ctrl+Q & Ctrl+L ³ Permet de rappeler le contenu d'une ligne que vous avec ³
+³                 ³ modifi‚e par inadvertance.                              ³
+³ Ctrl+Q & Ctrl+P ³ Retourne … la position ant‚rieur du curseur.            ³
+³ Ctrl+Q & Ctrl+R ³ Va au d‚but du fichier                                  ³
+³ Ctrl+Q & Ctrl+S ³ Va au d‚but de la ligne                                 ³
+³ Ctrl+Q & Ctrl+T ³ Tri                                                     ³
+³ Ctrl+Q & Ctrl+W ³ Position de l'erreur                                    ³
+³ Ctrl+Q & Ctrl+X ³ Va … la fin de la page                                  ³
+³ Ctrl+Q & Ctrl+Y ³ Supression  des caractŠres compris entre la position du ³
+³                 ³ curseur et la fin de la ligne.                          ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+S          ³ Efface les espaces … la droite du curseur.              ³
+³ Ctrl+T          ³ Suppression du mot … la droite du curseur.              ³
+³ Ctrl+U          ³ Souligne  le  mots  …  la  droite  du  curseur   et  si ³
+³                 ³ positionne … la fin.                                    ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+V & Ctrl+A ³ Regarde ASCII.                                          ³
+³ Ctrl+V & Ctrl+M ³ Change de mode vid‚o d'affichage.                       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+W          ³ D‚filement  du texte  d'une ligne vers le bas, position ³
+³                 ³ du curseur identique (Scroll Up).                       ³
+³ Ctrl+X          ³ Centre le texte de la ligne courant.                    ³
+³ Ctrl+Y          ³ Efface la ligne courant.                                ³
+³ Ctrl+Z          ³ D‚filement du texte d'une ligne vers le haut,  position ³
+³                 ³ du curseur identique (Scroll Down).                     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Ctrl+F1         ³ Aide technique:                                         ³
+³                 ³  ş Sous  l'diteur  de  document  (Gat):  Retourne  des ³
+³                 ³    informations con‡ernant le document.                 ³
+³                 ³  ş Sous   le   Regarde   Hexad‚cimal:    Retourne   des ³
+³                 ³    informations reconnue par la bibliothŠque.           ³
+³                 ³  ş Sous le Gestionnaire de fichier:                     ³
+³                 ³     Retourne  des  informations  d'entˆte con‡ernant le ³
+³                 ³     fichier actuellement s‚lectionn‚.                   ³
+³                 ³  ş Sous le terminal: Lance le docteur modem.            ³
+³                 ³  ş Information d‚taill‚ dans les autres cas.            ³
+³ Ctrl+F2         ³ Edition d'un menu d'application                         ³
+³ Ctrl+F3         ³ Gestionnaire de fichiers.                               ³
+³ Ctrl+F7         ³ Recherche de mot.                                       ³
+³ Ctrl+F8         ³ Remplacement de mot.                                    ³
+³ Ctrl+F10        ³ Ex‚cute un macro.                                       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ F1              ³ Aide au sujet de ...                                    ³
+³ F2              ³ Sauvegarde.                                             ³
+³ F3              ³ Ouvre un fichier.                                       ³
+³ F4              ³ Regarde Hexad‚cimal.                                    ³
+³ F5              ³ Copie un fichier.                                       ³
+³ F6              ³ Va … la fenˆtre suivante.                               ³
+³ F7              ³ Cr‚e un r‚pertoire.                                     ³
+³ F8              ³ Efface un/des fichier(s).                               ³
+³ F9              ³ D‚place/Renomme un/des fichier(s).                      ³
+³ F10             ³ Ouvre le fichier ou ce trouve le curseur.               ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Menu            ³ Active le menu d‚roulant.                               ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³ Shift+F2        ³ Active le menu d'application.                           ³
+³ Shift+F3        ³ Ouvre un fichier document (Gat).                        ³
+³ Shift+F4        ³ Regarde ASCII.                                          ³
+³ Shift+F6        ³ Va … la fenˆtre pr‚c‚dente.                             ³
+³ Shift+F9        ³ ş Sous l'‚diteur texte: Mode dessin.                    ³
+³ Shift+F10       ³ dition d'un macro.                                     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³Windows 95 gauche³ Envoie … la fenˆtre pr‚c‚dente                          ³
+³Windows 95 droite³ Envoie … la fenˆtre suivante                            ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+End

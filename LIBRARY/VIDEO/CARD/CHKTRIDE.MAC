@@ -1,0 +1,64 @@
+;\Source\Chantal\Video\Card\ChkTride.Mac
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                 Malte Genesis/BibliothŠque individuel                 Û
+;³                    dition Chantal/IV - Version 1.1                   Û
+;³                             1998/01/16                                Û
+;³                                                                       Û
+;³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+;Nom des programmeurs
+;ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Sylvain Maltais
+;
+;
+;Description
+;ÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Cette inclusion vise  … permettre une universialisation des donn‚es …
+;compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+;traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+;on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+;bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+;ou sa plante comme jamais avant...
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                           Fonction ChkTrident:AL                      Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette fonction retourne  0 ou sup‚rieur  … 6 dans le registre CPU AL si
+; la carte super vga  ®Trident¯  n'a  pas ‚t‚  d‚tect‚  sinon  une  valeur
+; diff‚rente. Voici les valeurs possibles:
+; ÚÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+; ³ AL     ³ Description                                                 ³
+; ÆÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+; ³ 0      ³ Trident inexistant                                          ³
+; ³ 1      ³ Trident modŠle 8800 BR                                      ³
+; ³ 2      ³ Trident modŠle 8800 CS                                      ³
+; ³ 3      ³ Trident modŠle 8900 avec 1 Mo de RAM                        ³
+; ³ 4      ³ Trident modŠle 8900 avec 256 Ko de RAM                      ³
+; ³ 5      ³ Trident modŠle 8900 avec 512 Ko de RAM                      ³
+; ³ 6      ³ Trident modŠle 8900 avec 1 Mo de RAM                        ³
+; ³ 7+     ³ Trident inexistant                                          ³
+; ÀÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+;
+;
+; Remarque
+; ÍÍÍÍÍÍÍÍ
+;
+;  ş Attention! Aucune pr‚servation des registres n'est effectu‚.
+
+ChkTrident Macro
+ MOV DX,3C4h ; Entre l'adresse du port
+ MOV AL,0Bh  ; Entre la valeur du registre dans le registre CPU
+ OUT DX,AL   ; Affectation du Port 3C4h pour le registre 0Bh
+ INC DX      ; Incr‚mente l'adresse du port
+ IN  AL,DX   ; Lecture du Port 3C5h
+EndM

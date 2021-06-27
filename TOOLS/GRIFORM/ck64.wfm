@@ -1,0 +1,89 @@
+** END HEADER -- do not remove this line*
+* Generated on 02/06/02
+*
+parameter bModal
+local f
+f = new ck64FORM()
+if (bModal)
+   f.mdi = .F. && ensure not MDI
+   f.ReadModal()
+else
+   f.Open()
+endif
+CLASS ck64FORM OF FORM
+   this.ScrollBar = 2
+   this.Text = "Form"
+   this.Left = 7.666
+   this.Top = 1.4111
+   this.View = "ck64.dbf"
+   this.Height = 7.6465
+   this.Width = 115.5
+
+   DEFINE TEXT TEXT1 OF THIS;
+       PROPERTY; 
+         OldStyle .T.,;
+         Text "E&nglish co",;
+         Left 1,;
+         Top 3,;
+         FontBold .F.,;
+         Height 1,;
+         Width 15
+
+   DEFINE ENTRYFIELD ENTRYFIELD1 OF THIS;
+       PROPERTY; 
+         DataLink "CK64->ENGLISH_CO",;
+         Left 17,;
+         Top 3,;
+         FontBold .F.,;
+         Height 1,;
+         Width 33
+
+   DEFINE TEXT TEXT2 OF THIS;
+       PROPERTY; 
+         OldStyle .T.,;
+         Text "F&rancais t",;
+         Left 1,;
+         Top 4,;
+         FontBold .F.,;
+         Height 1,;
+         Width 15
+
+   DEFINE ENTRYFIELD ENTRYFIELD2 OF THIS;
+       PROPERTY; 
+         DataLink "CK64->FRANCAIS_T",;
+         Left 17,;
+         Top 4,;
+         FontBold .F.,;
+         Height 1,;
+         Width 97
+
+   DEFINE TEXT TEXT3 OF THIS;
+       PROPERTY; 
+         OldStyle .T.,;
+         Text "&Descriptio",;
+         Left 1,;
+         Top 5,;
+         FontBold .F.,;
+         Height 1,;
+         Width 15
+
+   DEFINE ENTRYFIELD ENTRYFIELD3 OF THIS;
+       PROPERTY; 
+         DataLink "CK64->DESCRIPTIO",;
+         Left 17,;
+         Top 5,;
+         FontBold .F.,;
+         Height 1,;
+         Width 97
+
+   DEFINE TEXT TITLE OF THIS;
+       PROPERTY; 
+         Text "Ck64",;
+         Left 1,;
+         Top 0.5,;
+         FontSize 18,;
+         ColorNormal "Highlight/BtnFace",;
+         Height 2,;
+         Width 58
+
+ENDCLASS

@@ -1,0 +1,349 @@
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                             GoldPlay ver 1.00
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+     Programmed by
+           Sourcer of The CodeBlasters (Stein Norheim)
+
+     Betatested and Bugfixed by
+           Robban of The SkyHawks (Robert Adolfsson)
+
+     'DIGITAL.MOD' is composed by
+           Infinity of The CodeBlasters (Arttu Kataja)
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+GoldPlay 1.00 is distributed as SMILEWARE. That means that you may use and
+share this utility if :
+                     * You write who made the soundsystem
+
+                     * You not make any changes in the package
+
+                     * You send us a postcard from the town where you live.
+                       (our address is here below)
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Send the postcard to :
+
+                      Stein Norheim
+                      Klippv„gen 15
+                      S-756 52 Uppsala
+                      SWEDEN
+
+Feel free to write to us if you have any questions.
+You can also drop us a FAX at : +46-18 32 48 53  (in sweden: 018-32 48 53).
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+GoldPlay Documentation                                               Page 2
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+1.00 The Archive
+
+   The Archive should consist of these files :
+
+   DIGITAL .MOD          The Demo-Module
+   GOLDPLAY.OBJ          The Assembler-Object-file
+   GOLDPLAY.TPU          The TPascal-Unit (6.0)
+   GOLDPLAY.OVL          The TPascal-Overlay-file
+   GOLDPLAY.DOC          This Documentation
+   PLAY    .ASM          Demo-Program for Assembler
+   TESTPLAY.PAS          Demo-Program for TPascal
+
+1.01 Assembler..... of course !
+
+   GoldPlays main-parts are all 100% pure Assembler-Code.
+
+1.02 The Overlay-File.... WHY ?
+
+   GOLDPLAY.OVL is needed by the TPascal-version of GoldPlay. It consists
+   of some data to the player.
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+GoldPlay Documentation                                               Page 3
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+2.00 The Procedures
+
+   Here comes all procedures in GoldPlay, one by one.
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+LOADOVL
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Loads the overlay-file in the TPascal-version.
+
+TPascal-Syntax:
+         LOADOVL(Filename:String);
+
+TPascal-Example:
+
+     Begin;
+     LoadOvl('GoldPlay.Ovl');         { Load the overlay into memory }
+
+     ... {Play the module here}
+
+     RemoveOvl;                       { Remove the overlay from memory }
+     End.
+
+* Procedure is not needed in the assembler-version *
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+REMOVEOVL
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Loads the overlay-file in the TPascal-version.
+
+TPascal-Syntax:
+     LOADOVL(Filename:String);
+
+TPascal-Example: see LOADOVL
+
+* Procedure is not needed in the assembler-version *
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ASKINIT                                                              Page 4
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Asks the user for the soundsystem-setup.
+
+TPascal-Syntax:
+     LOADOVL;
+
+TPascal-Example:
+
+     LoadOvl('GOLDPLAY.OVL');       { Load the overlay }
+     AskInit;                       { Ask user for setup }
+     Initialize;                    { Initialize the soundsystem }
+       ...
+
+Assembler-Example:
+
+     Call AskInit                   ; Ask use for setup
+     Call Initialize                ; Initialize the soundsystem
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+INITIALIZE
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Initializes the soundsystem for chosen setup.
+
+Note : The soundsystem must be re-initialized every time you change the
+preferences.
+
+Examples : See ASKINIT
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+SETSYS
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Allowes the programmer to set the preferences without using askinit
+
+Note : This procedure is not needed when using the assembler-version.
+
+Note : The variables SBDMA, SBIRQ, and SBPORT should be set to 1,7,220 when
+       not used. In the Assembler-version, these variables are by default
+       set to 1,7 and $220.
+
+TPascal-Syntax:
+     SetSys(SoundDevice,Timerspeed,SBDMA,SBIRQ,SBPORT);
+
+TPascal-Example:
+     SetSys(4,75,1,7,220); {Set Internal Honker at 16 kHz}
+     Initialize;
+
+Assembler-Example:
+     Mov  Ax,Seg SoundDevice
+     Mov  Es,Ax                  ; Makes ES point to the player-segment
+
+     Mov  Es:SoundDevice,4       ; Set Internal Honker
+     Mov  Es:TimerSpeed,75       ; Set 16 kHz (1193182/16000=75)
+
+     ; No Need to set SBDMA, SBIRQ, SBPORT, because we are playing at the
+     ; Internal honker.
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+LOADMODULE                                                            Page 5
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Allocates memory for a module, and loads it.
+
+Note : In the Assembler version, Ds:Dx must point to and ASCIIZ-String with
+       the filename.
+
+Note : In the TPascal-version, reduce the Pascal-Heap, so the module gets some
+       memory to live in. You do this with : {$M $4000,0,40000}
+
+TPascal-Syntax:
+     LoadModule(Filename);
+
+TPascal-Example:
+     Askinit;
+     Initialize;
+     LoadModule('Digital.Mod');      { File not found if ERROR<>0 }
+     StartPlaying;
+
+Assembler-Example:
+
+     .Data
+     Filename Db 'Digital.Mod',0
+     .Code
+     Mov  Ax,_Data
+     Mov  Ds,Ax
+
+     Call Askinit
+     Call Initialize
+     Mov  Dx,Offset FileName
+     Call LoadModule                ; Carry set if error
+     Call StartPlaying
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+STARTPLAYING
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Starts playing the module.
+
+Note : This procedure revectores IRQ0, it is therefore recommended to turn
+       the moduleplayer off before doing any floppy-disc-access.
+       DON'T DO MORE INTERRUPTS THAN YOU NEED WHEN YOU ARE PLAYING. DOING THIS
+       WILL LOWER THE REPLAYRATE DRASTICLY.
+TPascal-Syntax:
+     StartPlaying;
+
+TPascal-Example:
+     StartPlaying;
+     Port[$21h]:=$5C;                  {Turns off IRQ 2,3,4, and 6}
+     Repeat until Port[$60]=1;         {Wait until ESCAPE is pressed}
+     Port[$21h]:=0;                    {Let all IRQ's live}
+     StopPlaying;
+
+Assmebler-Example:
+     Call StartPlaying
+     Mov  Al,01011010b                 ; 5Ch
+     Out  21h,Al                       ; Turn off IRQ 2,3,4 and 6
+
+     WaitESC:
+     In   Al,60h
+     Cmp  Al,1
+     Jne  WaitESC                      ; Wait for ESCAPE to be pressed
+
+     Xor  Al,Al
+     Out  21h,Al
+     Call StopPlaying
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+STOPPLAYING                                                           Page 6
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Stops playing the module, and restores IRQ0.
+
+TPascal-Syntax:
+     StopPlaying;
+
+Examples: See StartPlaying
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+DEALLOC
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Removes the module from the memory and deallocate the memory where the module
+was.
+
+Note : You MUST ALWAYS deallocate and remove the old module before loading a
+       new.
+
+TPascal-Syntax:
+      DeAlloc;
+
+TPascal-Example:
+      Loadmodule('Digital.Mod');        { Load the module }
+      Dealloc;                          { Remove it again }
+
+Assembler-Example;
+      Lea  Dx,FileName
+      Call LoadModule                   ; Load the module
+      Call DeAlloc                      ; Remove it
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+MASTERVOLUME
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Sets the mastervolume of the module.
+
+Note : The mastervolume must be a value from 0 to 64.
+
+TPascal-Syntax:
+     Mastervolume(Gain);
+
+TPascal-Example;
+     For I:=64 downto 0 do              {Fade the volume down}
+     Begin;
+     MasterVolume(I);
+     Delay(10);                         {Wait 10 milliseconds}
+     End;
+
+Assembler-Example;
+     Mov  Ax,Seg SoundDevice
+     Mov  Es,Ax                 ; Make ES Point to the PlayerSegment
+
+     Mov  Cx,64
+     FadeDown:
+     Push Cx
+     Mov  Es:MasterVolume,Cx
+     Mov  Cx,300
+     Dummy:
+     Db   90h,90h,90h,90h         ; Four NOP's
+     Loop Dummy
+     Pop  Cx
+     Loop FadeDown
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+BOPBAR                                                                Page 7
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Returns the 'BAR'-Value....  Nice for doing VU-Meters and so on.
+
+Note : In the Assembler-version, there is no BOPBARS-function. You must access
+       the variables named BAR1, BAR2, BAR3 and BAR4 directly.
+
+TPascal-Syntax:
+     I := BopBar(Channelnumber);
+
+TPascal-Example:
+     BarHeight := BopBar(2);       { Returns the height of bar 2}
+
+Assembler-Example:
+     Mov  Ax,Seg SoundDevice
+     Mov  Es,Ax                    ; Make ES Point to the PlayerSegment
+     Mov  Bx,Es:Bar2               ; Set BX to the height of bar 2
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Remember to send your GOLDPLAY-Productions to us.
+
+Hi's and Ho's goes to :
+
+    ALL The CodeBlasters and The SkyHawks-members
+
+                         AND
+
+    Cascada, The SpacePigs, The Future-Crew, DCE, Ultra-Force, The Bogeyman,
+    The Scream Team, The Physical Crew, Skull, The Phoney Coders,
+    The Neoteric Crew, Maelstrom, SMA, and those I've forgotten.
+
+Remember to send the postcard.....
+
+ÖÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·
+º The Sounddevices:                                                          º
+ºÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄº
+º                        01  Soundplayer/Covox at LPT1  (Mono)               º
+º                        02  Soundplayer/Covox at LPT2  (Mono)               º
+º                        03  SoundBlaster               (Mono)               º
+º                        04  Internal Honker            (Mono)               º
+º                        05  Two Soundplayers LPT1+2    (Stereo)             º
+º                        06  SoundBlaster Pro           (Stereo)             º
+º                        07  Stereo SoundPlayer in LPT1 (Stereo)             º
+º                        08  Stereo SoundPlayer in LPT2 (Stereo)             º
+ÓÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ½
+
+P.S. Have understanding for all spelling/grammattic-errors... It's hard to
+     think clear at 5 o'clock in the morning.... D.S.
+
+
+
+
+
+
+
+
+
+
+/ Sourcer of The CodeBlasters, July the 17th, 1992
+

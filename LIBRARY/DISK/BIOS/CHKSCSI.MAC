@@ -1,0 +1,67 @@
+;\Source\Chantal\Disk\Bios\ChkSCSI.Mac
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                 Malte Genesis/BibliothŠque individuel                 Û
+;³                    dition Chantal/IV - Version 1.1                   Û
+;³                             1998/01/16                                Û
+;³                                                                       Û
+;³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+;Nom des programmeurs
+;ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Sylvain Maltais
+;
+;
+;Description
+;ÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Cette inclusion vise  … permettre une universialisation des donn‚es …
+;compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+;traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+;on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+;bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+;ou sa plante comme jamais avant...
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                         Fonction ChkSCSI:AX=4321h                     Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette fonction retourne 4321h dans AX si un systŠme de gestion d'unit‚ a
+; ‚t‚ d‚tect‚  sinon il peut renvoyer n'importe quel autre valeur.  Le code
+; de famille de contr“leur est retourn‚ dans le registre CX:
+; ÚÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+; ³ Code    ³ Nom de famille                                              ³
+; ÆÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+; ³ 0200h   ³ TMC-1680/? (ROM 3.0)                                        ³
+; ³ 0203h   ³ TMC-1650/1660/1670/1680 (ROM 2.0)                           ³
+; ³ 040Ah   ³ TMC-820/830/840/850/860/870/875/880/885 (ROM <= 6.0A)       ³
+; ³ 050Dh   ³ TMC-840/841/880/881 (ROM 5.2A)                              ³
+; ³ 0700h   ³ TMC-830/850/860/875/885 (ROM 7.0)                           ³
+; ÀÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+;
+;
+; Remarque
+; ÍÍÍÍÍÍÍÍ
+;
+;  ş Attention! Aucune pr‚servation des registres n'est effectu‚.
+;
+;  ş Si le code de famille est 0200h le registre BX est affect‚ sinon c'est
+;    le registre DX.  Dans la  partie  basse,  ils  contiennent  le  nombre
+;    d'unit‚ sp‚cifier  par rapport … la device SCSI,  tandis que la partie
+;    haute contient  le nombre  de contr“leur de  ROM exclusif  aux devices
+;    SCSI.
+
+ChkSCSI Macro
+ MOV AX,1800h   ; Fonction 18h: S‚lectionne le type de m‚dia pour le formatage
+ MOV DX,8000h   ; Fixe une unit‚ disque invalide
+ MOV CX,0FFFFh  ; Nombre de cylindre et de secteurs par piste impossible...
+ XOR BX,BX      ; Afin de ne pas entr‚ en conflit avec le LBACACHE
+ INT 13h        ; Interruption 13h: Teste le SCSI
+EndM

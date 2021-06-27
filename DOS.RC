@@ -1,0 +1,543 @@
+// BibliothŠque d'aide du Shell DOS
+// Ensemble Malte Genesis IV & V: Chantal & AdŠle
+// Tous droits r‚serv‚ par les Chevaliers de Malte (C) 1995 … 1998
+// __________________________________________________________________________
+//
+//
+// Description
+// ÍÍÍÍÍÍÍÍÍÍÍ
+//
+//  Cette ressource contient tous les ressources d'aide disponible pour le
+// shell DOS.
+
+NumberIndex=38
+
+Copyright 'Shell DOS/Malte DOS Version 3.01 '
+Copyright 'Tous droits r‚serv‚s par les Chevaliers de Malte (C) 1995 … 2000.'
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®ALIAS¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 0
+Cette commande permet de cr‚er des alias (des raccourcis) ou tout
+bonnement de nouvelle commande.
+
+ALIAS [/P] [/R [unit‚:][chemin]nomfichier...] [nom[=][valeur]
+
+ nom     Nom d'alias (pouvant atteindre jusqu'… 80 caractŠres).
+ valeur  S‚quence de commande (longueur maximal de 255 caractŠres).
+
+ /P      Pause: Arrˆte d'afficher entre chaque page.
+ /R      Lecture: Charge une liste d'alias d'un fichier.
+
+ALIAS avec seulement un nom d'alias affiche la valeur de cette alias.
+ALIAS sans paramŠtre affiche la liste d'alias active.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®BEEP¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 1
+Cette commande permet de faire attendre un signal sonore de style
+"BEEP" avertissant l'utilisateur de quelque chose.
+
+BEEP
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®CHDIR¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 2
+Cette commande de changer de r‚pertoire courant sur une unit‚
+disque de la machine.
+
+CHDIR|CD [r‚pertoire]
+
+CHDIR|CD affiche le r‚pertoire courant quand aucun paramŠtre n'est
+entr‚e.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®CONFIG¯                       Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 3
+Cette commande permet de connaŒtre l'‚tat actuel du mat‚riel de
+votre machine (CPU, Disque, SystŠme d'exploitation, M‚moire
+disponible, SystŠme de son,...).
+
+CONFIG
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                              Aide ®COPY¯                       Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 4
+Cette commande permet de copie un/des fichier(s) vers une r‚pertoire
+destinataire. Si la destination n'est pas sp‚cifi‚, il utilise le
+r‚pertoire courant comme destination.
+
+COPY Source [Destination]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                              Aide ®DEL¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 5
+Cette commande permet d'effacer un ou plusieurs fichier(s).
+Cependant ®DELQ¯ et ®ERAQ¯ sont les seules commandes permettant
+… l'utilisateur un question ®Effacer ... (O/N) ?¯ pour chaque
+fichier.
+
+DEL|ERASE fichier(s) [fichier(s)] [...]
+DELQ|ERAQ fichier(s) [fichier(s)] [...]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                              Aide ®DIR¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 6
+Cette commande permet d'afficher la liste des fichiers d'un
+r‚pertoire.
+
+DIR [r‚pertoire] [/2|/W] [/P[AUSE]] [/S] [/B] [/L]
+                 [/A[-][D][-][H][-][S][-][R][-][A]]
+
+ /2         Affiche en deux colonnes la liste si possible.
+ /S         Passe ‚galement dans chaque sous-r‚pertoires.
+ /W         Affiche que les noms pleine ‚cran.
+ /P[AUSE]   Effectue une pause lorsque la page est pleine.
+ /ND        Pas de description 4DOS/NDOS.
+ /NP        Interdit la pause si activ‚ par ®DIRCMD¯.
+ /L         Transforme les noms de fichiers en minuscule.
+ /B         Nom et extension seulement en raison d'un par ligne.
+ /A         Attribut … appliquer dans la recherche:
+             D   R‚pertoire     R   Lecture seulement
+             H   Cach‚          A   Archive
+             S   SystŠme        -   Pr‚fix d‚signant non
+
+Si le r‚pertoire n'est pas sp‚cifi‚, il utilise le chemin courant
+pour afficher la liste.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®DUMP¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 7
+Cette commande permet de visualiser le contenu d'un fichier ou une zone
+de m‚moire sous forme hexad‚cimal, octet par octet.
+
+Le paramŠtre ®SEARCH¯ permet d'effectuer une recherche dans toutes la
+m‚moire afin de trouver une signature.
+
+DUMP fichier
+DUMP 0????h[:????h]
+DUMP /SEARCH:message
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®ECHO¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 8
+Cette commande active/d‚sactive l'affichage des commandes ou fait
+apparaŒtre un message.
+
+ECHO [ON|OFF|message]
+
+ECHO sans message affiche l'‚tat d'affichage des commandes.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®FREE¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 9
+Cette commande affiche l'espace de libre sur une/des unit‚s de disque.
+
+FREE [unit‚: [unit‚: [...]]]
+
+  unit‚:     D‚signe une lettre d'unit‚ (A:, B:, C:,...) … v‚rifier.
+             (On peut sp‚cifier ®*:¯ ou ®?:¯ afin que toutes les
+             unit‚s soit effectuer).
+
+FREE sans paramŠtre prend l'unit‚ courante par d‚faut.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®LABEL¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 10
+Cette commande permet de changer le nom du volume d''une unit‚ de
+disque. Si le nom n'est pas sp‚cifier, la commande vous demande
+d'entrer un nom. Vous pouvez en red‚finir plusieurs nom de volume
+… la fois.
+
+LABEL [unit‚:] [nom] [...]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®MEMORY¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 11
+Cette commande permet de connaŒtre l'‚tat actuel de la m‚moire
+(ressource) utiliser sur cette machine.
+
+MEMORY
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®MKDIR¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 12
+Cette commande permet de cr‚e un ou plusieurs r‚pertoire(s) sur une
+unit‚ de disque.
+
+MD|MKDIR r‚pertoire [r‚pertoire [...]]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®MOVE¯                          Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 13
+Cette commande permet de d‚placer un/des fichiers vers une r‚pertoire
+destinataire. Si la destination n'est pas sp‚cifi‚, il utilise le
+r‚pertoire courant comme destination.
+
+MOVE Source [Destination]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®PAUSE¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 14
+Affiche un message demander … l'utilisateur d'enfoncer une touche
+pour continuer et attend un caractŠre au clavier.
+
+PAUSE
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®RMDIR¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 15
+Cette commande permet de d‚truire un ou plusieurs r‚pertoire(s) sur
+une unit‚ de disque … condition qu'il(s) soi(en)t vide.
+
+RD|RMDIR r‚pertoire [r‚peroitre [...]]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®SCREEN¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 16
+Cette commande permet d'afficher un message … une position pr‚cise
+de l'‚cran.
+
+SCREEN ligne colonne [message]
+
+ ligne    Nouvelle position de ligne … position le curseur.
+ colonne  Nouvelle position de colonne … position le curseur.
+ message  Message … afficher.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®SERNO¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 17
+Affiche un message … l'utilisateur l'informant sur le nom de
+l'utilisateur ainsi que le num‚ro de s‚rie du logiciel.
+
+SERNO
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®SETPRN¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 18
+Cette commande permet d'envoyer des commandes de configuration …
+l'imprimante courante.
+
+SETPRN [/88LINES][/BOLD][/DOUBLE][/ITALIC]
+       [/SIMPLE][/UNDOUBLE][/UNITALIC][/COMPRESS]
+
+  /88LINES    Fixe la longueur d'une feuille de papier 11" … 88 lignes.
+  /BOLD       Entre en mode caractŠre gras.
+  /DOUBLE     Entre en mode caractŠre de double largeur.
+  /ITALIC     Entre en mode caractŠre italique.
+  /SIMPLE     Annule le mode caractŠre gras.
+  /UNDOUBLE   Annule le mode caractŠre de double largeur.
+  /UNITALIC   Annule le mode caractŠre italique.
+  /COMPRESS   D‚finit le mode compress‚ afin d'afficher plus de caractŠres
+              dans un mˆme espace papier.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                           Aide ®TIME¯                          Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 19
+Cette commande permet de connaŒtre et de changer l'heure actuel
+sur la machine.
+
+TIME [heure:minute[:seconde[,centiŠmes]]]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                         Aide ®TRUENAME¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 20
+Cette commande affiche un chemin au complet (disque, r‚pertoire,
+et nom de fichier s''il y a lieu).
+
+TRUENAME chemin [chemin [...]]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®TYPE¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 21
+Cette commande permet d'afficher le contenu d'un/des fichier(s).
+
+TYPE [/P|/PAUSE] [fichier [fichier [...]]]
+
+  /P|/PAUSE    Effectue une pause quand l''‚cran est remplie.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®UNASM¯                        Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 22
+Cette commande permet de sourcer (d‚assembler) le contenu d'un fichier
+ou une zone de m‚moire sous forme assembleur, Algol 68/Pascal ou C/C++.
+C'est un genre de petit programme ®Debug¯ abr‚g‚ … la visualisation
+seulement.
+
+UNASM|UNCODE fichier
+UNASM|UNCODE ????h[:????h]
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®VERIFY¯                       Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 23
+Cette commande active/d‚sactive la v‚rification des accŠs en lecture/
+‚criture sur disque.
+
+VERIFY [ON|OFF]
+
+VERIFY sans paramŠtre affiche l'‚tat actuel de la v‚rification.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                             Aide ®VOL¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 24
+Cette commande affiche le nom de volume d'une/des unit‚(s) disque(s).
+
+VOL [unit‚: [unit‚: [...]]]
+
+VOL sans paramŠtre prend l'unit‚ courante par d‚faut.
+End
+
+IndexRec 25
+ String:'ALIAS    - Cr‚e un alias'
+ String:'BEEP     - Signal sonore'
+ String:'CHDIR    - Change de r‚pertoire'
+ String:'CONFIG   - tat de configuration'
+ String:'COPY     - Copier'
+ String:'DEL      - Effacer'
+ String:'DIR      - Liste des fichiers'
+ String:'DUMP     - Regarde fichier'
+ String:'ECHO     - Affiche un message'
+ String:'FREE     - Espace de libre'
+ String:'LABEL    - Change le nom volume'
+ String:'MEMORY   - M‚moire disponible'
+ String:'MKDIR    - Cr‚ation r‚pertoire'
+ String:'MOVE     - D‚placement fichier'
+ String:'PAUSE    - Pause'
+ String:'RMDIR    - Efface r‚pertoire'
+ String:'SCREEN   - Affiche message'
+ String:'SERNO    - Num‚ro s‚rie'
+ String:'SETPRN   - Configure l''imprimante'
+ String:'TIME     - Change l''heure'
+ String:'TRUENAME - Nom complet'
+ String:'TYPE     - Affiche fichier ASCII'
+ String:'UNASM    - D‚assemble'
+ String:'VERIFY   - V‚rification'
+ String:'VOL      - Nom de volume'
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                            Aide ®FIND¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 26
+Permet d'effectuer des recherches des chaŒnes de caractŠres
+dans un/des fichiers.
+
+FIND|GREP [/D] [/I] "chaŒne" fichier1 [fichier2,...]
+
+ chaŒne    ChaŒne de caractŠres entre guillemet a recherch‚.
+ /D        Recherche dans les sous-r‚pertoires.
+ /I        Ne diff‚rencie pas les minuscules/majuscules
+ /PAGE     Compte le nombre de pages contenu dans le(s) document(s).
+ /P[AUSE]  Effectue une pause quand la fenˆtre est pleine.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                         Aide ®4MAT/FORMAT¯                     Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 27
+Cette commande permet de formatter une disquette.
+
+4MAT|FORMAT [/?]
+
+ /?    Permet d'obtenir cette aide.
+End
+
+//ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+//³                               Aide ®BE¯                         Û
+//ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+IndexAscii 28
+Cette commande permet d'‚muler la commande BE du Norton Utility ou du
+Norton Desktop de Symantec.
+
+BE [/?] [BOX y1 x1 y2 x2 [AVENGER|SINGLE|DOUBLE] [couleur]]
+        [CLS [couleur]]
+
+ /?       Permet d'obtenir cette aide.
+ y1       Ligne sup‚rieur gauche
+ x1       Colonne sup‚rieur gauche
+ y2       Ligne inf‚rieur droite
+ x2       Colonne inf‚rieur droite
+ couleur  Attribut d'‚cran (exemple: ®BRIGHT BLUE ON YELLOW¯)
+ BOX      Permet de tracer une boŒte pleine au format sp‚cifier.
+ CLS      Permet d'effacer l'‚cran avec la couleur sp‚cifier.
+End
+
+IndexAscii 29
+Cette commande permet de modifier le nom d'un r‚pertoire
+
+RENDIR anciennom nouveaunom
+End
+
+IndexAscii 30
+Cette commande permet de modifier le nom d'un/des fichier(s)
+
+REN[AME] anciennom nouveaunom
+End
+
+IndexAscii 31
+Cette commande est l'‚mulation de la commande DR-DOS de listage de
+r‚pertoire ‚tendu offert par ce systŠme d'exploitation.
+
+XDIR [/S] [/B] [/W]
+
+  /S     Affiche le contenu ‚galement des sous-r‚pertoires
+  /B     Affichage brief des noms de fichiers seulement en minuscule.
+  /W     Affiche que les noms plein ‚cran.
+End
+
+IndexAscii 32
+Cette commande permet d'obtenir de l'aide sur n'importe quel autre
+commande du prompt DOS.
+
+FASTHELP [commande]
+
+  commande   C'est une commande comme par exemple (DIR, FREE,...)
+
+Exemple: FASTHELP DIR
+End
+
+IndexAscii 33
+Cette commande permet de configurer certaines devices du systŠme.
+
+MODE [BW40|CO40|BW80|CO80|CO100|CO132]
+     [CON[:] [LINES=ligne] [COL=colonnes] [RATE=r‚p‚tition] [DELAY=d‚lai]
+             [CP|CODEPAGE]]
+     [PRN[:] [LPT#:|COM#:]]
+
+  BW40|BW80              Passe en mode noir et blanc 40 ou 80 colonnes.
+  CO40|CO80|CO100|CO132  Passe en mode couleur 40, 80, 100 ou 132 colonnes.
+  CON:                   Ajustement de la console
+  PRN:                   Ajustement de la sortie d'imprimante
+  ligne                  Nombre de ligne affich‚.
+  colonnes               Nombre de colonne affich‚.
+  r‚p‚tition             Taux de r‚p‚tition clavier (1 … 32). 1=trŠs lent.
+  d‚lai                  Delai clavier (1 … 4). 1=petit delai.
+  CP ou CODEPAGE         Demande de l'information sur le code de page.
+End
+
+IndexAscii 34
+Cette commande permet de modifier les attributs d'un ou de plusieurs
+fichiers ainsi que ces sous-r‚pertoires si d‚sirer.
+
+ATTRIB [+A|-A] [+H|-H] [+R|-R] [+S|-S] [/P] [/S] [chemin[...]]
+
+ +         Active l'attribut
+ -         D‚sactive l'attribut
+ A         Attribut d'archive.
+ H         Attribut cach‚.
+ R         Attribut de lecture seulement.
+ S         Attribut systŠme.
+
+ /P        Active une pause lorsque la page est pleine.
+ /S        Passe tous les sous-r‚pertoires correspondant.
+ chemin    Chemin de recherche et fichier … modifier l'attribut.
+End
+
+IndexAscii 35
+Cette commande offre la possibilit‚ d'‚couter des fichiers de son ou
+de faire jouer des disques compactes.
+
+PLAY [fichier(s) [...]] [/CD]
+
+ /CD   Permet de faire jouer des disques compactes.
+End
+
+IndexAscii 36
+Cette commande permet de d‚compresser un/des fichier(s)a contenu dans
+un fichier de format ZIP.
+
+UNZIP source[.ZIP] [fichier(s)]
+
+Notes: Si les fichiers a extraire ne sont pas specifi‚, cette commande
+extrait tous les fichiers.
+End
+
+IndexAscii 37
+Cette commande permet de copie une disque sur une autre, une disquette
+dans un fichier image ou bien encore un fichier sur une disquette.
+
+DISKCOPY [unit‚ source:] [unit‚ destination:]
+DISKCOPY [unit‚ source:|fichier source] [unit‚ destination:]
+DISKCOPY [unit‚ source:] [unit‚ destination:|fichier destinatire]
+
+Notes: Lorsque vous specifiez deux fois la mˆme unit‚, la commande
+demande de changer la disquette lorsque la source est lu pour que
+vous puissez placez votre disquette destinataire.
+End

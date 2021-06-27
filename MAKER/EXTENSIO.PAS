@@ -1,0 +1,134 @@
+Program MakerExtensior;
+
+Uses Adele,Systex,Systems,Video,Isatex,Dialex,DialPlus,ResServI;
+
+Var Q:Extensior;X,Y,I:Word;
+
+BEGIN
+ InitSystems(suIsabel);
+ InitMemManagers;
+ SetVideoModeDeluxe(vmGrf640x480c256);
+ DeleteFile('EXTENSIO.DAT');
+ ExtensiorInit(Q);
+ ExtensiorAdd(Q,'Nulle','\SOURCE\CHANTAL\RESOURCE\ICON\16\INCONNU.ICO','','',faAll);
+ ExtensiorAdd(Q,'Ex‚cutable Windows','\SOURCE\CHANTAL\RESOURCE\ICON\16\EXEWIN.ICO','','',fa);
+ ExtensiorAdd(Q,'Aide','\MALTE\ICON\HELP.ICO','*.HLP','',fa);
+ ExtensiorAdd(Q,'Animation 3D Studio','\MALTE\ICON\FLIPLAY.ICO','*.3DS','',fa);
+ ExtensiorAdd(Q,'Animation FLI','\MALTE\ICON\FLIPLAY.ICO','*.FLI','',fa);
+ ExtensiorAdd(Q,'Base de donn‚e','\SOURCE\CHANTAL\RESOURCE\ICON\16\DATABASE.ICO','*.DAT','',fa);
+ ExtensiorAdd(Q,'Base de donn‚e de Microsoft','\SOURCE\CHANTAL\GALLERY\ICONE\MDB.ICO','*.MDB','',fa);
+ ExtensiorAdd(Q,'Batch File','\SOURCE\CHANTAL\RESOURCE\ICON\16\BATCH.ICO','*.BAT;*.BTM;*.CMD','',fa);
+ ExtensiorAdd(Q,'Code Source Assembleur','\SOURCE\CHANTAL\RESOURCE\ICON\16\ASM.ICO','*.ASM;*.ASO;*.MAC;*.INC','',fa);
+ ExtensiorAdd(Q,'Code Source Basic','\SOURCE\CHANTAL\GALLERY\ICONE\BASIC.ICO','*.BAS;*.FRM','',fa);
+ ExtensiorAdd(Q,'Code Source C/C++','\MALTE\ICON\CPP.ICO','*.C;*.CAS;*.CC;*.CPP;*.H;*.HPP','',fa);
+ ExtensiorAdd(Q,'Code Source Cobol','\MALTE\ICON\COBOL.ICO','*.COB;*.CBL','',fa);
+ ExtensiorAdd(Q,'Code Source Logo','\SOURCE\CHANTAL\RESOURCE\ICON\16\LOGO.ICO','*.LGO','',fa);
+ ExtensiorAdd(Q,'Code Source Pascal','\MALTE\ICON\PASCAL.ICO','*.PAS;*.INC;*.DPR','',fa);
+ ExtensiorAdd(Q,'Code Soruce de Base de donn‚es SQL','\SOURCE\CHANTAL\RESOURCE\ICON\16\SQL.ICO','*.SQL','',fa);
+ ExtensiorAdd(Q,'Compress‚','\SOURCE\CHANTAL\RESOURCE\ICON\16\PACKED.ICO',
+                 '*.ARC;*.ARJ;*.CAB;*.ICE;*.LZH;*.PAK;*.RAR;*.SWG;*.ZIP;*.ZOO','',fa);
+ ExtensiorAdd(Q,'Configuration','\MALTE\ICON\CONFIG.ICO','*.CPL;MB.INI;MB.CFG;CONFIG.SYS','',fa);
+ ExtensiorAdd(Q,'Desktop','\SOURCE\CHANTAL\GALLERY\ICONE\DESKTOP.ICO','*.DSK','',fa);
+ ExtensiorAdd(Q,'DLL','\SOURCE\CHANTAL\RESOURCE\ICON\16\DLL.ICO',
+                '*.386;*.ACM;*.AX;*.DLL;*.DRV;*.KBD;*.NLS;*.OCX;*.SYS;*.TSK;*.VXD','',fa);
+ ExtensiorAdd(Q,'Dessin','\MALTE\ICON\PAINT.ICO','*.BBM;*.BGX;*.BMP;*.CDR;*.CPT;*.GFX;*.GIF;'+
+                                                '*.GPX;*.JPE;*.JPG;*.IMG;*.LBM;*.PCX;*.PPM;'+
+                                                '*.RES;*.SCI;*.TIF;*.XBM;MARBLE.MBF','',fa);
+ ExtensiorAdd(Q,'Dessin technique','\MALTE\ICON\TECHDRAW.ICO','*.IMI','',fa);
+ ExtensiorAdd(Q,'Document','\MALTE\ICON\DOCUMENT.ICO','*.DOC;*.WRI','',fa);
+ ExtensiorAdd(Q,'Document Genesis Ascii TypeWriter','\MALTE\ICON\WRITE.ICO','*.GAT','',fa);
+ ExtensiorAdd(Q,'Document HTML','\SOURCE\CHANTAL\RESOURCE\ICON\16\HTML.ICO','*.HTM;*.HTML','',fa);
+ ExtensiorAdd(Q,'DriveSpace','\SOURCE\CHANTAL\GALLERY\ICONE\DRVSPACE.ICO','DRVSPACE.*;STACKER.*','',fa);
+ ExtensiorAdd(Q,'Excel - Tableur','\SOURCE\CHANTAL\GALLERY\ICONE\EXCEL.ICO','*.XLS','',fa);
+ ExtensiorAdd(Q,'Feuille de travail de d‚veloppeur','\SOURCE\CHANTAL\GALLERY\ICONE\FORM.ICO','*.DFM;*.FRM','',fa);
+ ExtensiorAdd(Q,'Fichier Disquette','\SOURCE\CHANTAL\GALLERY\ICONE\DISKCOPY.ICO','*.144','',fa);
+ ExtensiorAdd(Q,'GeoWorks/New Deal Office','\SOURCE\CHANTAL\GALLERY\ICONE\NEWDEAL.ICO','*.00?;*.GEO','',fa);
+ ExtensiorAdd(Q,'Groupe de fenˆtres','\SOURCE\CHANTAL\RESOURCE\ICON\16\GROUPE.ICO','*.GRP;*.GIX','',fa);
+ ExtensiorAdd(Q,'Menu Windows 9X','\SOURCE\CHANTAL\RESOURCE\ICON\16\MENUW9X.ICO','*.MNB;*.MNX','',fa);
+ ExtensiorAdd(Q,'MonsterBook','\MALTE\ICON\START.ICO','MB.EXE','',fa);
+ ExtensiorAdd(Q,'Palette','\SOURCE\CHANTAL\RESOURCES\ICON\32\PALETTE.ICO','*.PAL','',fa);
+ ExtensiorAdd(Q,'PDF','\SOURCE\CHANTAL\GALLERY\ICONE\PDF.ICO','*.PDF','',fa);
+ ExtensiorAdd(Q,'PIF','\SOURCE\CHANTAL\RESOURCE\ICON\16\PIF.ICO','*.PIF','',fa);
+ ExtensiorAdd(Q,'Police de caractŠres','\SOURCE\CHANTAL\RESOURCE\ICON\16\QQF.ICO','*.QQF;*.FNT;*.FON;*.CHR','',fa);
+ ExtensiorAdd(Q,'Police de caractŠres TrueType','\SOURCE\CHANTAL\RESOURCE\ICON\16\TRUETYPE.ICO','*.TTF;*.FOT','',fa);
+ ExtensiorAdd(Q,'PowerPoint','\SOURCE\CHANTAL\GALLERY\ICONE\POWERPNT.ICO','*.PPT','',fa);
+ ExtensiorAdd(Q,'Prompt DOS de commande','\MALTE\ICON\COMMAND.ICO','COMMAND.COM','',fa);
+ ExtensiorAdd(Q,'Ressource','\SOURCE\CHANTAL\GALLERY\ICONE\SOURCE.ICO','*.RC','',fa);
+ ExtensiorAdd(Q,'RLL (BibliothŠque de mode r‚el)','\SOURCE\CHANTAL\RESOURCE\ICON\16\RLL.ICO','*.RLL','',fa);
+ ExtensiorAdd(Q,'Screen Saver','\SOURCE\CHANTAL\GALLERY\ICONE\SCR.ICO','*.SCR','',fa);
+ ExtensiorAdd(Q,'Son/Musique','\SOURCE\CHANTAL\GALLERY\NOTE.BGX','*.MID;*.MOD;*.STM;*.VOC;*.WAV','',fa);
+ ExtensiorAdd(Q,'Son Tandy','\SOURCE\CHANTAL\GALLERY\ICONE\TANDYSND.BGX','*.SND','',fa);
+ ExtensiorAdd(Q,'Tableur','\SOURCE\CHANTAL\RESOURCES\ICON\32\TABLEUR.ICO','*.MGC','',fa);
+ ExtensiorAdd(Q,'Tetris','\MALTE\ICON\TETRIS.ICO','TETRIS.*','',fa);
+ ExtensiorAdd(Q,'Texte','\MALTE\ICON\NOTEPAD.ICO','*.TXT;*.INI;DESCRIPT.ION;READ.ME;README.;LISEZMOI.','',fa);
+ ExtensiorAdd(Q,'Turbo Pascal Aide','\SOURCE\CHANTAL\GALLERY\ICONE\TPH.ICO','*.TPH','',fa);
+ ExtensiorAdd(Q,'Unit‚/Objet/BibliothŠque','\SOURCE\CHANTAL\GALLERY\BLOCK.BGX','*.DCU;*.LIB;*.OBJ;*.TPP;*.TPU;*.TPW','',fa);
+ ExtensiorAdd(Q,'Visual Basic','\SOURCE\CHANTAL\GALLERY\ICONE\VB.ICO','*.VBP;*.VBW','',fa);
+ ExtensiorAdd(Q,'Windows','\SOURCE\CHANTAL\GALLERY\ICONE\WINDOWS.ICO','WIN.COM;WIN386.EXE','',fa);
+ ExtensiorAdd(Q,'Acte Movie','\SOURCE\CHANTAL\GALLERY\ICONE\ACTMOVIE.ICO','ACTMOVIE.EXE','',fa);
+ ExtensiorAdd(Q,'ASD','\SOURCE\CHANTAL\GALLERY\ICONE\ASD.ICO','ASD.EXE','',fa);
+ ExtensiorAdd(Q,'AWFXEX 32-bits','\SOURCE\CHANTAL\GALLERY\ICONE\AWFXEX32.ICO','AWFXEX32.EXE','',fa);
+ ExtensiorAdd(Q,'BackWork','\SOURCE\CHANTAL\GALLERY\ICONE\BACKWORK.ICO','BACKWORK.EXE','',fa);
+ ExtensiorAdd(Q,'Borland Pascal','\SOURCE\CHANTAL\GALLERY\ICONE\BP.ICO','BP.EXE;BPW.EXE','',fa);
+ ExtensiorAdd(Q,'Borland C++','\SOURCE\CHANTAL\GALLERY\ICONE\BCW.ICO','BC.EXE;BCW.EXE','',fa);
+ ExtensiorAdd(Q,'Calculatrice','\SOURCE\CHANTAL\GALLERY\ICONE\CALC.ICO','CALC.EXE','',fa);
+ ExtensiorAdd(Q,'Configuration Wizard 32-bits','\SOURCE\CHANTAL\GALLERY\ICONE\CFGWIZ32.ICO','CFGWIZ32.EXE','',fa);
+ ExtensiorAdd(Q,'DCOM Configuration','\SOURCE\CHANTAL\GALLERY\ICONE\DCOMCNFG.ICO','DCOMCNFG.EXE','',fa);
+ ExtensiorAdd(Q,'ICQ','\SOURCE\CHANTAL\GALLERY\ICONE\ICQ.ICO','ICQ.EXE;ICQHOM*.EXE','',fa);
+ ExtensiorAdd(Q,'Internet Explorer','\SOURCE\CHANTAL\GALLERY\ICONE\IEXPLORE.ICO','IEXPLORE.EXE;IE4UINIT.EXE','',fa);
+ ExtensiorAdd(Q,'Joueur CD','\SOURCE\CHANTAL\GALLERY\ICONE\CDPLAYER.ICO','CDPLAYER.EXE','',fa);
+ ExtensiorAdd(Q,'Clean Manager','\SOURCE\CHANTAL\GALLERY\ICONE\CLEANMGR.ICO','CLEANMGR.EXE','',fa);
+ ExtensiorAdd(Q,'D‚fragmentation','\SOURCE\CHANTAL\GALLERY\ICONE\DEFRAG.ICO','DEFRAG.EXE;SDEFRAG*.*','',fa);
+ ExtensiorAdd(Q,'Composition de num‚ro','\SOURCE\CHANTAL\GALLERY\ICONE\DIALER.ICO','DIALER.EXE','',fa);
+ ExtensiorAdd(Q,'Communication directe par COM:','\SOURCE\CHANTAL\GALLERY\ICONE\DIRECTCC.ICO','DIRECTCC.EXE','',fa);
+ ExtensiorAdd(Q,'Copernic - Recherche Internet','\SOURCE\CHANTAL\GALLERY\ICONE\COPERNIC.ICO','COPERNIC.*','',fa);
+ ExtensiorAdd(Q,'Copie de disquette','\SOURCE\CHANTAL\GALLERY\ICONE\DISKCOPY.ICO','DISKCOPY.*;NC_COPY.EXE','',fa);
+ ExtensiorAdd(Q,'Corel Draw','\SOURCE\CHANTAL\GALLERY\ICONE\CORELDRW.ICO','CORELDRW.EXE','',fa);
+ ExtensiorAdd(Q,'Gestionnaire de fichiers','\SOURCE\CHANTAL\GALLERY\ICONE\WINFILE.ICO','WINFILE.EXE','',fa);
+ ExtensiorAdd(Q,'IP Configuration','\SOURCE\CHANTAL\GALLERY\ICONE\IPCONFIG.ICO','IPCONFIG.EXE','',fa);
+ ExtensiorAdd(Q,'Delphi','\SOURCE\CHANTAL\GALLERY\ICONE\DELPHI.ICO','DELPHI*.EXE','',fa);
+ ExtensiorAdd(Q,'D‚sinstallation','\SOURCE\CHANTAL\GALLERY\ICONE\UNINST.ICO','ISUNINST.EXE;UNINST.EXE;UNINSTAL.EXE','',fa);
+ ExtensiorAdd(Q,'Joueur Multim‚dia','\SOURCE\CHANTAL\GALLERY\ICONE\MPLAYER.ICO','MPLAYER.EXE','',fa);
+ ExtensiorAdd(Q,'Microsoft Access','\SOURCE\CHANTAL\GALLERY\ICONE\MSACCESS.ICO','MSACCESS.EXE','',fa);
+ ExtensiorAdd(Q,'Microsoft Classeur','\SOURCE\CHANTAL\GALLERY\ICONE\BINDER.ICO','BINDER.EXE','',fa);
+ ExtensiorAdd(Q,'Microsoft Excel','\SOURCE\CHANTAL\GALLERY\ICONE\MSEXCEL.ICO','EXCEL.EXE','',fa);
+ ExtensiorAdd(Q,'Microsoft Graphiques','\SOURCE\CHANTAL\GALLERY\ICONE\GRAPH8.ICO','GRAPH8.EXE','',fa);
+ ExtensiorAdd(Q,'Microsoft Office D‚marreur','\SOURCE\CHANTAL\GALLERY\ICONE\OSA.ICO','OSA.EXE','',fa);
+ ExtensiorAdd(Q,'Microsoft PowerPoint','\SOURCE\CHANTAL\GALLERY\ICONE\MSPWRPNT.ICO','POWERPNT.EXE','',fa);
+ ExtensiorAdd(Q,'Microsoft Word','\SOURCE\CHANTAL\GALLERY\ICONE\WINWORD.ICO','WINWORD.EXE','',fa);
+ ExtensiorAdd(Q,'Nesticle','\SOURCE\CHANTAL\GALLERY\ICONE\NESTICLE.ICO','NESTICLE.EXE','',fa);
+ ExtensiorAdd(Q,'NotePad','\SOURCE\CHANTAL\GALLERY\ICONE\NOTEPAD.ICO','NOTEPAD.EXE','',fa);
+ ExtensiorAdd(Q,'Norton Commander','\SOURCE\CHANTAL\GALLERY\ICONE\NC.ICO','NC.EXE;NCMAIN.EXE','',fa);
+ ExtensiorAdd(Q,'Registres Windows','\SOURCE\CHANTAL\GALLERY\ICONE\REGISTER.ICO','REGEDIT.EXE;SCANREG*.EXE;ADDREG.EXE','',fa);
+ ExtensiorAdd(Q,'Salamand','\SOURCE\CHANTAL\GALLERY\ICONE\SALAMAND.ICO','SALAMAND.EXE','',fa);
+ ExtensiorAdd(Q,'ScanDisk','\SOURCE\CHANTAL\GALLERY\ICONE\SCANDISK.ICO','SCANDSKW.EXE;SCANDISK.EXE','',fa);
+ ExtensiorAdd(Q,'SetDebug','\SOURCE\CHANTAL\GALLERY\ICONE\SETDEBUG.ICO','SETDEBUG.EXE','',fa);
+ ExtensiorAdd(Q,'TelNet','\SOURCE\CHANTAL\GALLERY\ICONE\TELNET.ICO','TELNET.EXE','',fa);
+ ExtensiorAdd(Q,'Turbo Pascal','\SOURCE\CHANTAL\GALLERY\ICONE\TURBO.ICO','TURBO.EXE','',fa);
+ ExtensiorAdd(Q,'User','\SOURCE\CHANTAL\GALLERY\ICONE\USER.ICO','USER.EXE','',fa);
+ ExtensiorAdd(Q,'WinAMP/WarpAMP','\SOURCE\CHANTAL\GALLERY\ICONE\WINAMP.ICO','WINAMP.EXE;WARPAMP.EXE','',fa);
+ ExtensiorAdd(Q,'WinZIP/WarpZIP','\SOURCE\CHANTAL\GALLERY\ICONE\WINZIP.ICO','WINZIP*.EXE;WARPZIP*.EXE','',fa);
+ ExtensiorAdd(Q,'Windows Script','\SOURCE\CHANTAL\GALLERY\ICONE\WSCRIPT.ICO','WSCRIPT.EXE','',fa);
+ ExtensiorAdd(Q,'WinTutor','\SOURCE\CHANTAL\GALLERY\ICONE\WINTUTOR.ICO','WINTUTOR.EXE','',fa);
+ ExtensiorAdd(Q,'Workshop','\SOURCE\CHANTAL\GALLERY\ICONE\WORKSHOP.ICO','WORKSHOP.EXE','',fa);
+ ExtensiorAdd(Q,'R‚pertoire CorelDraw','\SOURCE\CHANTAL\GALLERY\ICONE\CDRWDIR.ICO','COREL','',faDir);
+ ExtensiorAdd(Q,'R‚pertoire Document','\SOURCE\CHANTAL\GALLERY\ICONE\MYDOCUME.ICO','MYDOCU~1;MESDOC~1','',faDir);
+ ExtensiorAdd(Q,'R‚pertoire Images','\SOURCE\CHANTAL\GALLERY\ICONE\MYIMAGES.ICO','MYIMAGES;IMAGES;GALLERY;DESSIN','',faDir);
+ ExtensiorAdd(Q,'R‚pertoire Malte','\SOURCE\CHANTAL\RESOURCE\ICON\16\MALTE.ICO','MALTE','',faDir);
+ ExtensiorAdd(Q,'R‚pertoire Police de caractŠres','\SOURCE\CHANTAL\RESOURCE\ICON\16\DIRQQF.ICO','FONT;FNT','',faDir);
+ ExtensiorAdd(Q,'R‚pertoire SystŠme','\SOURCE\CHANTAL\RESOURCE\ICON\16\SYSTEMS.ICO','SYSTEMS;SYSTEM','',faDir);
+ ExtensiorAdd(Q,'R‚pertoire Poubelle','\SOURCE\CHANTAL\RESOURCE\ICON\16\TRASHCAN.ICO',
+                 '*.BAK;RECYCLED;UNDELETE;TRASHCAN','',faAll);
+ X:=0;Y:=0;
+ For I:=0to ExtensiorNumIcon(Q)-1do Begin
+  ExtensiorPutIcon(Q,X,Y,16,16,I,$A,'');
+  Inc(X,16);
+  If(X>=GetNumXPixels)Then Begin
+   X:=0;
+   Inc(Y,16);
+  End;
+ End;
+ ExtensiorDone(Q);
+ DoneMemManagers;
+ ReadKey;
+END.

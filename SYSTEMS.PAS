@@ -1,0 +1,13682 @@
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                                                                         Û
+ ³                    Malte Genesis/Module des SystŠmes                    Û
+ ³                                                                         Û
+ ³            dition Chantal pour Mode R‚el/IV - Version 1.1 &            Û
+ ³              dition AdŠle pour Mode R‚el/V - Version 1.1               Û
+ ³                              1995/02/02                                 Û
+ ³                                                                         Û
+ ³          Tous droits r‚serv‚s par les Chevaliers de Malte (C)           Û
+ ³                                                                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Nom du programmeur
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  Sylvain Maltais
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette unit‚ offre  toutes les  fonctions  et  proc‚dures  de base  pour la
+ gestion de la m‚moire, ressources,  des fichiers, des imprimantes, des port
+ de communications, horloge, modem, clavier et de la manette de jeux.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Le ®Borland Pascal 7¯ supporte  difficilement  cette unit‚ … cause de ‡a
+    portabilit‚  trop faible  au niveau  des informations  de d‚boguage pour
+    cette  raison  il peut  ˆtre  n‚cessaire  de changer les  directives  de
+    compilation pour interdire les codes suppl‚mentaires de d‚boguage.
+
+  ş Voici quelques pr‚cisions sur les directives de compilation conditionnel:
+    ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+    ³ Directive      ³ Description                                         ³
+    ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+    ³ Debug          ³ Autorise  cette  unit‚  …   ˆtre  reconnue   par  le³
+    ³                ³ d‚bogueur.                                          ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ DirectDos      ³ Autorise  les fonctions  suppl‚mentaires  de lecture³
+    ³                ³ directe des informations fichiers du Dos.           ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ DPMI           ³ Interdit  les  accŠs  directe  en  m‚moire   et  les³
+    ³                ³ m‚canismes non-support‚ par le mode prot‚g‚.        ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ ExtraCom       ³ Obtient  des  fonctions   suppl‚mentaires  dans  des³
+    ³                ³ situations pr‚cise en rapport avec la communication.³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ ExtraHandle    ³ Cette directive permet  d'avoir accŠs  aux fonctions³
+    ³                ³ "Handle"  peut  utilis‚    dans   la   programmation³
+    ³                ³ conventionnelle.                                    ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ ExtraMemory    ³ Permet  d'utiliser  des  fonctions   de  gestion  de³
+    ³                ³ m‚moire ‚tendue.                                    ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ HeapVram       ³ Autorise  l'utilisation  d'un  tas  dans la  m‚moire³
+    ³                ³ vid‚o en mode texte (inutilis‚ en mode graphique...)³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ HighSecurity   ³ Indique … cette  unit‚  de rajouter  des protections³
+    ³                ³ suppl‚mentaires   dans   le   cas   d' une  mauvaise³
+    ³                ³ programmation.                                      ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ Joystick       ³ Supporte la manette de jeu standard.                ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ MaxInt         ³ Autorise le d‚tournement des Interruptions 09h, 17h,³
+    ³                ³ 28h, ...  pour  permettre  aux  autres  applications³
+    ³                ³ d'utiliser les ressource de cette unit‚!            ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ MaxOverlay     ³ Indique … l'unit‚  qu'elle est compiler en "Overlay"³
+    ³                ³ (Recouvrement).                                     ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ NoSpooler      ³ Interdit  … cette unit‚  de s'occuper  de la gestion³
+    ³                ³ d'un tampon suppl‚mentaire d'imprimante (Spooler).  ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ OldPlayerSound ³ Permet  d'obtenir  les fonctions  de musique d'un PC³
+    ³                ³ Speaker en utilisant les anciennes m‚thodes (Basica,³
+    ³                ³ ...)                                                ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ OptionPartition³Directive donnant accŠs aux fonctions compl‚mentaires³
+    ³                ³ de la  manipulation  des  disques  dur  d'une  fa‡on³
+    ³                ³ directe.                                            ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ Security       ³ Niveau de s‚curit‚  autoris‚  dans les proc‚dures de³
+    ³                ³ gestion de m‚moire.                                 ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ ShortBF        ³ Utilise la  m‚thode  compacte  pour les  banques  de³
+    ³                ³ fichiers (Recommander que oui).                     ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ Windows        ³ Demande … l'unit‚ d'utiliser autant que possible les³
+    ³                ³ fonctions Windows pour la gestion de cette unit‚.   ³
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ __TINY__       ³ D‚finit cette unit‚  dans des circonstances compacte³
+    ³                ³ et minimum.                                         ³
+    ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  ş Abr‚viation:
+     AC:   AsynChronous         Chr:  Character
+     AL:   AdLib                Cmd:  Commande
+     BF:   BankFiles            Dbl:  Double
+     fa:   File attribut        Def:  Default
+     FN:   FileName             Emm:  Expand Memory Manager
+     FS:   FileSize             err:  Erreur
+     IO:   Input/Output         Esc:  Escape
+     Kr:   Color                Ext:  Extension
+     Ln:   Line                 IBM:  International Business Machine (IBM PC)
+     Lo:   Low                  ind:  Index
+     Ls:   List                 Int:  Integer ou Interruption
+     ND:   Nombre divis‚        Irq:  Interruption Resquest
+     NM:   Nombre modulo        Max:  Maximum
+     Nm:   Number               Mem:  Memory
+     PC:   PointerCharacter     Min:  Minimum
+     Pg:   Page                 Mod:  Modulo
+     pn:   PrinterName          P2P:  Papier … Papier
+     ps:   PrinterString        Prn:  Printer
+     RB:   RemovableBuffer      Ptr:  Pointeur
+     Sf:   SizeOf               Str:  String
+     Sz:   Size                 Swp:  Swap
+     VS:   VirtualSwap          Sys:  System
+     Wd:   Word                 Ver:  Version
+     WM:   WriterMode           Win:  Window(s)
+     x0:   Tampon               Xms:  eXtended Memory System
+
+  ş La centralisation des proc‚dures primaire  dans cette mˆme unit‚ et le
+    refus de les mettres dans plusieurs unit‚s diff‚rentes pour ‚conomiser
+    la m‚moire … pour but de faire la guerre au bug. Plus un programme est
+    centralis‚, plus le problŠme des lignes devient visibles...
+}
+
+Unit Systems;
+
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+                                 INTERFACE
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+
+{$I DEF.INC}
+
+{$IFDEF MaxOverlay}
+ {$O+}
+{$ELSE}
+ {$O-}
+{$ENDIF}
+
+Uses
+ WinTex,Adele,Dostex,Pritex,Systex,WordTex;
+
+{$DEFINE __PChr}
+{$DEFINE ___Close}
+
+Const
+ SYSDrive:String[4]='SYS:';        { Unit‚ r‚serv‚ au noyau de l'ensemble
+                                     Malte Genesis. }
+ CRLF:Str2=#13#10;
+ CRLFEnd:Chr=#0;
+ PathSystems:PChr=NIL;
+ {$IFNDEF NoSpooler}
+  SpoolName:Str12='SPOOLER.PR$';
+ {$ENDIF}
+
+Const
+{$IFNDEF NotReal}
+  XmsErr:Byte=0;              { DerniŠre erreur survenu au niveau XMS }
+  EmmErr:Byte=0;              { DerniŠre erreur survenu au niveau EMM/EMS }
+ {$ENDIF}
+ NoEms:Boolean=False;         { Interdiction de l'utilisation de la m‚moire EMS? }
+ VSwpInit:Boolean=False;      { change (Swapping) Vid‚o autoris‚ }
+ DescrInFile:Boolean=True;    { Autorise le chargement de description avec les noms de fichiers}
+ ActifScrSave:Boolean=True;
+ MakeBak:Boolean=True;
+ GetSysErr:Word=0;
+ BrkOn:Boolean=False;
+  { Variable de carte de son }
+ IsAdLib:Boolean=False;       { AdLib disponible }
+ IsGravis:Boolean=False;      { Gravis Ultra Sound disponible }
+ IsRoland:Boolean=False;      { Roland/Midi disponible }
+ IsSoundBlaster:Boolean=False;{ SoundBlaster disponible }
+ IsTandyDigital:Boolean=False;{ Tandy Digital disponible }
+ SoundMem:Word=0;             { M‚moire disponible sur la carte de son }
+ SoundOutput:Byte=soPCSpeaker;{ Sortie de son }
+ SoundPort:Word=$FFFF;
+ DMAChannel:Byte=1;           { Canal DMA utilis‚ pour la transmission du signal sonore}
+ IsPlayMod:Boolean=False;     { Un .MOD est en train de jouer }
+  { Variable de son de travail }
+{$IFDEF OldPlayerSound}
+ NoteOctave:Integer=4;
+ NoteFrac:Real=0.875;
+ NoteDur:Integer=0;
+ NoteLen:Real=0.25;
+ NoteQuarter:Real=500.0;
+{$ENDIF}
+ {$IFDEF DirectDos}
+  DirectDos:Boolean=False;
+ {$ENDIF}
+
+Var
+ SysErr:Word Absolute GetSysErr;
+ {$IFDEF __Windows__}
+  DosError:Word Absolute GetSysErr;
+ {$ENDIF}
+ PathDskSwp:PathStr;
+ PathBBS:PChr;
+ PrvKey:Word; { Cette variable permet de connaŒtre la touche pr‚c‚dente clavier ayant
+                ‚t‚ extraŒte du tampon clavier avant la touche venant d'ˆtre extraŒte.}
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                         Fonction AltPress                         Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction indique si une ou les 2 touches "Alt" sont enfonc‚es.
+  Cette fonction doit avoir d'abord ‚t‚ charg‚  en m‚moire au lancement
+  du programme par le constructeur ®InitSystems¯.
+ }
+ {$IFDEF Real}
+  Const AltPress:Function:Boolean=DirectAltPress;
+ {$ENDIF}
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                         Fonction CtrlPress                         Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction indique si une ou les 2 touches "Ctrl" sont enfonc‚es.
+  Cette fonction doit avoir  d'abord ‚t‚ charg‚  en m‚moire au lancement
+  du programme par le constructeur ®InitSystems¯.
+ }
+ {$IFDEF Real}
+  CtrlPress:Function:Boolean=DirectCtrlPress;
+  FillChr:Procedure(Var X;Len:Word;Value:Byte)=DirectFillChar;
+  GetIntVec:Procedure(IntNo:Byte;Var Vector:Pointer)=DirectGetIntVec;
+  GetRawTimer:Function:LongInt=DirectGetRawTimer;
+  GetRawTimerB:Function:Byte=DirectGetRawTimerB;
+  JoyPos:Function(Axe:Byte):Word=DirectJoyPos;
+  KeyPress:Function:Boolean=DirectKeyPress;
+  LShiftPress:Function:Boolean=DirectLShiftPress;
+  MoveLeft:Procedure(Const Source;Var Dest;Count:Word)=DirectMove;
+  PushKey:Procedure(K:Word)=DirectPushKey;
+  RawReadKey:Function:Word=DirectRawReadKey;
+  RShiftPress:Function:Boolean=DirectRShiftPress;
+  SetIntVec:Procedure(IntNo:Byte;Vector:Pointer)=DirectSetIntVec;
+  ShiftPress:Function:Boolean=DirectShiftPress;
+ {$ENDIF}
+{$IFDEF __Windows__}
+ Const
+  KeyCount:Integer=0;
+  Focused:Boolean=False;
+  Reading:Boolean=False;
+{$ENDIF}
+
+Procedure AddPChr(Var S:String;PChr:PChr);
+Procedure AddRec(Handle:Hdl;Size:Word;Var Buf);
+Procedure AddStr(Var S:String;Const Add:String);
+Procedure AddWdDec(Var S:String;X:Word);
+Function  AllocDrv(X:Word;Const FN:String):Word;
+Function  AllocFont(X:Word;Var _SizeOf:Word):Pointer;
+Function  AllocFunc(X:Word;Const FN:String;Var _SizeOf:Word):Pointer;
+Function  AllocLangFunc(X:Word;Var Sf:Word):Pointer;
+Function  AltCode2ASCII(Code:Word):Char;
+{$IFDEF NotReal}Function AltPress:Boolean;{$ENDIF}
+Function  AppResFree(Res:Byte):LongInt;
+Function  AppResSize(Res:Byte):LongInt;
+Function  Ascii2AltCode(C:Char):Word;
+Procedure BackStr(Var S:String);
+Function  BasicStr(X:LongInt):String;
+Function  BasicStrW(X:Word):String;
+Function  BBSPath:String;
+Procedure Beep;
+Procedure BFDone(Var Q:BF);
+Function  BFGetAddr(Var Q:BF;P:Word):Pointer;
+Procedure BFGetFile(Var Q:BF;P:Word;Var Info:SearchRec);
+Procedure BFInit(Var Q:BF);
+Function  BFDeleteEntry(Var Q:BF;P:Word):Boolean;
+Function  BFSizeFiles(Var Q:BF):LongInt;
+Function  BFMaxFiles(Var Q:BF):Integer;
+Function  BFNumFiles(Var Q:BF):Word;
+Function  BFNoFile(Var Q:BF):Boolean;
+Procedure BFSetAttr(Var Q:BF;P,Attr:Word);
+Procedure BFSetDescription(Var Q:BF;P:Word;Descr:PChr);
+Function  BinByte2Str(X:Byte):String;
+Function  BinStr2Nm(Const Str:String):LongInt;
+Function  BopBar(X:Byte):Byte;
+Function  CenterStr(Const S:String;Width:Byte):String;
+Procedure ChDir(S:String);
+Procedure ChgChr(Var S:String;Search,Replace:Char);
+Function  ChkPrint(Num:Byte):Boolean;
+Function  ChrDn(Chr:Char):Char;
+Function  ChrUp(Chr:Char):Char;
+Procedure ClrKbd;
+Function  CmosExist:Boolean;
+Function  CmpLeft(Const Str,Cmp:String):Boolean;
+Function  CmpStr(Const a,b:String):Boolean;
+Function  ComExist(Num:Byte):Boolean;
+Function  Compare(Const Source,Dest;Len:Word):Boolean;
+Function  ComPortAddr(Num:Byte):Word;
+Function  ComputeSizeStr(Size:Long):String;
+Function  CopyFile(Const Source,Target:String):Byte;
+Function  Copy(Const S:String;Start,Len:Byte):String;
+Procedure CreateDir(Dir:PChr);
+{$IFDEF NotReal}
+ Function CtrlPress:Boolean;
+{$ENDIF}
+Function  CStr(I:LongInt):String;
+Function  CStr2(I:LongInt;X:Byte):String;
+Function  CStrBasic(I:LongInt):String;
+Function  CStrDate(Time:LongInt):String;
+Function  CStrTime(Time:LongInt):String;
+Function  CStrTimeDos(Hour,Min,Sec:Byte):String;
+Function  CtrlCode2Ascii(Code:Word):Char;
+{$IFNDEF __Windows__}
+ Procedure DefineVram(Mem:Word;Home:LongInt);
+{$ENDIF}
+Procedure Delay(Sec1000:Integer);
+Function  DelChr(Const S:String;Chr:Char):String;
+Procedure DelChrAt(Var S:String;P:Byte);
+Function  DeleteFile(Name:String):Word;
+Function  DelRightSpc(Msg:PChr):PChr;
+Function  DelStr(Str:String;P,N:Byte):String;
+Procedure Dir2DateNTimeStr(Info:SearchRec;Var Date,Time:String);
+Function  DirExist(Dir:String):Boolean;
+Function  DiskExist(Dsk:Byte):Boolean;
+Function  DiskFixed(Dsk:Byte):Boolean;
+Function  DiskFree(Dsk:Byte):LongInt;
+Function  DiskSize(Dsk:Byte):LongInt;
+Function  DiskUsed(Dsk:Byte):LongInt;
+Procedure DoneMemManagers;
+{$IFNDEF NoSpooler}Procedure DoneSpooler;{$ENDIF}
+Procedure DoneSystems;
+Function  Dos2UnixPath(Path:String):String;
+Function  DosPath:String;
+Function  Drv2Dsk(Drv:Char):Byte;
+Function  DrvExist(Drv:Char):Boolean;
+{$IFDEF ExtraHandle}Function DuplHandle(Handle:Hdl):Hdl;{$ENDIF}
+Procedure Exec(Prg,Param:String);
+{$IFNDEF NotReal}
+ Procedure ExtBiosCopy(Start,But:LongInt;Len:Word);
+ Procedure ExtBiosRead(ExtAddr:LongInt;BuPtr:Pointer;Len:Word);
+ Procedure ExtBiosWrite(BuPtr:Pointer;ExtAddr:LongInt;Len:Word);
+{$ENDIF}
+Procedure FileClose(Var Handle:Hdl);
+Function  FileCreate(Name:String):Hdl;
+Function  FileCreateAndBackup(Const Path:String):Word;
+Function  FileExist(Name:String):Boolean;
+Function  FileExpand(Path:String):String;
+Function  FileGetAttr(Const FileName:String):Integer;
+Function  FileOpen(Name:String;Mode:Byte):Hdl;
+Function  FileSetAttr(Const FileName:String;Attr:Integer):Integer;
+Function  FileSize(Handle:Hdl):LongInt;
+Function  FileSplit(Path,Dir,Name,Ext:PChr):Word;
+Procedure FileTrunc(Handle:Hdl);
+{$IFDEF NotReal}
+ Procedure FillChr(Var X;Len:Word;Value:Byte);
+{$ENDIF}
+Procedure FillClr(Var X;Len:Word);
+Procedure FillSpc(Var X;Len:Word);
+Procedure FillWord(Var X;Len,Value:Word);
+Procedure FindFirst(Const Name:String;Attr:Word;Var F:SearchRec);
+Procedure FindNext(Var F:SearchRec);
+{$IFDEF Real}
+ Procedure FreeDrv(Seg:Word);
+  {$IFNDEF __TMT__}
+   InLine($07/     { POP ES  }
+          $CD/$9C);{ INT 9Ch }
+  {$ENDIF}
+{$ENDIF}
+{$IFDEF ExtraMemory}Function FreeMemHMA:Word;{$ENDIF}
+Function  FSearch(Const Find,Path:String):String;
+Procedure FSplit(Path:PathStr;Var Dir:DirStr;Var Name:NameStr;Var Ext:ExtStr);
+Function  GetAbsFileTxtLn(Handle:Hdl;P:LongInt):String;
+Function  GetCapsLck:Boolean;
+Function  GetCurrentDir:String;
+Procedure GetDate(Var Year:Word;Var Month,Day,DayOfWeek:Byte);
+Function  GetDrv:Char;
+ { Cette fonction est en InLine car elle prend moins d'espace qu'un appelle long...}
+Function  GetDsk:Byte;{$IFNDEF NoInLine}
+ InLine($B4/$19/  { MOV AH,19h }
+        $CD/$21); { INT 21h    }
+{$ENDIF}
+Function  GetDskLabel(Dsk:Byte):String;
+Function  GetEnv(Const Str:String):String;
+Procedure GetFAttr(Var F;Var Attr:Word);
+Function  GetFile(Const Name:String;P:LongInt;Size:Word;Var Buf):Word;
+Function  GetFilePos(Handle:Hdl):LongInt;
+Function  GetFileSize(Const Name:String):LongInt;
+Function  GetFileTime(Handle:Hdl;Var Time:LongInt):Word;
+Function  GetFileTxtLn(Handle:Hdl):String;
+{$IFDEF NotReal}Procedure GetIntVec(IntNo:Byte;Var Vector:Pointer);{$ENDIF}
+{$IFDEF ExtraMemory}Function GetMemHMA(Malloc:Word):Word;{$ENDIF}
+Function  GetModeIns:Boolean;
+Function  GetModOutput:Byte;
+Function  GetNmChr(Const Source:String;Chr:Char):Byte;
+Function  GetNmLck:Boolean;
+Function  GetNxtChr(I:Word;S:PChr):Char;
+Function  GetPackTimer:LongInt;
+{$IFDEF OptionPartition}Function GetPartSec(BDsk,Head:Byte;SecCyl:Word;Var Buf:PartSecType):Bool;{$ENDIF}
+{$IFDEF NotReal}
+ Function GetRawTimer:LongInt;
+ Function GetRawTimerB:Byte;
+{$ENDIF}
+Procedure GetRec(Handle:Hdl;P:LongInt;Size:Word;Var Buf);
+{$IFDEF ExtraMemory}
+ Function GetRevHiMem:Byte;
+{$ENDIF}
+Function  GetScrollLck:Boolean;
+{$IFDEF OptionPartition}Function GetSecTrack(BDsk:Byte):Word;{$ENDIF}
+Function  GetSerialNm(Dsk:Byte):LongInt;
+Function  GetSerialNmStr(Dsk:Byte):String;
+Function  GetStrComRLL(X:Word):String;
+{$IFDEF ExtraMemory}
+ Function GetVerHiMem:Byte;
+ Function GlobalDisableA20:Word;
+ Function GlobalEnableA20:Word;
+{$ENDIF}
+Procedure HaltOutOfMem;
+Procedure HaltRLL;
+Function  HexByte2Str(X:Byte):String;
+Function  HexLong2Str(X:LongInt):String;
+Function  HexStrToInt(Str:String):LongInt;
+Function  HexWord2Str(X:Word):String;
+Function  IinStr(I:Byte;Const S:String):Boolean;
+Procedure IncStr(Var S:String;Chr:Char);
+Procedure InitMemManagers;
+{$IFNDEF Chantal}
+ Procedure InitSound;
+{$ENDIF}
+{$IFNDEF NoSpooler}
+ Procedure InitSpooler;
+{$ENDIF}
+Procedure InitSystems(X:Byte);
+Procedure InsRec(Handle:Hdl;Position,Size:LongInt);
+Procedure InsStr(Var S:String;Pos:Byte;Const Ins:String);
+Function  IntToStr(X:LongInt):String;
+Function  IsAllCard(Const Path:String):Boolean;
+Function  IsAltCode(Code:Word):Boolean;
+function  IsArabicNumber(Chr:Char):Boolean;
+{$IFDEF ExtraHandle}
+ Function IsAttrDir(Attr:Word):Boolean;
+{$ENDIF}
+Function  IsIsabel:Boolean;
+Function  IsPChrEmpty(PChr:PChr):Boolean;
+Function  IsRomanLetter(Chr:Char):Boolean;
+Function  IScan(Var Block;Size:Word;Const Str:String):Word;
+{$IFNDEF NoSpooler}
+ Function IsSpoolerEmpty:Boolean;
+{$ENDIF}
+Function  IsUpKey(K:Word):Boolean;
+Function  IsWildCard(Const Path:String):Boolean;
+{$IFDEF Joystick}
+ Function JoyXPosTxts(Joy:Byte):Byte;
+ Function JoyYPosTxts(Joy:Byte):Byte;
+{$ENDIF}
+{$IFDEF NotReal}
+ Function KeyPress:Boolean;
+{$ENDIF}
+Function  Left(Const Str:String;Num:Byte):String;
+Function  LeftJustifyStr(Const Str:String;Width:Byte):String;
+Function  LoadStr(Const PChr;Len:Byte):String;
+{$IFDEF ExtraMemory}
+ {$IFNDEF NotReal}
+  Function LocalDisableA20:Word;
+  Function LocalEnableA20:Word;
+  Function LockExtMemBlockXMS(Handle:Word):LongInt;
+ {$ENDIF}
+{$ENDIF}
+Function  LPT1Exist:Boolean;
+Function  LPT2Exist:Boolean;
+Function  LPT3Exist:Boolean;
+Function  LPT4Exist:Boolean;
+{$IFDEF NotReal}
+ Function LShiftPress:Boolean;
+{$ENDIF}
+Function  LTrim(Const S:String):String;
+Function  MaltePath:String;
+Procedure MasterVolume(X:Byte);
+{$IFDEF Real}Procedure MaxExpandHeap;{$ENDIF}
+Function  MoveFile(Const Source,Target:String):Byte;
+{$IFDEF NotReal}
+ Procedure MoveLeft(Const Source;Var Dest;Count:Word);
+{$ENDIF}
+Procedure MoveRight(Const Source;Var Dest;Count:Word);
+Procedure MoveWord2Byte(Const Source;Var Dest;Count:Word);
+Function  MultChr(Value:Char;Len:Byte):String;
+Function  New_(Name:String;Attr:Word):Hdl;
+{$IFDEF ExtraHandle}
+ Function NewTmp(Name:String):Hdl;
+ Function NewAttr(Name:String;Attr:Word):Boolean;
+{$ENDIF}
+Function  NmHandle(PSP:Word):Byte;
+Procedure NoSound;
+Function  NxtKey:Word;
+Function  OctStr2Nm(Const Str:String):LongInt;
+Function  OpenSearchPath(Const Path,Name:String;Mode:Byte):Hdl;
+Function  OpenSearchPathNDos(Const Path,Name:String;Mode:Byte):Hdl;
+Procedure PackTime(Var T:DateTime;Var P:LongInt);
+Function  PadChr(Source:String;Chr:Char;Len:Byte):String;
+Function  Path2Dir(Const Path:String):String;
+Function  Path2Drv(Const Path:String):Char;
+Function  Path2Dsk(Const Path:String):Byte;
+Function  Path2Ext(Const Path:String):String;
+Function  Path2Name(Const Path:String):String;
+Function  Path2NoDir(Path:String):String;
+Function  Path2NoExt(Const Path:String):String;
+{$IFDEF OldPlayerSound}
+ Procedure Play(S:String);
+{$ENDIF}
+Function  PrgPath(PSP:Word):String;
+Function  Print(Const Str:String;Num:Byte):Boolean;
+Function  PrintChr(Chr:Char;Num:Byte):Boolean;
+{$IFDEF NotReal}Procedure PushKey(K:Word);{$ENDIF}
+{$IFNDEF NoSpooler}Procedure PushStrSpooler(Const S:String);{$ENDIF}
+Procedure PutFileLn(Handle:Hdl);
+Procedure PutFileTxt(Handle:Hdl;Const X:String);
+Procedure PutFileTxtLn(Handle:Hdl;X:String);
+Function  PXtrkWord(Var I:Word;Line:PChr):String;
+{$IFDEF ExtraMemory}
+ {$IFNDEF NotReal}
+  Function QueryA20:Word;
+  Function QueryFreeBlockXMS:Word;
+ {$ENDIF}
+{$ENDIF}
+Function  ReadChr(Handle:Hdl):Char;
+Procedure ReadDsk(Drive:Byte;LSN,Sects:Word;Var Buffer);
+Function  ReadKey:Word;
+{$IFDEF ExtraMemory}
+ {$IFNDEF NotReal}
+  Function ReallocExtMemBlockXMS(Handle,KBsize:Word):Word;
+ {$ENDIF}
+{$ENDIF}
+Function  RecursiveMkDir(Path:String):Integer;
+{$IFDEF ExtraHandle}Procedure ReDirHandle(ModelHandle,OtherHandle:Hdl);{$ENDIF}
+{$IFDEF ExtraMemory}Function RelUpperMemBlockUMB(_Seg:Word):Word;{$ENDIF}
+Procedure RenameFile(Source,Target:String);
+Function  RenDir(Const Source,Target:String):Boolean;
+{$IFDEF ExtraMemory}Function ReqUpperMemBlockUMB(Malloc:Word;Var USeg:UMBSegRec):Word;{$ENDIF}
+Procedure Ret;
+Function  RightJustifyStr(Str:String;Width:Byte):String;
+{$IFDEF NotReal}
+ Function RShiftPress:Boolean;
+{$ENDIF}
+Function  RTrim(S:String):String;
+Function  SearchFile(Const Path:String;Var Name:String;Var Size,Time:LongInt):Boolean;
+Function  SectorSize(Drv:Byte):Word;
+Function  SelAllIfNoExt(Path:String):String;
+Procedure SetCapsLck(X:Boolean);
+Procedure SetDate(Year:Word;Month,Day:Byte);
+Procedure SetDsk(Disk:Byte);{$IFNDEF NoInLine}
+ InLine($5A/      { POP DX     }
+        $B4/$0E/  { MOV AH,0Eh }
+        $CD/$21); { INT 21h    }
+{$ENDIF}
+Function  SetDskLabel(Dsk:Byte;Const S:String):Boolean;
+Procedure SetFAttr(Var F;Attr:Word);
+Function  SetFile(Const Name:String;P:LongInt;Size:Word;Const Buf):Word;
+Procedure SetFilePos(Handle:Hdl;P:LongInt);
+Procedure SetFileTime(Handle:Hdl;Func:Byte;Var Time,Date:Word);
+Procedure SetFirstRec(Handle:Hdl;Size:Word;Const Buf);
+Procedure SetFTime(Var F;Time:LongInt);
+Function  SetFullName(Name:String):String;
+Procedure SetInsMode(X:Boolean);
+{$IFDEF NotReal}Procedure SetIntVec(IntNo:Byte;Vector:Pointer);{$ENDIF}
+Procedure SetNmLck(X:Boolean);
+Function  SetPath4AddFile(Path:String):String;
+{$IFDEF OldPlayerSound}
+ Procedure SetPlay;
+{$ENDIF}
+Procedure SetRec(Handle:Hdl;P:LongInt;Size:Word;Const X);
+Procedure SetScrollLck(X:Boolean);
+Procedure SetSysErr(Code:Word);
+          {$IFNDEF NoInLine}
+           InLine($8F/$06/>GetSysErr);
+          {$ENDIF}
+{$IFDEF NotReal}
+ Function ShiftPress:Boolean;
+{$ENDIF}
+Procedure SkipSpcInLn(Var I:Byte;Const Line:String);
+Procedure Sound(Frequency:Word);
+Function  Spc(Len:Byte):String;
+Function  SpcTab:String;
+Function  Src2Target(Source,Target:String):String;
+{Procedure StartPlaying;}
+{Procedure StopPlaying;}
+Function  Str0(X:LongInt;Len:Byte):String;
+Function  Str2(X:LongInt;AsNm:Byte):String;
+Function  Str2PChr(Const S:String):PChr;
+Function  StrCat(Dest,Source:PChr):PChr;
+Procedure StrCatPas(Dest:PChr;Const Source:String);
+Function  StrComp(Str1,Str2:PChr):Integer;
+Function  StrCopy(Dest,Source:PChr):PChr;
+Procedure StrCopy2Chr(Dest:PChr;Chr1,Chr2:Char);
+Procedure StrCopyChr(Dest:PChr;Chr:Char);
+Procedure StrDel(Str:PChr;Start,Len:Word);
+Procedure StrDispose(Str:PChr);
+Function  StrDn(S:String):String;
+Function  StrECopy(Dest,Source:PChr):PChr;
+Function  StrEnd(Str:PChr):PChr;
+Function  StrI(I:Byte;Const S:String):Char;
+Function  StrIComp(Str1,Str2:PChr):Integer;
+{$IFNDEF __Windows__}
+ Procedure StrInit(PC:PChr);
+  {$IFNDEF NoInLine}
+   InLine(ciPopDI/  { (1) POP DI }
+          ciPopES/  { (1) POP ES }
+          $32/$C0/  { (2) XOR AL,AL }
+          ciSTOSB); { (1) STOSB }
+  {$ENDIF}
+{$ENDIF}
+Procedure StrIns(S:PChr;P:Word;Ins:PChr);
+Procedure StrInsChr(S:PChr;P:Word;Chr:Char);
+Procedure StrInsBuf(S:PChr;P:Word;Const Ins;L2:Word);
+Function  StrLCat(Dest,Source:PChr;MaxLen:Word):PChr;
+Function  StrLComp(Str1,Str2:PChr;MaxLen:Word):Integer;
+Function  StrLCopy(Dest,Source:PChr;MaxLen:Word):PChr;
+Function  StrLen(Str:PChr):Word;
+Function  StrLIComp(Str1,Str2:PChr;MaxLen:Word):Integer;
+Function  StrLower(Str:PChr):PChr;
+Function  StrMove(Dest,Source:PChr;Count:Word):PChr;
+Function  StrNew(Str:PChr):PChr;
+Function  StrPas(Str:PChr):String;
+Function  StrPascalCopy(Var Dest;Size:Word;Source:String):PChr;
+Function  StrPCopy(Dest:PChr;Const Source:String):PChr;
+Function  StrPos(Str1,Str2:PChr):PChr;
+Function  StrRomanUp(S:String):String;
+Function  StrRScan(Str:PChr;Chr:Char):PChr;
+Function  StrScan(Str:PChr;Chr:Char):PChr;
+Function  StrToInt(Const S:String):LongInt;
+Function  StrToWord(Const S:String):Word;
+Function  StrUp(S:String):String;
+Function  StrUpper(Str:PChr):PChr;
+Function  StrUSpc(Const S:String;L:Byte):String;
+Procedure SwapByte(Var A,B:Byte);
+Procedure SwapInt(Var A,B:Integer);Far;
+Procedure SwapWord(Var A,B:Word);Far;
+Procedure SwapLong(Var A,B:LongInt);
+Procedure SwapPointer(Var A,B:Pointer);
+{$IFNDEF __Windows__}
+ Procedure SwapVectors;
+{$ENDIF}
+{$IFNDEF NoSpooler}
+ {$IFDEF OldSpooler}
+  Procedure TaskSpooler;
+ {$ENDIF}
+{$ENDIF}
+{$IFDEF __Windows__}
+ Function Test8087:Byte;
+{$ENDIF}
+Function  Trim(Const S:String):String;
+Function  TruncName(Const Path:String;Max:Byte):String;
+Function  Unix2DosPath(Path:String):String;
+{$IFDEF Real}
+ Function Unload:Boolean;{$IFNDEF NoInLine}
+  InLine($B4/$FF/ { MOV AH,FFh }
+         $CD/$8C);{ INT 8Ch    }
+ {$ENDIF}
+{$ENDIF}
+{$IFDEF ExtraMemory}
+ {$IFNDEF NotReal}
+  Function UnlockExtMemBlockXms(Handle:Word):Word;
+ {$ENDIF}
+{$ENDIF}
+{$IFDEF OptionPartition}Procedure UnpackSecTrack(SecTrack:Word;Var Sec,Track:Word);{$ENDIF}
+Procedure UnpackTime(P:LongInt;Var T:DateTime);
+{$IFNDEF __Windows__}
+ Procedure VramSetOff;
+{$ENDIF}
+Function  WildCardMatch(Const FileName,WildCard:String):Boolean;
+Function  WildCardSearch(Const Find,Path:String):String;
+Function  WordToStr(X:Word):String;
+Procedure WriteDsk(Drive:Byte;LSN,Sects:Word;Const Buffer);
+Function  XAllocMem(Resource:Byte;Size:LongInt;Var Q:XInf):Boolean;
+Function  XFreeMem(Var Q:XInf):Boolean;
+Function  XGetPos(Var Q:XInf):LongInt;
+Procedure XGetAbsRec(Var Q:XInf;P:LongInt;Size:Word;Var Buf);
+Procedure XGetRec(Var Q:XInf;P:LongInt;Size:Word;Var Buf);
+Function  XReAllocMem(Var Q:XInf;NewSize:LongInt):Boolean;
+Procedure XSetAbsRec(Var Q:XInf;P:LongInt;Size:Word;Const Buf);
+{$IFDEF Security}Procedure XSetMode(Var Q:XInf;Mode:Byte);{$ENDIF}
+Procedure XSetPos(Var Q:XInf;P:LongInt);
+Procedure XSetRec(Var Q:XInf;P:LongInt;Size:Word;Const Buf);
+Function  XtrkBinNm(Var I:Byte;Const L:String):String;
+Function  XtrkDecNm(Var I:Byte;Const L:String):String;
+Function  XtrkHexNm(Var I:Byte;Const L:String):String;
+Function  XtrkOctNm(Var I:Byte;Const L:String):String;
+Function  XtrkPasStr(Var I:Byte;Const L:String;Var EM:Boolean):String;
+Function  XtrkWord(Var I:Byte;L:String):String;
+Function  Zero(Len:Byte):String;
+Function  _CopyFile(Const Source,Target:String;Proc:BackgroundCopy):Byte;
+Function  _CStrDate(Year,Month,Day,DayOfWeek:Word):String;
+Procedure _DelAllSpcRight(Var S:String);
+Procedure _Delay(Var OneMSDelay:Integer);
+Procedure _GetAbsFileTxtLn(Handle:Hdl;P:LongInt;Var S:String);
+Function  _GetAbsRec(Handle:Hdl;P:LongInt;Size:Word;Var X):Word;
+Function  _GetFile(Const Name:String;Size:Word;Var Buf):Word;
+Function  _GetFilePTxtLn(Handle:Hdl;Buf:PChr;SizeBuf:Word):Word;
+Procedure _GetFileTxtLn(Handle:Hdl;Var S:String);
+Function  _GetRec(Handle:Hdl;Size:Word;Var X):Word;
+Function  _GetSerialNmStr(Serial:LongInt):String;
+Procedure _InsRec(Handle:Hdl;Position,Size:LongInt;SizeOfBuffer:Word;Var Buffer);
+Procedure _Left(Var Str:String;Num:Byte);
+Function  _MoveFile(Const Source:String;Target:String;Proc:BackgroundCopy):Byte;
+Function  _NmHandle:Hdl;
+Function  _Open(Const Name:String):Hdl;
+Function  _PrgPath:String;
+Procedure _PutFileLn(Handle:Hdl);
+Procedure _PutFileTxt(Handle:Hdl;Const X:String);
+Procedure _PutFileTxtLn(Handle:Hdl;X:String);
+Procedure _SetAbsRec(Handle:Hdl;P:LongInt;Size:Word;Const X);
+Procedure _SetFilePos(Handle:Hdl;P:LongInt;Method:Byte);
+Function  _SetRec(Handle:Hdl;Size:Word;Const X):Word;
+Function  _WordToStr(Const X):String;
+Procedure _XGetRec(Var Inf:XInf;Size:Word;Var Buf);
+Procedure _XSetRec(Var Inf:XInf;Size:Word;Const Buf);
+Procedure __GetAbsFilePTxtLn(Handle:Hdl;Var P:LongInt;Buf:PChr;SizeBuf:Word);
+Procedure __GetAbsFileTxtLn(Handle:Hdl;Var P:LongInt;Var S:String);
+
+Const
+ _InitKbd:Procedure=Ret;
+ _BackKbd:Procedure={$IFNDEF NoSpooler}
+  {$IFDEF OldSpooler}TaskSpooler{$ELSE}Ret{$ENDIF}{$ELSE}Ret
+ {$ENDIF};
+
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+                              IMPLEMENTATION
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+
+Uses SysInter,Math,Time,Memories;
+
+{$IFNDEF NoSpooler}Function BfSpool(P:LongInt):Char;Near;Forward;{$ENDIF}
+
+{$IFNDEF NotReal}
+ Function EmmSetMapping(Handle:Word;Plane:Byte;Page:Word):Byte;Near;Forward;
+ Function EmmSaveMapping(Handle:Word):Byte;Near;Forward;
+{$ENDIF}
+
+Function FCBRen(Attr,Dsk:Byte;Const Source,Target:String):Boolean;Near;Forward;
+{$IFNDEF NoSpooler}{$IFDEF MaxInt}
+ Procedure Int17h(Flags,CS,IP,AX,BX,CX,DX,SI,DI,DS,ES,BP:Word);Interrupt;Forward;
+ {$ENDIF}{$ENDIF}
+{$IFDEF MaxInt}Procedure Int28h;Interrupt;Forward;{$ENDIF}
+
+{$IFNDEF __Windows__}
+ Procedure irmSetPos(Output:Byte;P:LongInt);Near;Forward;
+{$ENDIF}
+
+{$IFNDEF NotReal}
+ Function MoveExtMemBlockXMS(Var MoveStruct:ExtMemMoveRec):Word;Near;Forward;
+{$ENDIF}
+
+Procedure TruncAfterSemicolon(Var S:String);Near;Forward;
+Function XtrkXNm(X:Byte;Var I:Byte;Const L:String):String;Near;Forward;
+Procedure _Close(Handle:Hdl);Near;Forward;
+{$IFNDEF NoSpooler}Function _TaskSpooler:Boolean;Near;Forward;{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·}
+{³                    C o n s t r u c t e u r                  º}
+{ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure InitSystems                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure initialise les m‚canismes  de bases au bon fonctionnement
+ de toutes applications pour  ®Malte Genesis IV: Chantal¯.  Sans l'appel de
+ cette proc‚dure, les divisions par 0 planteront le programme, l'allocation
+ de m‚moire  par les pilotes vid‚o  de l'unit‚ ®Chantal¯ planteront  et les
+ nombreuses  fonctions   et   proc‚dures  virtuel   ne  fonctionneront  pas
+ correctement.  C'est le coeur  et l'ƒme  de  l'ensemble ®Malte Genesis IV:
+ Chantal¯...
+}
+
+Procedure InitSystems{X:Byte};
+Type
+ FuncPtrType=Array[0..14]of Pointer;
+ MtxType=Array[0..104]of Record
+  Ofs,Len:Word;
+ End;
+Var
+ StartUpBuf:StartUpRec Absolute CPU;
+ Ptr:Pointer;
+ Mtx:^MtxType Absolute Ptr;
+ {$IFDEF __Windows__}
+  Ver:LongInt;
+  SysFlags:SysFlagsWindows;
+ {$ENDIF}
+ {$IFDEF Real}
+  FuncPtr:FuncPtrType Absolute AltPress;
+  I:Byte;
+ {$ENDIF}
+Begin
+ {$IFNDEF __Windows__}
+  {$IFDEF NoAsm}
+   PathDskSwp:='\';
+   DskSwp.Handle:=errHdl;
+   Vram.Memory:=$FFFFFFFF;
+  {$ELSE}
+   ASM
+    MOV PathDskSwp.Word,1+Byte('\')shl 8
+    MOV AX,0FFFFh
+    MOV DskSwp.Handle,AL
+    MOV Vram.Memory.Word,AX
+    MOV Vram.Memory.Word[2],AX
+   END;
+  {$ENDIF}
+ {$ENDIF}
+  { Charge, d‚tecte et ‚limine les d‚tections du systŠme de base }
+ {$IFDEF Real}
+  StartUpChantal;
+ {$ELSE}
+  FillChar(StartUpBuf,SizeOf(StartUpBuf),0);
+  Case(Test8086)of
+   0:StartUpBuf.CPU:=cpu8086;
+   1:StartUpBuf.CPU:=cpu80286;
+   2:StartUpBuf.CPU:=cpui386;
+   3:StartUpBuf.CPU:=cpui486;
+   Else StartUpBuf.CPU:=cpui486;
+  End;
+  StartUpBuf.Up32Bits:=StartUpBuf.CPU>cpu80286;
+  StartUpBuf.HandleExist:=True;
+  Ver:=GetVersion;
+  StartUpBuf.GetDosVer:=LongRec(Ver).Hi;
+  StartUpBuf.WinLoVer:=Lo(Ver);
+  StartUpBuf.WinHiVer:=Hi(Ver);
+  SysFlags:=GetWinFlags;
+  StartUpBuf.Win:=winNo;
+  If(wfEnhanced)in(SysFlags)Then StartUpBuf.Win:=winEnhanced Else
+  If(wfStandard)in(SysFlags)Then StartUpBuf.Win:=winStandard Else
+  If(wfPMode)in(SysFlags)Then StartUpBuf.Win:=winReal;
+  Case GetKeyboardType(1)of
+     1: StartUpBuf.KbdModel:=kbXT;
+     3: StartUpBuf.KbdModel:=kbAT;
+   2,4: StartUpBuf.KbdModel:=kbMF;
+   Else StartUpBuf.KbdModel:=kbPC;
+  End;
+  StartUpBuf.CodePage:=GetKeyboardCodePage;
+  {$IFDEF Windows}
+   StrPCopy(@Curr,CurrencyString);
+   CurrStyle:=CurrencyFormat;
+   ThSep[0]:=ThousandSeparator;ThSep[1]:=#0;
+   DeSep[0]:=DecimalSeparator; DeSep[1]:=#0;
+   Digits:=CurrencyDecimals;
+   DtSep[0]:=DateSeparator;    DtSep[1]:=#0;
+   Adele.Time:=Dostex.Military;
+   TmSep[0]:=TimeSeparator;    TmSep[1]:=#0;
+  {$ENDIF}
+ {$ENDIF}
+ {$IFDEF Real}
+  If(X<>suFast)Then Begin
+   Mtx:=@mtxStartUp;
+{   For I:=0to 14do Begin
+    Ptr:=NewBlock(Mem[Seg(Adele.Init):Mtx^[ind[I]].Ofs],Mtx^[ind[I]].Len+16);
+    If(Ptr=NIL)Then Begin
+     Halt(1);
+    End;
+    FuncPtr[I]:=Ptr;
+   End;}
+   For I:=0to 14do Begin
+    FuncPtr[I]:=NewBlock(Mem[Seg(Adele.Init):Mtx^[ind[I]].Ofs],Mtx^[ind[I]].Len+16);
+   End;
+  End;
+ {$ENDIF}
+ {$IFNDEF __Windows__}
+  SetIntVec(0,@Int00h);   { Interruption de prise en charge de la division par 0 }
+  PrnOutput:=Get1LPT;
+  {$IFDEF MaxInt}
+   X:=X shr 4;
+  {$ENDIF}
+  {$IFNDEF NoInt09h}
+   GetIntVec(9,OldInt09h);{ IRQ1: Gestion br–te du clavier }
+   If(X<>suNoInt)Then SetIntVec(9,@Int09h);
+  {$ENDIF}
+  SetIntVec($1B,@IntBrk); { Interruption Break du BIOS }
+  SetIntVec($23,@IntBrk); { Interruption Break du DOS }
+  {$IFDEF MaxInt}
+  GetIntVec($28,OldInt28h);
+  If(X<>suNoInt)Then SetIntVec($28,@Int28h)
+  {$ENDIF}
+  {$IFDEF Real}
+   SetIntVec($9B,@Int9Bh);
+   SetIntVec($9C,@Int9Ch);
+  {$ENDIF}
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Proc‚dure InitMemManagers                  Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure initialise les m‚canismes interne de la gestion des
+ ressource accessibles par les fonctions [_]X?????.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Supporte la m‚moire XMS pilot‚ par l'interruption 2Fh, EMS pilot‚
+    par l'interruption 67h, Vid‚o RAM pilot‚ par le VESA ou Super VGA
+    et le Disque pilot‚ par le DOS.
+}
+
+Procedure InitMemManagers;
+Var
+ Dsk:Byte;
+ {$IFDEF Real}
+  Size:LongInt;
+  SizeW,NumPages:Word;
+ {$ENDIF}
+
+ Procedure Init(I:Byte;Size:LongInt);Begin
+  If Size<2Then Size:=0;
+  VSData[I].MaxAddr:=Size-1;
+  VSData[I].SizeMem:=Size;
+  VSData[I].FreeMem:=Size;
+  VSData[I].UsedAddr:=0;
+  ALInit(VSData[I].Ix)
+ End;
+
+Begin
+ Dsk:=Path2Dsk(PathDskSwp)+1;
+ DskSwp.MaxAddr:=DiskFree(Dsk)-1;
+ VSExist[irmDsk]:=DskSwp.MaxAddr>0;
+ DeleteFile(PathDskSwp);
+ DskSwp.Handle:=FileCreate(PathDskSwp);
+ Init(irmDsk,DskSwp.MaxAddr+1);
+  { EMS }
+ {$IFDEF Real}
+  Size:=0;
+  If Not(NoEms)Then Begin
+   If Not VSExist[irmEms]Then Begin
+    ASM
+     MOV AH,042h
+     CMP EmmExist,False
+     JE  @Er
+     INT 067h
+     OR  AH,AH
+     JNE @Er
+     MOV NumPages,BX
+     MOV AH,043h
+     INT 067h
+     OR  AH,AH
+     JE  @Ok
+ @Er:MOV DX,-1
+ @Ok:MOV EmmErr,AH
+     MOV Ems.Handle,DX
+    END;
+    If EmmErr=0Then Begin
+     Size:=LongInt(NumPages)*EmsSzPgDef;
+     Ems.MaxAddr:=Size-1;
+     VSExist[irmEms]:=True
+    End;
+   End;
+  End;
+  Init(irmEms,Size);
+ {$ELSE}
+  Init(irmEms,0);
+ {$ENDIF}
+  { XMS }
+ {$IFDEF Real}
+ If Not VSExist[irmXms]Then Begin
+  If(XmsExist)Then Begin
+   ASM
+    MOV DI,Offset XMMCtrl
+    MOV AH,$08
+    PUSH BP
+     DB 0FFh,01Dh{CALL FAR[DI]}
+    POP BP
+    MOV XmsErr,BL
+    MOV SizeW,AX
+    MOV DX,AX
+    MOV DI,Offset XMMCtrl
+    MOV AH,$09
+    PUSH BP
+     DB 0FFh,01Dh{CALL FAR[DI]}
+    POP BP
+    CMP AL,True
+    JNE @@Err
+    MOV BL,0
+    MOV Xms.Handle,DX
+    MOV VSExist.Byte[irmXms],True
+   @@Err:
+    MOV XmsErr,BL
+   END;
+   If VSExist[irmXms]Then Xms.MaxAddr:=LongInt(SizeW)shl 10
+  End
+ End;
+ Init(irmXms,Xms.MaxAddr);
+ {$ELSE}
+  Init(irmXms,0);
+ {$ENDIF}
+ {$IFNDEF __Windows__}
+  Init(irmVram,Vram.Memory);
+  VSExist[irmVRam]:=False;
+ {$ENDIF}
+ Init(irmExtBios,0);
+ VSwpInit:=True
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure InitSound                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure d‚tecte les cartes de son actuellement install‚ sur le
+ systŠme informatique.
+}
+
+{$IFNDEF Chantal}
+
+ Procedure InitSound;
+ Var
+  CheckSoundCard:ProcInitSound;
+  _SizeOf:Word;
+  Ptr:Pointer Absolute CheckSoundCard;
+  Info:SoundRec Absolute IsAdLib;
+ Begin
+  Ptr:=AllocFunc(0,'SOUND.*',_SizeOf);
+  If(Ptr=NIL)Then Exit;
+  CheckSoundCard(Info);
+  FreeMemory(Ptr,_SizeOf)
+ End;
+
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Proc‚dure InitSpooler                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure initialise un "Spooler" d'imprimante dans le tas et
+ initialise le fichier  d'impression prˆt … recevoir des informations
+ d'impression.
+}
+
+{$IFNDEF NoSpooler}
+ Procedure InitSpooler;Begin
+  {$IFNDEF OldSpooler}
+   GetIntVec($0F,OldInt0Fh);SetIntVec($0F,@IRQ7LPT1);
+   ASM
+    IN AL,021h
+    AND AL,07Fh
+    OUT 021h,AL
+   END;
+  {$ENDIF}
+  {$IFNDEF NoSpooler}
+   {$IFDEF MaxInt}
+    GetIntVec($17,OldInt17h);
+    SetIntVec($17,@Int17h);
+   {$ENDIF}
+  {$ENDIF}
+  PSpool:=0;FSSpool:=-1;BufSpool:=MemNew(1024);
+  If(BufSpool=NIL)Then Exit;
+  DeleteFile(SpoolName);
+ { If Win>0Then HSpool:=hdlPrn
+   Else}
+  Begin
+   HSpool:=FileCreate(SpoolName);
+   ASM
+    MOV AX,-1
+    {$IFDEF __Windows__}
+     CMP AX,HSpool
+    {$ELSE}
+     CMP AL,HSpool
+    {$ENDIF}
+    JNE @@End
+    INC AX
+    MOV Word Ptr FSSpool,AX
+    MOV Word Ptr FSSpool[2],AX
+@@End:
+   END;
+  End;
+ End;
+{$ENDIF}
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·}
+{³     Z o n e  G l o b a l / P u b l i q u e  - O b j e t     º}
+{ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure BFInit                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure initialise l'objet de banque de fichiers prˆt … un appel
+ de s‚lection de r‚pertoire … charger par la fonction objet ®BFSelPathExt¯.
+
+
+ ParamŠtre
+ ÍÍÍÍÍÍÍÍÍ
+
+  Q         Nom de l'objet de banque de fichier
+}
+
+Procedure BFInit{Var Q:BF};Begin
+ Q.Init:=False;
+ Q.Tri:=fUnsort;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction BFNoFile                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si la banque de fichiers objet est vide (True) ou
+ non (False).  Est utilis‚ normalement aprŠs la chargement du contenu d'un
+ r‚pertoire par la fonction objet ®BFSelPathExt¯.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş La directive conditionnel®ShortBF¯ permet d'utiliser la m‚thode rapide
+    pour mode r‚el si elle est d‚finit lors de la compilation.
+
+
+ ParamŠtre
+ ÍÍÍÍÍÍÍÍÍ
+
+  Q         Nom de l'objet de banque de fichier
+}
+
+Function BFNoFile{Var Q:BF):Boolean};Begin
+ BFNoFile:={$IFDEF ShortBF}Q.SizeB=0{$ELSE}ALIsEmpty(Q.Buffer){$ENDIF}
+End;
+
+Procedure BFSetAttr{Var Q:BF;P,Attr:Word};
+{$IFNDEF ShortBF}
+ Var
+  PInfo:^SearchRec;
+{$ENDIF}
+Begin
+ {$IFDEF ShortBF}
+  Q.Buffer^[P].Attr:=Attr;
+ {$ELSE}
+  PInfo:=_ALGetBuf(Q.Buffer,P);
+  If(PInfo<>NIL)Then PInfo^.Attr.Value:=Attr;
+ {$ENDIF}
+End;
+
+Procedure BFSetDescription{Var Q:BF;P:Word;Descr:PChr};
+{$IFNDEF ShortBF}
+ Var
+  PInfo:^SearchRec;
+  PtrDescr:Pointer Absolute PInfo;
+{$ENDIF}
+Begin
+ {$IFDEF ShortBF}
+  Q.Buffer^[P].PtrDescr:=Descr;
+ {$ELSE}
+  PInfo:=_ALGetBuf(Q.Buffer,P);
+  ASM
+   {$IFDEF FLAT386}
+    ADD PtrDescr,Offset SearchRec.Attr
+   {$ELSE}
+    ADD Word Ptr PtrDescr,Offset SearchRec.Attr
+   {$ENDIF}
+  END;
+  PtrDescr:=Descr;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure BFGetFile                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure demande en une position absolue  d'un fichier  d'un/des
+ r‚pertoires s‚lectionn‚ pr‚c‚demment par la fonction ®BFSelPath¯ du mˆme
+ objet le contenu de son carte d'identit‚  sous forme de l'enregistrement
+ ®SearchRec¯ de l'unit‚ DOS.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş La directive conditionnel®ShortBF¯permet d'utiliser la m‚thode rapide
+    pour mode r‚el si elle est d‚finit lors de la compilation.
+
+  ş Cette proc‚dure retourne  dans la zone  de l'enregistrement ®Fill¯ le
+    contenu de la description appropri‚ au fichiers.
+
+
+ ParamŠtres
+ ÍÍÍÍÍÍÍÍÍÍ
+
+  Q         Nom de l'objet de banque de fichier
+  P         Num‚ro positionnelle du fichier dans la banque de fichiers
+  Info      Information se rapportant au fichier demander
+}
+
+Procedure BFGetFile{Var Q:BF;P:Word;Var Info:SearchRec};
+{$IFNDEF ShortBF}
+ Var
+  Size:Word;
+  PInfo:^SearchRec;
+{$ENDIF}
+Begin
+ {$IFDEF ShortBF}
+  MoveLeft(Q.Buffer^[P],Info.Fill[OfsBF],SizeOf(Search32Rec))
+ {$ELSE}
+  PInfo:=ALGetBuf(Q.Buffer,P,Size);
+  If(PInfo=NIL)Then Exit;
+  MoveLeft(PInfo^,Info,SizeOf(Info))
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction BFGetAddr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure demande un pointeur en une position absolue d'un fichier
+ d'un/des r‚pertoires s‚lectionn‚ pr‚c‚demment par la fonction ®BFSelPath¯
+ du mˆme objet de banque de fichiers.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş La directive conditionnel®ShortBF¯ permet d'utiliser la m‚thode rapide
+    pour mode r‚el si elle est d‚finit lors de la compilation.
+
+
+ ParamŠtres
+ ÍÍÍÍÍÍÍÍÍÍ
+
+  Q         Nom de l'objet de banque de fichier
+  P         Num‚ro positionnelle du fichier dans la banque de fichiers
+}
+
+Function BFGetAddr{Var Q:BF;P:Word):Pointer};Begin
+ {$IFDEF ShortBF}
+  BFGetAddr:=@Q.Buffer^[P]
+ {$ELSE}
+  BFGetAddr:=_ALGetBuf(Q.Buffer,P)
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction BFMaxFiles                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la position absolue maximal (… partir de 0)
+ supporter par l'objet de banque de fichiers.  Une valeur plus grande
+ que la valeur retourn‚ envoyerait des informations erronn‚ par les 2
+ proc‚dure et fonction objet ®BFGetFile¯ et ®BFGetAddr¯.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş La directive conditionnel: ®ShortBF¯ permet d'utiliser la m‚thode
+    rapide pour mode r‚el si elle est d‚finit lors de la compilation.
+
+
+ ParamŠtre
+ ÍÍÍÍÍÍÍÍÍ
+
+  Q         Nom de l'objet de banque de fichier
+}
+
+Function BFMaxFiles{Var Q:BF):Integer};Assembler;ASM
+ {$IFDEF FLAT386}
+  CALL BFNumFiles
+  DEC AX
+ {$ELSE}
+  LES DI,Q
+  PUSH ES
+  PUSH DI
+  PUSH CS
+  CALL Near Ptr BFNumFiles
+  DEC AX
+ {$ENDIF}
+END;
+
+Function BFNumFiles(Var Q:BF):Word;Assembler;ASM
+ {$IFDEF FLAT386}
+  {$IFDEF ShortBF}
+   MOV AX,[EAX].BF.SizeB
+   SHR AX,5
+  {$ELSE}
+   MOV EAX,[EAX].BF.Buffer.Count
+  {$ENDIF}
+ {$ELSE}
+  LES DI,Q
+  {$IFDEF ShortBF}
+   MOV AX,BF(ES:[DI]).SizeB
+   {$IFOPT G+}
+    SHR AX,5
+   {$ELSE}
+    MOV CL,5
+    SHR AX,CL
+   {$ENDIF}
+  {$ELSE}
+   {$IFDEF DPMI}
+    MOV AX,Word Ptr ES:[DI].BF.B.NB
+    MOV DX,Word Ptr ES:[DI].BF.B.NB[2]
+   {$ELSE}
+    MOV AX,ES:[DI].BF.B.NB
+   {$ENDIF}
+  {$ENDIF}
+ {$ENDIF}
+END;
+
+Function BFDeleteEntry(Var Q:BF;P:Word):Boolean;
+{$IFDEF ShortBF}
+ Var
+  Max:Integer;
+  PtrFree:PtrRec;
+{$ENDIF}
+Begin
+ {$IFDEF ShortBF}
+  Max:=BFNumFiles(Q)-1;
+  If(P<Max)Then Begin
+   MoveLeft(Q.Buffer^[P+1],Q.Buffer^[P],Q.SizeB-((P+1)shl 5));
+  End;
+  If Max=0Then _FreeMemory(Pointer(Q.Buffer),Q.SizeB)
+   Else
+  Begin
+   Pointer(PtrFree):=Pointer(Q.Buffer);
+   Inc(PtrFree.Seg,Max shl 1);
+   FreeMemory(Pointer(PtrFree),SizeOf(Search32Rec));
+   Dec(Q.SizeB,SizeOf(Search32Rec));
+  End;
+ {$ELSE}
+  BFDeleteEntry:=False;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction BFSizeFiles                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la taille qu'occupe tous les fichiers de l'objet
+ banque de fichier sur disque. L'objet le s'est automatiquement lors de la
+ lecture des r‚peroires par la fonction ®BFSelPathExt¯ et il ne r‚clame donc
+ pas un temps d–  …  un recomptage  des fichiers...  La r‚ponse sort aussi
+ instantan‚ment  que le mot  … du  sens  pour un processeur  de la famille
+ INTEL.
+
+
+ ParamŠtre
+ ÍÍÍÍÍÍÍÍÍ
+
+  Q         Nom de l'objet de banque de fichier
+}
+
+Function BFSizeFiles{Var Q:BF):LongInt};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOV EAX,[EAX].BF.SizeFiles
+ {$ELSE}
+  LES DI,Q
+  LES AX,ES:[DI].BF.SizeFiles { MOV AX,Word Ptr ES:[DI].BF.SizeFiles    }
+  MOV DX,ES                   { MOV DX,Word Ptr ES:[DI].BF.SizeFiles[2] }
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure BFDone                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure ‚limine toutes les donn‚es contenus dans l'objet de banque
+ de fichier. Elle libŠre donc ainsi la m‚moire dont elle utilisait.
+
+
+ ParamŠtre
+ ÍÍÍÍÍÍÍÍÍ
+
+  Q         Nom de l'objet de banque de fichier
+}
+
+Procedure BFDone{Var Q:BF};
+{$IFDEF ShortBF}
+ Var
+  I:Word;
+{$ENDIF}
+Begin
+ If(Q.Init)Then
+ {$IFDEF ShortBF}
+  If Q.SizeB>0Then Begin
+   If(DescrInFile)Then For I:=0to(Q.SizeB shr 5)-1do StrDispose(Q.Buffer^[I].PtrDescr);
+   FreeMemory(Q.Buffer,Q.SizeB);
+  End;
+ {$ELSE}
+  ALDone(Q.Buffer)
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·}
+{³             Z o n e  G l o b a l / P u b l i q u e          º}
+{ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Proc‚dure AddRec                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette   proc‚dure   rajoute  l'enregistrement  (tampon)   de  variable  de
+ param‚trage ®Buf¯ de longueur de variable de param‚trage ®Size¯ … la fin du
+ fichier  DOS  sp‚cifi‚  par la variable  de param‚trage  ®Handle¯.  Le code
+ d'erreur est retourn‚ dans la variable ®GetSysErr¯ de l'unit‚ ®Systems¯.
+}
+
+Procedure AddRec{Handle:Hdl;Size:Word;Var Buf};Begin
+ If Size=0Then Exit;
+ SetRec(Handle,DivLong(FileSize(Handle),Size),Size,Buf)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure AddPChr                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction concatŠne une chaŒne de caractŠres ASCIIZ … une chaŒne de
+ caractŠres de style Pascal (String).
+}
+
+Procedure AddPChr{Var S:String;PChr:PChr};Begin
+ AddStr(S,StrPas(PChr))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure AddStr                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction concatŠne une chaŒne de caractŠres ®Add¯ … une chaŒne de
+ caractŠres source ®S¯.Cette proc‚dure ‚quivaut … l'op‚ration ®S:=S+Add¯.
+}
+
+{$I \Source\Chantal\Library\AddStr.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure AddWdDec                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure additionne … une chaŒne de caractŠres source ®S¯ la valeur
+ num‚rique d‚cimal contenu dans la variable de param‚trage ®X¯.
+}
+
+Procedure AddWdDec{Var S:String;X:Word};Begin
+ AddStr(S,WordToStr(X))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction AllocDrv                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction charge un  pilote  en  m‚moire  de la bibliothŠque sp‚cifi‚
+ par la variable de param‚trage ®FN¯  (Nom de fichier).  Si le fichier ne se
+ trouve pas dans le r‚pertoire sp‚cifi‚, les recherches sont effectu‚es dans
+ le r‚pertoire courant, puis dans le r‚pertoire ®\MALTE\SYSTEMS¯. Puis enfin
+ s'il ne  s'y  trouve  pas,  il recherche  la variable  d'environnement DOS:
+ ®MALTE¯ins‚rer par "SET" dans le prompt de commande (ou par fichier Batch).
+ Sinon,  il  tentera  de le  trouver  dans le  r‚pertoire  de  lancement  du
+ programme.  S'il n'y a pas suffisament de m‚moire,  cette fonction retourne
+ un pointeur  ®NIL¯  et le  code  d'erreur est  accessible  par la  fonction
+ ®GetSysErr¯ (Pour les codes d'erreur voir l'unit‚ ®Systex¯, item commencant
+ par ®err???¯).
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Pour ‚liminer  la fonction charg‚  en m‚moire,  vous  pouvez  le faire …
+    partir de l'interruption 9Ch.
+}
+
+Function AllocDrv{X:Word;Const FN:String):Word};
+Var
+ Handle:Hdl;
+ Pos:Array[1..2]of LongInt;
+ PtrFunc:Pointer;
+ _SizeOf:Word;
+Begin
+ AllocDrv:=0;
+ Handle:=FileOpen(SYSDrive+Path2Name(FN)+'.RLL',fmRead);
+ If(Handle=errHdl)Then Exit;
+ _GetAbsRec(Handle,(X+1)shl 2,SizeOf(LongInt)shl 1,Pos);
+ _SizeOf:=Pos[2]-Pos[1];
+ ASM
+  MOV AX,_SizeOf
+  ADD AX,10h
+  {$IFOPT G+}
+   SHR AX,4
+  {$ELSE}
+   SHR AX,1
+   SHR AX,1
+   SHR AX,1
+   SHR AX,1
+  {$ENDIF}
+  INT 9Bh
+  MOV Word Ptr PtrFunc,0
+  MOV Word Ptr PtrFunc[2],AX
+  MOV @Result,AX
+ END;
+ If(PtrFunc<>NIL)Then _GetAbsRec(Handle,Pos[1],_SizeOf,PtrFunc^);
+ _Close(Handle)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction AllocFont                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction charge la police de caractŠres d‚sign‚  par l'index ®X¯ en
+ m‚moire et retourne  un pointeur et la taille  (par l'enterm‚diaire  de la
+ variable de param‚trage ®_SizeOf¯) de celui-ci. S'il n'y a pas suffisament
+ de m‚moire, la fonction retourne un pointeur ®NIL¯ et le code d'erreur est
+ accessible  par la fonction  ®GetSysErr¯  (pour les codes  d'erreurs  voir
+ l'unit‚ ®Systex¯ avec les pr‚fixes ®err???¯.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Les codes standard de police sont:
+    ÚÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+    ³ Code    ³ Description                                               ³
+    ÆÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+    ³  0      ³ Matrice de caractŠres 6x6 pixels (Code ASCII 0 … 255)     ³
+    ³  1      ³ Matrice de caractŠres 8x8 pixels (32 caractŠres de luxe)  ³
+    ³  2      ³ Matrice de caractŠres 8x14 pixels (32 caractŠres de luxe) ³
+    ³  3      ³ Matrice de caractŠres 8x16 pixels (32 caractŠres de luxe) ³
+    ³  4      ³ Matrice de caractŠres 8x8 pixels (Code ASCII 0 … 255)     ³
+    ³  5      ³ Matrice de caractŠres 8x14 pixels (Code ASCII 0 … 255)    ³
+    ³  6      ³ Matrice de caractŠres 8x16 pixels (Code ASCII 0 … 255)    ³
+    ³  7      ³ Matrice de caractŠres 8x6 pixels (32 caractŠres de luxe)  ³
+    ÀÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  ş La police peut ˆtre ‚limin‚  de la m‚moire  par la fonction  ®FreeMem¯.
+    Pour se faire  vous devez  retourner  le pointeur  de la  police  et la
+    taille  de celui-ci renvoy‚  par cette fonction  par l'entremise  de la
+    variable de param‚trage ®_SizeOf¯.
+}
+
+Function AllocFont{X:Word;Var _SizeOf:Word):Pointer};Begin
+ AllocFont:=AllocFunc(X,'FONTS.*',_SizeOf)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction AllocFunc                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction charge une fonction en m‚moire  de la bibliothŠque sp‚cifi‚
+ par la variable de param‚trage ®FN¯  (Nom de fichier).  Si le fichier ne se
+ trouve pas dans le r‚pertoire sp‚cifi‚, les recherches sont effectu‚es dans
+ le r‚pertoire courant, puis dans le r‚pertoire ®\MALTE\SYSTEMS¯. Puis enfin
+ s'il ne  s'y  trouve  pas,  il recherche  la variable  d'environnement DOS:
+ ®MALTE¯ins‚rer par "SET" dans le prompt de commande (ou par fichier Batch).
+ Sinon,  il  tentera  de le  trouver  dans le  r‚pertoire  de  lancement  du
+ programme.  S'il n'y a pas suffisament de m‚moire,  cette fonction retourne
+ un pointeur  ®NIL¯  et le  code  d'erreur est  accessible  par la  fonction
+ ®GetSysErr¯ (Pour les codes d'erreur voir l'unit‚ ®Systex¯, item commencant
+ par ®err???¯).
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Pour ‚liminer  la fonction charg‚  en m‚moire,  vous  pouvez  le faire …
+    partir  de  la  fonction  ®FreeMem¯.  Pour  se  faire  vous n'avez  qu'…
+    retourner l'adresse de celle-ci et sa taille.
+}
+
+Function AllocFunc{X:Word;Const FN:String;Var _SizeOf:Word):Pointer};
+Var
+ Handle:Hdl;
+ Pos:Array[1..2]of LongInt;
+ PtrFunc:Pointer;
+Begin
+ AllocFunc:=NIL;
+ Handle:=FileOpen(SYSDrive+Path2Name(FN)+'.RLL',fmRead);
+ If(Handle=errHdl)Then Exit;
+ _GetAbsRec(Handle,(X+1)shl 2,SizeOf(LongInt)shl 1,Pos);
+ _SizeOf:=Pos[2]-Pos[1];PtrFunc:=MemAlloc(_SizeOf);
+ If(PtrFunc<>NIL)Then Begin
+  _GetAbsRec(Handle,Pos[1],_SizeOf,PtrFunc^);
+  AllocFunc:=PtrFunc;
+ End
+  Else
+ _SizeOf:=0;
+ _Close(Handle)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction AllocLangFunc                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction charge un message contenu dans un fichier de ressource de
+ langue.  Elle retourne  donc un pointeur  aprŠs  avoir allou‚  sur le tas
+ l'espace n‚cessaire pour pouvoir contenir la chaŒne de caractŠres ASCIIZ.
+}
+
+Function AllocLangFunc{X:Word;Var Sf:Word):Pointer};Begin
+ AllocLangFunc:=AllocFunc(X,'FRANCAIS.*',Sf)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction AltCode2ASCII                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction convertie un scan code ®Alt¯ clavier  en son ‚quivalent en
+ code ASCII. Les codes de combinaisons de ®Alt+lettre¯ sont renvoy‚s par la
+ lettre en majucule tout simplement.
+}
+
+Function AltCode2Ascii{Code:Word):Char};
+Var
+ I:Char;
+ CW:WordRec Absolute Code;
+Begin
+ AltCode2ASCII:=#0;
+ If CW.Lo=0Then For I:='A'to'Z'do If(ShiftCode[I]=CW.Hi)Then Begin
+  AltCode2ASCII:=I;
+  Exit;
+ End
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction AltPress                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de savoir si la touche ®Alt¯ est enfonc‚ (True) ou
+ non (False).
+}
+
+{$IFDEF NotReal}
+ {$I \Source\Chantal\Library\AltPress.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction AppResFree                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'espace disponible (en octet) dans les ressources
+ de m‚moire ‚tendue  (Disque, XMS, VRAM  par exemple) d‚finit par l'attribut
+ ®Res¯.  Les attributs peuvent ˆtre combin‚s mais pas les masques... Voir la
+ liste ci-dessous:
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ Nom de la constante ³ Description                                       ³
+ ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+ ³ rmNone              ³ Drapeau d'aucune ressource sp‚cifi‚.              ³
+ ³ rmDsk               ³ Drapeau de ressource  disque  (r‚pertoire d‚finit ³
+ ³                     ³ par PathDskSwp).                                  ³
+ ³ rmEms               ³ Drapeau de ressource EMS.                         ³
+ ³ rmXms               ³ Drapeau de ressource XMS.                         ³
+ ³ rmVRam              ³ Drapeau de ressource de m‚moire vid‚o.            ³
+ ³ rmExtBios           ³ Drapeau de ressource Bios Interruption 15h.       ³
+ ³ rmAllRes            ³ Masque pour toutes les ressources.                ³
+ ³ rmAllResSteady      ³ Masque   pour    toutes   les   ressources   non- ³
+ ³                     ³ influen‡able  par  l'environnement,   (tous  sauf ³
+ ³                     ³ m‚moire Vid‚o).                                   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Au d‚but  du programme le constructeur  ®InitMemManagers¯ doit for‡‚ment
+    avoir  ‚t‚ appel‚  pour  permettre  l'utilisation  convenable  de  cette
+    fonction.
+}
+
+Function AppResFree{Res:Byte):LongInt};
+Var
+ I:Byte;
+ X:LongInt;
+Begin
+ X:=0;
+ For I:=4downto 0do If(Res shr I)and 1>0Then Begin
+  If VSExist[I]Then Inc(X,LongInt(LongInt(VSData[I].FreeMem)shr 10))
+ End;
+ AppResFree:=X
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction AppResSize                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'espace total (en octets)  dans les ressources de
+ m‚moire ‚tendue (Disque, XMS, EMS, VRAM par exemple) d‚finit par l'attribut
+ ®Res¯.
+}
+
+Function AppResSize{Res:Byte):LongInt};
+Var
+ I:Byte;
+ X:LongInt;
+Begin
+ X:=0;
+ For I:=4downto 0do If(Res shr I)and 1>0Then Begin
+  If VSExist[I]Then Inc(X,LongInt(LongInt(VSData[I].SizeMem)shr 10))
+ End;
+ AppResSize:=X
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction Ascii2AltCode                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction convertie un code ASCII en une touche de scan code de type
+ ®Alt¯ ‚quivalent.
+}
+
+Function Ascii2AltCode{C:Char):Word};Begin
+ Ascii2AltCode:=0;
+ If(C in MinRomanLetter)Then Dec(Byte(C),32);
+ If Not(C in MajRomanLetter)Then Exit;
+ Ascii2AltCode:=ShiftCode[C]shl 8
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure BackStr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure enlŠve le dernier caractŠre d'un chaŒne de caractŠre de
+ type Pascal.  Si la chaŒne de caractŠre est d‚j… vide,  elle n'y a aucun
+ changement defectu‚ sur celle-ci.
+}
+
+Procedure BackStr{Var S:String};
+Var
+ SLen:Byte Absolute S;
+Begin
+ If SLen>0Then Dec(SLen)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction BasicStr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la valeur num‚rique contenu dans la variable de
+ param‚trage ®X¯ sous forme de chaŒne de caractŠres avec un espace devant
+ tout comme le langage Basic.
+}
+
+Function BasicStr{X:Long):String};Begin
+ BasicStr:=' '+IntToStr(X)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction BasicStrW                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la valeur num‚rique (entier de 2 octets) contenu
+ dans la variable  de param‚trage ®X¯  sous forme  de chaŒne de caractŠres
+ avec un espace devant tout comme le langage Basic.
+}
+
+Function BasicStrW{X:Word):String};Begin
+ BasicStrW:=' '+WordToStr(X)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction BBSPath                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le nom du r‚pertoire utiliser pour le BBS ou la
+ communication par modem.
+}
+
+Function BBSPath{:String};Begin
+ BBSPath:=SetPath4AddFile(StrPas(PathBBS))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure Beep                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure  envoie  un signal sonore d'environ une seconde par
+ l'interm‚diaire du PC Speaker mono d'origine. On peut consid‚rer que
+ se proc‚dure est l'‚quivalent du caractŠre typ‚  '^G' et 'BEL' ou de
+ la fonction 'BEEP' du Basica, GwBasic, TurboBasic et QuickBasic.
+}
+
+Procedure Beep;
+{$IFDEF __386__}
+ Begin
+ End;
+{$ELSE}
+ Assembler;ASM
+  {$IFOPT G+}
+   PUSH 1550
+  {$ELSE}
+   MOV AX,01550h
+   PUSH AX
+  {$ENDIF}
+   PUSH CS
+   CALL Near Ptr Sound{Sound(1550)}
+  {$IFOPT G+}
+   PUSH 182
+  {$ELSE}
+   MOV AX,182
+   PUSH AX
+  {$ENDIF}
+  PUSH CS
+  CALL Near Ptr Delay{Delay(182)}
+  PUSH CS
+  CALL Near Ptr NoSound{NoSound}
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction BinByte2Str                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction convertie la valeur  num‚rique contenue dans la variable de
+ param‚trage ®X¯ et retourne sa valeur binaire dans une chaŒne de caractŠres
+ de style Pascal.
+}
+
+Function BinByte2Str{X:Byte):String};Assembler;ASM
+ {$IFDEF __386__}
+ {$ELSE}
+  LES DI,@Result
+  XOR CX,CX
+  MOV DX,8
+  MOV ES:[DI].Byte,DL
+  MOV AH,X
+ @Loop:
+  MOV AL,AH
+  SHR AL,CL
+  AND AL,1
+  ADD AL,'0'
+  MOV BX,DX
+  SUB BX,CX
+  MOV ES:[DI+BX],AL
+  INC CX
+  JCXZ @End
+  CMP CX,DX
+  JNE @Loop
+ @End:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction BinStr2Nm                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  convertie  la valeur num‚rique  binaire contenue  dans une
+ chaine de caractŠres de style Pascal ou Basic et la retourne sous sa valeur
+ num‚rique naturel.
+}
+
+Function BinStr2Nm{Const Str:String):LongInt};
+Var
+ I:Byte;
+ X:LongInt;
+ SL:Byte Absolute Str;
+Begin
+ X:=0;
+ For I:=SL downto 1do X:=X or((Byte(Str[I])-Byte('0'))shl(SL-I));
+ BinStr2Nm:=X
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction BopBar                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'une  des 4 barres  de musique actuellement en
+ cours pour le jouage du fichier de musique de style .MOD par l'entremise
+ de l'interruption 8Ch.
+}
+
+Function BopBar{X:Byte):Byte};Assembler;
+Var
+ PtrBopBar:Procedure;
+ASM
+ {$IFNDEF DPMI}
+  XOR AX,AX
+  MOV ES,AX
+  LES DI,ES:[$8C*4]
+  MOV PtrBopBar.Word,DI;MOV PtrBopBar.Word[2],ES
+  MOV AL,X
+  MOV AH,$B
+  PUSHF;CALL PtrBopBar
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction CenterStr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction centre au milieu d'un chaŒne de caractŠre d'espace un
+ message quelconque.  La fonction fait en sorte  que la chaŒne ne peut
+ ˆtre  plus  longue  que  la  longueur  d‚finie  en  la  tronquant  si
+ n‚cessaire.
+}
+
+Function CenterStr{Const S:String;Width:Byte):String};Begin
+ CenterStr:=StrUSpc(Spc((Width-Length(S))shr 1)+S,Width)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure ChDir                             Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure change le r‚pertoire actuel en usage sous le DOS pour le
+ nouveau r‚pertoire contenu dans la variable de param‚trage.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Si vous avez omis d'enlever le barre '\' … la fin de votre r‚pertoire,
+    la proc‚dure n'en tient pas compte.
+}
+
+Procedure ChDir{S:String};Begin
+ If S=''Then Exit;
+ If(Length(S)>3)and(S[Length(S)]='\')Then BackStr(S);
+ System.ChDir(S);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure ChgChr                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  proc‚dure  cherche  un  caractŠre  sp‚cifique  et change  tous ces
+ caractŠres pour un autre d‚sign‚ par la variable de param‚trage ®Replace¯.
+
+
+ R‚f‚rence
+ ÍÍÍÍÍÍÍÍÍ
+
+   ş Tirez de l'emballage de codes sources du  ®TPFAST 4.0¯  sous le nom de
+     ®ChangeChr¯.
+}
+
+{$I Library\ChgChr.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction ChkPrint                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure indique l'‚tat actuelle de l'imprimante. Si elle est en
+ quelque sorte disponible en ce moment ou non.
+}
+
+Function ChkPrint{Num:Byte):Systex.Bool};Assembler;ASM
+ MOV AH,2
+ MOV DL,Num
+ MOV DH,0
+ INT 017h
+ CMP AH,090h
+ JE  @1
+ MOV AX,(2 shl 8)+False
+ MOV SysErr,AX
+ JMP @2
+@1:MOV AL,True
+@2:
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction ChrDn                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la minuscule d'une caractŠre contenu dans la
+ variable  de param‚trage  ®Chr¯.  S'il s'agit  d'une  majuscule  avec
+ accent, il ne l'interprŠte pas.
+}
+
+Function ChrDn{Chr:Char):Char};Begin
+ If(Chr in MajRomanLetter)Then ChrDn:=Char(Byte(Chr)+32)
+                          Else ChrDn:=Chr;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction ChrUp                             Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la majuscule de la lettre sp‚cifie par la variable
+ de  param‚trage  ®Chr¯.   Il  supporte  aussi  bien  les  accents  que  les
+ minuscules,  et si c'est possible  il retourne la majuscule  avec un accent
+ que celui-ci est un accent.  Il se fit pour cela  … la table des caractŠres
+ ‚tendue standard d'IBM.
+}
+
+Function ChrUp{Chr:Char):Char};Begin
+ Case(Chr)of
+  'a'..'z': ChrUp:=Char(Byte(Chr)-32);
+  '€','‡': ChrUp:='C';
+  '','–','—','š','£': ChrUp:='U';
+  '‚','ˆ','‰','Š','': ChrUp:='E';
+  'ƒ','„','…','†','','',' ','¦': ChrUp:='A';
+  '‹','Œ','','¡': ChrUp:='I';
+  '“','”','•','™','¢','§': ChrUp:='O';
+  '¤','¥': ChrUp:='N';
+  '˜': ChrUp:='Y';
+  '‘': ChrUp:='’';
+  Else ChrUp:=Chr;
+ End
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure FileClose                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure ferme un fichier de type Handle ouvert pr‚c‚demment par le
+ systŠme d'exploitation compatible au DOS.
+}
+
+Procedure FileClose{Var Handle:Hdl};
+{$IFDEF __Windows__}
+ Begin
+  {$IFDEF Win32}
+  {$ELSE}
+   GetSysErr:=_WClose(Handle);
+   If GetSysErr=0Then Handle:=errHdl
+  {$ENDIF}
+ End;
+{$ELSE}
+ Assembler;ASM
+  MOV AX,03E00h
+  LES DI,Handle
+  MOV BL,ES:[DI]
+  OR  BL,BL
+  JZ  @Null
+  XOR BH,BH
+  INT 021h
+  JC  @1
+  LES DI,Handle
+  MOV ES:[DI].Byte,errHdl
+@Null:
+  XOR AX,AX
+@1:MOV SysErr,AX
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure ClrKbd                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure efface tous les caractŠres en attente dans le tampon
+ clavier sans exception.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+   ş Cette proc‚dure n'utilise  que des accŠs directe en m‚moire et en
+     aucune fa‡on par le Bios ou le Dos. Elle est donc rapide mais pas
+     n‚cessairement  compatible  avec les plus  que vieille machine du
+     d‚but des ann‚es 1980.
+
+   ş Cette proc‚dure est id‚al pour des op‚rations du genre:®Etes-vous
+     certain de... ?¯.  Car l'utilisateur n'aurait pas … affronter une
+     tape par erreur pr‚c‚demment enregistrer...
+}
+
+{$I \Source\Chantal\Library\ClrKbd.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction CmosExist                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si une horloge sur pile (aussi bien sur XT) est
+ actuellement install‚ sur la machine.
+}
+
+Function CmosExist{:Boolean};Begin
+ {$IFDEF NotReal}
+  CmosExist:=True
+ {$ELSE}
+  If(CtrlCmos<>ctrlCmosNo)Then CmosExist:=True
+   else
+  CmosExist:=IScan(Mem[$F000:0],$FFF0,'CMOS')<$FFF0;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction Compare                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de comparer 2 tampons contenu en m‚moire et indique
+ s'ils sont  identiques  (True)  et  qu'une/que  des diff‚rence(s)  existes
+ (False).
+}
+
+Function Compare{Const Source,Dest;Len:Word):Boolean};Assembler;ASM
+ {$IFDEF __386__}
+ {$ELSE}
+  MOV CX,Len
+  JCXZ @0
+  PUSH DS
+   LDS SI,Source
+   LES DI,Dest
+   CLD
+   REPZ CMPSB
+  POP DS
+  JZ  @0
+  MOV CL,1
+ @0:
+  XCHG AX,CX
+  XOR AL,1
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction CmpLeft                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction compare le d‚but d'une chaŒne de caractŠre avec quelques
+ caractŠres d'une autre et indique s'ils sont identiques. Il ne tient pas
+ compte de la fin d'une chaŒne source mais ce figure qu'elle ne peut ˆtre
+ plus longue que la comparative.
+
+
+ Exemples
+ ÍÍÍÍÍÍÍÍ
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ CmpLeft('ABCDEF','ABCDEF') = True                                    ³
+ ³ CmpLeft('ABCDE','ABCDEFG') = False                                   ³
+ ³ CmpLeft('ABCDEF','A')      = True                                    ³
+ ³ CmpLeft('ABCDEF','ABCDE')  = True                                    ³
+ ³ CmpLeft('ABCDEF','BCDEF')  = False                                   ³
+ ³ CmpLeft('BCDEF','ABCDE')   = False                                   ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+}
+
+Function CmpLeft{Const Str,Cmp:String):Boolean};Begin
+ If Length(Str)<Length(Cmp)Then Begin
+  CmpLeft:=False;
+  Exit;
+ End;
+ CmpLeft:=Compare(Cmp[1],Str[1],Length(Cmp))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction CmpStr                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si 2 chaŒnes de caractŠres de style Pascal sont
+ identique (True) ou non (False).
+}
+
+Function CmpStr{Const a,b:String):Boolean};Begin
+ CmpStr:=a=b;
+{ CmpStr:=Compare(a,b,Length(a)+1);}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction ComExist                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si le port de communication sp‚cifier par la
+ variable de param‚trage ®Num¯ existe (True) ou non (False).
+}
+
+Function ComExist{Num:Byte):Boolean};Begin
+ ComExist:=ComPortAddr(Num)<>0
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction ComPortAddr                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de connaŒtre l'adresse d'un port de communication
+ sp‚cifier par la variable de param‚trage ®Num¯.
+}
+
+Function ComPortAddr{Num:Byte):Word};Assembler;ASM
+ {$IFDEF __386__}
+ {$ELSE}
+  MOV BL,Num
+  AND BX,3
+  SHL BX,1
+  {$IFDEF DPMI}
+   MOV ES,_0040
+  {$ELSE}
+   MOV AX,0040h
+   MOV ES,AX
+  {$ENDIF}
+  MOV AX,ES:[BX]
+ {$ENDIF}
+END;
+
+{ Remarque
+  ÍÍÍÍÍÍÍÍ
+
+   ş Les nombres en Go et Mo sont calcul‚es d'une fa‡on trŠs particuliŠre
+     contrairement  aux applications professionnels.  Dans cette routine,
+     ils sont calculer  … l'aide  d'une technique  de d‚calage de bits et
+     il n'y a donc aucune division,  modulo  ou  multiplication afin dans
+     obtenir la r‚ponse. Voici la technique utilis‚:
+
+                             Variable 32 bits
+     <ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ>
+          octet 3          octet 2          octet 1          octet 0
+     ÚÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄ¿ÚÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄ¿ÚÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄ¿ÚÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄ¿
+     ³7³6³5³4³3³2³1³0³³7³6³5³4³3³2³1³0³³7³6³5³4³3³2³1³0³³7³6³5³4³3³2³1³0³
+     ÀÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÙÀÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÙÀÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÙÀÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÙ
+     ÀÄÂÙÀÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÙ
+     Nombre   Nombre de Mo           Nombre de Ko  AprŠs la virgule de Ko
+     de Go  (bits entre 20 et 29)    (bits entre    (bits entre 0 et 9)
+                                       10 et 19)
+}
+
+Function ComputeSizeStr(Size:Long):String;
+Var
+ Target,Str:String; { ChaŒne de caractŠres de traŒtement temporaire }
+ BSize:Array[0..3]of Byte Absolute Size;
+ WSize:Array[0..1]of Word Absolute Size;
+ CenterSize:Record
+  HiHi:Byte;
+  X:Word;
+  LoLo:Byte;
+ End Absolute Size;
+Begin
+ Target:=CStr2(Size,13)+' octets ';
+ If Size>1024*1024*1024Then Begin
+  Str:=WordToStr(BSize[3]shr 6);
+  If Length(Str)<2Then Begin
+   IncStr(Str,DeSep[0]);
+   AddWdDec(Str,(WSize[1]and $3FFF)shr 4);
+  End;
+  Systems._Left(Str,4);
+  If StrI(4,Str)=','Then BackStr(Str);
+  AddStr(Target,Str);
+  AddStr(Target,' Go');
+ End
+  Else
+ If Size>1024*1024Then Begin
+  Str:=WordToStr(WSize[1]shr 4);
+  IncStr(Str,DeSep[0]);
+  AddWdDec(Str,(CenterSize.X and $0FFF)shr 2);
+  Systems._Left(Str,4);
+  If StrI(4,Str)=','Then BackStr(Str);
+  AddStr(Target,Str);
+  AddStr(Target,' Mo');
+ End
+  Else
+ Begin
+  Target:=WordToStr(Size shr 10);
+  AddStr(Target,' Ko');
+ End;
+ ComputeSizeStr:=Target;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction Copy                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la partie de la chaŒne de caractŠres de format
+ Pascal contenu  dans la  variable de  param‚trage ®S¯,  … partir  de la
+ position ®Start¯ d'une longueur de ®Len¯.
+}
+
+Function Copy{Const S:String;Start,Len:Byte):String};Begin
+ If Start>Length(S)Then Copy:=''
+                   Else Copy:=System.Copy(S,Start,Len)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction CopyFile                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de copier un fichier ®Source¯ … la destination
+ contenu dans la variable de param‚trage ®Target¯.  La date du fichier
+ original est  conserv‚e  sur le fichier destinataire,  il ne contient
+ donc pas la date actuel du systŠme mais du fichier d'origine.
+}
+
+{$I Library\CopyFile.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure CreateDir                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure cr‚e un sous-r‚pertoire. Identique … la proc‚dure ®MKDIR¯
+ de l'unit‚ centrale  ®SYSTEM¯.  La variable global ®GetSysErr¯ retourne le
+ r‚sultat de l'op‚ration.
+}
+
+Procedure CreateDir{Dir:PChr};Assembler;ASM
+ {$IFDEF __386__}
+ {$ELSE}
+  MOV AH,39h
+  PUSH DS
+   LDS DX,Dir
+   INT 21h
+  POP DS
+  JC @1
+  XOR AX,AX
+@1:
+  MOV SysErr,AX
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction CStr                             Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir un nombre de type long en sous format
+ courant dans un pays.
+}
+
+Function CStr{I:LongInt):String};
+Var
+ S:String;
+ L:Byte Absolute S;
+Begin
+ S:=IntToStr(I);ASM
+  AND Word Ptr I[2],07FFFh
+ End;
+ If I>=1000000000Then CStr:=Left(S,L-9)+ThSep[0]+Copy(S,L-8,3)+ThSep[0]+Copy(S,L-5,3)+ThSep[0]+Copy(S,L-2,3)Else
+ If I>=1000000Then CStr:=Left(S,L-6)+ThSep[0]+Copy(S,L-5,3)+ThSep[0]+Copy(S,L-2,3)Else
+ If I>=1000Then CStr:=Left(S,L-3)+ThSep[0]+Copy(S,L-2,3)
+ Else CStr:=S
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction CStr2                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir un nombre de type long en sous format
+ courant  dans  un pays  avec suffisament  d'espaces  avec le  nombre pour
+ satisfaire la demande faŒte en paramŠtre.
+}
+
+Function CStr2{I:LongInt;X:Byte):String};
+Var
+ S:String;
+Begin
+ S:=CStr(I);
+ If x<Length(S)Then CStr2:=S
+               Else CStr2:=Spc(x-Length(S))+S
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction CStrBasic                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir un nombre de type long en sous format
+ courant dans un pays avec un espace avant du nombre.
+}
+
+Function CStrBasic{I:Long):String};Begin
+ CStrBasic:=' '+CStr(I)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction _CStrDate                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir la date  en format compresser en
+ chaŒne de caractŠres de format Pascal avec les symboles appropri‚ du
+ pays courant avec en prime la journ‚e de la semaine.
+}
+
+Function _CStrDate;
+Var
+ Target:String;
+Begin
+ Case(Date)of
+  0:Begin
+   Target:=Str2(Month,2);
+   AddPChr(Target,@DtSep);
+   AddStr(Target,Str0(Day,2))
+  End;
+  1:Begin
+   Target:=Str2(Day,2);
+   AddPChr(Target,@DtSep);
+   AddStr(Target,Str0(Month,2))
+  End;
+  Else Begin
+   Target:=Str2(Year,4);
+   AddPChr(Target,@DtSep);
+   AddStr(Target,Str0(Month,2));
+   AddPChr(Target,@DtSep);
+   AddStr(Target,Str0(Day,2))
+  End;
+ End;
+ If Date<2Then Begin
+  AddPChr(Target,@DtSep);
+  AddStr(Target,Str0(Year,4))
+ End;
+ _CStrDate:=Target
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction CStrDate                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir la date  en format compresser en
+ chaŒne de caractŠres de format Pascal avec les symboles appropri‚ du
+ pays courant.
+}
+
+Function CStrDate{Time:Long):String};
+Var
+ DT:DateTime;
+Begin
+ UnpackTime(Time,DT); { Bits de 31 … 16 de la date ‚tant important!}
+ CStrDate:=_CStrDate(DT.Year,DT.Month,DT.Day,$FFFF);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction CStrTime                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir  l'heure en format compresser en
+ chaŒne de caractŠres de format Pascal avec les symboles appropri‚ du
+ pays courant.
+}
+
+Function CStrTime{Time:LongINt):String};
+Var
+ DT:DateTime;
+Begin
+ UnpackTime(Time,DT);
+ CStrTime:=CStrTimeDos(DT.Hour,DT.Min,DT.Sec)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction CStrTimeDos                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir des donn‚es de temps en chaŒne de
+ caractŠres  de  format  Pascal  avec  les symboles  appropri‚ du pays
+ courant.
+}
+
+Function CStrTimeDos{Hour,Min,Sec:Byte):String};
+Var
+ S:String;
+Begin
+ S:=Str0(Hour,2);
+ AddPChr(S,@TmSep);
+ AddStr(S,Str0(Min,2));
+ AddPChr(S,@TmSep);
+ AddStr(S,Str0(Sec,2));
+ CStrTimeDos:=S
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction CtrlCode2Ascii                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de retourne le code ASCII ‚quivalent … une Scan
+ Code de controle clavier (Ctrl+?). Exemple dans Ctrl+A, il retourne A!
+}
+
+Function CtrlCode2Ascii{Code:Word):Char};
+Var
+ CW:WordRec Absolute Code;
+Begin
+ CtrlCode2Ascii:=#0;
+ If CW.Lo<=26Then CtrlCode2Ascii:=Char(CW.Lo+64)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction CtrlPress                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une valeur indiquant si une/deux touche(s) Ctrl
+ est/sont enfonc‚(s) (True) ou aucun (False).
+}
+
+{$IFDEF NotReal}
+ {$I \Source\Chantal\Library\CtrlPres.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure DeAlloc                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de d‚allouer le pilote joueur de fichier .MOD
+ externe.
+}
+
+{$IFDEF NoInLine}
+ Procedure DeAlloc;Assembler;ASM
+  MOV AH,09h
+  INT 8Ch
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Proc‚dure DefineVram                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de d‚finir  les limites physique de la m‚moire
+ vid‚o … exploiter en tant que ressource du systŠme de Malte Genesis IV
+ et V: Alias Chantal et AdŠle.
+}
+
+{$IFNDEF __Windows__}
+ Procedure DefineVram{Mem:Word;Home:LongInt};Begin
+  ASM
+   MOV AX,Mem;
+   MOV Word Ptr Vram.Memory[2],AX
+   MOV Word Ptr Vram.Memory,0
+  END;
+  Vram.HomeAddr:=Home;
+  VSData[irmVRam].SizeMem:=Vram.Memory-Vram.HomeAddr;
+  VSData[irmVRam].MaxAddr:=VSData[irmVRam].SizeMem-1;
+  VSData[irmVRam].FreeMem:=VSData[irmVRam].SizeMem;
+  VSData[irmVRam].UsedAddr:=0;
+  VSExist[irmVRam]:=True
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                                 Fonction LTrim                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction enlŠve tous les espaces de la chaŒne de caractŠres sp‚cifi‚
+ par  la variable  de param‚trage  ®S¯  si trouvant au d‚but  et retourne la
+ partie … droite restante. S'il ne reste plus rien, la fonction retourne une
+ chaŒne de caractŠres vide.
+}
+
+Function LTrim{Const S:String):String};
+Var
+ I:Byte;
+Begin
+ If S<>''Then Begin
+  If S[1]>' 'Then LTrim:=S Else
+  Begin
+   I:=2;
+   While(Length(S)>I)and(S[I]<=' ')do Inc(I);
+   If I=Length(S)Then LTrim:=S[I]
+                 Else LTrim:=Copy(S,I,Length(S)-I+1)
+  End;
+ End
+  else
+ LTrim:=''
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction RTrim                               Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction enlŠve tous les espaces de la chaŒne de caractŠres variable
+ de param‚trage ®S¯ se trouvant … la fin et retourne la partie restante.  Si
+ plus  aucune  caractŠres  n'est pr‚sent  dans la chaŒne,  elle retourne une
+ chaŒne de caractŠres vide.
+}
+
+Function RTrim{S:String):String};{#IFDEF NoAsm}
+Begin
+ _DelAllSpcRight(S);
+ RTrim:=S;
+End;
+{#ELSEAssembler;ASM
+ LES DI,@Result
+ PUSH ES
+ PUSH DI
+ PUSH CS
+ CALL Near Ptr _DelAllSpcRight
+END;{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure Delay                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure cr‚e une pause de temps en milliseconde sp‚cifi‚e par la
+ variable de param‚trage ®Sec1000¯.
+}
+
+Procedure Delay{Sec1000:Integer};
+Var
+ T:Word;
+ Old,Curr:Byte;
+ OldScr:Boolean;
+Begin
+ If Sec1000>1000Then Begin
+  T:=(Sec1000 div 1000)*18;
+  Old:=GetRawTimerB;
+  OldScr:=ActifScrSave;ActifScrSave:=False;
+  _InitKbd;
+  Repeat
+   _BackKbd;
+   Curr:=GetRawTimerB;
+   If(Old<>Curr)Then Begin
+    If T<=0Then Begin
+     ActifScrSave:=OldScr;
+     Exit;
+    End;
+    Dec(T);
+    Old:=Curr;
+   End
+  Until False
+ End
+  Else
+ _Delay(Sec1000)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Function DelChr                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction ‚limine tous les caractŠres de identique … la variable de
+ param‚trage ®Chr¯ contenu dans la variable de param‚trage ®T¯ et retourne
+ la partie restante.
+}
+
+Function DelChr{Const S:String;Chr:Char):String};
+Var
+ I:Byte;
+ T:String;
+Begin
+ T:='';
+ For I:=1to Length(S)do If Chr<>S[I]Then IncStr(T,S[I]);
+ DelChr:=T
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure DelChrAt                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet  d'enlev‚  un caractŠre  … la position sp‚cifi‚ par
+ la variable de param‚trage ®P¯ dans la chaŒne de caractŠres ®S¯ et retourne
+ sont produit final.
+}
+
+Procedure DelChrAt{Var S:String;P:Byte};Begin
+ If P=1Then S:=Copy(S,2,255)
+       Else S:=Left(S,P-1)+Copy(S,P+1,255)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction DelFile                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction ‚limine le fichier DOS dont le nom est contenu dans la
+ variable de param‚trage  ®Name¯.  Elle retourne 0 si l'op‚ration c'est
+ bien d‚roul‚. Il doit ˆtre ‚crite sous un format DOS compatible.
+}
+
+Function DeleteFile{Name:String):Word};
+{$IFDEF __Windows__}
+ Var
+  PName:Array[Byte]of Char;
+ Begin
+  StrPCopy(@PName,Name);
+  DeleteFile:=Word(_DeleteFile(@PName));
+ End;
+{$ELSE}
+ Assembler;ASM
+  {$IFDEF __386__}
+  {$ELSE}
+   PUSH DS
+    LDS DI,Name
+    MOV BL,DS:[DI]
+    INC DI
+    MOV BH,0
+    MOV DS:[DI+BX],BH
+    MOV DX,DI
+    MOV AX,04100h
+    INT 021h
+   POP DS
+   JC  @2
+   XOR AX,AX
+ @2:
+   MOV SysErr,AX
+  {$ENDIF}
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction DelRightSpc                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'enlever tous les espaces se trouvant … droite
+ d'une chaŒne de caractŠres et de retourn‚e sont contenu.
+}
+
+Function DelRightSpc{Msg:PChr):PChr};
+Var
+ L,I:Word;
+Begin
+ L:=StrLen(Msg);
+ For I:=L-1downto 0do If Msg^[I]<>' 'Then Begin
+  Msg^[I+1]:=#0;
+  DelRightSpc:=Msg;
+  Exit;
+ End;
+ Msg^[0]:=#0;
+ DelRightSpc:=Msg
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction DelStr                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'‚liminer, … partir de la position contenu dans la
+ variable de param‚trage ®P¯,  ®N¯ caractŠre(s)  de la chaŒne de caractŠres
+ ®S¯ et la retourne.
+}
+
+Function DelStr{Str:String;P,N:Byte):String};
+Var
+ StrLen:Byte Absolute Str;
+Begin
+ DelStr:='';
+ If(Str<>'')and(StrLen>1)Then Begin
+  If(P+N>StrLen)Then StrLen:=P-1
+                Else Delete(Str,P,N);
+  DelStr:=Str
+ End
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure Dir2DateNTimeStr                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de connaŒtre la date et l'heure d'un enregistrement
+ de liste de fichier.
+}
+
+Procedure Dir2DateNTimeStr{Info:SearchRec;Var Date,Time:String};Begin
+ {$IFNDEF __Windows__}
+  Date:=CStrDate(Info.Time);
+  Time:=CStrTime(Info.Time)
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction DirExist                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  fonction  indique  si le r‚pertoire sp‚cifi‚ par la variable de
+ param‚trage existe. Si la chaŒne de caractŠres est vide, elle consid‚r‚
+ comme  un  r‚pertoire  valide.  galement,  s'il s'agit d'un  suite  de
+ r‚pertoire, seul la partie avant le premier point virgule est tester.
+}
+
+Function DirExist{Dir:String):Boolean};
+Var
+ Rec:SearchRec;
+Begin
+ If Length(Dir)=0Then DirExist:=True
+  Else
+ Begin
+  TruncAfterSemicolon(Dir);
+  If Dir[Length(Dir)]='\'Then AddStr(Dir,'*.*')Else
+  If IsWildCard(Dir)Then Dir:=Path2Dir(Dir)+'*.*';
+  FindFirst(Dir,faDir,Rec);
+  DirExist:=SysErr=0
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction Dos2UnixPath                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir un chemin de format DOS ou OS/2 en
+ un chemin compatible Unix.
+}
+
+Function Dos2UnixPath{Path:String):String};Begin
+ ChgChr(Path,';',':');
+ ChgChr(Path,'/','\');
+ Dos2UnixPath:=Path
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                      Fonction DosPath                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de connaŒtre les chemins de la variable
+ d'environnement ®PATH¯ du systŠme d'exploitation DOS ou OS/2.
+}
+
+Function DosPath{:String};Begin
+ DosPath:=GetEnv('PATH')
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction Drv2Dsk                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir une lettre en sous ‚quivalent en une
+ unit‚ logique (1=A:, 2=B:,...).
+}
+
+Function Drv2Dsk{Drv:Char):Byte};Begin
+ If IsRomanLetter(Drv)Then Drv2Dsk:=(Byte(Drv)and$DF)-Byte('A')+1
+                      Else Drv2Dsk:=0
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction DrvExist                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de confirmer la pr‚sence ou non d'une lettre d'unit‚
+ disque logique  du systŠme  d'exploitation  et non pas  si une disquette en
+ dans une unit‚ mais bien  l'affectation  d'une unit‚  pour une p‚riph‚rique
+ particuliŠre.
+}
+
+Function DrvExist{Drv:Char):Boolean};Begin
+ DrvExist:=DiskExist(Drv2Dsk(Drv)-1)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction DiskExist                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de confirmer  la pr‚sence  ou non d'unit‚ de disque
+ logique du systŠme d'exploitation et non pas  si une disquette en dans une
+ unit‚  mais  bien   l'affectation   d'une  unit‚   pour  une  p‚riph‚rique
+ particuliŠre.
+}
+
+Function DiskExist{Dsk:Byte):Boolean};
+Var
+ Old,M:Byte;
+Begin
+ DiskExist:=False;
+ If Dsk>25Then Exit Else
+ If(DriveFormat[Dsk]=dfiUnknown)Then Begin
+  Old:=GetDsk;
+  SetDsk(Dsk);
+  If(Dsk=GetDsk)Then Begin
+   DiskExist:=True;
+   M:=dfiExist;
+  End
+   Else
+  M:=dfiNotExist;
+  DriveFormat[Dsk]:=M;
+  SetDsk(Old);
+ End
+  Else
+ DiskExist:=DriveFormat[Dsk]<>dfiNotExist;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction DiskFixed                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si le disque sp‚cifi‚ par la variable de
+ param‚trage ®Dsk¯ est un disque fixe (genre disque dur) par True
+ ou au contraire amovible par False.
+}
+
+Function DiskFixed{Dsk:Byte):Boolean};Assembler;ASM
+ {$IFDEF __386__}
+ {$ELSE}
+  MOV BL,Dsk
+  XOR BH,BH
+  DEC BX
+  MOV AL,Byte Ptr DriveFormat[BX]
+  CMP AL,dfiMount
+  JE  @2
+  INC BX
+  CMP AL,1
+  JBE @2
+  PUSH BX
+   MOV AX,4408h
+   INT 21h
+  POP BX
+  JNC @1
+  MOV AL,0
+@1:
+  DEC BX
+  MOV Byte Ptr DriveFormat[BX],AL
+  INC BX
+@2:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction DiskFree                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'espace disponible en octet de l'unit‚ sp‚cifi‚
+ par la variable de param‚trage ®Dsk¯.
+}
+
+{$I \Source\Chantal\Library\DskFree.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction DiskSize                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'espace total en octet de l'unit‚ sp‚cifi‚ par la
+ variable de param‚trage ®Dsk¯.
+}
+
+{$I \Source\Chantal\Library\DskSize.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction DiskUsed                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'espace de l'unit‚ sp‚cifi‚ par la variable de
+ param‚trage ®Dsk¯ ‚tant utilis‚.
+}
+
+Function DiskUsed{Dsk:Byte):LongInt};Begin
+ DiskUsed:=LongInt(DiskSize(Dsk))-LongInt(DiskFree(Dsk))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction DuplHandle                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette focntion permet d'attribuer un autre Handle … un fichier d‚j…
+ ouvert par un handle.
+}
+
+{$IFDEF ExtraHandle}
+ {$I \Source\Chantal\Library\DuplHand.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction EmmSetMapping                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'attribuer une plage de m‚moire EMS ou compatible
+ en fonction d'un Handle EMS  au cadre  de segment accessible en mode r‚el
+ par l'application.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction … besoin  d'un pilote EMS ainsi  qu'une pr‚d‚tection de
+    la pr‚sence de ce pilote par le "StartUp"(l'unit‚ ®Chantal¯ ou ®AdŠle¯
+    si vous pr‚f‚rez).
+}
+
+{$IFNDEF NotReal}
+ Function EmmSetMapping;Assembler;ASM
+  CMP EmmExist,False
+  JE  @1
+  MOV AH,044h
+  MOV AL,Plane
+  MOV BX,Page
+  MOV DX,Handle
+  INT 067h
+  MOV EmmErr,AH
+  MOV AL,AH
+ @1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction EmmSaveMapping               Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'effectuer la sauvegarde des structures
+ d'implentation des plages de m‚moire EMS ou compatiable.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette  fonction  …  besoin  d'un  pilote  EMS  ainsi  qu'une
+    pr‚d‚tection  de la  pr‚sence  de ce pilote par le "StartUp"
+    (l'unit‚ ®Chantal¯ ou ®AdŠle¯ si vous pr‚f‚rez).
+}
+
+{$IFNDEF NotReal}
+ Function EmmSaveMapping;Assembler;ASM
+  CMP EmmExist,False
+  JE  @1
+  MOV AH,047h
+  MOV DX,Handle
+  INT 067h
+  MOV EmmErr,AH
+  MOV AL,AH
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction GetEnv                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de connaŒtre le contenu d'une variable
+ d'environnement du systŠme d'exploitation DOS et OS/2.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure existe essentiellement  afin de garder une
+    compatibilit‚  avec le  systŠme  d'exploitation  DOS  sous
+    Windows.
+}
+
+Function GetEnvVar(VarName:PChr):PChr;
+ {$IFNDEF Win32}
+  Var
+   L:Word;
+   P:PChr;
+   PP:PtrRec Absolute P;
+ {$ENDIF}
+ Begin
+ {$IFDEF Win32}
+ {$ELSE}
+  L:=StrLen(PChr(VarName));
+  {$IFDEF __Windows__}
+   P:=GetDosEnv;
+  {$ELSE}
+   P:=Ptr(Word(Ptr(PrefixSeg,$2C)^),0);
+  {$ENDIF}
+  While P^[0]<>#0do Begin
+   If(StrLIComp(PChr(P),PChr(VarName),L)=0)and(P^[L]='=')Then Begin
+    GetEnvVar:=@P^[L+1];
+    Exit;
+   End;
+   Inc(PP.Ofs,StrLen(PChr(P))+1)
+  End;
+ {$ENDIF}
+ GetEnvVar:=NIL
+End;
+
+{$IFNDEF Real}
+Function GetEnv(Const Str:String):String;
+Var
+ Buf:PChrAByte;
+ PBuf:PChr;
+Begin
+ StrPCopy(@Buf,Str);
+ PBuf:=@Buf;
+ PBuf:=GetEnvVar(PBuf);
+ GetEnv:=StrPas(PBuf)
+End;
+{$ELSE}
+Function GetEnv(Const Str:String):String;Assembler;
+Var
+ VarName:Array[0..31]of Char;
+ASM
+  PUSH DS
+   CLD
+   LDS SI,Str
+   LEA DI,VarName
+   PUSH SS
+   POP ES
+   LODSB
+   CMP AL,31
+   JBE @@1
+   MOV AL,31
+@@1:
+   CBW
+   MOV CX,AX
+   INC AX
+   MOV DX,AX
+   JCXZ @@4
+@@2:
+   LODSB
+   CMP AL,'a'
+   JB  @@3
+   CMP AL,'z'
+   JA  @@3
+   SUB AL,20H
+@@3:
+   STOSB
+   LOOP @@2
+@@4:
+   MOV AL,'='
+   STOSB
+  POP DS
+  PUSH DS
+   MOV DS,PrefixSeg
+   MOV DS,DS:[2CH]
+   XOR SI,SI
+@@5:
+   CMP BYTE PTR [SI],0
+   JE  @@7
+   LEA DI,VarName
+   MOV CX,DX
+   REP CMPSB
+   JE  @@7
+   DEC SI
+@@6:
+   LODSB
+   OR  AL,AL
+   JNE @@6
+   JMP @@5
+@@7:
+   MOV DI,SI
+   PUSH DS
+   POP ES
+   XOR AL,AL
+   MOV CX,256
+   REPNE SCASB
+   NOT CL
+   LES DI,@Result
+   MOV AL,CL
+   STOSB
+   REP MOVSB
+  POP DS
+END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure Exec                             Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de lance l'ex‚cution  d'un programme fils … partir
+ de l'application en cours (le programme parent).
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure existe essentiellement afin de garder une compatibilit‚
+    avec le systŠme d'exploitation DOS sous Windows.
+}
+
+{$IFDEF __Windows__}
+ Procedure Exec(Prg,Param:String);
+ Var
+  S:Array[0..1023]of Chr;
+ Begin
+  StrPCopy(@S,Prg);
+  StrCatPas(@S,Param);
+  {$IFDEF Win32}
+  {$ELSE}
+   WinExec(S,1);
+  {$ENDIF}
+ End;
+{$ELSE}
+ Procedure SaveCPURegisters;Assembler;ASM
+  DW 0 { SS }
+  DW 0 { SP }
+  DW 0 { BP }
+  DW 0 { DS }
+ END;
+
+ Procedure Exec(Prg,Param:String);
+ Type
+  SaveCPURegistersRec=Record
+   SS:Word;
+   SP:Word;
+   BP:Word;
+   DS:Word;
+  End;
+ Var
+  DataParam:Record
+   AddrEnv:Word;
+   Command:Pointer;
+   FCB1:Pointer;
+   FCB2:Pointer;
+   FCBData1:Array[0..36]of Byte;
+   FCBData2:Array[0..36]of Byte;
+  End;
+ Begin
+  FillClr(DataParam,SizeOf(DataParam));
+  IncStr(Param,^M);
+  IncStr(Prg,#0);
+  DataParam.Command:=@Param;
+  DataParam.FCB1:=@DataParam.FCBData1;
+  DataParam.FCB2:=@DataParam.FCBData2;
+  ASM
+   MOV Word Ptr SaveCPURegisters.SaveCPURegistersRec.&SS,SS
+   MOV Word Ptr SaveCPURegisters.SaveCPURegistersRec.&SP,SP
+   MOV Word Ptr SaveCPURegisters.SaveCPURegistersRec.&BP,BP
+   MOV Word Ptr SaveCPURegisters.SaveCPURegistersRec.&DS,DS
+   PUSH SS
+   POP ES
+   MOV BX,Offset DataParam
+   ADD BX,BP
+   PUSH SS
+   POP DS
+   MOV DX,Offset Prg[1]
+   ADD DX,BP
+   MOV AX,04B00h
+   INT 21h
+   MOV SS,Word Ptr SaveCPURegisters.SaveCPURegistersRec.&SS
+   MOV SP,Word Ptr SaveCPURegisters.SaveCPURegistersRec.&SP
+   LDS BP,DWord Ptr SaveCPURegisters.SaveCPURegistersRec.&BP
+  END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure ExtBiosCopy                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet des transferts de m‚moire du mode prot‚g‚ vers le
+ mode r‚el ou vice-versa en passant par le BIOS.
+}
+
+{$IFNDEF NotReal}
+ Procedure ExtBiosCopy{Start,But:Long;Len:Word};
+ Var
+  GTab:GDT;
+  Adr:LongInt;
+ Begin
+  FillClr(GTab,SizeOf(GTab));
+  GTab.Start.AdrLo:=LI(Start).LoWord;
+  GTab.Start.AdrHi:=LI(Start).HiByte;
+  GTab.But.AdrLo:=LI(But).LoWord;
+  GTab.But.AdrHi:=LI(But).HiByte;
+  ASM
+   PUSH SS
+   POP ES
+   MOV SI,Offset GTab
+   MOV AH,092h
+   MOV SS:[SI].GTab.Start.Attribut,AH
+   MOV SS:[SI].GTab.But.Attribut,AH
+   MOV CX,Len
+   MOV SS:[SI].GTab.Start.Length,CX
+   MOV SS:[SI].GTab.But.Length,CX
+   SHR CX,1
+   MOV AH,087h
+   INT 015h
+   MOV Byte Ptr SysErr,AH
+   CMP AH,0
+   JE  @1
+   MOV Byte Ptr SysErr[1],3
+ @1:
+  END
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure ExtBiosRead                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet  d'effectuer une lecture   dans une zone de m‚moire
+ prot‚g‚ en passant par le BIOS.
+}
+
+{$IFNDEF NotReal}
+ Procedure ExtBiosRead{ExtAddr:LongInt;BuPtr:Pointer;Len:Word};Begin
+  ExtBiosCopy(ExtAddr,AddrExt2Conv(BuPtr),Len)
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure ExtBiosWrite                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet  d'effectuer une ‚criture  dans une zone de m‚moire
+ prot‚g‚ en passant par le BIOS.
+}
+
+{$IFNDEF NotReal}
+ Procedure ExtBiosWrite{BuPtr:Pointer;ExtAddr:LongInt;Len:Word};Begin
+  ExtBiosCopy(AddrExt2Conv(BuPtr),ExtAddr,Len)
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction FileExist                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne  True  si le fichier  sp‚cifi‚ par  la variable de
+ param‚trage ®Name¯ existe, dans l'‚ventualit‚ contraire False est renvoy‚e.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction support les recherches  sur l'unit‚ ®SYS:¯  de l'ensemble
+    Malte Genesis IV et V: Alias Chantal et AdŠle.
+}
+
+Function FileExist{Name:String):Boolean};
+Var
+ Rec:SearchRec;
+ P:Word;
+Begin
+ P:=Pos(SYSDrive,Name);
+ If P>0Then Begin
+  Name:=DelStr(Name,P,4);
+  Name:=FSearch(Name,StrPas(PathSystems)+';\MALTE\SYSTEMS;'+
+                     SetPath4AddFile(GetEnv('MALTE'))+'SYSTEMS;'+_PrgPath)
+ End;
+ FindFirst(Name,fa,Rec);
+ FileExist:=SysErr=0;
+End;
+
+Function _FileExpand(Dest,Name:PChar):PChar;Assembler;
+Var
+ TempName:Array[Byte]of Char;
+ASM
+ {$IFNDEF Win32}
+  PUSH DS
+   CLD
+   LDS SI,Name
+   LEA DI,TempName
+   PUSH  SS
+   POP ES
+   LODSW
+   OR  AL,AL
+   JE  @@1
+   CMP AH,':'
+   JNE @@1
+   CMP AL,'a'
+   JB  @@2
+   CMP AL,'z'
+   JA  @@2
+   SUB AL,20H
+   JMP @@2
+@@1:
+   DEC SI
+   DEC SI
+   MOV AH,19H
+   INT 21H
+   ADD AL,'A'
+   MOV AH,':'
+@@2:
+   STOSW
+   CMP [SI].Byte,'\'
+   JE  @@3
+   SUB AL,'A'-1
+   MOV DL,AL
+   MOV AL,'\'
+   STOSB
+   PUSH DS
+   PUSH SI
+   MOV AH,47H
+   MOV SI,DI
+   PUSH ES
+   POP DS
+   INT 21H
+   POP SI
+   POP DS
+   JC  @@3
+   XOR AL,AL
+   CMP AL,ES:[DI]
+   JE  @@3
+   {$IFDEF Windows}
+    PUSH ES
+     PUSH ES
+     PUSH DI
+     PUSH ES
+     PUSH DI
+     CALL OemToAnsi
+    POP ES
+   {$ENDIF}
+   MOV CX,0FFFFh
+   XOR AL,AL
+   CLD
+   REPNE SCASB
+   DEC DI
+   MOV AL,'\'
+   STOSB
+@@3:
+   MOV CX,8
+@@4:
+   LODSB
+   OR  AL,AL
+   JE  @@7
+   CMP AL,'\'
+   JE  @@7
+   CMP AL,'.'
+   JE  @@6
+   JCXZ  @@4
+   DEC CX
+   {$IFNDEF Windows}
+    CMP AL,'a'
+    JB  @@5
+    CMP AL,'z'
+    JA  @@5
+    SUB AL,20H
+   {$ENDIF}
+@@5:
+   STOSB
+   JMP @@4
+@@6:
+   MOV CL,3
+   JMP @@5
+@@7:
+   CMP ES:[DI-2].Word,'.\'
+   JNE @@8
+   DEC DI
+   DEC DI
+   JMP @@10
+@@8:
+   CMP ES:[DI-2].Word,'..'
+   JNE @@10
+   CMP ES:[DI-3].Byte,'\'
+   JNE @@10
+   SUB DI,3
+   CMP ES:[DI-1].Byte,':'
+   JE  @@10
+@@9:
+   DEC DI
+   CMP ES:[DI].Byte,'\'
+   JNE @@9
+@@10:
+   MOV CL,8
+   OR  AL,AL
+   JNE @@5
+   CMP ES:[DI-1].Byte,':'
+   JNE @@11
+   MOV AL,'\'
+   STOSB
+@@11:
+   LEA SI,TempName
+   PUSH SS
+   POP DS
+   MOV CX,DI
+   SUB CX,SI
+   CMP CX,79
+   JBE @@12
+   MOV CX,79
+@@12:
+   LES DI,Dest
+   PUSH ES
+   PUSH DI
+   {$IFDEF Windows}
+    PUSH ES
+    PUSH DI
+   {$ENDIF}
+    REP MOVSB
+    XOR AL,AL
+    STOSB
+    {$IFDEF Windows}
+     CALL AnsiUpper
+    {$ENDIF}
+    POP  AX
+   POP DX
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction FileExpand                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le nom complet du chemin contenu dans le variable
+ de param‚trage ®Path¯.
+}
+
+Function FileExpand(Path:String):String;
+{$IFDEF Real}
+ Assembler;ASM
+  PUSH DS
+   CLD
+   LDS SI,Path
+   LODSB
+   MOV CL,AL
+   XOR CH,CH
+   ADD CX,SI
+   LES DI,@Result
+   INC DI
+   LODSW
+   CMP SI,CX
+   JA  @@1
+   CMP AH,':'
+   JNE @@1
+   CMP AL,'a'
+   JB  @@2
+   CMP AL,'z'
+   JA  @@2
+   SUB AL,20H
+   JMP @@2
+ @@1:
+   DEC SI
+   DEC SI
+   MOV AH,19H                  {Demande l'unit‚ courante}
+   INT 21H
+   ADD AL,'A'
+   MOV AH,':'
+ @@2:
+   STOSW
+   CMP SI,CX
+   JE  @@21
+   CMP BYTE PTR [SI],'\'
+   JE  @@3
+ @@21:
+   SUB AL,'A'-1
+   MOV DL,AL
+   MOV AL,'\'
+   STOSB
+   PUSH SI
+    PUSH	DS
+     MOV	AH,47H			{Demande le r‚pertoire courant}
+     MOV	SI,DI
+     PUSH ES
+     POP	DS
+     INT	21H
+    POP DS
+   POP SI
+   JC  @@3
+   CMP BYTE PTR ES:[DI],0
+   JE  @@3
+   PUSH CX
+    MOV CX,-1
+    XOR AL,AL
+    REPNE SCASB
+    DEC DI
+    MOV AL,'\'
+    STOSB
+   POP CX
+ @@3:
+   SUB CX,SI
+   REP MOVSB
+   XOR AL,AL
+   STOSB
+   LDS SI,@Result
+   INC SI
+   MOV DI,SI
+   PUSH DI
+ @@4:
+    LODSB
+    OR  AL,AL
+    JE  @@6
+    CMP AL,'\'
+    JE  @@6
+    CMP AL,'a'
+    JB  @@5
+    CMP AL,'z'
+    JA  @@5
+    SUB AL,20H
+ @@5:
+    STOSB
+    JMP @@4
+ @@6:
+    CMP WORD PTR [DI-2],'.\'
+    JNE @@7
+    DEC DI
+    DEC DI
+    JMP @@9
+ @@7:
+    CMP WORD PTR [DI-2],'..'
+    JNE @@9
+    CMP BYTE PTR [DI-3],'\'
+    JNE @@9
+    SUB DI,3
+    CMP BYTE PTR [DI-1],':'
+    JE  @@9
+ @@8:
+    DEC DI
+    CMP BYTE PTR [DI],'\'
+    JNE @@8
+ @@9:
+    OR  AL,AL
+    JNE @@5
+    CMP BYTE PTR [DI-1],':'
+    JNE @@10
+    MOV AL,'\'
+    STOSB
+ @@10:
+    MOV AX,DI
+   POP DI
+   SUB AX,DI
+   DEC DI
+   STOSB
+  POP DS
+ END;
+{$ELSE}
+ Var
+  Local:Record
+   Buf,Buf2:Array[Byte]of Char;
+   Ext:String;
+  End;
+  P:Integer;
+ Begin
+  If(Length(Path)>=1)and(Path[1]='\')Then FileExpand:=StrUp(GetDrv+':'+Path)
+   Else
+  Begin
+   FillClr(Local,SizeOf(Local));
+   P:=Pos(';',Path);
+   If P>0Then Begin
+    Local.Ext:=Copy(Path,P,255);
+    _Left(Path,P);
+   End;
+   StrPCopy(@Local.Buf,Path);
+   _FileExpand(Local.Buf2,Local.Buf);
+   FileExpand:=StrUp(StrPas(@Local.Buf2))+Local.Ext;
+  End;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                     Fonction FileGetAttr                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de retourner l'attribue d'un nom de fichier
+ sp‚cifier par la variable de param‚trage ®FileName¯.
+}
+
+Function FileGetAttr{Const FileName:String):Integer};
+{$IFDEF __Windows__}
+ Var
+  PC:Array[Byte]of Char;
+ Begin
+  StrPCopy(@PC,FileName);
+  FileGetAttr:=GetFileAttributes(PC);
+ End;
+{$ELSE}
+ Var
+  H:SearchRec;
+  Attr:Word;
+ Begin
+  FileGetAttr:=0;
+  FindFirst(FileName,fa,H);
+  If SysErr=0Then FileGetAttr:=H.Attr.Value;
+ End;
+{$ENDIF}
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                       Fonction FileSetAttr                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction permet de changer l'attribut du fichier sp‚cifier en
+  paramŠtre par la variable ®Path¯ avec l'attribut ‚galement envoy‚ en
+  paramŠtre ®Attr¯.  Si  l'op‚ration  c'est bien pass‚,  il retourne 0
+  sinon, s'il y a la moindre erreur il retourne un nombre diff‚rent de
+  z‚ro.
+ }
+
+Function FileSetAttr{Const FileName:String;Attr:Integer):Integer};
+{$IFDEF __Windows__}
+ Var
+  PC:Array[Byte]of Char;
+ Begin
+  FileSetAttr:=0;
+  StrPCopy(@PC,FileName);
+  If Not SetFileAttributes(PC,Attr)Then Begin
+   FileSetAttr:=GetLastError;
+  End;
+ End;
+{$ELSE}
+ Var
+  PC:Array[Byte]of Char;
+  S,O:Word;
+ Begin
+  StrPCopy(@PC,FileName);
+  S:=Seg(PC);O:=Ofs(PC);
+  ASM
+   PUSH DS
+    MOV DS,S
+    MOV DX,O
+    MOV CX,Attr
+    MOV AX,4301h
+    INT 21h
+    JC  @End
+    XOR AX,AX
+@End:
+    MOV @Result,AX
+   POP DS
+  END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction FileSize                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  calcul la taille  d'un fichier … partir  de son num‚ro de
+ Handle. Pour savoir si l'op‚ration c'est bien d‚roul‚,  il faut tester que
+ la valeur de la variable "GetSysErr" soit ‚gale … 0. Si la taille retourn‚
+ est ‚gale … -1, c'est qu'une erreur est survenue.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette  fonction  est  ‚galement  support‚   par  une  compilation  pour
+    l'environnement graphique ®Windows¯.
+}
+
+Function FileSize{Handle:Hdl):LongInt};
+{$IFDEF __Windows__}
+ Var
+  CurPos:LongInt;
+ Begin
+  {$IFDEF Win32}
+  {$ELSE}
+   CurPos:=_WSetFilePos(Handle,0,1);
+   FileSize:=_WSetFilePos(Handle,0,2);
+   _WSetFilePos(Handle,CurPos,0)
+  {$ENDIF}
+ End;
+{$ELSE}
+ Assembler;ASM
+  MOV BL,Handle
+  CMP BL,errHdl
+  JE  @1
+  XOR BH,BH
+  MOV AX,04202h
+  XOR CX,CX
+  XOR DX,DX
+  INT 021h
+  JC  @1
+  MOV GetSysErr,0
+  JMP @2
+ @1:
+  MOV AX,0FFFFh
+  MOV SysErr,AX
+  MOV DX,AX
+ @2:
+ END;
+{$ENDIF}
+
+Function FileSplit{Path,Dir,Name,Ext:PChr):Word};
+Var
+ DirLen,NameLen,Flags:Word;
+ NamePtr,ExtPtr:PChr;
+Begin
+ NamePtr:=StrRScan(Path,'\');
+ If(NamePtr=NIL)Then NamePtr:=StrRScan(Path,':');
+ If(NamePtr=NIL)Then NamePtr:=Path
+                Else Inc(NamePtr);
+ ExtPtr:=StrScan(NamePtr,'.');
+ If(ExtPtr=NIL)Then ExtPtr:=StrEnd(NamePtr);
+ DirLen:=StrLen(NamePtr)-StrLen(Path);
+ If(DirLen>fsDirectory)Then DirLen:=fsDirectory;
+ NameLen:=StrLen(ExtPtr)-StrLen(NamePtr);
+ If(NameLen>fsFilename)Then NameLen:=fsFilename;
+ Flags:=0;
+ If(StrScan(NamePtr,'?')<>NIL)or(StrScan(NamePtr,'*')<>NIL)Then Flags:=fcWildcards;
+ If DirLen<>0Then Flags:=Flags or fcDirectory;
+ If NameLen<>0Then Flags:=Flags or fcFilename;
+ If ExtPtr^[0]<>#0Then Flags:=Flags or fcExtension;
+ If(Dir<>NIL)Then StrLCopy(Dir,Path,DirLen);
+ If(Name<>NIL)Then StrLCopy(Name,NamePtr,NameLen);
+ If(Ext<>NIL)Then StrLCopy(Ext,ExtPtr,fsExtension);
+ FileSplit:=Flags;
+End;
+
+{ Cette proc‚dure permet de tronquer un fichier … la position courante }
+
+Procedure FileTrunc(Handle:Hdl);Assembler;ASM
+ {$IFNDEF __Windows__}
+  MOV AH,040h
+  MOV BL,Handle
+  XOR BH,BH
+  XOR CX,CX
+  INT 21h
+  JC  @End
+  XOR AX,AX
+ @End:
+  MOV SysErr,AX
+ {$ENDIF}
+END;
+
+{ Cette proc‚dure permet d'ajouter au d'enlever des octets … un endroit
+ pr‚cis dans un fichier en utilisant le tampon sp‚cifier.
+}
+
+Procedure _InsRec(Handle:Hdl;Position,Size:LongInt;SizeOfBuffer:Word;Var Buffer);
+Var
+ M,FS,SizeTransfert:LongInt;
+ ND,NM,I:Word;
+Begin
+ FS:=FileSize(Handle);
+ SizeTransfert:=FS-Position;
+ ND:=SizeTransfert div SizeOfBuffer;
+ NM:=SizeTransfert mod SizeOfBuffer;
+ If ND>0Then Begin
+  If Size<0Then Begin
+   M:=Position;
+   For I:=0to ND-1do Begin
+    _GetAbsRec(Handle,M,SizeOfBuffer,Buffer);
+    _SetAbsRec(Handle,LongInt(M)+LongInt(Size),SizeOfBuffer,Buffer);
+    Inc(M,LongInt(SizeOfBuffer));
+   End;
+  End
+   Else
+  Begin
+   M:=FS;
+   For I:=ND-1downto 0do Begin
+    Dec(M,LongInt(SizeOfBuffer));
+    _GetAbsRec(Handle,M,SizeOfBuffer,Buffer);
+    _SetAbsRec(Handle,LongInt(M)+LongInt(Size),SizeOfBuffer,Buffer);
+   End;
+   M:=Position;
+  End;
+ End
+  Else
+ M:=FS-NM;
+ If NM>0Then Begin
+  _GetAbsRec(Handle,M,NM,Buffer);
+  _SetAbsRec(Handle,LongInt(M)+LongInt(Size),NM,Buffer);
+ End;
+ If Size<0Then Begin
+  SetFilePos(Handle,FileSize(Handle)+Size);
+  FileTrunc(Handle);
+ End;
+End;
+
+{ Cette proc‚dure permet d'ajouter au d'enlever des octets … un endroit
+ pr‚cis.
+}
+
+Procedure InsRec(Handle:Hdl;Position,Size:LongInt);
+Var
+ Buffer:Array[0..1023]of Byte;
+Begin
+ _InsRec(Handle,Position,Size,SizeOf(Buffer),Buffer);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure FillChr                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dire fixe avec la valeur de la variable de param‚trage ®Value¯
+ la  m‚moire  conventionnel (en  mode  r‚el)  … partir  de l'adresse  de la
+ variable de param‚trage ®X¯.
+}
+
+{$IFDEF NotReal}
+ {$I \Source\Chantal\Library\FillChar.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure FillClr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure efface la m‚moire conventionnel … partir de l'adresse
+ sp‚cifi‚ par la variable de param‚trage ®X¯ et de longueur d‚finit par
+ la variable de param‚trage ®Len¯.
+}
+
+Procedure FillClr{Var X;Len:Word};Begin
+ FillChr(X,Len,0)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure FillSpc                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure efface la m‚moire conventionnel (en mode r‚el) … partir
+ de l'adresse sp‚cifi‚ par la variable  de param‚trage ®X¯ et de longueur
+ d‚finir par la variable de param‚trage  ®Len¯ avec codes ASCII 32 (celui
+ pour les espaces).
+}
+
+Procedure FillSpc{Var X;Len:Wd};Begin
+ FillChr(X,Len,32)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure FillWord                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe avec la valeur de la variable de param‚trage ®Value¯,
+ par saut  de mots,  la m‚moire  conventionnel  (en mode  r‚el)  … partir de
+ l'adresse sp‚cifi‚ par la variable de param‚trage ®X¯.
+}
+
+Procedure FillWord{Var X;Len,Value:Word};Assembler;ASM
+ {$IFDEF __386__}
+  PUSH EDI
+   XCHG EDI,EAX
+   PUSH CX;PUSH CX
+   POP EAX
+   SHL EAX,16
+   MOV AX,CX
+   MOV ECX,EDX
+   AND ECX,0FFFFh
+   SHR ECX,1
+   REP STOSD
+   ADC ECX,ECX
+   REP STOSW
+@@exit:
+  POP EDI
+ {$ELSE}
+  CLD
+  LES DI,X
+  MOV CX,Len
+  MOV AX,Value
+  REP STOSW
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Proc‚dure FindFirst                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de trouv‚ le premier fichier d'une liste de
+ fichier de format DOS.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette  proc‚dure  existe   essentiellement  afin  de garder  une
+    compatibilit‚ avec le systŠme d'exploitation DOS sous Windows.
+}
+
+Procedure FindFirst{Const Name:String;Attr:Word;Var F:SearchRec};
+Var
+ Q:VariantSearchRec Absolute F;
+ Buf:Array[Byte]of Char;
+Begin
+ StrPCopy(@Buf,Name);
+ FindFirstFile(Buf,Attr,Q);
+ {$IFDEF __Windows__}
+  If SysErr=0Then Begin
+   F.Name:=StrPas(@Q.wShortFileName);
+   F.Size:=Q.wFileSizeLow;
+  End
+   Else
+  Begin
+   F.Name:='';
+   F.Size:=0;
+  End;
+ {$ELSE}
+  If SysErr=0Then Begin
+   F.Name:=StrPas(@Q.Name.ASCIIZ);
+  End;
+ {$ENDIF}
+End;
+
+Procedure FindNext(Var F:SearchRec);
+Var
+ Q:VariantSearchRec Absolute F;
+Begin
+ {$IFDEF __Windows__}
+  FindNextFile(F.Handle,Q);
+ {$ELSE}
+  FindNextFile(0,Q);
+  If SysErr=0Then Begin
+   F.Name:=StrPas(@Q.Name.ASCIIZ);
+  End;
+ {$ENDIF}
+End;
+
+{$IFDEF __TMT__}
+ Procedure FreeDrv(Seg:Word);Assembler;ASM
+  MOV ES,Seg
+  INT 9Ch
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction FreeMemHMA                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique le nombre de m‚moire HMA encore disponible (si en
+ mode r‚el).
+}
+
+{$IFDEF ExtraMemory}
+ Function FreeMemHMA:Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV AH,02h
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+@1:
+ END;
+{$ENDIF}
+
+Function _FSearch(Const Find,Path:String):String;Near;
+Var
+ I:Byte;
+ S,T:String;
+Begin
+ _FSearch:='';
+ If Pos(';',Path)>0Then Begin
+  S:='';
+  For I:=1to Length(Path)do If Path[I]=';'Then Begin
+   T:=SetPath4AddFile(S)+Find;
+   If FileExist(T)Then Begin
+    _FSearch:=T;
+    Exit;
+   End;
+  End
+   Else
+  IncStr(S,Path[I]);
+ End
+  Else
+ S:=Path;
+ T:=SetPath4AddFile(S)+Find;
+ If FileExist(T)Then _FSearch:=T;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure FSearch                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction recherche un/des fichier(s) dans une liste de chemin
+ s‚par‚e tous et chacun par un point-virgule (;).
+}
+
+Function FSearch{Const Find,Path:String):String};
+Var
+ I:Byte;
+ S:String;
+Begin
+ If Pos(';',Find)>0Then Begin
+  S:='';
+  For I:=1to Length(Find)do If Find[I]=';'Then Begin
+   S:=_FSearch(Path2NoDir(FileExpand(S)),Path);
+   If S<>''Then Begin
+    FSearch:=S;
+    Exit;
+   End;
+  End
+   Else
+  IncStr(S,Find[I]);
+ End
+  Else
+ S:=Find;
+ FSearch:=_FSearch(Path2NoDir(FileExpand(S)),Path)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure FSplit                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'extraire le r‚pertoire, le nom et ainsi qu'un
+ extension … partir d'un chemin de format DOS ou OS/2.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette  proc‚dure   existe   essentiellement   afin   de  garder  une
+    compatibilit‚ avec le systŠme d'exploitation DOS sous Windows.
+}
+
+Procedure FSplit(Path:PathStr;Var Dir:DirStr;Var Name:NameStr;Var Ext:ExtStr);
+{$IFDEF Real}
+ Assembler;ASM
+  PUSH DS
+   CLD
+   LDS SI,Path
+   LODSB
+   MOV DL,AL
+   XOR DH,DH
+   MOV BX,DX
+   OR  BX,BX
+   JE  @@2
+ @@1:
+   CMP Byte Ptr [SI+BX-1],'\'
+   JE  @@2
+   CMP Byte Ptr [SI+BX-1],':'
+   JE  @@2
+   DEC BX
+   JNE @@1
+ @@2:
+   MOV AX,67
+   LES DI,Dir
+   CALL Near Ptr @CopyString
+   XOR BX,BX
+   JMP @@4
+ @@3:
+   CMP Byte Ptr [SI+BX],'.'
+   JE  @@5
+   INC BX
+ @@4:
+   CMP BX,DX
+   JNE @@3
+ @@5:
+   MOV AX,8
+   LES DI,Name
+   CALL Near Ptr @CopyString
+   MOV BX,DX
+   MOV AX,4
+   LES DI,Ext
+   CALL Near Ptr @CopyString
+   JMP @End
+ @CopyString:
+   SUB DX,BX
+   CMP AX,BX
+   JB  @@1B
+   MOV AX,BX
+ @@1B:
+   STOSB
+   MOV CX,AX
+   ADD BX,SI
+   REP MOVSB
+   MOV SI,BX
+   RETN
+ @End:
+  POP DS
+ END;
+{$ELSE}
+ Var
+  Comma:Integer;
+ Begin
+  Dir:='';Name:='';Ext:='';
+  ChgChr(Path,'/','\');
+  If Path[Length(Path)]<>'\'Then Begin
+   Comma:=Length(Path);
+   While(Comma>0)and(Path[Comma]<>'.')do Dec(Comma);
+   If Comma>0Then Begin
+    Ext:=Copy(Path,Comma,255);
+    Path:=DelStr(Path,Comma,255);
+   End
+    Else
+   Comma:=Length(Path);
+   While(Comma>0)and(Not(Path[Comma]in['\',':']))do Dec(Comma);
+   If Comma>0Then Begin
+    If Path[Comma]in['\',':']Then Inc(Comma);
+    Name:=Copy(Path,Comma,255);
+    Path:=DelStr(Path,Comma,255);
+   End
+    Else
+   Begin
+    Name:=Path;
+    Path:='';
+   End;
+  End;
+  Dir:=Path;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction GetAbsFileTxtLn                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  permet d'effectuer une lecture d'une ligne complŠte … une
+ position absolue  dans un fichier de format ASCII  … l'aide d'un Handle et
+ de renvoyer son r‚sultat.
+}
+
+Function GetAbsFileTxtLn{Handle:Hdl;P:Long):String};
+{$IFDEF __Windows__}
+ Var
+  S:String;
+ Begin
+  _GetAbsFileTxtLn(Handle,P,S);
+  GetAbsFileTxtLn:=S;
+ End;
+{$ELSE}
+ Assembler;ASM
+  LES DI,@Result
+  PUSH Word Ptr Handle
+  PUSH Word Ptr P[2]
+  PUSH Word Ptr P
+  PUSH ES
+  PUSH DI
+  PUSH CS
+  CALL Near Ptr _GetAbsFileTxtLn
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure _GetAbsFileTxtLn                    Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'effectuer une lecture d'une ligne complŠte … une
+ position absolue  dans un fichier de format ASCII  … l'aide d'un Handle et
+ de renvoyer le r‚sultat dans la chaŒne de caractŠres pass‚ par paramŠtre.
+}
+
+Procedure _GetAbsFileTxtLn{Handle:Hdl;P:LongInt;Var S:String};Begin
+ SetFilePos(Handle,P);
+ _GetFileTxtLn(Handle,S)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                      Fonction GetCapsLck                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une valeur indiquant si le touche clavier
+ ®CapsLock¯ est fix‚ (True) ou non (False).
+}
+
+Function GetCapsLck{:Boolean};Assembler;ASM
+ {$IFNDEF __Windows__}
+  {$IFOPT G+}
+   MOV ES,Seg0040
+   PUSHF
+    CLI
+    MOV AL,ES:[17h]
+   POPF
+   ROL AL,2
+  {$ELSE}
+   XOR AX,AX
+   MOV ES,AX
+   PUSHF
+    CLI
+    MOV AL,ES:[417h]
+   POPF
+   ROL AL,1
+   ROL AL,1
+ {$ENDIF}
+  AND AL,1
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure GetDate                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure renvoie la date telle qu'elle est connue par le systŠme
+  d'exploitation.
+
+
+  Remarque
+  ÍÍÍÍÍÍÍÍ
+
+   ş Rien ne permet a priori de tester  que la date du systŠme est exacte.
+     Si le problŠme est important,  il sera donc pr‚f‚rable  de l'afficher
+     et de permettre … l'utilisateur de la modifier … l'aide de ®SetDate¯.
+}
+
+{$I \Source\Chantal\Library\GetDate.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction GetDrv                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la lettre de l'unit‚ courante.
+}
+
+Function GetDrv{:Char};Assembler;ASM
+ MOV AH,19h
+ INT 21h
+ ADD AL,'A'
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction GetDsk                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le num‚ro du disque courant.
+}
+
+{$IFDEF NoInLine}
+ Function GetDsk{:Byte};Assembler;ASM
+  MOV AH,19h
+  INT 21h
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction GetDskLabel                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le nom du volume du disque sp‚cifi‚ par la
+ variable de param‚trage ®Dsk¯.
+}
+
+Function GetDskLabel{Dsk:Byte):String};
+Var
+ Info:SearchRec;
+ I:Byte;
+ Drv:Char;
+Begin
+ If Dsk=0Then Drv:=GetDrv
+         Else Drv:=Char(Dsk+64);
+ FindFirst(Drv+':\*.*',faVolumeID,Info);
+ If SysErr=0Then GetDskLabel:=Info.Name
+             Else GetDskLabel:=''
+End;
+
+Procedure GetFAttr(Var F;Var Attr:Word);Assembler;ASM
+ {$IFNDEF Win32}
+  PUSH DS
+   LDS DX,F
+   ADD DX,Offset FileRec.Name
+   MOV AX,4300h
+   INT 21h
+  POP DS
+  JNC @@1
+  XOR CX,CX
+  JMP @@2
+@@1:
+  XOR AX,AX
+@@2:
+  MOV SysErr,AX
+  LES DI,Attr
+  XCHG  AX,CX
+  STOSW
+{$ENDIF}
+END;
+
+Procedure SetFAttr(Var F;Attr:Word);Assembler;ASM
+ {$IFNDEF Win32}
+  PUSH DS
+   LDS DX,F
+   ADD DX,Offset FileRec.Name
+   MOV CX,Attr
+   MOV AX,4301h
+   INT 21h
+  POP DS
+  JC  @@1
+  XOR AX,AX
+@@1:
+  MOV SysErr,AX
+{$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction GetFile                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction lit une partie du fichier sp‚cifier par la varaible de
+ param‚trage ®P¯  de la taille d‚finit  par la variable  de param‚trage
+ ®Size¯  et le transfert  dans le tampon  de la variable de param‚trage
+ ®Buf¯,  le nom du fichier est contenu  dans la variable de param‚trage
+ ®Name¯.  La valeur de retour contient l'erreur DOS ou 0 si l'op‚ration
+ c'est correctement d‚roul‚.
+}
+
+Function GetFile{Const Name:String;P:Long;Size:Wd;Var Buf):Word};
+Var
+ Handle:Hdl;
+ SaveErr:Word;
+Begin
+ Handle:=FileOpen(Name,fmRead);
+ If(Handle=errHdl)Then Begin
+  GetFile:=errHdl;
+  Exit;
+ End;
+ GetRec(Handle,P,Size,Buf);
+ SaveErr:=GetSysErr;
+ _Close(Handle);
+ If SaveErr>0Then GetSysErr:=SaveErr;
+ GetFile:=0
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction GetFileSize                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la taille du fichier sp‚cifier par la variable
+ de param‚trage ®Name¯.
+}
+
+Function GetFileSize{Const Name:String):LongInt};
+Var
+ Rec:SearchRec;
+Begin
+ FindFirst(Name,fa,Rec);
+ {$IFDEF __Windows__}
+  GetFileSize:=Rec.FileSizeLow;
+ {$ELSE}
+  GetFileSize:=Rec.Size;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction GetFileTime                    Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le temps (date et l'heure) de la derniŠre
+ modification du fichier ®Handle¯ du systŠme d'exploitation  DOS ou
+ compatible.
+}
+
+Function GetFileTime{Handle:Hdl;Var Time:LongInt):Word};Assembler;ASM
+ {$IFDEF __386__}
+ {$ELSE}
+  MOV AX,05700h
+  {$IFDEF __Windows__}
+   MOV BX,Handle
+   CMP BX,-1
+  {$ELSE}
+   MOV BL,Handle
+   CMP BL,-1
+  {$ENDIF}
+  JE  @1
+  {$IFNDEF __Windows__}XOR BH,BH{$ENDIF}
+  INT $21
+  JC  @1
+  LES DI,Time
+  {$IFDEF MinInstr}
+   MOV Word Ptr ES:[DI],CX
+   MOV Word Ptr ES:[DI+2],DX
+  {$ELSE}
+   CLD
+   XCHG AX,CX
+   STOSW
+   XCHG AX,DX
+   STOSW
+  {$ENDIF}
+  XOR AX,AX
+ @1:MOV SysErr,AX
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction GetFileTxtLn                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction lit une ligne texte ASCII … la position du pointeur d'un
+ Handle DOS.
+}
+
+Function GetFileTxtLn{Handle:Hdl):String};
+{$IFDEF __Windows__}
+ Var
+  S:String;
+ Begin
+  _GetFileTxtLn(Handle,S);
+  GetFileTxtLn:=S;
+ End;
+{$ELSE}
+ Assembler;ASM
+  LES DI,@Result
+  PUSH Word Ptr Handle
+  PUSH ES
+  PUSH DI
+  PUSH CS
+  CALL Near Ptr _GetFileTxtLn
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction GetIntVec                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  retourne  l'adresse  de l'interruption d‚finit  par la
+ variable de param‚trage ®IntNo¯ dans le vecteur d‚finit par la variable
+ de param‚trage ®Vector¯.
+}
+
+{$IFDEF NotReal}
+ {$I \Source\Chantal\Library\GetIntVe.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                     Fonction GetMemHMA                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction r‚serve de la m‚moire HMA par le pilote XMS.
+}
+
+{$IFDEF ExtraMemory}
+ Function GetMemHMA(Malloc:Word):Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV DX,Malloc
+  MOV AH,001h
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction GetModeIns                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'‚tat du mode d'insertion du clavier.
+}
+
+Function GetModeIns{:Boolean};Assembler;ASM
+ {$IFDEF DPMI}
+  MOV ES,Seg0040
+  CLI
+  MOV AL,ES:[17h]
+  STI
+ {$ELSE}
+  MOV AL,OS2
+  OR  AL,Win
+  JZ  @Direct
+  MOV AH,2
+  INT 16h
+  JMP @Compute
+@Direct:
+  {$IFOPT G+}
+   PUSH 0
+   POP ES
+  {$ELSE}
+   XOR AX,AX
+   MOV ES,AX
+  {$ENDIF}
+  PUSHF
+   CLI
+   MOV AL,ES:[$0417]
+  POPF
+ {$ENDIF}
+@Compute:
+ {$IFOPT G+}
+  SHR AL,7
+ {$ELSE}
+  ROL AL,1
+  AND AL,1
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction GetModOutput                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de connaŒtre la sortie courante utilis‚ pour faire
+ jouer des fichiers de musique ".MOD".
+}
+
+Function GetModOutput{:Byte};Assembler;ASM
+ MOV AL,SoundOutput
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction GetNxtChr                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le caractŠre  suivant d'une chaŒne de caractŠres
+ ASCII si celui n'est pas un lettre romain (A … Z minuscule ou majuscules.
+}
+
+Function GetNxtChr{I:Word;S:PChr):Char};Begin
+ While S^[I]<>#0do Begin
+  If IsRomanLetter(S^[I])Then Begin
+   GetNxtChr:=S^[I];
+   Exit;
+  End;
+  Inc(I)
+ End;
+ GetNxtChr:=#0
+End;
+
+Function GetNmChr{Const Source:String;Chr:Char):Byte};
+Var
+ I:Byte;
+Begin
+ GetNmChr:=0;
+ For I:=1to Length(Source)do If(Source[I]=Chr)Then ASM INC @Result;END;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction GetNmLck                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une valeur indiquant si le ®NumLock¯ est fix‚
+ (True) ou pas (False).
+}
+
+Function GetNmLck{:Boolean};Assembler;ASM
+ {$IFNDEF __Windows__}
+  {$IFOPT G+}
+   {$IFDEF DPMI}
+    MOV ES,Seg0040
+   {$ELSE}
+    MOV AX,_0040
+    MOV ES,AX
+   {$ENDIF}
+   PUSHF
+    CLI
+    MOV AL,ES:[17h]
+   POPF
+   ROL AL,3
+   AND AL,1
+  {$ELSE}
+   XOR AX,AX
+   MOV ES,AX
+   CLI
+   MOV AL,ES:[$417]
+   STI
+   AND AL,$20
+   JZ @1
+   MOV AL,1
+@1:
+  {$ENDIF}
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction GetPackTimer                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Portabilit‚: Global
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le temps actuel sous sa forme compresser en format
+ de l'unit‚ Dos de Borland. Ainsi, le temps (date et heure) est arrondie aux
+ 2 secondes.
+}
+
+Function GetPackTimer{:LongInt};
+Var
+ T:DateTime;
+ H:{$IFDEF DosUnit}
+  Word
+ {$ELSE}
+  Byte
+ {$ENDIF};
+ R:LongInt;
+Begin
+ GetDate(T.Year,T.Month,T.Day,H);
+ GetTime(T.Hour,T.Min,T.Sec,H);
+ PackTime(T,R);
+ GetPackTimer:=R
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction GetPartSec                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne les informations con‡ernant les partitions du
+ disque dur.
+}
+
+{$IFDEF OptionPartition}
+ Function GetPartSec(BDsk,Head:Byte;SecCyl:Word;Var Buf:PartSecType):Boolean;Assembler;ASM
+  MOV AX,0201h
+  MOV DL,BDsk
+  MOV DH,Head
+  MOV CX,SecCyl
+  LES BX,Buf
+  INT 013h
+  MOV AL,0
+  CMC
+  ADC AL,AL
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction GetCurrentDir                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le r‚pertoire courant du systŠme d'exploitation
+ DOS ou compatible.
+}
+
+Function GetCurrentDir{:String};
+{$IFDEF Win32}
+ Var
+  Buffer:Array[0..260-1]of Char;
+ Begin
+  GetCurrentDirectory(SizeOf(Buffer),Buffer);
+  GetCurrentDir:=StrPas(@Buffer);
+ End;
+{$ELSE}
+ Var
+  Path:String;
+ Begin
+  GetDir(0,Path);
+  GetCurrentDir:=Path
+ End;
+{$ENDIF}
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                 Fonction GetRawTimer & GetRawTimerB                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description GetRawTimer
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'heure de l'horloge ‚tant incr‚ment‚ … tous les
+ 18,2 par seconde.  Pour se faire il utilise une m‚thode d'accŠs directe …
+ la m‚moire et prend soit de ne pas ˆtre interrompu par un IRQ.
+
+
+ Description GetRawTimerB
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  fonction  retourne   seulement  le premier  octet  de l'heure  de
+ l'horloge ‚tant incr‚ment‚  … tous les 18,2 par seconde. Pour se faire il
+ utilise une m‚thode d'accŠs directe  … la m‚moire et prend soit de ne pas
+ ˆtre interrompu par un IRQ.
+}
+
+{$IFDEF NotReal}
+ {$I Library\GetRawTi.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure GetRec                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure retourne l'enregistrement de fichier ®Handle¯ situ‚ … la
+ position d‚finit par la variable de param‚trage  ®P¯ de la taille pr‚cis‚
+ par la  variable de  param‚trage  ®Size¯ vers le tampon  sp‚cifi‚  par la
+ variable de param‚trage ®Buf¯.
+}
+
+Procedure GetRec{Handle:Hdl;P:LongInt;Size:Word;Var Buf};Begin
+ _GetAbsRec(Handle,P*LongInt(Size),Size,Buf)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction GetRevHiMem                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la sous-version de la m‚moire du pilote de m‚moire
+ XMS de l'interruption multiplex.
+}
+
+{$IFDEF ExtraMemory}
+ Function GetRevHiMem:Byte;Assembler;ASM
+  MOV XmsErr,$80
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  PUSH BP
+   DB $FF,$1D{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,0
+  MOV AX,BX
+@1:
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction GetScrollLck                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une valeur indiquant si la touche clavier ®Scroll
+ Lock¯ est fix‚ (True) ou non (False).
+}
+
+Function GetScrollLck{:Boolean};Assembler;ASM
+ {$IFNDEF __Windows__}
+  {$IFOPT G+}
+   PUSH _0040
+   POP ES
+   PUSHF
+    CLI
+    MOV AL,ES:[$17]
+   POPF
+   SHR AL,4
+   AND AL,1
+  {$ELSE}
+{   MOV AL,OS2
+   OR  AL,Win
+   JZ  @Direct
+   MOV AH,02h
+   INT 16h
+   AND AL,010h
+   JZ  @End
+   MOV AL,1
+   JMP @End
+@Direct:}
+   XOR AX,AX
+   MOV ES,AX
+   PUSHF
+    CLI
+    TEST Byte Ptr ES:[0417h],010h
+    JZ   @1
+    MOV  AL,1
+@1:POPF
+@End:
+  {$ENDIF}
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction GetSecTrack                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de prendre connaissance du nombre de secteur par
+ piste contenue  sur un disque sp‚cifi‚  par la variable  de param‚trage
+ ®BDsk¯.
+}
+
+{$IFDEF OptionPartition}
+ Function GetSecTrack(BDsk:Byte):Word;Assembler;ASM
+  MOV AH,8
+  MOV DL,BDsk
+  INT 13h
+  MOV AX,CX
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction GetSerialNm                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le num‚ro de s‚rie (r‚clame un DOS 4.0+) du disque
+ sp‚cifi‚.  La valeur retourn‚ occupe  4 octets cons‚cutif renferm‚ dans une
+ variable de type Long(Int).
+
+
+ Exemple
+ ÍÍÍÍÍÍÍ
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ Serial:=GetSerialNm(0);                                                 ³
+ ³ WriteLn('Le num‚ro de s‚rie de l''unit‚ courante est ',                 ³
+ ³         HexWord2Str(Serial),'-',HexWord2Str(Serial shr 16));            ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+}
+
+Function GetSerialNm{Dsk:Byte):LongInt};
+Var
+ x0:BootRec;
+Begin
+ ReadDsk(Dsk,0,1,x0);
+ If SysErr=0Then GetSerialNm:=x0.SerialNm
+            Else GetSerialNm:=-1;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction GetSerialNmStr                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le num‚ro de s‚rie (r‚clame un DOS 4.0+) du disque
+ sp‚cifi‚.  La valeur retourn‚ occupe  9 octets cons‚cutif renferm‚ dans une
+ chaŒne de caractŠres de format Pascal standard.
+}
+
+Function GetSerialNmStr{Dsk:Byte):String};Begin
+ GetSerialNmStr:=_GetSerialNmStr(GetSerialNm(Dsk))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction GetStrComRLL                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaŒne  de caractŠres d'une bibliothŠque de
+ communication de Genesis d'index sp‚cifi‚ par la variable de param‚trage
+ ®X¯.
+}
+
+Function GetStrComRLL{X:Word):String};
+Var
+ PC:PChr;
+ SizeOf_:Word;
+Begin
+ PC:=AllocFunc(X,'MODEM.*',SizeOf_);
+ GetStrComRLL:=StrPas(PC);
+ FreeMemory(PC,SizeOf_)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction GetVerHiMem                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le num‚ro de la version du pilote de m‚moire
+ XMS en service par l'intermise de l'interruption multiplex.
+}
+
+{$IFDEF ExtraMemory}
+ Function GetVerHiMem:Byte;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,0
+@1:
+ END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                    Fonction GlobalDisableA20                 Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction d‚sactive la ligne A20 du pilote de m‚moire XMS.
+}
+
+ Function GlobalDisableA20:Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @End
+  MOV DI,Offset XMMCtrl
+  MOV AH,4
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+@End:
+ END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                   Fonction GlobalEnableA20                Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction active la ligne A20 du pilote de m‚moire XMS.
+}
+
+ Function GlobalEnableA20:Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV AH,03h
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure HaltOutOfMem                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette affiche un message d'erreur: ®102h: Manque de m‚moire¯ et termine
+ aussit“t aprŠs l'application courante.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure  est utilis‚e  pour les fonctions internes de gestion
+    de Chantal dans des situations critiques.
+}
+
+Procedure HaltOutOfMem;Begin
+ WriteLn('102h: Manque de m‚moire');{GetSysErr=errOOM}
+ Halt
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure HaltRLL                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette affiche un message d'erreur: ®101h: Erreur interne RLL¯ et termine
+ aussit“t aprŠs l'application courante.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure est utilis‚e pour les fonctions internes de gestion de
+    Chantal comme lorsqu'il ne retrouve plus les bibliothŠques de base.
+}
+
+Procedure HaltRLL;Begin
+ WriteLn('101h: Erreur interne RLL');{GetSysErr=errInternRLL}
+ Halt
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction HexByte2Str                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaine hexad‚cimal de la valeur sp‚cifi‚
+ par la variable de param‚trage en format de 2 caractŠres.
+
+
+ R‚f‚rence
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Fonction HexString de la proc‚dure ®error¯,  Turbo Graphix version
+    1.05A, Graphics system kernel, Turbo Pascal 3.01A de Borland.
+}
+
+{$I \Source\Chantal\Library\HexByte.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction HexLong2Str                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaine hexad‚cimal de la valeur sp‚cifi‚
+ par la variable de param‚trage en format de 8 caractŠres.
+
+
+ R‚f‚rence
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Fonction HexString de la proc‚dure ®error¯,  Turbo Graphix version
+    1.05A, Graphics system kernel, Turbo Pascal 3.01A de Borland.
+}
+
+Function HexLong2Str{X:LongInt):String};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  LES DI,@Result
+  MOV SI,Offset HexData
+  MOV DX,Word Ptr X
+  MOV BL,DL
+  AND BX,0Fh
+  MOV AL,DS:[SI+BX]
+  STD
+  ADD DI,8
+  STOSB
+  MOV BL,DL
+  CALL @2
+  MOV BL,DH
+  CALL @1
+  MOV BL,DH
+  CALL @2
+  MOV DX,Word Ptr X[2]
+  MOV BL,DL
+  CALL @1
+  MOV BL,DL
+  CALL @2
+  MOV BL,DH
+  CALL @1
+  MOV BL,DH
+  CALL @2
+  MOV AL,8
+  STOSB
+  JMP @End
+ @1:
+  AND BL,0Fh
+  JMP @2x
+ @2:
+  MOV CL,4
+  SHR BL,CL
+ @2x:
+  MOV AL,DS:[SI+BX]
+  STOSB
+  RETN
+ @End:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction HexStrToInt                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la valeur d‚cimal contenue dans une chaŒne ASCII
+ ‚crite en hexad‚cimal.
+}
+
+Function HexStrToInt{Str:String):LongInt};
+Const
+ HexChr:Array['A'..'F']of Byte=(10,11,12,13,14,15);
+ HexNum:Array['0'..'9']of Byte=(0,1,2,3,4,5,6,7,8,9);
+Var
+ I:Byte;
+ X:LongInt;
+ SL:Byte Absolute Str;
+Begin
+ X:=0;Str:=StrUp(Str);
+ For I:=SL downto 1do Begin
+  If Str[I]in['A'..'F']Then X:=X or LongInt(LongInt(HexChr[Str[I]])shl((SL-I)shl 2))Else
+  If(Str[I]in ArabicDigit)Then X:=X or LongInt(LongInt(HexNum[Str[I]])shl((SL-I)shl 2))
+ End;
+ HexStrToInt:=X
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction HexWord2Str                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaine hexad‚cimal de la valeur sp‚cifi‚
+ par la variable de param‚trage en format de 4 caractŠres.
+
+
+ R‚f‚rence
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Fonction HexString de la proc‚dure ®error¯,  Turbo Graphix version
+    1.05A, Graphics system kernel, Turbo Pascal 3.01A de Borland.
+}
+
+Function HexWord2Str{X:Wd):String};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  LES DI,@Result
+  MOV SI,Offset HexData
+  MOV DX,X
+  MOV BL,DL;AND BX,$F;MOV AL,DS:[SI+BX];MOV CL,4;STD;ADD DI,4;STOSB
+  MOV BL,DL;SHR BL,CL;MOV AL,DS:[SI+BX];STOSB
+  MOV BL,DH;AND BL,$F;MOV AL,DS:[SI+BX];STOSB
+  MOV BL,DH;SHR BL,CL;MOV AL,DS:[SI+BX];STOSB
+  MOV AL,CL;STOSB
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction IinStr                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  retourne True  si la position  d‚finit  par la variable de
+ de param‚trage  ®I¯ est  dans  l'intervale  de la longueur  de la chaŒne de
+ caractŠres. La position commence … partir de 1, comme une position absolue.
+}
+
+Function IinStr{I:Byte;Const S:String):Systex.Bool};Begin
+ IinStr:=(I>0)and(I<=Length(S))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure IncStr                             Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure rajoute le caractŠre d‚finit par la variable de param‚trage
+ ®Chr¯ … la chaŒne de caractŠres sp‚cifier par la variable de param‚trage ®S¯.
+}
+
+Procedure IncStr{Var S:String;Chr:Char};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  LES BX,S
+  INC Byte Ptr ES:[BX]
+  ADD BL,ES:[BX]
+  ADC BH,0
+  MOV AL,Chr
+  MOV ES:[BX],AL
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction InsStr                              Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure insŠre la chaŒne  de caractŠres sp‚cifi‚ par la variable de
+ param‚trage ®Ins¯ … la position d‚finit par la variable de param‚trage ®Pos¯
+ … la variable de param‚trage ®S¯.
+}
+
+Procedure InsStr{Var S:String;Pos:Byte;Const Ins:String};Begin
+ S:=Left(S,Pos-1)+Ins+Copy(S,Pos,255)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction IsAllCard                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  fonction  indique  si le  r‚pertoire  d‚finit  par la  variable  de
+ param‚trage ®Path¯ contient des caractŠres g‚n‚riques ('*' ou '?') couvrant
+ tous les fichiers d'un mˆme r‚pertoire.
+}
+
+Function IsAllCard{Const Path:String):Boolean};Begin
+ IsAllCard:=(Pos('*.*',Path)>0)or(Pos('????????.???',Path)>0)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction IsAltCode                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne  ®True¯  si le code contenu  dans la variable de
+ param‚trage ®Code¯ est un code clavier de combinaison "Alt+autre touche".
+ Dans l'‚ventualit‚ contraire, la valeur retourn‚ est ®False¯.
+
+
+ Exemples
+ ÍÍÍÍÍÍÍÍ
+
+  IsAltCode(kbAltA)=True
+  IsAltCode(Byte(' '))=False
+  IsAltCode(kbEnter)=True
+  IsAltCode(kbAltF7)=True
+}
+
+Function IsAltCode{Code:Wd):Boolean};Begin
+ IsAltCode:=False;
+ If Lo(Code)>0Then Exit;
+ If Hi(Code)in[Hi(kbAltQ)..Hi(kbAltP),Hi(kbAltA)..Hi(kbAltL),Hi(kbAltZ)..Hi(kbAltM)]Then IsAltCode:=True;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction IsArabicNumber                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique se le caractŠre de param‚trage ®Chr¯ est un chiffre
+ arabe, c'est-…-dire un caractŠre entre 0 et 9.
+}
+
+Function IsArabicNumber{Chr:Char):Boolean};Assembler;ASM
+ XOR AL,AL
+ MOV CH,Chr
+ CMP CH,'0'
+ JB @1
+ CMP CH,'9'
+ JA @1
+ INC AL
+@1:
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction IsAttrDir                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si la variable de param‚trage ®Attr¯ comporte un
+ attribue d'un r‚pertoire DOS  (valeur vrai  (True)) ou non  (valeur faux
+ (False)).
+}
+
+{$IFDEF ExtraHandle}
+ Function IsAttrDir(Attr:Word):Boolean;Begin
+  IsAttrDir:=Attr and faDir=faDir;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                               Fonction IsIsabel                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne vrai si un systŠme Malte Genesis III: Isabel tourne
+ actuellement sur la machine.
+}
+
+Function IsIsabel{:Boolean};Begin
+ {$IFDEF __Windows__}
+  IsIsabel:=No;
+ {$ELSE}
+  IsIsabel:=MemL[$0:$268]<>0
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction IsPChrEmpty                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si la chaŒne de caractŠres ASCIIZ est vide (True) ou
+ qu'elle contient au moins un caractŠre (False).  Ainsi qu'en elle pointe sur
+ ®NIL¯  ou que le premier caractŠre est un code ASCII 0,  elle en conclu dans
+ les 2 cas qu'il s'agit d'une chaŒne de caractŠres vide (True).
+}
+
+Function IsPChrEmpty{PChr:PChr):Boolean};Assembler;ASM
+ {$IFDEF FLAT386}
+  OR EAX,EAX
+  JZ @1
+  CMP Byte Ptr [EAX],0
+  MOV AL,1
+@1:
+  XOR AL,1
+ {$ELSE}
+  XOR AX,AX
+  LES DI,PChr
+  MOV CX,ES
+  OR  CX,DI
+  JCXZ @1
+  SCASB { CMP ES:[DI],AL }
+  JNE @2
+@1:
+  XOR AL,1
+@2:
+ {$ENDIF}
+END;
+
+{$I \Source\Chantal\Library\IScan.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction IsRomanLetter                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique sur le caractŠre sp‚cifi‚ par la variable de
+ param‚trage ®Chr¯  une lettre romain  (soit de A … Z en minuscule ou
+ majuscule). Si oui, le r‚sultat True sinon False.
+}
+
+Function IsRomanLetter{Chr:Char):Boolean};Assembler;ASM
+ XOR AX,AX
+ MOV CL,Chr
+ AND CL,0DFh
+ CMP CL,'A'
+ JB  @1
+ CMP CL,'Z'
+ JA  @1
+ INC AX
+@1:
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction IsSpoolerEmpty                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une identicateur bool‚an indiquant si le tampon
+ temporaire de l'imprimante contenu en m‚moire d'application est vide par
+ True ou qu'il contient au moins un octet en m‚moire par False.
+}
+
+{$IFNDEF NoSpooler}
+ Function IsSpoolerEmpty{:Boolean};Begin
+  IsSpoolerEmpty:=FSSpool<=0
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction IsUpKey                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une valeur indiquant qu'il s'agit d'un scan code
+ clavier de combinaison de touche.
+}
+
+Function IsUpKey{K:Word):Boolean};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOV AL,AH
+  OR  AL,AL
+  JE  @1
+  MOV AL,True
+@1:
+ {$ELSE}
+  MOV AL,Byte Ptr K[1]
+  OR  AL,AL
+  JE  @1
+  MOV AL,True
+@1:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction IsWildCard                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si le r‚pertoire d‚finit par la variable de
+ param‚trage ®Path¯ contient un/des caractŠre(s)  g‚n‚riques ('*' ou
+ '?').
+}
+
+Function IsWildCard{Const Path:String):Boolean};Begin
+ IsWildCard:=(Pos('*',Path)>0)or(Pos('?',Path)>0)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction JoyXPosTxts                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la positions horizontal du pointeur de manette de
+ jeux en fonction de la taille de l'‚cran.
+}
+
+{$IFDEF Joystick}
+ Function JoyXPosTxts(Joy:Byte):Byte;Begin
+  JoyXPosTxts:=(JoyPos(Joy*2)div JoyPotentioMeter)*CurrNmXTxts
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction JoyYPosTxts                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la positions vertical du pointeur de manette de
+ jeux en fonction de la taille de l'‚cran.
+}
+
+{$IFDEF Joystick}
+ Function JoyYPosTxts(Joy:Byte):Byte;
+ Var
+  YM:Byte;
+ Begin
+  YM:=CurrMaxYTxts;
+  If YM=0Then YM:=25
+         Else Inc(YM);
+  JoyYPosTxts:=(JoyPos(Joy*2+1)div JoyPotentioMeter)*YM;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction KeyPress                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la valeur True si le tampon clavier … au moins une
+ touche en r‚serve et dans le cas contraire False.
+}
+
+{$IFDEF __Windows__}
+ Function KeyPress{:Boolean};Begin
+  KeyPress:=KeyPressed
+ End;
+{$ELSE}
+ {$IFDEF NotReal}
+  {$I Library\KeyPress.Inc}
+ {$ENDIF}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction Left                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne les ®Num¯ premiers caractŠres de la chaŒne de
+ caractŠres sp‚cifi‚ par la variable de param‚trage ®Str¯.
+}
+
+Function Left{Const Str:String;Num:Byte):String};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  CLD
+  LES DI,@Result
+  PUSH DS
+   LDS SI,Str
+   MOV CL,DS:[SI]
+   MOV CH,0
+   INC CX
+   PUSH DI;REP MOVSB;POP DI
+   MOV AL,Num
+   SCASB
+   JNB @1
+   DEC DI
+   STOSB
+ @1:
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction LeftJustifyStr                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la chaŒne de caractŠres d‚finit par la variable
+ de param‚trage ®Str¯ de longueur sp‚cifi‚ par la variable de param‚trage
+ ®Width¯.  Si la longueur de la chaŒne est inf‚rieur …  ®Width¯ alors des
+ espaces sont rajout‚s.
+}
+
+Function LeftJustifyStr{Const Str:String;Width:Byte):String};Begin
+ LeftJustifyStr:=PadChr(Str,' ',Width)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction LoadStr                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction copie une tampon m‚moire pointer par la variable de
+ param‚trage ®PChr¯ d'une longueur de ®Len¯ octet(s) et la retourne.
+}
+
+Function LoadStr{Const PChr;Len:Byte):String};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  CLD
+  LES DI,@Result
+  MOV AL,Len
+  XOR AH,AH
+  STOSB
+  XCHG AX,CX
+  PUSH DS
+   LDS SI,PChr
+   REP MOVSB
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                      Fonction LocalDisableA20                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction d‚sactive le canal A20 en utilisant le pilote de m‚moire
+ XMS par l'entremise de l'interruption multiplex.
+}
+
+{$IFDEF ExtraMemory}
+ Function LocalDisableA20:Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV AH,06h
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+ @1:
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                      Fonction LocalEnableA20                      Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction active le canal A20 en utilisant le pilote de m‚moire
+  XMS par l'entremise de l'interruption multiplex.
+ }
+
+ Function LocalEnableA20:Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV AH,5
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+@1:
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                          Fonction LockExtMemBlockXMS                    Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction interdit la zone m‚moire de pilote m‚moire XMS sp‚cifi‚ par
+  le fichier ®Handle¯.
+ }
+
+ Function LockExtMemBlockXMS(Handle:Word):LongInt;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  XOR DX,DX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV DX,Handle
+  MOV AH,0Ch
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV AX,BX
+  MOV BX,DX
+  MOV XmsErr,0
+@1:
+ END;
+{$ENDIF}
+
+{$IFDEF Win32}
+  {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+   ³                   Fonction LPT1Exist                  Û
+   ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+   Description
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+    Cette fonction indique si la premiŠre imprimante existe.
+  }
+
+  Function LPT1Exist:Boolean;Assembler;ASM
+   XOR AX,AX
+   CMP [0008h],AX
+   JZ  @@End
+   INC AX
+@@End:
+  END;
+
+  {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+   ³                   Fonction LPT2Exist                 Û
+   ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+   Description
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+    Cette fonction indique si la seconde imprimante existe.
+  }
+
+  Function LPT2Exist:Boolean;Assembler;ASM
+   XOR AX,AX
+   CMP [000Ah],AX
+   JZ  @@End
+   INC AX
+@@End:
+  END;
+
+  {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+   ³                    Fonction LPT3Exist                  Û
+   ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+   Description
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+    Cette fonction indique si la troisiŠme imprimante existe.
+  }
+
+  Function LPT3Exist:Boolean;Assembler;ASM
+   XOR AX,AX
+   CMP [000Ch],AX
+   JZ  @@End
+   INC AX
+@@End:
+  END;
+
+  {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+   ³                    Fonction LPT4Exist                  Û
+   ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+   Description
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+    Cette fonction indique si la quatriŠme imprimante existe.
+  }
+
+  Function LPT4Exist:Boolean;Assembler;ASM
+   XOR AX,AX
+   CMP [000Eh],AX
+   JZ  @@End
+   INC AX
+@@End:
+  END;
+
+{$ELSE}
+
+ {$IFDEF DPMI}
+  {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+   ³                   Fonction LPT1Exist                  Û
+   ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+   Description
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+    Cette fonction indique si la premiŠre imprimante existe.
+  }
+
+  Function LPT1Exist:Boolean;Assembler;ASM
+   XOR AX,AX
+   MOV ES,Seg0040
+   CMP ES:[0008h],AX
+   JZ  @@End
+   INC AX
+@@End:
+  END;
+
+  {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+   ³                   Fonction LPT2Exist                 Û
+   ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+   Description
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+    Cette fonction indique si la seconde imprimante existe.
+  }
+
+  Function LPT2Exist:Boolean;Assembler;ASM
+   XOR AX,AX
+   MOV ES,Seg0040
+   CMP ES:[000Ah],AX
+   JZ  @@End
+   INC AX
+@@End:
+  END;
+
+  {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+   ³                    Fonction LPT3Exist                  Û
+   ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+   Description
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+    Cette fonction indique si la troisiŠme imprimante existe.
+  }
+
+  Function LPT3Exist:Boolean;Assembler;ASM
+   XOR AX,AX
+   MOV ES,Seg0040
+   CMP ES:[000Ch],AX
+   JZ  @@End
+   INC AX
+@@End:
+  END;
+
+  {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+   ³                    Fonction LPT4Exist                  Û
+   ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+   Description
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+    Cette fonction indique si la quatriŠme imprimante existe.
+  }
+
+  Function LPT4Exist:Boolean;Assembler;ASM
+   XOR AX,AX
+   MOV ES,Seg0040
+   CMP ES:[000Eh],AX
+   JZ  @@End
+   INC AX
+ @@End:
+  END;
+ {$ELSE}
+  Function LPT1Exist{:Boolean};External;
+  Function LPT2Exist{:Boolean};External;
+  Function LPT3Exist{:Boolean};External;
+  Function LPT4Exist{:Boolean};External;
+  {$L LPTXEXST.OBJ}
+ {$ENDIF}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction LShiftPress                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une valeur indiquant si la touche ®Shift¯ de gauche
+ est enfonc‚ par True ou non par la False.
+}
+
+{$IFDEF NotReal}
+ {$I Library\LShiftPr.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction MaltePath                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la r‚pertoire utilis‚ pour les applications Malte
+ Genesis.
+}
+
+Function MaltePath{:String};
+Var
+ S:String;
+Begin
+ If IsPChrEmpty(PathSystems)Then Begin
+  S:=GetEnv('MALTE');
+  If S=''Then S:=Path2Dir(_PrgPath);
+  If S=''Then S:='\MALTE';
+ End
+  Else
+ S:=Path2Dir(StrPas(PathSystems));
+ MaltePath:=SetPath4AddFile(S);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure MasterVolume                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe le volume du pilote de musique externe fesant jouer
+ des fichiers ".MOD".
+}
+
+Procedure MasterVolume{X:Byte};Assembler;
+Var
+ PtrMasterVolume:Procedure;
+ASM
+ {$IFNDEF DPMI}
+  XOR AX,AX
+  MOV ES,AX
+  LES DI,ES:[$8C*4]
+  MOV Word Ptr PtrMasterVolume,DI
+  MOV Word Ptr PtrMasterVolume[2],ES
+  MOV AL,X
+  MOV AH,7
+  PUSHF
+  CALL PtrMasterVolume
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Proc‚dure MaxExpandHeap                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure utilise le maximum de m‚moire pour le tas du programme
+ courant.
+}
+
+{$IFDEF Real}
+ Procedure MaxExpandHeap;Assembler;ASM
+  MOV BX,0FFFFh
+  MOV AH,04Ah
+  MOV ES,PrefixSeg
+  PUSH ES
+   INT 021h
+  POP ES
+  MOV AH,04Ah
+  PUSH ES
+   PUSH BX
+    INT 021h
+   POP BX
+  POP AX
+  ADD AX,BX
+  MOV Word Ptr HeapEnd[2],AX
+  MOV Word Ptr HeapEnd,0
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction MoveExtMemBlockXms                  Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction copie des informations dans la m‚moire XMS en utilisant
+ le pilote du mˆme nom.
+}
+
+{$IFNDEF NotReal}
+ Function MoveExtMemBlockXms;Assembler;ASM
+  MOV XmsErr,$80
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  PUSH DS
+   PUSH DS
+   POP ES
+   MOV DI,Offset XMMCtrl
+   LDS SI,MoveStruct
+   MOV AH,0Bh
+   PUSH BP
+    DB 026h,0FFh,01Dh{CALL FAR ES:[DI]}
+   POP BP
+  POP DS
+  MOV XmsErr,BL
+ @1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction MoveFile                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de d‚placer un fichier d'une unit‚ disque … un
+ autre.
+}
+
+{$I \Source\Chantal\Library\MoveFile.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure MoveLeft                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure copie un bloc de m‚moire (Source) dans le bloc destinataire
+ (Dest). La longueur de ce bloc est sp‚cifi‚ par la variable ®Count¯.
+}
+
+{$IFDEF NotReal}
+ {$I \Source\Chantal\Library\MoveLeft.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure MoveRight                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure copie un tampon source vers une destination en commen‡ant
+ par la fin  jusqu'au d‚but  au lieu  du d‚but  vers la fin  comme sa soeur
+ ®MoveLeft¯.
+}
+
+Procedure MoveRight{Const Source;Var Dest;Count:Word};
+{$IFDEF FLAT386}
+ Begin
+  MoveLeft(Source,Dest,Count);
+ End;
+{$ELSE}
+ Assembler;ASM
+  STD
+  PUSH DS
+   LDS SI,Source
+   LES DI,Dest
+   MOV CX,Count
+   ADD SI,CX
+   DEC SI
+   ADD DI,CX
+   DEC DI
+   REP MOVSB
+  POP DS
+ END;
+{$ENDIF}
+
+{ Cette proc‚dure transforme une liste de mots en octets.
+}
+
+Procedure MoveWord2Byte{Const Source;Var Dest;Count:Word};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH ESI
+   PUSH EDI
+    XCHG ESI,EAX
+    MOV EDI,EDX
+    AND ECX,0FFFFh
+    JCXZ @End
+@Count:
+    LODSW
+    LODSB
+    LOOP @Count
+@End:
+   POP EDI
+  POP ESI
+ {$ELSE}
+  CLD
+  PUSH DS
+   LDS SI,Source
+   LES DI,Dest
+   MOV CX,Count
+   JCXZ @End
+@Count:
+   LODSW
+   STOSB
+   LOOP @Count
+ @End:
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction MultChr                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaŒne de caractŠres avec le mˆme caractŠre …
+ la quantit‚ sp‚cifi‚e par la variable de param‚trage ®Len¯.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Si  la variable  de param‚trage  ®Len¯  est ‚gale … 0,  il retourne une
+    chaŒne de caractŠres vide.
+}
+
+{$I \Source\Chantal\Library\MultChr.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction FileCreate                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction cr‚e le fichier sp‚cifi‚ par la variable de param‚trage
+ ®Name¯ avec un attribut fichier d'archive.
+}
+
+Function FileCreate{Name:String):Hdl};
+{$IFDEF Win32}
+ Var
+  PName:Array[Byte]of Char;
+ Begin
+  StrPCopy(@PName,Name);
+  FileCreate:=CreateFile(@Name,wGenericRead or wGenericWrite,
+                         0,NIL,wCreateAlways,wFileAttributeNormal,0);
+ End;
+{$ELSE}
+ Var
+  SegName,OfsName:Word;
+ Begin
+  ChgChr(Name,'/','\');
+  If FileExist(Name)Then DeleteFile(Name);
+  IncStr(Name,#0);
+  SegName:=Seg(Name[1]);
+  OfsName:=Ofs(Name[1]);
+  ASM
+   PUSH DS
+    XOR CX,CX
+    {$IFDEF __Windows__}
+     PUSH DS
+     PUSH DI
+     PUSH CX
+     CALL _WNew
+    {$ELSE}
+     MOV DX,OfsName
+     MOV DS,SegName
+     MOV AH,$3C
+     INT $21
+    {$ENDIF}
+   POP DS
+   {$IFNDEF __Windows__}
+    JC @1
+    XOR BX,BX
+    JMP @2
+ @1:MOV BX,AX
+    MOV AX,errHdl
+ @2:MOV GetSysErr,BX
+   {$ENDIF}
+   {$IFDEF __Windows__}
+    MOV @Result,AX
+   {$ELSE}
+    MOV @Result,AL
+   {$ENDIF}
+  END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction New_                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction cr‚e le fichier d‚finit  par la variable de param‚trage
+ ®Name¯ avec l'attribut sp‚cifier par la variable de param‚trage ®Attr¯.
+ Elle retourne ensuite son handle.
+}
+
+Function New_{Name:String;Attr:Word):Hdl};Assembler;ASM
+ {$IFDEF Win32}
+ {$ELSE}
+  PUSH DS
+   MOV CX,Attr
+   LDS DI,Name
+   MOV BL,DS:[DI]
+   INC DI{Set Name[1]}
+   MOV BH,0
+   MOV DS:[DI+BX],BH{Name:=Name+#0}
+   MOV DX,DI
+   MOV AH,03Ch
+   INT 021h
+  POP DS
+  JC  @1
+  XOR BX,BX
+  JMP @2
+@1:MOV BX,AX
+  MOV AX,errHdl
+@2:MOV SysErr,BX
+ {$ENDIF}
+END;
+
+{$IFDEF ExtraHandle}
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                           Fonction NewAttr                           Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction cr‚e  le fichier d‚finit  par la variable de param‚trage
+  ®Name¯ avec l'attribut sp‚cifier  par la variable de param‚trage ®Attr¯.
+  Elle retourne ensuite son l'‚tat du cheminement, True pour si tous c'est
+  bien pass‚ sinon False.
+ }
+
+ Function NewAttr(Const Name:String;Attr:Word):Boolean;Begin
+  NewAttr:=New_(Name,Attr)<>errHdl
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction NewNBak                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction cr‚e un nouveau fichier et s'il existe d‚j… il le renomme
+ en ".BAK".  S'il n'est pas autoris‚ par la variable ®MakeBak¯  il d‚truit
+ le ".BAK" sans histoire et cr‚e un nouveau fichier.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction a  pour but de permettre  … une application complexe de
+    "backupper" une fichier et de le r‚‚crire avec son attribut d'origine.
+}
+
+Function FileCreateAndBackup{Const Path:String):Word};
+Var
+ BakPath:String;
+ X:SearchRec;
+Begin
+ FindFirst(Path,fa,X);
+ If SysErr<>0Then Begin
+  X.Attr.Value:=faArchive;
+ End;
+ BakPath:=Path2NoExt(Path)+'.BAK';
+ If FileExist(Path)Then Begin
+  If FileExist(BakPath)Then DeleteFile(BakPath);
+  If(MakeBak)Then RenameFile(Path,BakPath);
+ End;
+ FileCreateAndBackup:=New_(Path,X.Attr.Value);
+End;
+
+{$IFDEF ExtraHandle}
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                           Fonction NewTmp                            Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction cr‚e le fichier introduit par la variable de param‚trage
+  ®Name¯ de type temporaire et retourne ensuite son ®Handle¯ si tous c'est
+  bien pass‚.
+ }
+
+ Function NewTmp(Name:String):Hdl;Assembler;ASM
+  PUSH DS
+   LDS DI,Name
+   MOV BL,DS:[DI]
+   INC DI
+   MOV BH,0
+   MOV DS:[DI+BX],BH{Name:=Name+#0}
+   MOV DX,DI
+   MOV AH,05Ah
+   XOR CX,CX
+   INT 021h
+  POP DS
+  JC  @1
+  XOR BX,BX
+  JMP @2
+@1:MOV BX,AX
+  MOV AX,errHdl
+@2:MOV GetSysErr,BX
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction NmHandle                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le nombre de Handle utiliser par l'application
+ d‚finit par son pr‚fixe de segment de programme (PSP).
+}
+
+{$I \Source\Chantal\Library\System\Dos\NmHandle.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure NoSound                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure arrˆte le son ‚mis par le PC Speaker mais n'affecte en
+ aucun cas le son  de la  carte  de  son.  Elle affecte seulement le  PC
+ Speaker!
+}
+
+Procedure NoSound;Assembler;ASM
+ IN AL,061h
+ AND AL,0FCh
+ OUT 061h,AL
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction NxtKey                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet  de connaŒtre la prochaŒne touche clavier devant
+ ˆtre extraŒte du tampon clavier sans affecter ou extraire une touche du
+ tampon clavier.
+}
+
+Function NxtKey{:Word};
+Var
+ K:Word;
+ KByte:Byte Absolute K;
+Begin
+ If Not(KeyPress)Then NxtKey:=0
+  Else
+ Begin
+  {$IFNDEF __Windows__}
+  ASM{ CLI;K:=MemW[_0040:MemW[_0040:$1A]];STI; }
+   CLI
+   {$IFDEF DPMI}
+    PUSH _0040
+    POP ES
+   {$ELSE}
+    {$IFOPT G+}
+     PUSH $40
+     POP ES
+    {$ELSE}
+     MOV AX,$40
+     MOV ES,AX
+    {$ENDIF}
+    MOV SI,ES:[$1A]
+    MOV AX,ES:[SI]
+    MOV K,AX
+   {$ENDIF}
+   STI
+  END;
+  If KByte in[$D0,$E0]Then KByte:=0;
+  NxtKey:=K;
+  {$ELSE}
+   NxtKey:=0;
+  {$ENDIF}
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                               Fonction OctStr2Nm                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction transforme la chaŒne de caractŠres comprenant des caractŠres
+ octal en valeur num‚rique.
+}
+
+Function OctStr2Nm{Const Str:String):LongInt};
+Var
+ I:Byte;
+ X:LongInt;
+ SL:Byte Absolute Str;
+Begin
+ X:=0;
+ For I:=SL downto 1do X:=X or((Byte(Str[I])-Byte('0'))shl((SL-I)*3));
+ OctStr2Nm:=X;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction FileOpen                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction ouvre un fichier par la technique des fichiers Handle du
+ systŠme d'exploitation DOS ou compatible  et retourne son code lui ‚tant
+ attribu‚.
+}
+
+Function FileOpen{Name:String;Mode:Byte):Hdl};
+{$IFDEF Win32}
+ Const
+  AccessMode:Array[0..2]of Integer=(
+   wGenericRead,
+   wGenericWrite,
+   wGenericRead or wGenericWrite);
+  ShareMode:Array[0..4]of Integer=(
+   0,
+   0,
+   wFileShareRead,
+   wFileShareWrite,
+   wFileShareRead or wFileShareWrite);
+ Var
+  PName:Array[Byte]of Char;
+ Begin
+  StrPCopy(@PName,Name);
+  FileOpen:=CreateFile(@PName,AccessMode[Mode and 3],
+                       ShareMode[(Mode and $F0)shr 4],NIL,wOpenExisting,
+                       wFileAttributeNormal,0);
+ End;
+{$ELSE}
+ Var
+  SegName,OfsName,I:Word;
+ Begin
+  ChgChr(Name,'/','\');
+  I:=Pos(SYSDrive,Name);
+  If I>0Then Begin { AccŠs … l'unit‚ SYS:? }
+   Name:=DelStr(Name,I,4);
+   I:=OpenSearchPathNDos(';'+StrPas(PathSystems)+';\MALTE\SYSTEMS',Name,Mode);
+   If(I=errHdl)Then I:=OpenSearchPath(SetPath4AddFile(GetEnv('MALTE'))+'SYSTEMS;'+_PrgPath,Name,Mode);
+   FileOpen:=I;
+   Exit;
+  End;
+  IncStr(Name,#0);
+  SegName:=Seg(Name[1]);
+  OfsName:=Ofs(Name[1]);
+  ASM
+   MOV AX,3D40h
+   OR  AL,Mode
+   PUSH DS
+    MOV DX,OfsName
+    MOV DS,SegName
+    INT 21h
+   POP DS
+   JC  @1
+   XOR BX,BX
+   JMP @2
+@1:MOV BX,AX
+   {$IFDEF __Windows__}
+    MOV AX,errHdl
+   {$ELSE}
+    MOV AL,errHdl
+   {$ENDIF}
+@2:MOV GetSysErr,BX
+   {$IFDEF __Windows__}
+    MOV @Result,AX
+   {$ELSE}
+    MOV @Result,AL
+   {$ENDIF}
+  END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction OpenSearchPath                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction ouvre un fichier par la technique des fichiers Handle du
+ systŠme d'exploitation DOS ou compatible  et retourne son code lui ‚tant
+ attribu‚.  Le r‚pertoire  ou le  fichier est  d'abord recherch‚  dans la
+ variable  de param‚trage ®Name¯  puis  dans la  variable  de param‚trage
+ ®Path¯.
+}
+
+Function OpenSearchPath{Const Path,Name:String;Mode:Byte):Hdl};Begin
+ OpenSearchPath:=FileOpen(FileExpand(FSearch(Name,Path)),Mode);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction OpenSearchPathNDos                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction ouvre un fichier par la technique des fichiers Handle du
+ systŠme d'exploitation DOS ou compatible  et retourne son code lui ‚tant
+ attribu‚.  Le r‚pertoire  ou le  fichier est  d'abord recherch‚  dans la
+ variable  de param‚trage ®Name¯  puis  dans la  variable  de param‚trage
+ ®Path¯ et enfin dans la variable ®PATH¯ de l'environnement DOS.
+}
+
+Function OpenSearchPathNDos{Const Path,Name:String;Mode:Byte):Hdl};
+Var
+ Dir:String;
+Begin
+ Dir:=FSearch(Name,Path);
+ If Dir=''Then Dir:=FSearch(Name,DosPath);
+ OpenSearchPathNDos:=FileOpen(FileExpand(Dir),Mode);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure PackTime                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet  de passer  de la forme longue de la date  et de
+ l'heure directement lisible, … la forme courte utilis‚, par exemple, par
+ la proc‚dure  ®SetFTime¯.  Le  paramŠtre  ®T¯  est  doit  ˆtre  de  type
+ ®DateTime¯ pr‚d‚fini par l'unit‚ ®Dos¯ ou ®Systex¯.
+}
+
+{$I \Source\Chantal\Library\PackTime.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction PadChr                             Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaŒne de caractŠres gonfl‚e par le caractŠre
+ sp‚cifi‚ par la variable de param‚trage ®Chr¯ auprŠs de la chaŒne original.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Si la chaŒne de caractŠres est plus grande que la valeur de la variable
+    ®Len¯,  la fonction diminue la chaŒne de caractŠres … la longueur de la
+    variable de param‚trage ®Len¯.
+}
+
+Function PadChr{Source:String;Chr:Char;Len:Byte:String};
+Var
+ NL:Byte;
+ StrLen:Byte Absolute Source;
+Begin
+ NL:=Alpha(StrLen,Len);
+ StrLen:=Len;
+ FillChr(Source[Succ(NL)],Len-NL,Byte(Chr));
+ PadChr:=Source;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction Path2Dir                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la partie r‚pertoire du chemin contenu dans la
+ variable de param‚trage ®Path¯.
+}
+
+Function Path2Dir{Const Path:String):String};
+Var
+ D:String;
+ N:NameStr;
+ E:ExtStr;
+
+ Procedure AddBackSlash;Begin
+  If D[Length(D)]<>'\'Then IncStr(D,'\')
+ End;
+
+Begin
+ {$IFDEF Win32}
+ {$ELSE}
+  Path2Dir:='';
+  If Path=''Then Exit;
+  FSplit(Path,D,N,E);
+  If E=''Then Begin
+   AddBackSlash;
+   AddStr(D,E)
+  End;
+  If D=''Then Path2Dir:=''
+         Else AddBackSlash; { Toujours ˆtre certain que le dernier caractŠre }
+                            { se termine par un barre oblique inverse (\). }
+  Path2Dir:=D;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction Path2Drv                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la lettre de l'unit‚ inclue dans la variable de
+ param‚trage ®Path¯ contenant lui-mˆme un chemin.
+}
+
+Function Path2Drv{Const Path:String):Char};Begin
+ Path2Drv:=Char(Path2Dsk(Path)+65)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction Path2Dsk                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le num‚ro du disque inclue dans la variable de
+ param‚trage ®Path¯ contenant lui-mˆme un chemin.
+}
+
+Function Path2Dsk{Const Path:String):Byte};Begin
+ If(Path='')or Not(IsRomanLetter(Path[1]))Then Path2Dsk:=GetDsk
+                                          Else Path2Dsk:=Byte(ChrUp(Path[1]))-65
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction Path2Ext                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne l'extension du chemin contenu dans la variable de
+ param‚trage ®Path¯.
+}
+
+Function Path2Ext{Const Path:String):String};
+Var
+ D:DirStr;
+ N:NameStr;
+ E:ExtStr;
+Begin
+ FSplit(Path,D,N,E);
+ Path2Ext:=E;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction Path2Name                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le nom (sans son extension) du chemin contenu dans
+ la variable de param‚trage ®Path¯.
+}
+
+Function Path2Name{Const Path:String):String};
+Var
+ D:DirStr;
+ N:NameStr;
+ E:ExtStr;
+Begin
+ FSplit(Path,D,N,E);
+ Path2Name:=N;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction Path2NoDir                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  retourne  une fichier  sans  son r‚pertoire,  mais gardant
+ encore son nom et son extension s'il existait dans la chaŒne de param‚trage
+ ®Path¯. Si un point virgule sous le chemin de r‚pertoire, tous le reste est
+ perdu: tous caractŠres aprŠs le point-virgule...
+}
+
+Function Path2NoDir{Path:String):String};
+Var
+ D:DirStr;
+ N:NameStr;
+ E:ExtStr;
+Begin
+ TruncAfterSemicolon(Path);
+ FSplit(Path,D,N,E);
+ Path2NoDir:=N+E;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction Path2NoExt                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une fichier sans son extension,  mais gardant encore
+ son r‚pertoire et son nom s'il existait dans la chaŒne de param‚trage ®Path¯.
+}
+
+Function Path2NoExt{Const Path:String):String};
+Var
+ D:DirStr;
+ N:NameStr;
+ E:ExtStr;
+Begin
+ FSplit(Path,D,N,E);
+ Path2NoExt:=SetPath4AddFile(D)+N
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure Play                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de faire jouer de la musique sous le format du
+ "Play" du langage BASIC.
+}
+
+{$IFDEF OldPlayerSound}
+Procedure Play(S:String);
+Const NoteOfs:Array['A'..'G']of Int=(9,11,0,2,4,5,7);
+      NoteFreqs:Array[0..84]of Int=(0,
+(*    C   C#    D   D#    E    F   F#    G   G#    A   A#    B *)
+     65,  69,  73,  78,  82,  87,  92,  98, 104, 110, 116, 123,
+    131, 139, 147, 156, 165, 175, 185, 196, 208, 220, 233, 247,
+    262, 278, 294, 312, 330, 350, 370, 392, 416, 440, 466, 494,
+    524, 556, 588, 624, 660, 700, 740, 784, 832, 880, 932, 988,
+   1048,1112,1176,1248,1320,1400,1480,1568,1664,1760,1864,1976,
+   2096,2224,2352,2496,2640,2800,2960,3136,3328,3520,3728,3952,
+   4192,4448,4704,4992,5280,5600,5920,6272,6656,7040,7456,7904);
+   QuarterNote=0.25; Digits:Set of'0'..'9'=['0'..'9'];
+Var
+ PlayFreq,PlayDur,RestDur,I,N,K:Integer;
+ C:Char;
+ Freq:Array[0..6,0..11]of Integer Absolute NoteFreqs;
+ XN:Real;
+
+ Function GetInt:Integer;
+ Var
+  N:Integer;
+ Begin
+  N:=0;
+  While(S[I]in Digits)do Begin
+   N:=N*10+Byte(S[I])-Byte('0');
+   Inc(I)
+  End;
+  Dec(I);
+  GetInt:=N;
+ End;
+
+Begin
+ IncStr(S,' ');I:=1;
+ While I<Length(S)do Begin
+  C:=UpCase(S[I]);
+  Case C of
+   'A'..'G':Begin
+    N:=NoteOfs[C];
+    PlayFreq:=Freq[NoteOctave,N];
+    XN:=NoteQuarter*(NoteLen/QuarterNote);
+    PlayDur:=Trunc(XN*NoteFrac);
+    RestDur:=Trunc(XN*(1.0-NoteFrac));
+    If S[I+1]in['#','+','-']Then Begin
+     Inc(I);
+     Case S[I] of
+      '#','+':PlayFreq:=Freq[NoteOctave,N+1];
+      '-':PlayFreq:=Freq[NoteOctave,N-1];
+     End;
+    End;
+    If(S[I+1]in Digits)Then Begin
+     Inc(I);N:=GetInt;XN:=(1.0/N)/QuarterNote;
+     PlayDur:=Trunc(NoteFrac*NoteQuarter*XN);
+     RestDur:=Trunc((1.0-NoteFrac)*Xn*NoteQuarter);
+    End;
+    If S[I+1]='.'Then Begin
+     XN:=1.0;
+     While S[I+1]='.'do Begin
+      XN:=XN*1.5;
+      Inc(I);
+     End;
+     PlayDur:=Trunc(PlayDur*XN);
+    End;
+    Sound(PlayFreq);
+    Delay(PlayDur);
+    NoSound;
+    Delay(RestDur);
+   End;
+   'M':Begin
+    Inc(I);C:=S[I];
+    Case C Of
+     'N':NoteFrac:=0.875;
+     'L':NoteFrac:=1.000;
+     'S':NoteFrac:=0.750;
+    End;
+   End;
+   'O':Begin
+    Inc(I); N:=Byte(S[I])-Byte('0');
+    If(N<0)or(N>6)Then N:=4;
+    NoteOctave:=N;
+   End;
+   '<':If NoteOctave>0Then Dec(NoteOctave);
+   '>':If NoteOctave<6Then Inc(NoteOctave);
+   'N':Begin
+    Inc(I);N:=GetInt;
+    If(N>0)and(N<=84)Then Begin
+     PlayFreq:=NoteFreqs[N];XN:=NoteQuarter*(NoteLen/QuarterNote);
+     PlayDur:=Trunc(XN*NoteFrac);
+     RestDur:=Trunc(XN*(1.0-NoteFrac));
+    End
+     Else
+    If N=0Then Begin
+     PlayFreq:=0;
+     PlayDur:=0;
+     RestDur:=Trunc(NoteFrac*NoteQuarter*(NoteLen/QuarterNote));
+    End;
+    Sound(PlayFreq);
+    Delay(PlayDur);
+    NoSound;
+    Delay(RestDur);
+   End;
+   'L':Begin
+    Inc(I);
+    N:=GetInt;
+    If N>0Then NoteLen:=1.0/N;
+   End;
+   'T':Begin
+    Inc(I);
+    N:=GetInt;
+    NoteQuarter:=(1092.0/18.2/N)*1000.0;
+   End;
+   'P':Begin
+    Inc(I);N:=GetInt;
+    If N<1Then N:=1 Else
+    If N>64Then N:=64;
+    PlayFreq:=0;
+    PlayDur:=0;
+    RestDur:=Trunc(((1.0/N)/QuarterNote)*NoteQuarter);
+    Sound(PlayFreq);
+    Delay(PlayDur);
+    NoSound;
+    Delay(RestDur);
+   End;
+  End;
+  Inc(I);
+ End;
+ NoSound;
+End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction PrgPath                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le r‚pertoire complet d'o— a ‚t‚ lanc‚ le
+ programme sp‚cifier par son PSP (Pr‚fixe Segment d'un Programme).
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction r‚clame un DOS 3 ou post‚rieur.
+
+  ş Cette fonction  n'est  pas  adapt‚e  au mode prot‚g‚  et encore
+    moins au ®Windows¯,  car ceux-ci interdisent l'accŠs directe en
+    lecture en m‚moire par les applications.
+
+  ş Cette fonction  extraŒt  les donn‚es  dans une  limite de 32 Ko
+    sinon  il arrˆte  spontan‚ment les recherches  mˆme  s'il n'y a
+    absolument rien trouv‚.
+}
+
+Function PrgPath{PSP:Word):String};
+Var
+ I,Seg:Word;
+Begin
+ {$IFDEF Win32}
+  PrgPath:='';
+ {$ELSE}
+  Seg:=MemW[PSP:$2C];
+  If Seg>8Then For I:=0to 32767do If MemW[Seg:I]=0Then Begin
+   PrgPath:=StrPas(Ptr(Seg,I+4));
+   Exit;
+  End;
+  PrgPath:='';
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction Print                             Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction envoie une chaŒne de caractŠre directement sur l'imprimante
+ dont son num‚ro est sp‚cifi‚ par la variable de param‚trage ®Num¯ (0=LPT1:,
+ 1=LPT2:, 2=LPT3:, 3=LPT4,...).  Si l'op‚ration  c'est correctement d‚roul‚,
+ la  fonction  retourne  vrai  sinon  faux.  En  terminant,  sachez  qu'elle
+ n'utilise  pas le  Bios ne le  "spooler"  d'imprimante  fournit  avec cette
+ ensemble pour envoier la chaŒne de caractŠres.
+}
+
+Function Print{Const Str:String;Num:Byte):Boolean};
+Var
+ I:Byte;
+Begin
+ Print:=False;SysErr:=0;
+ If Num>3Then Exit;
+ For I:=1to Length(Str)do If Not PrintChr(Str[I],Num)Then Begin
+  SysErr:=errPrinterNotReady;
+  Exit;
+ End;
+ Print:=True;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction PrintChr                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction envoie un caractŠre  dans le port parallŠle sans passer par
+ les services du Bios et donc trŠs rapide. Si l'op‚ration c'est correctement
+ passer, la valeur retourn‚e est vrai sinon, dans le cas d'une erreur, faux.
+ Toutefois,  sous r‚seaux,  il ne fait de miracle  et  l'envoie  … partir du
+ Bios.
+}
+
+Function PrintChr{Chr:Char;Num:Byte):Systex.Bool};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  CMP IsNovell,True
+  JE  @Dos
+  CMP Win,0
+  JNZ @Dos
+  MOV AL,PrnOutput
+  AND AL,3
+  SHL AL,1
+  ADD AL,8
+  {$IFDEF DPMI}
+   MOV AH,0
+  {$ELSE}
+   MOV AH,4
+  {$ENDIF}
+  MOV DI,AX
+  {$IFDEF DPMI}
+   MOV ES,Seg0040
+  {$ELSE}
+   XOR AX,AX
+   MOV ES,AX
+  {$ENDIF}
+  MOV DX,ES:[DI]
+  INC DX
+  IN  AL,DX
+  AND AL,128
+  JZ  @1
+  DEC DX
+  MOV AL,Chr
+  OUT DX,AL
+  INC DX;INC DX
+  IN  AL,DX
+  OR  AL,1
+  OUT DX,AL
+  IN  AL,DX
+  AND AL,NOT 1
+  OUT DX,AL
+  DEC DX
+  IN  AL,DX
+  AND AL,64
+  NOT AL
+  AND AL,1
+ @1:
+  JMP @End
+ @Dos:
+  MOV DL,Chr
+  MOV AH,05h
+  INT 21h
+ @End:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure PushKey                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'ins‚rer un code clavier (scan) et son code ASCII
+ dans le tampon clavier du BIOS peuvant ˆtre extrait par l'interruption 16h
+ ou 21h par exemple.
+}
+
+{$IFDEF NotReal}
+ {$I \Source\Chantal\Library\PushKey.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure PushStrSpooler                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'envoyer directement dans le "Spooler" d'imprimante
+ le contenu d'une chaŒne de caractŠres de format Pascal (String).
+}
+
+{$IFNDEF NoSpooler}
+Procedure PushStrSpooler{Const S:String};
+Label Network;
+Var
+ I:Byte;
+ Empty:Boolean;
+Begin
+ If Length(S)=0Then Exit;
+ If(IsNovell)Then Goto Network;
+ If(HSpool=hdlPrn)Then _SetRec(HSpool,Byte(S[0]),S[1])Else
+ If(HSpool<>errHdl)Then Begin
+  If FSSpool<0Then Inc(FSSpool);
+  {$IFNDEF OldSpooler}
+   Empty:=FSSpool=0;
+  {$ENDIF}
+  _SetAbsRec(HSpool,FSSpool,Byte(S[0]),S[1]);
+  {$IFNDEF OldSpooler}
+   CLI;
+  {$ENDIF}
+  Inc(FSSpool,Length(S));
+  {$IFNDEF OldSpooler}
+   STI;
+  {$ENDIF}
+  {$IFDEF OldSpooler}
+   While(FSSpool>2048)and(_TaskSpooler)do;
+  {$ELSE}
+   { If(Empty)Then }
+   ASM { Reset sans "guosage" }
+    PUSH Word Ptr PSpool[2]
+    PUSH Word Ptr PSpool
+    CALL BfSpool
+    XOR AH,AH
+{    MOV AX,$100}
+    XOR DX,DX
+     PUSHF
+     CLI
+     CALL OldInt17h
+    XOR AX,AX
+    MOV ES,AX
+    MOV DX,ES:[$408]
+    INC DX;INC DX
+    IN  AL,DX
+    OR  AL,$10
+    OUT DX,AL
+    MOV AX,Word Ptr PSpool
+    MOV DX,Word Ptr PSpool[2]
+    ADC AX,1
+    ADC DX,0
+    MOV Word Ptr PSpool,AX
+    MOV Word Ptr PSpool[2],DX
+   END;
+  {$ENDIF}
+ End
+  Else
+Network:Print(S,PrnOutput);
+End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure PutFileLn                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure ‚crit un retour de chariot ASCII du DOS dans le fichier
+ sp‚cifi‚ par la variable  de param‚trage ®Handle¯  … la fin complŠtement
+ du fichier sans tenir compte de la position du pointeur de fichier.
+}
+
+Procedure PutFileLn{Handle:Hdl};Begin
+ PutFileTxt(Handle,CRLF)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure PutFileTxt                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'‚crire une ligne dans un fichier ®Handle¯ de style
+ ASCII du DOS. Le code de retour de chariot n'est pas additionner s'il manque
+ … la fin  de la chaŒne  de caractŠres,  il faudra  donc  le rajouter.  Cette
+ fonction ‚crit  la ligne  en question  … la fin  du fichier sp‚cifi‚  par la
+ variable de param‚trage ®Handle¯.
+}
+
+Procedure PutFileTxt{Handle:Hdl;Const X:String};Begin
+ SetFilePos(Handle,FileSize(Handle));
+ _PutFileTxt(Handle,X)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure PutFileTxtLn                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'‚crire une ligne dans un fichier Handle de style
+ ASCII  du  DOS.  Le  code  de retour  de chariot  est  compris  dans cette
+ ‚criture... Cette fonction ‚crit la ligne … la fin complŠtement du fichier
+ sans tenir compte de la position du pointeur de fichier.
+}
+
+Procedure PutFileTxtLn{Handle:Hdl;X:String};Begin
+ AddStr(X,CRLF);
+ PutFileTxt(Handle,X)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction PXtrkWord                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'extraire une mot litt‚raire d'une chaŒne de
+ caractŠres de style ASCIIZ (langage de programmation C).
+}
+
+Function PXtrkWord{Var I:Word;Line:PChr):String};
+Var
+ W:String;
+Begin
+ PXtrkWord:='';
+ If Not(Line^[I]in Coder1DefLetter)Then Exit;
+ W:=Line^[I];Inc(I);
+ While Line^[I]<>#0do Begin
+  If(Line^[I]in CoderDefLetter)Then Begin
+   IncStr(W,Line^[I]);
+   Inc(I);
+   If I=255Then Break;
+  End
+   Else
+  Break;
+ End;
+ PXtrkWord:=W;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction QueryA20                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de connaŒtre la validation de la ligne d'adresse
+ A20 donnant accŠs … la m‚moire en segment FFFFh.
+}
+
+{$IFDEF ExtraMemory}
+ Function QueryA20:Word;Assembler;ASM
+  MOV XmsErr,$80
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV AH,7
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,0
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction QueryFreeBlockXms                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de lib‚rer un bloque de m‚moire XMS pr‚c‚dement
+ allouer par une fonction ®XMS¯.  Elle retourne ensuite un drapeau pour
+ indiquer si l'op‚ration s'est bien d‚roul‚.
+}
+
+{$IFDEF ExtraMemory}
+ Function QueryFreeBlockXms:Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV AH,8
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+  MOV AX,DX
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction ReadChr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction extrait un caractŠre dans un fichier Handle du DOS … la
+ position courante dans le fichier ouvert.  Il retourne donc se fabuleux
+ caractŠre.
+}
+
+Function ReadChr{Handle:Hdl):Char};
+Var
+ X:Char;
+Begin
+ _GetRec(Handle,SizeOf(X),X);
+ ReadChr:=X;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure ReadDsk                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de lire directement un secteur disque du DOS sans
+ passer par l'interruption 21h.
+}
+
+Var Data:Record LSN:LongInt;Sects:Word;Buffer:Pointer;End;
+
+Procedure ReadDsk(Drive:Byte;LSN,Sects:Word;Var Buffer);
+{$IFDEF Win32}
+ Begin
+  FillClr(Buffer,SizeOf(BootRec));
+ End;
+{$ELSE}
+ {$IFDEF DPMI}
+  Begin
+   FillClr(Buffer,SizeOf(BootRec));
+  End;
+ {$ELSE}
+ Assembler;ASM
+  PUSH BP
+  PUSH DS
+   MOV AL,Drive
+   MOV DX,LSN
+   MOV CX,Sects
+   LDS BX,Buffer
+   INT 025h
+   JB  @Suite
+   XOR AX,AX
+ @Suite:
+   DB ciPOPF
+  POP DS
+  POP BP
+  CMP AX,519
+  JNE @No32Bits
+  PUSH BP
+  PUSH DS
+   MOV AL,Drive
+   MOV DX,LSN
+   MOV CX,Sects
+   MOV BX,Offset Data
+   MOV DS:[BX],DX
+   MOV DS:[BX+2].Word,0
+   MOV DS:[BX+4],CX
+   LES DI,Buffer
+   MOV DS:[BX+6],DI
+   MOV DS:[BX+8],ES
+   MOV CX,0FFFFh
+   INT 025h
+   JB  @Suite2
+   XOR AX,AX
+ @Suite2:
+   DB ciPOPF
+  POP DS
+  POP BP
+ @No32Bits:
+  MOV SysErr,AX
+ End;
+ {$ENDIF}
+{$ENDIF}
+
+Procedure WriteDsk(Drive:Byte;LSN,Sects:Word;Const Buffer);
+{$IFDEF Win32}
+ Begin
+ End;
+{$ELSE}
+ {$IFDEF DPMI}
+  Begin
+  End;
+ {$ELSE}
+ Assembler;ASM
+  PUSH BP
+  PUSH DS
+   MOV AL,Drive
+   MOV DX,LSN
+   MOV CX,Sects
+   LDS BX,Buffer
+   INT 026h
+   JB  @Suite
+   XOR AX,AX
+ @Suite:
+   DB ciPOPF
+  POP DS
+  POP BP
+  CMP AX,519
+  JNE @No32Bits
+  PUSH BP
+  PUSH DS
+   MOV AL,Drive
+   MOV DX,LSN
+   MOV CX,Sects
+   MOV BX,Offset Data
+   MOV DS:[BX],DX
+   MOV DS:[BX+2].Word,0
+   MOV DS:[BX+4],CX
+   LES DI,Buffer
+   MOV DS:[BX+6],DI
+   MOV DS:[BX+8],ES
+   MOV CX,0FFFFh
+   INT 026h
+   JB  @Suite2
+   XOR AX,AX
+ @Suite2:
+   DB ciPOPF
+  POP DS
+  POP BP
+ @No32Bits:
+  MOV SysErr,AX
+ End;
+ {$ENDIF}
+{$ENDIF}
+
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction ReadKey                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'extraire une touche du tampon clavier. Si aucune
+ touche n'attend,  il attendra quand mˆme que l'utilisateur en est frapper
+ une et pendant le temps qu'il attend,  effectuera des processus d'arriŠre
+ plan.
+}
+
+Var
+ LastKey:Word;
+
+Function ReadKey:Word;
+Var
+ K:Word;
+Begin
+ PrvKey:=LastKey;
+ _InitKbd;
+ Repeat
+  _BackKbd;
+ Until KeyPress;
+ {$IFDEF DPMI}
+  ASM
+   MOV ES,_0040
+   CLI
+   MOV BX,ES:[01Ah]
+   MOV AX,ES:[BX]
+   CMP AL,0E0h
+   JE  @@NotOk
+   CMP AL,0D0h
+   JNE @@Ok
+@@NotOk:
+   CMP AH,0
+   JE  @@Ok
+   MOV AL,0
+@@Ok:
+   INC BX
+   INC BX
+   MOV ES:[01Ah],BX
+   MOV CX,ES:[082h]
+   CMP CX,BX
+   JNE @@End
+   MOV CX,ES:[080h]
+   MOV ES:[01Ah],CX
+   STI
+@@End:
+   MOV @Result,AX
+  END;
+ {$ELSE}
+  {$IFDEF __Windows__}
+   K:=Byte(Adele.ReadKey);
+   If K=0Then K:=Byte(Adele.ReadKey)shl 8;
+  {$ELSE}
+   STI;
+   K:=RawReadKey;
+  {$ENDIF}
+  {Est-ce une touche sp‚cial de Windows 95?}
+  If(Hi(K)in[$C1..$EE])and(Lo(K)=$F8)Then WordRec(K).Lo:=0 Else
+  If K=$400Then WordRec(K).Hi:=Hi(kbCtrlIns);
+{If(K=$ECF8)or(K=$EDF8)or(K=$EEF8)Then WordRec(K).Lo:=0;}
+  {Remarque: Les 3 touches sp‚cial pour ®Windows 95¯ ne sont disponible
+             qu'avec l'accŠs directe  au tampon clavier  du Bios  situ‚
+             … l'adresse segment 0040h. Si vous utilisez l'Interruption
+             16h, Fonction 00h ou 10h elle ne retourne pas ce code pour
+             des raisons obscure de compatibilit‚...}
+  LastKey:=K;ReadKey:=K;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                      Fonction ReallocExtMemBlockXMS                    Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction change la taille d'une zone m‚moire XMS pr‚c‚d‚ment allou‚
+ par une autre fonction XMS.
+}
+
+{$IFDEF ExtraMemory}
+ Function ReallocExtMemBlockXMS(Handle,KBsize:Word):Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV DX,Handle
+  MOV BX,KBSize
+  MOV AH,0Fh
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                      Fonction RecursiveMkDir                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  permet  de cr‚er  un r‚pertoire complet  mˆme si les
+ r‚pertoires parents ne sont pas cr‚er, elle le cr‚ra automatiquement.
+}
+
+Function RecursiveMkDir(Path:String):Integer;
+Var
+ I:Word;
+ NewDir:String;
+Begin
+ RecursiveMkDir:=-1;
+ If Path=''Then Exit;
+ Path:=FileExpand(Path);
+ I:=3;
+ Repeat
+  Repeat
+   Inc(I)
+  Until(I>Length(Path))or(Path[Pred(I)]='\');
+  NewDir:=Left(Path,Pred(I));
+  If Not DirExist(NewDir)Then Begin
+   If NewDir[Length(NewDir)]='\'Then BackStr(NewDir);
+   MkDir(NewDir);
+   If IOResult<>0Then Exit;
+  End;
+ Until I>Length(Path);
+ RecursiveMkDir:=0;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure ReDirHandle                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'assimiler des 2 fichiers handle du DOS diff‚rent.
+}
+
+{$IFDEF ExtraHandle}
+ Procedure ReDirHandle(ModelHandle,OtherHandle:Hdl);Assembler;ASM
+  MOV AH,046h
+  MOV BX,ModelHandle
+  MOV CX,OtherHandle
+  INT 021h
+  JC  @2
+  XOR AX,AX
+@2:MOV GetSysErr,AX
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                    Fonction RelUpperMemBlockUMB                  Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction de restitue au systŠme la m‚moire situ‚ en dehors de
+ la m‚moire conventionnel  soit dans la zone  ®UMB¯  aprŠs la m‚moire
+ vid‚o,  avant la  ROM Bios ayant ‚t‚  au pr‚alable alloue  par cette
+ application.
+}
+
+{$IFDEF ExtraMemory}
+ Function RelUpperMemBlockUMB(_Seg:Word):Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV DX,_Seg
+  MOV AX,01100h
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Procedure RemoveOvl                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'‚liminer de la m‚moire le pilote de musique pour
+ fichier  ".MOD"  ayant ‚t‚  pr‚alablement  charger.  Si aucun pilote n'est
+ charger, un risque de plantage est assurez.
+}
+
+{$IFDEF NoInLine}
+ Procedure RemoveOvl;Assembler;ASM
+  MOV AH,0Ah
+  INT 8Ch
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction Ren                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de renommer un fichier d'une nom ®Source¯ … son
+ nouveau nom  ®Destination¯.  Elle ne peut pas  d‚place un fichier d'une
+ unit‚ … un autre,  le chemin doit toujours se figurer qu'il s'agit d'un
+ mˆme disque.  Il ne supporte  qu'un fichier  … la fois,  vous ne pouvez
+ donc pas sp‚cifier des g‚n‚riques (? ou *) … l'int‚rieur de vos chaŒnes
+ de caractŠres.
+}
+
+Procedure RenameFile{Source,Target:String};
+{$IFDEF __Windows__}
+ Var
+  OldName,NewName:Array[Byte]of Char;
+ Begin
+  StrPCopy(@OldName,Source);
+  StrPCopy(@NewName,Target);
+  SysInter.MoveFile(@OldName,@NewName);
+ End;
+{$ELSE}
+ Assembler;ASM
+  {$IFDEF FLAT386}
+  {$ELSE}
+   PUSH DS
+    CLD
+    LDS SI,Source
+    LODSB
+    MOV AH,0
+    XCHG AX,BX
+    MOV DS:[SI+BX],BH{Source:=Source+#0}
+    MOV DX,SI
+    LES DI,Target
+    MOV BL,ES:[DI]
+    INC DI{Set Target[1]}
+    MOV ES:[DI+BX],BH{Target:=Target+#0}
+    MOV AH,056h
+    INT 021h
+   POP DS
+   JC @2
+   XOR AX,AX
+  @2:MOV SysErr,AX
+  {$ENDIF}
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction RenDir                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de changer le nom d'un r‚pertoire, de le renommer.
+ Bien entendu, s'il n'existe pas il ne pas peut pas le renommer...
+}
+
+Function RenDir{Const Source,Target:String):Boolean};Begin
+ RenDir:=FCBRen(faDir,0,Source,Target)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                     Fonction ReqUpperMemBlockUMB                  Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction alloue de la m‚moire du systŠme situ‚ en dehors de la
+ m‚moire conventionnel soit dans la zone ®UMB¯ aprŠs la m‚moire vid‚o,
+ avant la ROM Bios.
+}
+
+{$IFDEF ExtraMemory}
+ Function ReqUpperMemBlockUMB(Malloc:Word;Var USeg:UMBSegRec):Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @2
+  MOV DI,Offset XMMCtrl
+  MOV DX,Malloc
+  MOV AH,010h
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  LES DI,USeg
+  MOV ES:[DI],BX{USeg.Segment}
+  CMP AX,1
+  JNE @1
+  MOV DX,Malloc
+@1:
+  MOV Word Ptr ES:[DI][2],DX{USeg.UMBSizeKB}
+@2:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure Ret                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure est tout simplement utilis‚ pour un retour FAR de
+ proc‚dure par des branchements par pointeur  de proc‚dures de mˆme
+ taille (FAR).
+}
+
+Procedure Ret;Assembler;ASM END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction RightJustifyStr                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction gonfle une chaŒne de caractŠres avec des espaces mais les
+ insŠres … partir du d‚but.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Si la variable est plus grande  que la valeur de la variable  ®Width¯,
+    la fonction retourne  les derniers  ®Width¯ caractŠres de la chaŒne de
+    caractŠres sp‚cifi‚ par la variable ®Str¯.
+}
+
+Function RightJustifyStr{Str:String;Width:Byte):String};
+Var
+ StrLen:Byte Absolute Str;
+Begin
+ If(StrLen>Width)Then StrLen:=Width;
+ RightJustifyStr:=Spc(Width-StrLen)+Str;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                               Fonction RShiftPress                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une valeur indiquant si la touche ®Shift¯ de droite
+ est enfonc‚ par True ou non par la False.
+}
+
+{$IFDEF NotReal}
+ {$I \Source\Chantal\Library\RShiftPr.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction SearchFile                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de retourner toutes les informations contenant dans
+ les tables des fichiers  d'un unit‚ concernant  le fichier sp‚cifi‚ par la
+ variable  de param‚trage  ®Path¯.  Elle retourne  donc  sa taille  dans la
+ variable de param‚trage pointeur ®Size¯,  sa date de derniŠre modification
+ dans la variable  de param‚trage pointeur ®Time¯,  son nom physique sur le
+ disque dans la variable  de param‚trage  ®Name¯.  En plus,  si l'op‚ration
+ c'est bien d‚roul‚,  cette fonction  retourne vrai (True),  mais en cas de
+ recherche infructueuse il retourne faux (False).
+}
+
+Function SearchFile{Const Path:String;Var Name:String;
+                    Var Size,Time:Long):Boolean};
+Var
+ X:SearchRec;
+Begin
+ FindFirst(Path,fa,X);
+ If SysErr=0Then Begin
+  {$IFDEF __Windows__}
+   Name:=X.Name;
+   Size:=X.FileSizeLow;
+   Time:=0;
+  {$ELSE}
+   Name:=X.Name;
+   Size:=X.Size;
+   Time:=X.Time;
+  {$ENDIF}
+  SearchFile:=True;
+ End
+  Else
+ SearchFile:=False
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction SectorSize                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la taille d'un des secteurs contenu sur un unit‚
+ sp‚cifier. L'unit‚ est de format DOS (0=Unit‚ courante, 1=A:, 2=B:, 3=C:,
+ 4=D:,...) et non format BIOS.
+}
+
+Function SectorSize{Drv:Byte):Word};Assembler;ASM
+ MOV DL,Drv
+ MOV AH,1Ch
+ PUSH DS
+  INT 021h
+ POP DS
+ CMP AL,0FFh
+ JNE @1
+ XOR CX,CX
+@1:
+ XCHG AX,CX
+@2:
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction SelAllIfNoExt                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction examine le r‚pertoire compris  dans la variable de
+ param‚trage ®Path¯, si elle ne possŠde pas d'extension de fichier,
+ il rajoute l'attribut de s‚lection de tous les fichiers.
+}
+
+Function SelAllIfNoExt{Path:String):String};Begin
+ If Path2Ext(Path)=''Then Path:=SetPath4AddFile(Path)+'*.*';
+ SelAllIfNoExt:=Path;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure SetIntVec                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  proc‚dure  modifie  l'adresse  vers laquelle  pointe le vecteur
+ d'une interruption  de num‚ro  donn‚.  En fait,  elle modifie pour  une
+ interruption donn‚e la table des vecteurs d'interruption.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş La directive de compilation ®Dos¯  permet d'utiliser la technique du
+    Dos pour fixer l'interruption.
+
+  ş Si le compilateur  n'est  pas adapt‚  au code  d'un micro-processeur
+    80386  ou  post‚rieur  mais  que  vous  souhaŒtez  avoir  ces  codes
+    sp‚cifique  … ce processeur,  vous pouvez  d‚finir  la directive  de
+    compilation conditionnel ®__386__¯ pour permettre cette adaptation.
+
+  ş Si le compilateur  n'est  pas adapt‚  au code  d'un micro-processeur
+    80286  ou  post‚rieur  mais  que  vous  souhaŒtez  avoir  ces  codes
+    sp‚cifique  … ce processeur,  vous pouvez  d‚finir  la directive  de
+    compilation conditionnel ®__286__¯ pour permettre cette adaptation.
+
+  ş La  directive  de  compilation  conditionnelle  ®InLineASM¯   permet
+    l'int‚gration directe d'assembleur ne terminant pas imm‚diatement ou
+    que vous souhaŒtez rebƒtisser cette fonction sous un autre nom.
+
+  ş Est pr‚vu pour fonctionner avec l'unit‚  "Systex"  comme entˆte pour
+    la d‚finition des constantes du micro-processeur.
+}
+
+{$IFDEF NotReal}
+ {$I Library\SetIntVe.Inc}
+{$ENDIF}
+
+{ Cette proc‚dure permet de fixer la date du systŠme d'exploitation.
+}
+
+Procedure SetDate{Year:Word;Month,Day:Byte};Assembler;ASM
+ MOV CX,Year
+ MOV DH,Byte Ptr Month
+ MOV DL,Byte Ptr Day
+ MOV AH,2Bh
+ INT 21h
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure SetCapsLck                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe la position du drapeau de la position du lumineux
+ de ®CapsLock¯ du clavier.
+}
+
+Procedure SetCapsLck{X:Boolean};
+{$IFDEF __Windows__}
+ Begin
+ End;
+{$ELSE}
+ Assembler;ASM
+  {$IFDEF DPMI}
+   MOV ES,_0040
+   PUSHF
+    CLI
+    MOV AX,ES:[017h]
+    CMP X,True
+    JE  @1
+    AND AX,0BFh
+    JMP @2
+ @1:
+    OR AX,040h
+ @2:
+    MOV ES:[017h],AX
+   POPF
+  {$ELSE}
+   CLD
+   MOV DI,0417h
+   XOR BX,BX
+   MOV ES,BX
+   PUSHF
+    CLI
+    MOV AL,ES:[DI]
+    AND AL,0BFh
+    OR  X,BL
+    JZ  @2
+    OR  AL,040h
+  @2:
+    STOSB
+   POPF
+  {$ENDIF}
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure SetDsk                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction change l'unit‚ de disque courant pour l'utilisation par le
+ systŠme d'exploitation.
+}
+
+{$IFDEF NoInLine}
+ Procedure SetDsk(Disk:Byte);Assembler;ASM
+  MOV AH,0Eh
+  MOV DL,Disk
+  INT 21h
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction SetDskLabel                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction change  le nom de volume  d'une unit‚ disque sp‚cifi‚.  Si
+ aucun nom n'existe o— qu'un nom existe, il serait de toute fa‡on remplacer
+ par le nouveau nom sp‚cifi‚ par la variable de param‚trage ®S¯.
+}
+
+Function SetDskLabel{Dsk:Byte;Const S:String):Boolean};Begin
+ SetDskLabel:=FCBRen(faVolumeID,Dsk,GetDskLabel(Dsk),S)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction SetFullName                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction ‚tire un nom de fichier comme il est contenu dans une table
+ de fichier de format CP/M:  8 caractŠres pour le nom border par des espaces
+ pour les  caractŠres  manquant,  un point situ‚  … le neuviŠme  position et
+ 3 lettres d'extension border  d'espace dans le cas  o— il n'y en aurait pas
+ vraiment 3.
+}
+
+Function SetFullName{Name:String):String};Begin
+ If StrI(2,Name)<>':'Then Begin
+  If Name<>'..'Then Name:=StrUSpc(Path2Name(Name),8)+Path2Ext(Name);
+ End;
+ SetFullName:=StrUSpc(Name,12);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction SetFile                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction fixe l'enregistrement de taille ®Size¯ du fichier sp‚cifi‚
+ par le chemin ®Name¯. Si le fichier n'existe pas, il est cr‚e.  Le fichier
+ n'a pas besoin d'ˆtre ouvert, et il refermer par la fonction.
+}
+
+Function SetFile{Const Name:String;P:LongInt;Size:Word;Const Buf:Word};
+Var
+ Handle:Word;
+Begin
+ SetFile:=errHdl;
+ Handle:=FileOpen(Name,fmWrite);
+ If(Handle=errHdl)Then Begin{N'existe pas ?}
+  Handle:=FileCreate(Name);{Pas de problŠme, je le cr‚e!}
+  If(Handle=errHdl)Then Exit;
+ End;
+ SetRec(Handle,P,Size,Buf);
+ _Close(Handle);
+ SetFile:=0;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure SetFilePos                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure d‚place  le pointeur du fichier  "Handle" … la position
+ absolue  … partir  du  d‚but  du fichier  sp‚cifi‚  par la  variable  de
+ param‚trage ®P¯. Pour savoir si l'op‚ration c'est bien d‚rouler, il faut
+ v‚rifier que la valeur de "GetSysErr" soit ‚gale … 0.
+}
+
+Procedure SetFilePos{Handle:Hdl;P:LongInt};Begin
+ _SetFilePos(Handle,P,fpStart)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure SetFTime                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de fixer la date et l'heure d'un fichier en
+ utilisant un objet ®File¯ du Pascal.
+}
+
+Procedure SetFTime(Var F;Time:LongInt);Assembler;ASM
+ {$IFNDEF Win32}
+  LES DI,F
+  MOV BX,ES:[DI].FileRec.Handle
+  MOV CX,Word Ptr Time[0]
+  MOV DX,Word Ptr Time[2]
+  MOV AX,5701h
+  INT 21h
+  JC  @End
+  XOR AX,AX
+@End:
+  MOV SysErr,AX
+{$ENDIF}
+end;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure SetFileTime                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de lire (fmRead) ou d'‚crire (fmWrite) la date et
+ l'heure de la derniŠre modification d'un fichier DOS.
+}
+
+Procedure SetFileTime{Handle:Hdl;Func:Byte;Var Time,Date:Word};Assembler;ASM
+ {$IFDEF Win32}
+ {$ELSE}
+  MOV AH,057h
+  MOV AL,Func
+  {$IFDEF __Windows__}
+   MOV BX,Handle
+   CMP BX,-1
+  {$ELSE}
+   MOV BL,Handle
+   XOR BH,BH
+   CMP BL,0FFh
+  {$ENDIF}
+  JE  @1
+  LES DI,Time
+  MOV CX,ES:[DI]
+  LES DI,Date
+  MOV DX,ES:[DI]
+  INT 021h
+ @1:
+  CLD
+  LES DI,Time
+  XCHG AX,CX
+  STOSW
+  LES DI,Date
+  XCHG AX,DX
+  STOSW
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Proc‚dure SetFirstRec                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe le premiŠre enregistrement d'un fichier de style
+ ®Handle¯ du DOS. Il n'y a jamais de donn‚ avant cette enregistrement.
+}
+
+Procedure SetFirstRec{Handle:Hdl;Size:Wd;Const Buf};Begin
+ SetRec(Handle,0,Size,Buf)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure SetInsMode                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe le mode d'Insertion ou d'‚crasement du curseur en
+ fonction de la variable de param‚trage ®X¯ en affectant celle du BIOS.
+}
+
+Procedure SetInsMode{X:Boolean};Assembler;ASM
+ {$IFDEF DPMI}
+  MOV ES,_0040
+  CLI
+  MOV AX,ES:[017h]
+ {$ELSE}
+  XOR AX,AX
+  MOV ES,AX
+  CLI
+  MOV AX,ES:[0417h]
+ {$ENDIF}
+ CMP X,True
+ JE  @1
+ AND AX,07Fh
+ JMP @2
+@1:OR AX,080h
+@2:{$IFDEF DPMI}
+  MOV ES:[017h],AX
+ {$ELSE}
+  MOV ES:[0417h],AX
+ {$ENDIF}
+ STI
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure SetNmLck                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe la position du drapeau de la position du lumineux
+ de ®NumLock¯ du clavier.
+}
+
+Procedure SetNmLck{X:Boolean};Assembler;ASM
+ {$IFDEF DPMI}
+  MOV ES,_0040
+  PUSHF
+  CLI
+  MOV AX,ES:[017h]
+ {$ELSE}
+  XOR AX,AX
+  MOV ES,AX
+  PUSHF
+  CLI
+  MOV AX,ES:[0417h]
+ {$ENDIF}
+ CMP X,True
+ JE  @1
+ AND AX,0DFh
+ JMP @2
+@1:OR AX,020h
+@2:{$IFDEF DPMI}
+  MOV ES:[017h],AX
+ {$ELSE}
+  MOV ES:[0417h],AX
+ {$ENDIF}
+ POPF
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction SetPath4AddFile                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne un chemin  de r‚pertoire de fa‡on … ce qu'il est
+ toujours une barre oblique pour permettre l'addition d'un nom de fichier.
+}
+
+Function SetPath4AddFile{Path:String):String};Begin
+ If Path=''Then Path:=GetCurrentDir;
+ If Path[Length(Path)]<>'\'Then IncStr(Path,'\');
+ SetPath4AddFile:=Path;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure SetPlay                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe les donn‚es de la proc‚dure de musique ®Play¯ de
+ fa‡on … l'initialiser selon son environnement de d‚part.
+}
+
+{$IFDEF OldPlayerSound}
+ Procedure SetPlay;Begin
+  NoteOctave:=4;
+  NoteFrac:=0.875;
+  NoteLen:=0.25;
+  NoteQuarter:=500.0;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Proc‚dure SetRec                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de fixe un enregistrement dans le fichier ®Handle¯
+ du DOS  … sa  position  ®P¯.  La position  est  multiple  de la  taille de
+ l'enregistrement et non pas une position absolue en octet partant du d‚but
+ du fichier.
+}
+
+Procedure SetRec{Handle:Hdl;P:LongInt;Size:Word;Const X};Begin
+ _SetAbsRec(Handle,P*LongInt(Size),Size,X)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure SetScrollLck                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe la position du drapeau de la position du lumineux
+ de ®ScrollLock¯ du clavier.
+}
+
+Procedure SetScrollLck{X:Boolean};Assembler;ASM
+ {$IFDEF DPMI}
+  MOV ES,_0040
+  PUSHF
+  CLI
+  MOV AX,ES:[017h]
+ {$ELSE}
+  XOR AX,AX
+  MOV ES,AX
+  PUSHF
+  CLI
+  MOV AX,ES:[0417h]
+ {$ENDIF}
+ CMP X,True
+ JE  @1
+ AND AX,0EFh
+ JMP @2
+@1:OR AX,$10
+@2:{$IFDEF DPMI}
+  MOV ES:[$17],AX
+ {$ELSE}
+  MOV ES:[$417],AX
+ {$ENDIF}
+ POPF
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure SetSysErr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe l'erreur systŠme courante contenu dans la variable
+ ®SysErr¯.  Contrairement  … la proc‚dure parallŠle ®Inline¯ dans le mˆme
+ unit‚, cette proc‚dure interrompt le programme.
+}
+
+{$IFDEF NoInLine}
+ Procedure SetSysErr(Code:Word);Begin
+  GetSysErr:=Code;
+ End;
+{$ENDIF}
+
+
+{$IFDEF HaltErr}
+ Procedure SetSysErr(Code:Word);Begin
+  GetSysErr:=Code;
+  If Code=0Then Exit;
+  WriteLn('Erreur #',HexWord2Str(Code),'h');
+  Halt;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure SetSysSound                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe le param‚trage du pilote de son externe permettant
+ de faire jouer des fichiers musique ".MOD".
+}
+(*
+Procedure SetSysSound{Dev:Byte;TimeSpeed:Wd;SBDMA,SBIRQ:Byte;SBPort:Wd};Assembler;ASM
+ MOV AH,2
+ MOV AL,Dev
+ MOV BX,TimeSpeed
+ MOV CL,SBDMA
+ MOV CH,SBIRQ
+ MOV DX,SBPort
+ INT $8C
+ MOV AH,4
+ INT $8C
+END;
+*)
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction ShiftPress                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet  de connaŒtre  l'‚tats  des touches  ®Shift¯, si
+ elles sont enfonc‚s ou non.  Le fait que ce soit la touche de droite ou
+ de gauche, elle ne fait aucun diff‚rence entre les 2 et ne retourne pas
+ une valeur sup‚rieur … vrai si les 2 sont enfonc‚es en mˆme temps.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş La directive de compilation ®Bios¯ permet d'utiliser la technique du
+    Bios pour connaŒtre l'‚tat d'une des 2 touches "Shift" du clavier.
+
+  ş Si le compilateur  n'est  pas adapt‚  au code  d'un micro-processeur
+    80286  ou  post‚rieur  mais  que  vous  souhaŒtez  avoir  ces  codes
+    sp‚cifique  … ce processeur,  vous pouvez  d‚finir  la directive  de
+    compilation conditionnel ®__286__¯ pour permettre cette adaptation.
+
+  ş La directive de compilation conditionnelle ®NoCLI¯  permet d'omettre
+    les  instructions  assembleur  "CLI"  et  "STI"  dans vos situations
+    particuliŠre critique...
+
+  ş La  directive  de  compilation  conditionnelle  ®InLineASM¯   permet
+    l'int‚gration directe d'assembleur ne terminant pas imm‚diatement ou
+    que vous souhaŒtez rebƒtisser cette fonction sous un autre nom.
+
+  ş Est pr‚vu pour fonctionner avec l'unit‚  "Systex"  comme entˆte pour
+    la d‚finition des constantes du micro-processeur.
+}
+
+{$IFDEF NotReal}
+ {$I Library\ShiftPre.Inc}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Proc‚dure SkipSpcInLn                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure incr‚mente le pointeur tant et aussi longtemps que
+ la variable de param‚trage ®I¯ pointe sur un espace de la chaŒne de
+ caractŠres ®S¯.
+}
+
+Procedure SkipSpcInLn{Var I:Byte;Const Line:String};
+Var
+ LL:Byte Absolute Line;
+Begin
+ If(I>LL)Then Exit;
+ While(Line[I]in SpcCode)do Begin
+  Inc(I);
+  If(I>LL)Then Exit;
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure Sound                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure adresse le haut-parleur PC mono pour ‚mettre un son dont
+ la fr‚quence,  transmise en paramŠtrage par ®frequency¯,  est exprim‚e en
+ Hertz. Le son est ‚mis  jusqu'… ce  qu'un appel  … la proc‚dure ®NoSound¯
+ soit effectu‚ ou  jusqu'… ce  qu'un nouvel  appel  … la proc‚dure ®Sound¯
+ vienne modifier la fr‚quence du son ‚mis.
+}
+
+Procedure Sound{Frequency:Word};Assembler;ASM
+ MOV BX,frequency
+ MOV AX,034DDh
+ MOV DX,012h
+ CMP DX,BX
+ JNB @2
+ DIV BX
+ MOV BX,AX
+ IN  AL,061h
+ TEST AL,3
+ JNE @1
+ OR  AL,3
+ OUT 061h,AL
+ MOV AL,0B6h
+ OUT 043h,AL
+@1:
+ MOV AL,BL
+ OUT 042h,AL
+ MOV AL,BH
+ OUT 042h,AL
+@2:
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction Spc                              Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaŒne de caractŠres d'espace de la longueur
+ d‚finie par la variable de param‚trage ®Len¯.
+}
+
+{$I \Source\Chantal\Library\Spc.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction SpcTab                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction signifie ®Space Tabulation¯, elle retourne 8 espaces dans
+ une chaŒne de caractŠre tous simplement.
+}
+
+{$I \Source\Chantal\Library\SpcTab.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction Src2Target                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction convertir un chemin ®Source¯ pour une ®Destination¯ de
+ r‚pertoire.
+}
+
+Function Src2Target{Source,Target:String):String};
+Var
+ D:DirStr;
+ SN,N:NameStr;
+ SE,E:ExtStr;
+ Path:String;
+ I:Byte;
+Begin
+ If Target=''Then Begin
+  FSplit(Source,D,N,E);
+  Target:=N+E;
+  Exit;
+ End;
+ If Path2Ext(Target)=''Then Begin{Destination seulement avec R‚pertoire?}
+  Target:=SetPath4AddFile(Target);
+  FSplit(Source,D,N,E);
+  Src2Target:=FileExpand(Target+N+E);
+  Exit;
+ End;
+ SN:=Path2Name(Source);SE:=Path2Ext(Source);
+ FSplit(Target,D,N,E);
+ If E='*'Then E:=Path2Ext(Source);
+ If N='*'Then N:=Path2Name(Source);
+  {Name *}
+ I:=Pos('*',N);
+ If I>0Then N:=Left(N,I-1)+Copy(SN,I,255);
+  { Name ? }
+ Repeat
+  I:=Pos('?',N);
+  If I>0Then N[I]:=SN[I]
+ Until I=0;
+  { Extension * }
+ I:=Pos('*',E);
+ If I>0Then N:=Left(E,I-1)+Copy(SE,I,255);
+  { Extension ? }
+ Repeat
+  I:=Pos('?',E);
+  If I>0Then E[I]:=SE[I]
+ Until I=0;
+ Path:=SetPath4AddFile(D)+N+E;
+ If(Length(Path)>=1)and(Path[1]='\')Then Path:=GetDrv+':'+Path;
+ Src2Target:=Path;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Proc‚dure StartPlaying                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de faire jouer ou partir la musique du fichier
+ musical  ".MOD"  ‚tant charg‚  en m‚moire.  Il  r‚clame  toutefois  le
+ chargement  du module  … sa localisation  sur l'interruption  8Ch pour
+ pouvoir  ˆtre  arrˆter,  sinon  un  risque  de plantage  est  plus que
+ probable.
+}
+
+{Procedure StartPlaying;Assembler;ASM
+ MOV AH,6
+ INT $8C
+ MOV IsPlayMod,Ya
+END;}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Proc‚dure StopPlaying                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure est utilis‚ pour arrˆter de faire jouer un fichier de
+ musique d‚river d'Amiga: ®.MOD¯. Il r‚clame toutefois le chargement du
+ module … sa  localisation  sur l'interruption 8Ch  pour  pouvoir  ˆtre
+ arrˆter, sinon un risque de plantage est plus que probable.
+}
+
+{Procedure StopPlaying;Assembler;ASM
+ MOV AH,8
+ INT $8C
+ MOV IsPlayMod,No
+END;}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction Str                              Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne dans une chaŒne de caractŠres la valeur num‚rique
+ entiŠre de la variable de param‚trage ®X¯.  Elle est con‡u  pour la taille
+ des variables ®LongInt¯.
+}
+
+Function IntToStr{X:LongInt):String};
+Var
+ S:String;
+Begin
+ System.Str(X,S);
+ IntToStr:=S
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction Str0                              Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne dans une chaŒne de caractŠres la valeur num‚rique
+ entiŠre  de la  variable  de  param‚trage  ®X¯.  Des  caractŠres  ®0¯ sont
+ additionn‚s au d‚but de la chaŒne de caractŠres … renvoy‚ pour qu'elle est
+ une longueur ‚gale  … celle  de la variable  de param‚trage  ®Len¯.  Si la
+ valeur est plus grande  que la longueur sugg‚rer,  les chiffres en partant
+ de la gauche sont ‚limin‚es pour cadr‚s avec le format.
+}
+
+Function Str0{X:LongInt;Len:Byte):String};
+Label 0;
+Var
+ S:String;
+Begin
+ If X=0Then Begin
+  S:='';
+  Goto 0;
+ End;
+ Case(Len)of
+  1:Str0:=Char((X mod 10)+48);
+  2:Str0:=Char((DivLong(X,10)mod 10)+48)+Char((X mod 10)+48);
+  4:Str0:=Char(((X div 1000)mod 10)+48)+Char(((X div 100)mod 10)+48)+
+          Char(((X div 10)mod 10)+48)+Char((X mod 10)+48);
+  Else Begin
+   S:=IntToStr(X);
+   0:Str0:=Zero(Len-Length(S))+S;
+  End;
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                               Fonction Str2                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne  sous forme d'une chaŒne de caractŠres  la valeur
+ num‚rique contenu  dans la variable  de  param‚trage  ®X¯.  Il  se  permet
+ d'addionner des espaces au d‚but si la longueur de la chaŒne de caractŠres
+ est inf‚rieur … celle sp‚cifi‚ par la variable de param‚trage ®As¯.
+}
+
+Function Str2{X:Long;AsNm:Byte):String};
+Var
+ S:String;
+Begin
+ System.Str(X:AsNm,S);
+ Str2:=S
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction Str2PChr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction alloue une chaŒne de caractŠres ASCIIZ contenant la valeur
+ de la variable de param‚trage ®S¯ de format "String".  La valeur retourner
+ est un pointeur de la chaŒne de caractŠres ASCIIZ allou‚ sur le tas.
+}
+
+Function Str2PChr{Const S:String):PChr};
+Var
+ PChr:Array[Byte]of Char;
+Begin
+ StrPCopy(@PChr,S);
+ Str2PChr:=StrNew(@PChr)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction StrCat                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction concatŠne 2 chaŒnes ®Dest¯  et ®Source¯ et renvoie ®Dest¯.
+ Le programmeur doit v‚rifier lui-mˆme que ®Dest¯ peut bien contenir ®Dest¯
+ + ®Source¯ + 1 octets.
+}
+
+Function StrCat{Dest,Source:PChr):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  PUSH Word Ptr Dest[2]
+  PUSH Word Ptr Dest
+  PUSH CS
+  CALL Near Ptr StrEnd
+  PUSH DX
+  PUSH AX
+  PUSH Word Ptr Source[2]
+  PUSH Word Ptr Source
+  PUSH CS
+  CALL Near Ptr StrCopy
+  LES AX,Dest
+  MOV DX,ES
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction StrCatPas                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure additionne … la fin de la chaŒne de caractŠres ASCIIZ
+ ®Dest¯ la chaŒne de caractŠres de format Pascal ®Source¯.
+}
+
+Procedure StrCatPas{Dest:PChr;Const Source:String};Begin
+ StrInsBuf(Dest,StrLen(Dest),Source[1],Length(Source))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction StrComp                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction compare ®Str1¯ et ®Str2¯. La fonction renvoie une valeur<0
+ si ®Str1¯ < ®Str2¯,  une valeur=0 si ®Str1¯ = ®Str2¯  et une valeur > 0 si
+ ®Str1¯ > ®Str2¯.
+}
+
+Function StrComp{Str1,Str2:PChr):Integer};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH EDI
+   PUSH ESI
+    MOV EDI,Str2
+    MOV ESI,Str1
+    MOV ECX,0FFFFFFFFH
+    XOR EAX,EAX
+    REPNE SCASB
+    NOT ECX
+    MOV EDI,EDX
+    XOR EDX,EDX
+    REPE CMPSB
+    MOV AL,[ESI-1]
+    MOV DL,[EDI-1]
+    SUB EAX,EDX
+   POP ESI
+  POP EDI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LES DI,Str2
+   MOV SI,DI
+   MOV CX,$FFFF
+   XOR AX,AX
+   CWD
+   REPNE SCASB
+   NOT CX
+   MOV DI,SI
+   LDS SI,Str1
+   REPE CMPSB
+   MOV AL,DS:[SI-1]
+   MOV DL,ES:[DI-1]
+   SUB AX,DX
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction StrCopy                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction copie ®Source¯ vers ®Dest¯ et retourne un pointeur sur
+  ®Dest¯.
+}
+
+Function StrCopy{Dest,Source:PChr):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH EDI
+   PUSH ESI
+    MOV ESI,Source
+    MOV EDI,Dest
+    MOV ECX,0FFFFFFFFH
+    XOR AL,AL
+    REPNE SCASB
+    NOT ECX
+    MOV EDI,ESI
+    MOV ESI,EDX
+    MOV EDX,ECX
+    MOV EAX,EDI
+    SHR ECX,2
+    REP MOVSD
+    MOV ECX,EDX
+    AND ECX,3
+    REP MOVSB
+   POP ESI
+  POP EDI
+ {$ELSE}
+  CLD
+  LES DI,Source
+  MOV CX,ES
+  OR  CX,DI
+  JCXZ @NIL
+  PUSH DS
+   MOV CX,0FFFFh
+   XOR AL,AL
+   REPNE SCASB
+   NOT CX
+   LDS SI,Source
+   LES DI,Dest
+   MOV AX,DI
+   MOV DX,ES
+   REP MOVSB
+  POP DS
+  JMP @End
+@NIL:
+  XOR AX,AX
+  XOR DX,DX
+  LES DI,Dest
+  STOSB
+@End:
+ {$ENDIF}
+END;
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                       Proc‚dure StrCopyChr                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure copie un caractŠre dans une chaŒne de caractŠres de
+  format ASCIIZ.
+}
+
+Procedure StrCopyChr{Dest:PChr;Chr:Char};Assembler;ASM
+ {$IFDEF FLAT386}
+  XOR DH,DH
+  MOV [EAX],DX
+ {$ELSE}
+  CLD
+  LES DI,Dest
+  MOV AL,Chr
+  XOR AH,AH
+  STOSW
+ {$ENDIF}
+END;
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                       Proc‚dure StrCopy2Chr                      Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure copie 2 caractŠres dans une chaŒne de caractŠres de
+  format ASCIIZ.
+}
+
+Procedure StrCopy2Chr{Dest:PChr;Chr1,Chr2:Char};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOV DH,CL
+  MOV [EAX],DX
+  MOV Byte Ptr [EAX+2],0
+ {$ELSE}
+  CLD
+  LES DI,Dest
+  MOV AL,Chr1
+  MOV AH,Chr2
+  STOSW
+  XOR AL,AL
+  STOSB
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure StrDel                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction efface tend de caractŠre … tel position dans une chaŒne de
+ caractŠre ASCIIZ d‚finie par la variable de param‚trage ®Str¯.
+}
+
+Procedure StrDel{Str:PChr;Start,Len:Word};
+Var
+ SL:Word;
+Begin
+ SL:=StrLen(Str);
+ If(SL=0)or(Start>SL)Then Exit;
+ If SL=1Then Str^[0]:=#0
+  Else
+ Begin
+  If(Start<>SL)Then MoveLeft(Str^[Start+Len],Str^[Start],SL-Start);
+  Str^[SL]:=#0;
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction StrDispose                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure libŠre  la m‚moire utilis‚  par une chaŒne de caractŠres de
+ style ASCIIZ pr‚c‚damment allou‚ par (ou un d‚riv‚) de la fonction ®StrNew¯.
+}
+
+Procedure StrDispose{Str:PChr};Begin
+ FreeMemory(Str,StrLen(Str)+1)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction StrDn                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la chaŒne de caractŠres de format Pascal en
+ minuscules sans tenir compte des caractŠres accentu‚s.
+}
+
+Function StrDn{S:String):String};
+Var
+ I:Byte;
+Begin
+ For I:=1to Length(S)do S[I]:=ChrDn(S[I]);
+ StrDn:=S;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction StrECopy                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction copie ®Source¯ vers ®Dest¯ et revoyant un pointeur sur la
+ fin de la chaŒne de caractŠres ASCIIZ ®Dest¯.
+}
+
+Function StrECopy{Dest,Source:PChr):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH EDI
+   PUSH ESI
+    MOV ESI,Source
+    MOV EDI,Dest
+    MOV ECX,0FFFFFFFFH
+    XOR AL,AL
+    REPNE SCASB
+    NOT ECX
+    MOV EDI,ESI
+    MOV ESI,EDX
+    MOV EDX,ECX
+    SHR ECX,2
+    REP MOVSD
+    MOV ECX,EDX
+    AND ECX,3
+    REP MOVSB
+    LEA EAX,[EDI-1]
+   POP ESI
+  POP EDI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LES DI,Source
+   MOV CX,$FFFF
+   XOR AL,AL
+   REPNE SCASB
+   NOT CX
+   LDS SI,Source
+   LES DI,Dest
+   REP MOVSB
+   MOV AX,DI
+   MOV DX,ES
+   DEC AX
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction StrEnd                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne un pointeur sur la fin de la chaŒne de caractŠres
+ ASCIIZ.
+}
+
+Function StrEnd{Str:PChr):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOV EDX,EDI
+  MOV EDI,Str
+  MOV ECX,0FFFFFFFFH
+  XOR AL,AL
+  REPNE SCASB
+  LEA EAX,[EDI-1]
+  MOV EDI,EDX
+ {$ELSE}
+  CLD
+  LES DI,Str
+  MOV CX,$FFFF
+  XOR AL,AL
+  REPNE SCASB
+  MOV AX,DI
+  MOV DX,ES
+  DEC AX
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction StrI                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le caractŠre situ‚ … la position ®I¯ dans une
+ chaŒne de caractŠres de style Pascal. Si la position ®I¯ est sup‚rieur
+ … la longueur de la chaŒne de caractŠres ®S¯,  la valeur retourn‚e est
+ le code ASCII 0.
+}
+
+Function StrI{I:Byte;Const S:String):Char};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  LES DI,S
+  XOR AX,AX
+  XOR BH,BH
+  MOV BL,I
+  CMP ES:[DI],BL
+  JB @1
+  MOV AL,ES:[DI+BX]
+@1:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction StrIComp                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction compare ®Str1¯ et ®Str2¯ sans tenir compte des majuscules/
+ minuscules.  La fonction  renvoie  une valeur < 0 si ®Str1¯ < ®Str2¯,  une
+ valeur = 0 si ®Str1¯ = ®Str2¯ et une valeur > 0 si ®Str1¯ > ®Str2¯.
+}
+
+Function StrIComp{Str1,Str2:PChr):Int};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH EDI
+   PUSH ESI
+    MOV EDI,Str2
+    MOV ESI,Str1
+    MOV ECX,0FFFFFFFFH
+    XOR EAX,EAX
+    REPNE SCASB
+    NOT ECX
+    MOV EDI,EDX
+    XOR EDX,EDX
+@@1:REPE CMPSB
+    JE  @@4
+    MOV AL,[ESI-1]
+    CMP AL,'a'
+    JB  @@2
+    CMP AL,'z'
+    JA  @@2
+    SUB AL,20H
+@@2:MOV DL,[EDI-1]
+    CMP DL,'a'
+    JB  @@3
+    CMP DL,'z'
+    JA  @@3
+    SUB DL,20H
+@@3:SUB EAX,EDX
+    JE  @@1
+@@4:
+   POP ESI
+  POP EDI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LES DI,Str2
+   MOV SI,DI
+   MOV CX,$FFFF
+   XOR AX,AX
+   CWD
+   REPNE SCASB
+   NOT CX
+   MOV DI,SI
+   LDS SI,Str1
+ @1:REPE CMPSB
+   JE  @4
+   MOV AL,DS:[SI-1]
+   CMP AL,'a'
+   JB  @2
+   CMP AL,'z'
+   JA  @2
+   SUB AL,$20
+ @2:MOV DL,ES:[DI-1]
+   CMP DL,'a'
+   JB  @3
+   CMP DL,'z'
+   JA  @3
+   SUB DL,$20
+ @3:SUB AX,DX
+   JE @1
+ @4:POP DS
+ {$ENDIF}
+END;
+
+{$IFDEF NoInLine}
+ Procedure StrInit(PC:PChr);Begin
+  PC^[0]:=#0
+ End;
+{$ENDIF}
+
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure StrIns                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure insŠre une chaŒne de caractŠres ASCIIZ ®Ins¯ … partir
+ de la position absolue ®P¯  dans une autre chaŒne de caractŠres ASCIIZ
+ nomm‚ cette fois ®S¯.
+}
+
+Procedure StrIns{S:PChr;P:Word;Ins:PChr};
+Var
+ L,L2:Word;
+Begin
+ If IsPChrEmpty(Ins)or(S=NIL)Then Exit;
+ L:=StrLen(S);
+ If L=0Then Begin
+  FillSpc(S^,P);
+  StrCopy(@S^[P],Ins)
+ End
+  Else
+ If(P=L)Then StrCat(S,Ins)Else
+ If(P>L)Then Begin
+  FillSpc(S^[L],P-L);
+  S^[P]:=#0;
+  StrCat(S,Ins)
+ End
+  Else
+ Begin
+  L2:=StrLen(Ins);
+  MoveRight(S^[P],S^[P+L2],L-P+1);
+  MoveLeft(Ins^,S^[P],L2)
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure StrInsBuf                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure insŠre un tampon dans une chaŒne de caractŠres ASCIIZ …
+ partir de la position absolue ®P¯. La longueur du tampon est d‚finit par
+ la variable de param‚trage ®L2¯.
+}
+
+Procedure StrInsBuf{S:PChr;P:Word;Const Ins;L2:Word};
+Var
+ L:Word;
+Begin
+ If(L2=0)or(S=NIL)Then Exit;
+ L:=StrLen(S);
+ If(P>L)Then Begin
+  FillSpc(S^[L],P-L);
+  MoveLeft(Ins,S^[P],L2);
+  S^[P+L2]:=#0
+ End
+  Else
+ Begin
+  MoveRight(S^[P],S^[P+L2],L-P+1);
+  MoveLeft(Ins,S^[P],L2)
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure StrInsChr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure insŠre une caractŠre ®Chr¯ dans une chaŒne de caractŠres
+ ASCIIZ nomm‚ ®S¯ … la position absolue ®P¯.
+}
+
+Procedure StrInsChr{S:PChr;P:Word;Chr:Char};Begin
+ StrInsBuf(S,P,Chr,1)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction StrLCat                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction concatŠne 2 chaŒnes de caractŠres ®Source¯ et ®Dest¯ en
+ tenant compte du fait que ®Dest¯+®Source¯ ne doit pas d‚passer ®MaxLen¯
+ de caractŠres.
+}
+
+Function StrLCat{Dest,Source:PChr;MaxLen:Word):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH EDI
+   PUSH ESI
+    PUSH EBX
+     MOV EDI,Dest
+     MOV ESI,Source
+     MOVZX EBX,MaxLen
+     PUSH EDI
+     PUSH ESI
+     PUSH BX
+     CALL StrEnd
+     MOV ECX,EDI
+     ADD ECX,EBX
+     SUB ECX,EAX
+     JBE @@1
+     MOV EDX,ESI
+     PUSH EDI
+     PUSH ESI
+     PUSH CX
+     CALL StrLCopy
+@@1: MOV EAX,EDI
+    POP EBX
+   POP ESI
+  POP EDI
+ {$ELSE}
+  PUSH Word Ptr Dest[2]
+  PUSH Word Ptr Dest
+  PUSH CS
+  CALL Near Ptr StrEnd
+  MOV CX,Word Ptr Dest
+  ADD CX,MaxLen
+  SUB CX,AX
+  JBE @1
+  PUSH DX
+  PUSH AX
+  PUSH Word Ptr Source[2]
+  PUSH Word Ptr Source
+  PUSH CX
+  PUSH CS
+  CALL Near Ptr StrLCopy
+ @1:
+  LES AX,Dest
+  MOV DX,ES
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction StrLComp                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction compare ®MaxLen¯ caractŠres de ®Str1¯ et ®Str2¯. La
+ fonction renvoie une valeur<0 si  ®Str1¯ < ®Str2¯,  une valeur=0 si
+ ®Str1¯ = ®Str2¯, et une valeur>0 si ®Str1¯ > ®Str2¯.
+}
+
+Function StrLComp{Str1,Str2:PChr;MaxLen:Word):Integer};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOVZX ECX,MaxLen
+  PUSH EDI
+   PUSH ESI
+    PUSH EBX
+     MOV EDI,Str2
+     MOV ESI,Str1
+     MOV EBX,ECX
+     XOR EAX,EAX
+     OR  ECX,ECX
+     JE  @@1
+     REPNE SCASB
+     SUB EBX,ECX
+     MOV ECX,EBX
+     MOV EDI,EDX
+     XOR EDX,EDX
+     REPE CMPSB
+     MOV AL,[ESI-1]
+     MOV DL,[EDI-1]
+     SUB EAX,EDX
+@@1:POP EBX
+   POP ESI
+  POP EDI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LES DI,Str2
+   MOV SI,DI
+   MOV AX,MaxLen
+   MOV CX,AX
+   JCXZ @1
+   XCHG AX,BX
+   XOR AX,AX
+   CWD
+   REPNE SCASB
+   SUB BX,CX
+   MOV CX,BX
+   MOV DI,SI
+   LDS SI,Str1
+   REPE CMPSB
+   MOV AL,DS:[SI-1]
+   MOV DL,ES:[DI-1]
+   SUB AX,DX
+@1:
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction StrLCopy                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction copie ®MaxLen¯ caractŠres de ®Source¯ vers ®Dest¯.
+}
+
+Function StrLCopy{Dest,Source:PChr;MaxLen:Word):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOVZX ECX,MaxLen
+  PUSH EDI
+   PUSH ESI
+    PUSH EBX
+     MOV ESI,Source
+     MOV EDI,Dest
+     MOV EBX,ECX
+     XOR AL,AL
+     TEST ECX,ECX
+     JZ  @@1
+     REPNE SCASB
+     JNE @@1
+     INC ECX
+@@1: SUB EBX,ECX
+     MOV EDI,ESI
+     MOV ESI,EDX
+     MOV EDX,EDI
+     MOV ECX,EBX
+     SHR ECX,2
+     REP MOVSD
+     MOV ECX,EBX
+     AND ECX,3
+     REP MOVSB
+     STOSB
+     MOV EAX,EDX
+    POP EBX
+   POP ESI
+  POP EDI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LES DI,Source
+   MOV CX,MaxLen
+   MOV BX,CX
+   XOR AL,AL
+   REPNE SCASB
+   SUB BX,CX
+   MOV CX,BX
+   LDS SI,Source
+   LES DI,Dest
+   MOV BX,DI
+   MOV DX,ES
+   REP MOVSB
+   STOSB
+   XCHG AX,BX
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction StrLen                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le nombre de caractŠres que la chaŒne de
+ caractŠres ASCIIZ contient.  Si elle pointe sur NIL,  la longueur
+ retourner est 0.
+}
+
+{$I \Source\Chantal\Library\StrLen.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction StrLIComp                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  compare  ®MaxLen¯  caractŠre(s)  de ®Str1¯ et  ®Str2¯ sans
+ tenir compte des majuscules ou minuscules. La fonction renvoie une valeur<0
+ si ®Str1¯<®Str2¯, une valeur=0 si ®Str1¯=®Str2¯, et une valeur>0 si ®Str1¯>
+ ®Str2¯.
+}
+
+Function StrLIComp{Str1,Str2:PChr;MaxLen:Word):Integer};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOVZX ECX,MaxLen
+  PUSH EDI
+   PUSH ESI
+    PUSH EBX
+     MOV EDI,Str2
+     MOV ESI,Str1
+     MOV EBX,ECX
+     XOR EAX,EAX
+     OR  ECX,ECX
+     JE  @@4
+     REPNE SCASB
+     SUB EBX,ECX
+     MOV ECX,EBX
+     MOV EDI,EDX
+     XOR EDX,EDX
+@@1: REPE CMPSB
+     JE  @@4
+     MOV AL,[ESI-1]
+     CMP AL,'a'
+     JB  @@2
+     CMP AL,'z'
+     JA  @@2
+     SUB AL,20H
+@@2: MOV DL,[EDI-1]
+     CMP DL,'a'
+     JB  @@3
+     CMP DL,'z'
+     JA  @@3
+     SUB DL,20H
+@@3: SUB EAX,EDX
+     JE  @@1
+@@4:POP EBX
+   POP ESI
+  POP EDI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LES DI,Str2
+   MOV SI,DI
+   MOV AX,MaxLen
+   MOV CX,AX
+   JCXZ @4
+   XCHG AX,BX
+   XOR AX,AX
+   CWD
+   REPNE SCASB
+   SUB BX,CX
+   MOV CX,BX
+   MOV DI,SI
+   LDS SI,Str1
+@1:REPE CMPSB
+   JE  @4
+   MOV AL,DS:[SI-1]
+   CMP AL,'a'
+   JB  @2
+   CMP AL,'z'
+   JA  @2
+   SUB AL,020h
+@2:MOV DL,ES:[DI-1]
+   CMP DL,'a'
+   JB  @3
+   CMP DL,'z'
+   JA  @3
+   SUB DL,020h
+@3:SUB AX,DX
+   JE  @1
+@4:
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction StrLower                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction convertit la chaŒne de caractŠres ASCIIZ ®Str¯ en
+ minuscule et retourne un pointeur sur celle-ci.
+}
+
+Function StrLower{Str:PChr):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH ESI
+   MOV ESI,Str
+   MOV EDX,ESI
+@@1:
+   LODSB
+   OR  AL,AL
+   JE  @@2
+   CMP AL,'A'
+   JB  @@1
+   CMP AL,'Z'
+   JA  @@1
+   ADD AL,20H
+   MOV [ESI-1],AL
+   JMP @@1
+@@2:
+   XCHG EAX,EDX
+  POP ESI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LDS SI,Str
+   MOV BX,SI
+   MOV DX,DS
+ @1:LODSB
+   OR  AL,AL
+   JE  @2
+   CMP AL,'A'
+   JB  @1
+   CMP AL,'Z'
+   JA  @1
+   ADD AL,020h
+   MOV [SI-1],AL
+   JMP @1
+@2:XCHG AX,BX
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction StrMove                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction d‚place un bloc de longueur ®Count¯ caractŠre(s) depuis
+ ®Source¯ vers ®Dest¯ et renvoie ®Dest¯.
+}
+
+Function StrMove{Dest,Source:PChr;Count:Wd):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOVZX ECX,Count
+  PUSH ESI
+   PUSH EDI
+    MOV ESI,Source
+    MOV EDI,Dest
+    MOV EDX,ECX
+    CMP EDI,ESI
+    JG  @@1
+    JE  @@2
+    SHR ECX,2
+    REP MOVSD
+    MOV ECX,EDX
+    AND ECX,3
+    REP MOVSB
+    JMP @@2
+@@1:LEA ESI,[ESI+ECX-1]
+    LEA EDI,[EDI+ECX-1]
+    AND ECX,3
+    STD
+    REP MOVSB
+    SUB ESI,3
+    SUB EDI,3
+    MOV ECX,EDX
+    SHR ECX,2
+    REP MOVSD
+    CLD
+@@2:
+   POP EDI
+  POP ESI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LDS SI,Source
+   LES DI,Dest
+   MOV AX,DI
+   MOV DX,ES
+   MOV CX,Count
+   CMP SI,DI
+   JAE @1
+   STD
+   ADD SI,CX
+   ADD DI,CX
+   DEC SI
+   DEC DI
+@1:REP MOVSB
+   CLD
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction StrNew                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction alloue de l'espace m‚moire sur le tas pour copier une
+ chaŒne de longueur ®StrLen(Str)+1¯ octet(s).
+}
+
+Function StrNew{Str:PChr):PChr};
+Var
+ L:Word;
+ P:PChr;
+Begin
+ StrNew:=NIL;
+ If Not IsPChrEmpty(Str)Then Begin
+  L:=StrLen(Str)+1;
+  P:=MemAlloc(L);
+  If(P<>NIL)Then StrNew:=StrMove(P,Str,L);
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction StrPas                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction convertit la chaŒne de caractŠres de param‚trage ®Str¯ de
+ format ASCIIZ en une chaŒne de format "String" de Pascal.
+}
+
+{$I \Source\Chantal\Library\StrPas.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction StrPascalCopy                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de copier une chaŒne de caractŠres de format Pascal
+ dans une chaŒne de format  ASCIIZ avec validation  d'une taille suffisante
+ pour copier la chaŒne de caractŠres de format Pascal.
+}
+
+Function StrPascalCopy{Var Dest;Size:Word;Source:String):PChr};Begin
+ If Size<SizeOf(String)Then _Left(Source,Size-1);
+ StrPascalCopy:=StrPCopy(PChr(@Dest),Source);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction StrPCopy                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction convertit la chaŒne de caractŠre de style Pascal en une
+ chaŒne de caractŠre de format ASCIIZ.
+}
+
+Function StrPCopy{Dest:PChr;Const Source:String):PChr};
+{$IFDEF FLAT386}
+ Begin
+  StrPCopy:=StrLCopy(Dest,PChr(@Source),255);
+ End;
+{$ELSE}
+ Assembler;ASM
+   PUSH DS
+    CLD
+    LDS SI,Source
+    LES DI,Dest
+    MOV BX,DI
+    MOV DX,ES
+    LODSB
+    XOR AH,AH
+    XCHG AX,CX
+    REP MOVSB
+    XOR AL,AL
+    STOSB
+    XCHG AX,BX
+   POP DS
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction StrPos                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction cherche si la variable de param‚trage ®Str2¯ est contenu
+ dans une partie de la variable de param‚trage ®Str1¯.  Si c'est positif,
+ ®StrPos¯ retourne un pointeur … l'emplacement de ®Str2¯ dans ®Str1¯.
+}
+
+Function StrPos{Str1,Str2:PChr):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH EDI
+   PUSH ESI
+    MOV EAX,Str1
+    MOV EDX,Str2
+    PUSH EBX
+     OR  EAX,EAX
+     JE  @@2
+     OR  EDX,EDX
+     JE  @@2
+     MOV EBX,EAX
+     MOV EDI,EDX
+     XOR AL,AL
+     MOV ECX,0FFFFFFFFH
+     REPNE SCASB
+     NOT ECX
+     DEC ECX
+     JE  @@2
+     MOV ESI,ECX
+     MOV EDI,EBX
+     MOV ECX,0FFFFFFFFH
+     REPNE SCASB
+     NOT ECX
+     SUB ECX,ESI
+     JBE @@2
+     MOV EDI,EBX
+     LEA EBX,[ESI-1]
+@@1: MOV ESI,EDX
+     LODSB
+     REPNE SCASB
+     JNE @@2
+     MOV EAX,ECX
+     PUSH EDI
+     MOV ECX,EBX
+     REPE CMPSB
+     POP EDI
+     MOV ECX,EAX
+     JNE @@1
+     LEA EAX,[EDI-1]
+     JMP @@3
+@@2: XOR EAX,EAX
+@@3:POP EBX
+   POP ESI
+  POP EDI
+ {$ELSE}
+  PUSH DS
+   CLD
+   XOR AL,AL
+   LES DI,Str2
+   MOV CX,$FFFF
+   REPNE SCASB
+   NOT CX
+   DEC CX
+   JE  @2
+   MOV DX,CX
+   MOV BX,ES
+   MOV DS,BX
+   LES DI,Str1
+   MOV BX,DI
+   MOV CX,0FFFFh
+   REPNE SCASB
+   NOT CX
+   SUB CX,DX
+   JBE @2
+   MOV DI,BX
+ @1:MOV SI,Word Ptr Str2
+   LODSB
+   REPNE SCASB
+   JNE @2
+   MOV AX,CX
+   MOV BX,DI
+   MOV CX,DX
+   DEC CX
+   REPE CMPSB
+   MOV CX,AX
+   MOV DI,BX
+   JNE @1
+   MOV AX,DI
+   MOV DX,ES
+   DEC AX
+   JMP @3
+ @2:XOR AX,AX
+   MOV DX,AX
+ @3:POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction StrRomanUp                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la chaŒne de caractŠre de param‚trage ®S¯ en
+ majuscule  sans tenir compte  des caractŠres accentu‚es tout comme le
+ format Romain quoi...
+}
+
+Function StrRomanUp{S:String):String};
+Var
+ I:Byte;
+Begin
+ For I:=1to Length(S)do S[I]:=UpCase(S[I]);
+ StrRomanUp:=S;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction StrRScan                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne un pointeur sur le dernier caractŠre ®Chr¯ de la
+ chaŒne de caractŠres ASCIIZ de style C.  Si le caractŠre  ®Chr¯ n'est pas
+ trouv‚, il retourne un pointeur NIL.
+}
+
+Function StrRScan{Str:PChr;Chr:Char):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH EDI
+   MOV EDI,Str
+   MOV ECX,0FFFFFFFFH
+   XOR AL,AL
+   REPNE SCASB
+   NOT ECX
+   STD
+   DEC EDI
+   MOV AL,Chr
+   REPNE SCASB
+   MOV EAX,0
+   JNE @@1
+   MOV EAX,EDI
+   INC EAX
+@@1:
+   CLD
+  POP EDI
+ {$ELSE}
+  CLD
+  LES DI,Str
+  MOV CX,0FFFFh
+  XOR AL,AL
+  REPNE SCASB
+  NOT CX
+  STD
+  DEC DI
+  MOV AL,Chr
+  REPNE SCASB
+  MOV AX,0
+  CWD
+  JNE @1
+  MOV AX,DI
+  MOV DX,ES
+  INC AX
+ @1:CLD
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction StrScan                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction renvoie un pointeur sur le premier caractŠre ®Chr¯ de la
+ chaŒne ®Str¯ de format ASCIIZ.
+}
+
+Function StrScan{Str:PChr;Chr:Char):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH EDI
+   PUSH EAX
+    MOV EDI,Str
+    MOV ECX,0FFFFFFFFH
+    XOR AL,AL
+    REPNE SCASB
+    NOT ECX
+   POP EDI
+   MOV AL,Chr
+   REPNE SCASB
+   MOV EAX,0
+   JNE @@1
+   MOV EAX,EDI
+   DEC EAX
+@@1:
+  POP EDI
+ {$ELSE}
+  CLD
+  LES DI,Str
+  MOV SI,DI
+  MOV CX,0FFFFh
+  XOR AL,AL
+  REPNE SCASB
+  NOT CX
+  MOV DI,SI
+  MOV AL,Chr
+  REPNE SCASB
+  MOV AX,0
+  CWD
+  JNE @1
+  MOV AX,DI
+  MOV DX,ES
+  DEC AX
+ @1:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction StrUp                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la chaŒne de caractŠres de param‚trage ®S¯ en
+ format majuscule ‚tendue.  C'est-…-dire mˆmes les caractŠres accentu‚e
+ sont interpr‚ter.
+}
+
+Function StrUp{S:String):String};
+Var
+ I:Byte;
+Begin
+ For I:=1to Length(S)do S[I]:=ChrUp(S[I]);
+ StrUp:=S;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction StrUpper                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet  de convertir  une chaŒne de caractŠres ASCIIZ en
+ majuscule. Elle retourne le pointeur de cette chaŒne de caractŠres aprŠs
+ son op‚ration.
+}
+
+Function StrUpper{Str:PChr):PChr};Assembler;ASM
+ {$IFDEF FLAT386}
+  PUSH ESI
+   MOV ESI,Str
+   MOV EDX,ESI
+@@1:
+   LODSB
+   OR  AL,AL
+   JE  @@2
+   CMP AL,'a'
+   JB  @@1
+   CMP AL,'z'
+   JA  @@1
+   SUB AL,20H
+   MOV [ESI-1],AL
+   JMP @@1
+@@2:
+   XCHG EAX,EDX
+  POP ESI
+ {$ELSE}
+  PUSH DS
+   CLD
+   LDS SI,Str
+   MOV BX,SI
+   MOV DX,DS
+ @1:LODSB
+   OR  AL,AL
+   JE  @2
+   CMP AL,'a'
+   JB  @1
+   CMP AL,'z'
+   JA  @1
+   SUB AL,020h
+   MOV [SI-1],AL
+   JMP @1
+@2:XCHG AX,BX
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction StrUSpc                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de d'‚tirer une chaŒne de caractŠres avec des
+ espaces en fonction de la valeur de la variable de param‚trage ®L¯.
+}
+
+Function StrUSpc{Const S:String;L:Byte):String};
+Var
+ SLen:Byte Absolute S;
+Begin
+ If(L<=SLen)Then StrUSpc:=S
+            Else StrUSpc:=S+Spc(L-SLen)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction WordToStr                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne dans une chaŒne de caractŠres la valeur num‚rique
+ entiŠre  de la variable ®X¯.  Elle est con‡u  pour la taille des variables
+ ®Word¯ ou ®Integer¯ occupant 2 octets de m‚moire.
+}
+
+Function WordToStr{X:Word):String};
+Var
+ S:String;
+Begin
+ System.Str(X,S);
+ WordToStr:=S
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure SwapByte                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure ‚change 2 valeurs num‚rique en format octet (Byte) de
+ fa‡on que chacun prainent la valeur de l'autre.
+}
+
+Procedure SwapByte{Var a,b:Byte};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOV CL,[EAX]
+  XCHG CL,[EDX]
+  MOV [EAX],CL
+ {$ELSE}
+  PUSH DS
+   LES DI,A
+   LDS SI,B
+   MOV AL,ES:[DI]
+   XCHG AL,DS:[SI]
+   STOSB { MOV ES:[DI],AL }
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure SwapInt                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure ‚change 2 valeurs num‚rique en format entier  (2 octets
+ sign‚e) de fa‡on que chacun prainent la valeur de l'autre.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Voici, en Pascal quel genre de forme cette proc‚dure devrait avoir si
+    elle ne serait pas justaposer avec ®SwapWord¯:
+    ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+    ³ Procedure SwapInt;Assembler;ASM                                   ³
+    ³  PUSH DS                                                          ³
+    ³   LES DI,A                                                        ³
+    ³   LDS SI,B                                                        ³
+    ³   MOV AX,ES:[DI]                                                  ³
+    ³   XCHG AX,DS:[SI]                                                 ³
+    ³   MOV ES:[DI],AX                                                  ³
+    ³  POP DS                                                           ³
+    ³ END;                                                              ³
+    ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+}
+(*{$L SWAP.OBJ}
+Procedure SwapInt;External;*)
+Procedure SwapInt{Var a,b:Integer};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOV CX,[EAX]
+  XCHG CX,[EDX]
+  MOV [EAX],CX
+ {$ELSE}
+  PUSH DS
+   LES DI,A
+   LDS SI,B
+   MOV AX,ES:[DI]
+   XCHG AX,DS:[SI]
+   STOSW { MOV ES:[DI],AX }
+  POP DS
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure SwapWord                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure ‚change 2 valeurs num‚rique en format mot (2 octets) de
+ fa‡on que chacun prainent la valeur de l'autre.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Voici, en Pascal quel genre de forme cette proc‚dure devrait avoir si
+    elle ne serait pas justaposer avec ®SwapInt¯:
+    ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+    ³ Procedure SwapWord;Assembler;ASM                                  ³
+    ³  PUSH DS                                                          ³
+    ³   LES DI,A                                                        ³
+    ³   LDS SI,B                                                        ³
+    ³   MOV AX,ES:[DI]                                                  ³
+    ³   XCHG AX,DS:[SI]                                                 ³
+    ³   MOV ES:[DI],AX                                                  ³
+    ³  POP DS                                                           ³
+    ³ END;                                                              ³
+    ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+}
+
+{Procedure SwapWord;External;}
+Procedure SwapWord{Var a,b:Word};Assembler;ASM
+ {$IFDEF FLAT386}
+  MOV CX,[EAX]
+  XCHG CX,[EDX]
+  MOV [EAX],CX
+ {$ELSE}
+  PUSH DS
+   LES DI,A
+   LDS SI,B
+   MOV AX,ES:[DI]
+   XCHG AX,DS:[SI]
+   STOSW { MOV ES:[DI],AX }
+  POP DS
+ {$ENDIF}
+END;
+
+{ Cette proc‚dure permet d'‚changer la valeur de deux ®LongInt¯.
+}
+
+Procedure SwapLong(Var A,B:LongInt);
+Var
+ C:LongInt;
+Begin
+ C:=A;A:=B;B:=C;
+End;
+
+{ Cette proc‚dure permet d'‚changer la valeur de deux ®Pointer¯.
+}
+
+Procedure SwapPointer(Var A,B:Pointer);
+Var
+ C:Pointer;
+Begin
+ C:=A;A:=B;B:=C;
+End;
+
+Procedure SwapVectors;
+{$IFDEF __Windows__}
+ Begin
+  { Ce processus est fait par le systeme d'exploitation.
+    Cette routine existe uniquement par soucis de compatiblité
+    avec le DOS. }
+ End;
+{$ELSE}
+ Assembler;
+ Const
+  Intr:Array[0..18]of Byte=(
+   $00,$02,$1B,$21,$23,
+   $24,$34,$35,$36,$37,
+   $38,$39,$3A,$3B,$3C,
+   $3D,$3E,$3F,$75
+  );
+ ASM
+  XOR AX,AX
+  MOV ES,AX
+  MOV CX,TYPE Intr
+  CLD
+  MOV DI,Offset SaveInt00
+  MOV SI,Offset Intr
+ @1:
+  LODSB
+  MOV AH,35h
+  INT 21h
+  PUSH ES
+   PUSH BX
+    PUSH DS
+     LDS DX,[DI]
+     MOV AH,025h
+     INT 21h
+    POP DS
+   POP Word Ptr [DI]
+  POP Word Ptr [DI+2]
+  ADD DI,0004h
+  LOOP @1
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure TaskSpooler                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de donner du temps au "Spooler" d'imprimante pour
+ qu'il envoie quelques donn‚es … l'imprimante.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure n'est support‚e que quand la directive  de compilation
+    conditionnel ®NoSpooler¯ est d‚finit.  Il va de soit que cette m‚thode
+    n'est enclench‚  que quand le  "Spooler"  d'imprimante  n'est  pas une
+    interruption.
+}
+
+{$IFNDEF NoSpooler}
+ Procedure TaskSpooler;Begin
+  {$IFDEF OldSpooler}
+   _TaskSpooler;
+  {$ENDIF}
+ End;
+{$ENDIF}
+
+{$IFDEF __Windows__}
+ Function Test8087{:Byte};Begin
+  Test8087:=Byte((wf80x87)in(GetWinFlags));
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                              Fonction Trim                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne la chaŒne de param‚trage ®S¯ sans ces espaces et
+ r‚sidu non d‚sirez.
+}
+
+Function Trim{S:String):String};Begin
+ Trim:=RTrim(LTrim(S));
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction TruncName                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction permet de raccourcir le nom d'un fichier trop long pour
+  ˆtre affich‚e dans une fenˆtre de dialogue … un maximum sp‚cifi‚ par la
+  variable de param‚trage ®Max¯.
+}
+
+Function TruncName{Const Path:String;Max:Byte):String};
+Var
+ T,P:String;
+ N:NameStr;
+ E:ExtStr;
+Begin
+ {$IFDEF Win32}
+ {$ELSE}
+  FSplit(Path,P,N,E);
+ {$ENDIF}
+ If(Length(P)+Length(N)+Length(E)<Max)Then TruncName:=Path
+  Else
+ Begin
+  T:=Copy(Path,Length(Path)-Max+6,255);
+  If(Length(T)+5<=Max)Then TruncName:=Path2Drv(Path)+':...'+T Else
+  If(Length(N)+Length(E)+6<=Max)Then TruncName:=Path2Drv(Path)+':...\'+N+E Else
+  If(Length(N)+Length(E)+4<=Max)Then TruncName:='...\'+N+E
+                                Else TruncName:=N+E;
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction Unix2DosPath                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de convertir une chaŒne de caractŠres destin‚e pour
+ Unix au format du systŠme d'exploitation DOS.
+}
+
+Function Unix2DosPath{Path:String):String};Begin
+ ChgChr(Path,':',';');
+ ChgChr(Path,'\','/');
+ Unix2DosPath:=Path;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction Unload                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'enlever le pilote de musique ®.MOD¯ pr‚c‚dement
+ charg‚ en m‚moire sur l'interruption 8Ch. Si vous faŒtes appelle … cette
+ fonction lorsque le pilote n'est pas charg‚ un plantage est assurer.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  Cette fonction n'est valide  qu'en mode r‚el  du processeur  et surtout
+ pas en mode prot‚g‚ (DPMI), utopiquement impossible sous Windows...
+}
+
+{$IFDEF Real}
+ {$IFDEF NoInLine}
+  Function Unload:Boolean;Assembler;ASM
+   MOV AH,$FF
+   INT $8C
+  END;
+ {$ENDIF}
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction UnlockExtMemBlockXms                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet … une m‚moire ®XMS¯ r‚serv‚ par un Handle du pilote
+ m‚moire ®HiMem.Sys¯ ou compatible de d‚bloquer le d‚placement de la m‚moire
+ allouer. Cette proc‚dure autorise donc l'optimisation de la m‚moire dans le
+ cas de nouvelle demande...
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş La directive de compilation conditionnel ®ExtraMemory¯ doit au pr‚alable
+    avoir ‚t‚ d‚fini pour permettre son utilisation.
+}
+
+{$IFDEF ExtraMemory}
+ Function UnlockExtMemBlockXms(Path:String):String;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @1
+  MOV DI,Offset XMMCtrl
+  MOV DX,Handle
+  MOV AH,0Dh
+  PUSH BP
+   DB $FF,$1D{CALL FAR[DI]}
+  POP BP
+  MOV XmsErr,BL
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure UnpackSecTrack                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure est utilis‚ pour la manipulation des partitions. Elle
+ retourne … partir  de la variable  de param‚trage ®SecTrack¯ la num‚ro
+ r‚el de cylindre ainsi que de son secteur sur le disque dur.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş La directive  de compilation  conditionnel  ®OptionPartition¯  doit
+    avoir ‚t‚ pr‚alablement d‚fini pour pouvoir ˆtre utilis‚.
+}
+
+{$IFDEF OptionPartition}
+ Procedure UnpackSecTrack(SecTrack:Word;Var Sec,Track:Word);Begin
+  Sec:=SecTrack and 63;
+  Track:=Hi(SecTrack)+(Lo(SecTrack)and 192)shl 2;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure UnPackTime                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure  permet  de passer  de la forme courte de la date  et de
+ l'heure,  utilis‚ par exemple  par le Dos,  … la forme longue directement
+ lisible.
+}
+
+{$I \Source\Chantal\Library\UnpackTi.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction StrToInt                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction  extrait  la valeur num‚rique  (en format double mot, 4
+ octets) contenu dans la chaŒne de caractŠres de param‚trage Pascal ®S¯.
+ Dans le cas d'une chaŒne de caractŠres incoh‚rente, la valeur retourn‚e
+ est 0, sinon il retourne la valeur num‚rique contenu dans le chaŒne.
+}
+
+Function StrToInt{Const S:String):Long};
+Const
+ b:Array[0..9]of LongInt=(
+  1,
+  10,
+  100,
+  1000,
+  10000,
+  100000,
+  1000000,
+  10000000,
+  100000000,
+  100000000
+ );
+Var
+ a:LongInt;
+ E:Word;
+ I,J:Byte;
+ N:Boolean;
+Begin
+ a:=0;N:=S[1]='-';
+ For I:=Length(S)-Byte(N)downto 1do Inc(a,(Byte(S[I+Byte(N)])-Byte('0'))*b[Length(S)-I-Byte(N)]);
+ If(N)Then a:=-a;
+ StrToInt:=a;
+End;
+
+{Function StrToInt;
+ Var
+  a:LongInt;
+  E:Word;
+  I:Byte;
+
+  Function Exp:LongInt;
+  Var
+   J:Byte;
+   b:Long;
+  Begin
+   b:=1;
+   For J:=Length(S)-1downto(I)do b:=b*10;
+   Exp:=b;
+  End;
+
+ Begin
+  a:=0;
+  For I:=Length(S)downto 1do Inc(a,(Byte(S[I])-Byte('0'))*Exp);
+  StrToInt:=a;
+ End;
+}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction ValW                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction extrait la valeur num‚rique (en format mot, 2 octets)
+ contenu dans la chaŒne de caractŠres de param‚trage Pascal ®S¯.  Dans
+ le cas d'une chaŒne de caractŠres incoh‚rente,la valeur retourn‚e est
+ 0, sinon il retourne la valeur num‚rique contenu dans le chaŒne.
+}
+
+Function StrToWord{Const S:String):Word};
+Var
+ a,Err:{$IFDEF Win32}Integer{$ELSE}Word{$ENDIF};
+Begin
+ Val(S,a,Err);
+ StrToWord:=a;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure VramSetOff                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure  permet  de d‚sactiver  la ressource  de m‚moire  vid‚o
+ utiliser dans les modes graphiques Super VGA avec au moins 256 couleurs.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure  est  utilis‚  … usager  externe  par l'unit‚ ®Video¯
+    seulement et n'a th‚oriquement pas d'int‚rˆt  … ˆtre utiliser par une
+    autre unit‚ que celle-l….
+}
+
+{$IFNDEF __Windows__}
+ Procedure VramSetOff;Begin
+  If VSExist[irmVRam]Then Begin
+   ALDone(VSData[irmVRam].Ix);      { Destruction des anciennes informations }
+                                    { d'allocation de la m‚moire vid‚o }
+   ALInit(VSData[irmVRam].Ix);      { R‚initialise les informations }
+                                    { d'allocation }
+   VSExist[irmVRam]:=False;         { Interdit maintenant d'utiliser la }
+                                    { m‚moire vid‚o comme ressource. }
+  End;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Function WildCardMatch                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction indique si le nom de fichier ®FileName¯ correspond au
+  g‚n‚rique contenu dans la variable param‚trage ®WildCard¯.  La valeur
+  vrai est retourn‚e dans le cas o— il correspondant sinon ses faux.
+}
+
+Function WildCardMatch{Const FileName,WildCard:String):Boolean};
+Label Restart;
+Var
+ I,J:Byte;
+ ResultMatch:Boolean;
+Begin
+ ResultMatch:=True;I:=1;J:=1;
+ While(I<=Length(FileName))and(J<=Length(WildCard))and(ResultMatch)do Begin
+  Case WildCard[J]of
+   '?':Begin
+    ResultMatch:=FileName[I]<>'.';
+    Inc(I);Inc(J)
+   End;
+   '*':Begin
+    While(I<=Length(FileName))and(FileName[I]<>'.')do Inc(I);
+    Inc(J);
+   End;
+   ';':Begin
+Restart:
+    If(ResultMatch)Then Begin
+     WildCardMatch:=True;
+     Exit;
+    End;
+    Inc(J);I:=1;
+    ResultMatch:=True;
+   End
+   Else Begin
+    ResultMatch:=FileName[I]=WildCard[J];
+    Inc(I);Inc(J)
+   End;
+  End;
+  If WildCard[J]=';'Then Begin
+   If I<Length(FileName)Then ResultMatch:=False;
+   Goto Restart;
+  End;
+  If Not(ResultMatch)and(Pos(';',WildCard)>0)Then Begin
+   While WildCard[J]<>';'do Begin
+    If J>Length(WildCard)Then Begin
+     WildCardMatch:=False;
+     Exit;
+    End;
+    Inc(J);
+   End;
+   Goto Restart;
+  End;
+ End;
+ WildCardMatch:=ResultMatch and(I=Length(FileName)+1)and(J=Length(WildCard)+1)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Function WildCardSearch                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction recherche un chemin correspondant au g‚n‚rique envoy‚.
+}
+
+Function WildCardSearch{Const Find,Path:String):String};
+Var
+ I:Byte;
+ N:String;
+ X:SearchRec;
+Begin
+ N:='';
+ For I:=1to Length(Path)do Begin
+  If Path[I]<>';'Then IncStr(N,Path[I])
+   Else
+  Begin
+   N:=SetPath4AddFile(N)+Path2NoDir(Find);
+   FindFirst(N,fa,X);
+   If SysErr=0Then Begin { Aucune erreur? }
+    WildCardSearch:=N;
+    Exit;
+   End;
+   N:='';
+  End;
+ End;
+ WildCardSearch:='';
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction XAllocMem                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet d'allouer une ressource m‚moire dans l'une des
+ diff‚rentes m‚moire ‚tendue  (VRAM, XMS, EMS, disque,...).  Sa taille
+ est sp‚cifi‚ par la variable de param‚trage ®Size¯.  Si de la m‚moire
+ est disponible et qu'il a pu vous en allouer, il retourne vrai, sinon
+ en cas de p‚pin divers, il retourne faux.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure  doit avoir ‚t‚ pr‚c‚d‚  au lancement du programme
+    par le constructeur ®InitMemManagers¯.
+
+  ş La fonction  ®PosIsUsed¯  permet de d‚terminer si le bloc sp‚cifi‚
+    est sur une position sur un bloc d‚ja r‚serv‚ ou non.
+}
+
+Function XAllocMem{Resource:Byte;Size:LongInt;Var Q:XInf):Boolean};
+{$IFDEF FLAT386}
+ Begin
+  FillClr(Q,SizeOf(Q));
+  Q.Size:=Size;
+  GetMem(Q.Memory,Q.Size);
+  XAllocMem:=True;
+ End;
+{$ELSE}
+ Label Break4,Break,Break4Search;
+ Var
+  J:Byte;
+  I:RBP;
+  Pos:LongInt;
+  TIx:VSIndexRec;
+  PIx:PVSIndex;
+  Ptr:Pointer Absolute PIx;
+  Ok:Boolean;
+
+  Function PosIsUsed:Boolean;
+  Var
+   K:Word;
+  Begin
+   PosIsUsed:=True;
+   If(Pos>VSData[J].MaxAddr)or(Pos+Size>=VSData[J].SizeMem)Then Exit;
+   ALSetPtr(VSData[J].Ix,0);
+   For K:=0to VSData[J].Ix.Count-1do Begin
+    PIx:=_ALGetCurrBuf(VSData[J].Ix);
+    If(PIx^.Lo<>-1)and(PIx^.Hi<>-1)Then Begin
+      { Le test suivant effectue une v‚rification afin de d‚terminer s'il
+       touche tout simplement … un bloc:
+        ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+        ³           ³           ³                       ³
+        ³ ±±±±±±±±±Û³ÛÛÛÛÛÛÛÛ±±±³±±±±±±±±±±±±±±±±±±±±±  ³
+        ³           ³           ³                       ³
+        ³          Pos       Pos+Size                   ³
+        ³           ³           ³                       ³
+        ³ ±±±±±±±±±±³±±ÛÛÛÛÛÛÛÛÛ³ÛÛÛ±±±±±±±±±±±±±±±±±±  ³
+        ³           ³           ³                       ³
+        ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+      }
+     If((PIx^.Hi>=Pos)and(PIx^.Lo<=Pos))or((PIx^.Hi>=Pos+Size)and(PIx^.Lo<=Pos+Size))Then Exit;
+      { Le test suivant effectue une v‚rification afin d'ˆtre certain qu'il
+        ne s'agit pas d'un bloc de taille inf‚rieur:
+        ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+        ³           ³           ³                       ³
+        ³ ±±±±±±±±±±³±±ÛÛÛÛÛÛ±±±³±±±±±±±±±±±±±±±±±±±±±  ³
+        ³           ³           ³                       ³
+        ³         Lo>Pos      Hi<Pos+Size               ³
+        ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+      }
+     If(Pos<=PIx^.Lo)and(Pos+Size>=PIx^.Hi)Then Exit;
+    End;
+    ALNext(VSData[J].Ix);
+   End;
+   PosIsUsed:=False;
+  End;
+
+ Begin
+  SysErr:=0;Q.Output:=$FF;Q.Handle:=$FFFF;
+  XAllocMem:=False;
+  If(Resource=0)or(Size=0)Then Exit;
+  For J:=irmVram downto(irmDsk)do Begin
+   If((Resource shr J)and 1>0)and(VSExist[J])and(VSData[J].FreeMem>Size)Then Begin
+    Dec(VSData[J].FreeMem,Size);
+    {$IFDEF Security}
+     TIx.Methode:=fmDef; { D‚finit la m‚thode actuel de la ressource }
+                         { venant d'ˆtre allou‚ … lecture et ‚criture }
+                         { possible }
+    {$ENDIF}
+    Ok:=False;
+    If ALIsEmpty(VSData[J].Ix)Then ASM
+     XOR AX,AX
+     MOV Word Ptr Pos,AX
+     MOV Word Ptr Pos[2],AX
+     MOV Word Ptr TIx.Lo,AX
+     MOV Word Ptr TIx.Lo[2],AX
+     MOV Word Ptr TIx.Pos,AX
+     MOV Word Ptr Tix.Pos[2],AX
+     MOV AX,Word Ptr Size
+     MOV Word Ptr Tix.Hi,AX
+     MOV AX,Word Ptr Size[2]
+     MOV Word Ptr Tix.Hi[2],AX
+    END
+     else
+    Begin
+     ALSetPtr(VSData[J].Ix,0);
+     If VSOptSize[J]Then Begin
+      Pos:=0;Ok:=Not(PosIsUsed);
+      If Not(Ok)Then For I:=0to VSData[J].Ix.Count-1do Begin
+       PIx:=_ALGetCurrBuf(VSData[J].Ix); Pos:=PIx^.Hi+1;
+       If(PIx^.Lo<>-1)and Not(PosIsUsed)Then Begin
+        Ok:=True;
+        Goto Break4;
+       End;
+       ALNext(VSData[J].Ix);
+      End;
+     End;
+     For I:=VSData[J].Ix.Count-1downto 0do Begin
+      PIx:=_ALGetBuf(VSData[J].Ix,I);Pos:=PIx^.Hi+1;
+      If Not(PosIsUsed)Then Begin
+       Ok:=True;
+       Goto Break4;
+      End;
+     End;
+  Break4:
+     If Not(Ok)Then Goto Break;
+     { Recherche dans sa table une entr‚e de libre...}
+     TIx.Lo:=Pos;TIx.Hi:=Pos+Size;Ok:=False;
+     ALSetPtr(VSData[J].Ix,0);
+     For I:=0to VSData[J].Ix.Count-1do Begin
+      PIx:=_ALGetCurrBuf(VSData[J].Ix); Pos:=PIx^.Hi+1;
+      If PIx^.Lo=-1Then Begin
+       Ok:=True;
+       Goto Break4Search;
+      End;
+      ALNext(VSData[J].Ix);
+     End;
+  Break4Search:
+    End;
+    If(TIx.Hi>VSData[J].UsedAddr)Then VSData[J].UsedAddr:=TIx.Hi;
+    If Not(Ok)Then Begin
+     Ptr:=ALAdd(VSData[J].Ix,SizeOf(VSIndexRec));
+     If(Ptr=NIL)Then Begin                        { Manque de m‚moire? }
+      SysErr:=errOOM;
+      Exit;
+     End;
+     I:=VSData[J].Ix.Count-1;
+    End;
+    MoveLeft(TIx,Ptr^,SizeOf(VSIndexRec));
+    ASM
+     LES DI,Q;
+     {$IFDEF NotReal}
+      MOV AX,Word Ptr I
+      MOV Word Ptr ES:[DI].XInf.Handle,AX
+      MOV AX,Word Ptr I[2]
+      MOV Word Ptr ES:[DI].XInf.Handle[2],AX
+     {$ELSE}
+      MOV AX,I
+      MOV ES:[DI].XInf.Handle,AX
+     {$ENDIF}
+     MOV AL,J
+     MOV ES:[DI].XInf.Output,AL
+     MOV AX,Word Ptr Size
+     MOV Word Ptr ES:[DI].XInf.Size,AX
+     MOV AX,Word Ptr Size[2]
+     MOV Word Ptr ES:[DI].XInf.Size[2],AX
+     MOV @Result,True
+    END;
+    Exit;
+   End;
+ Break:
+  End;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction XFreeMem                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet  de lib‚rer  la ressource  m‚moire pr‚c‚demment
+ accord‚ par la fonction ®XAllocMem¯. Si l'op‚ration c'est correctement
+ d‚roul‚, la fonction retourne vrai sinon, en cas de problŠme diverses,
+ faux.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure  doit avoir ‚t‚ pr‚c‚d‚  au lancement  du programme
+    par le constructeur ®InitMemManagers¯.
+}
+
+Function XFreeMem{Var Q:XInf):Boolean};
+{$IFDEF FLAT386}
+ Begin
+  FreeMem(Q.Memory,Q.Size);
+  FillClr(Q,SizeOf(Q));
+ End;
+{$ELSE}
+ Var
+  TInd,NInd:PVSIndex;
+  Size:LongInt;
+  Max:RBP;
+ Begin
+  XFreeMem:=False;GetSysErr:=0;
+  If(Q.Output>irmMax)or(Q.Size=0)Then Exit;
+  If VSExist[Q.Output]Then Begin
+   If(Q.Handle>=VSData[Q.Output].Ix.Count)Then Exit;
+   TInd:=_ALGetBuf(VSData[Q.Output].Ix,Q.Handle);
+   If(TInd=NIL)Then Begin
+    ASM
+     MOV SysErr,errHandleHiMem
+    END;
+    Exit;
+   End;
+   Size:=TInd^.Hi-TInd^.Lo;
+   Inc(VSData[Q.Output].FreeMem,Size);
+   Max:=VSData[Q.Output].Ix.Count-1;
+   If(Q.Handle<Max)Then ASM                    { Handle n'est pas le dernier }
+    LES DI,TInd                                { de la liste? }
+    MOV AX,0FFFFh                              { Alors mettre un code  }
+    MOV Word Ptr ES:[DI].VSIndexRec.Lo,AX      { d'invaliditer afin de ne }
+    MOV Word Ptr ES:[DI].VSIndexRec.Lo[2],AX   { pas changer la position }
+    MOV Word Ptr ES:[DI].VSIndexRec.Hi,AX      { des autres Handles...}
+    MOV Word Ptr ES:[DI].VSIndexRec.Hi[2],AX
+   END
+    Else
+   If(Q.Handle=Max)Then XFreeMem:=ALDelBuf(VSData[Q.Output].Ix,Q.Handle)
+                   Else SysErr:=errHandleHiMem;
+   Q.Output:=$FF;
+  End
+   Else
+  ASM MOV SysErr,errFreeHiMem;END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction XGetPos                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  fonction  permet  de connaŒtre  la position  pointeur  actuel du
+ prochaŒne  enregistrement  devant ˆtre lu  dans la ressource  de m‚moire
+ ‚tendue  de l'application.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure doit avoir ‚t‚ pr‚c‚d‚  au lancement du programme par
+    le constructeur ®InitMemManagers¯.
+}
+
+Function XGetPos{Var Q:XInf):LongInt};
+{$IFDEF FLAT386}
+ Begin
+  XGetPos:=Q.Pos;
+ End;
+{$ELSE}
+ Var
+  TIndex:PVSIndex;
+ Begin
+  If(Q.Output>irmMax)or(Q.Size=0)Then Exit;
+  If VSExist[Q.Output]Then Begin
+   TIndex:=_ALGetBuf(VSData[Q.Output].Ix,Q.Handle);
+   ASM
+    LES DI,TIndex
+    XOR DX,DX
+    MOV AX,ES
+    OR  AX,DI
+    JNZ @1
+    MOV SysErr,errHandleHiMem
+    JMP @2
+ @1:LES AX,ES:[DI].VSIndexRec.Pos
+    MOV DX,ES
+ @2:MOV Word Ptr @Result,AX
+    MOV Word Ptr @Result[2],DX
+   END;
+  End
+   Else
+  ASM MOV GetSysErr,errPtrReadHiMem;END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure XGetAbsRec                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de lire le contenu de l'enregistrement de taille
+ ®Size¯ dans la ressource de m‚moire ‚tendue de l'application par rapport
+ au d‚but de la zone r‚server en octet.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure doit avoir ‚t‚ pr‚c‚d‚  au lancement du programme par
+    le constructeur ®InitMemManagers¯.
+}
+
+Procedure XGetAbsRec{Var Q:XInf;P:LongInt;Size:Word;Var Buf};Begin
+ If(Q.Output=irmConvMem)Then MoveLeft(ConvP^[P],Buf,Size)
+  Else
+ Begin
+  XSetPos(Q,P);
+  _XGetRec(Q,Size,Buf);
+ End
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure XGetRec                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet  de lire le contenu de l'enregistrement  de taille
+ ®Size¯   dans  la   ressource    de  m‚moire  ‚tendue   de  l'application.
+ L'enregistrement est toujours un multiple de la taille de l'enregistrement
+ et non pas une position absolue en octet en partant du d‚but.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure doit avoir ‚t‚ pr‚c‚d‚ au lancement du programme par le
+    constructeur ®InitMemManagers¯.
+}
+
+Procedure XGetRec{Var Q:XInf;P:LongInt;Size:Word;Var Buf};Begin
+ XGetAbsRec(Q,Mul2Word(P,Size),Size,Buf)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction XReAllocMem                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction modifie la taille de l'allocation d'une ressource m‚moire
+ pr‚alablement  ‚tablit  par la  fonction  ®XAllocMem¯.  La ressource doit
+ n‚cessairement exister et doit ˆtre inf‚rieure ou ‚gale … sa taille avant
+ l'appel de cette fonction.  Si l'op‚ration c'est correctement d‚roul‚, la
+ fonction retourne  vrai  (True) sinon,  en cas  de problŠme divers,  faux
+ (False).
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure  doit avoir ‚t‚ pr‚c‚d‚  au lancement du programme par
+    le constructeur ®InitMemManagers¯.
+}
+
+Function XReAllocMem{Var Q:XInf;NewSize:LongInt):Boolean};
+Var
+ TIx:PVSIndex;
+Begin
+ XReAllocMem:=False;
+ If(Q.Output>irmMax)Then Exit;
+ If VSExist[Q.Output]Then Begin
+  TIx:=_ALGetBuf(VSData[Q.Output].Ix,Q.Handle);
+  If(TIx=NIL)Then Begin                 { Handle existe-t-il? }
+   GetSysErr:=errHandleHiMem;
+   Exit;
+  End;
+  If NewSize=0Then XFreeMem(Q)          { Taille nulle, inutile de }
+   Else                                 { garde l'information en m‚moire }
+  If(NewSize<TIx^.Hi-TIx^.Lo)Then Begin { Nouvelle taille inf‚rieur }
+                                        { … la pr‚c‚dente ? }
+   TIx^.Hi:=TIx^.Lo+NewSize-1;
+   XReAllocMem:=True;
+  End;
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure XSetMode                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet  de fixer le niveau  de s‚curit‚ d'une ressource
+ m‚moire actuellement en usage dans la m‚moire ‚tendue. Elle n'existe que
+ pour ‚viter  qu'une ‚criture est lieu  dans une zone  de lecture ou vice
+ versa.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure doit avoir ‚t‚ pr‚c‚d‚  au lancement du programme par
+    le constructeur ®InitMemManagers¯.
+
+  ş La directive de compilation conditionnel ®Security¯ doit au pr‚alable
+    avoir ‚t‚ sp‚cifi‚  pour permettre  l'utilisation  de ce m‚canisme de
+    haute s‚curit‚.
+}
+
+{$IFDEF Security}
+ Procedure XSetMode{Var Q:XInf;Mode:Byte};
+ Var
+  TIx:PVSIndex;
+ Begin
+  If(Q.Output>irmMax)Then Exit;
+  If VSExist[Q.Output]Then Begin
+   TIx:=_RBGetBuf(VSData[Q.Output].Ix,Q.Handle);
+   ASM
+    LES DI,TIx
+    MOV CX,ES
+    OR  CX,DI
+    JCXZ @@SetErr
+    MOV AL,Mode
+    MOV ES:[DI].VSIndexRec.Methode,AL
+    JMP @@End
+@@SetErr:
+    MOV GetSysErr,errHandleHiMem
+@@End:
+   END;
+  End;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure XSetPos                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de fixer la position de lecture ou d'‚criture du
+ prochaŒne  enregistrement  devant ˆtre lu  dans la ressource  de m‚moire
+ ‚tendue  de l'application.  Il n'y a que modification  de la position du
+ pointeur de ressource et non pas de donn‚e...
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure doit avoir ‚t‚ pr‚c‚d‚  au lancement du programme par
+    le constructeur ®InitMemManagers¯.
+}
+
+Procedure XSetPos{Var Q:XInf;P:LongInt};
+{$IFDEF FLAT386}
+ Begin
+  Q.Pos:=P;
+ End;
+{$ELSE}
+ Var
+  TIx:PVSIndex;
+ Begin
+  If(Q.Output>irmMax)Then Exit;
+  If VSExist[Q.Output]Then Begin
+   TIx:=_ALGetBuf(VSData[Q.Output].Ix,Q.Handle);
+   ASM
+    LES DI,TIx
+    MOV CX,ES
+    OR  CX,DI
+    JCXZ @@SetErr
+    MOV AX,Word Ptr P
+    MOV Word Ptr ES:[DI].VSIndexRec.Pos,AX
+    MOV AX,Word Ptr P[2]
+    MOV Word Ptr ES:[DI].VSIndexRec.Pos[2],AX
+    JMP @@End
+   @@SetErr:
+    MOV SysErr,errHandleHiMem
+   @@End:
+   END;
+  End
+   Else
+  ASM MOV SysErr,errPtrWriteHiMem;END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure XSetAbsRec                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'‚crire et de fixer le contenu de l'enregistrement
+ de taille ®Size¯ dans la ressource  de m‚moire ‚tendue de l'application par
+ rapport au d‚but de la zone r‚server en octet.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure doit avoir ‚t‚ pr‚c‚d‚  au lancement du programme par le
+    constructeur ®InitMemManagers¯.
+}
+
+Procedure XSetAbsRec{Var Q:XInf;P:LongInt;Size:Word;Const Buf};Begin
+ XSetPos(Q,P);
+ _XSetRec(Q,Size,Buf)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Proc‚dure XSetRec                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'‚crire et de fixe le contenu de l'enregistrement
+ de taille  ®Size¯  dans la ressource  de m‚moire ‚tendue de l'application.
+ L'enregistrement est toujours un multiple de la taille de l'enregistrement
+ et non pas une position absolue en octet en partant du d‚but.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure doit avoir ‚t‚ pr‚c‚d‚ au lancement du programme par le
+    constructeur ®InitMemManagers¯.
+}
+
+Procedure XSetRec{Var Q:XInf;P:LongInt;Size:Word;Const Buf};Begin
+ XSetAbsRec(Q,Mul2Word(P,Size),Size,Buf)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction XtrkBinNm                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction extraŒt des caractŠres binaire num‚rique … partir de la
+ position de la variable de param‚trage ®I¯. Elle incr‚mente la variable
+ … la fin de sa recherche pour permet une poursuite dans un autre cas de
+ recherche sur la mˆme chaŒne...
+}
+
+Function XtrkBinNm{Var I:Byte;Const L:String):String};Begin
+ XtrkBinNm:=XtrkXNm(2,I,L)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction XtrkDecNm                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction extraŒt des caractŠres d‚cimal num‚rique … partir de la
+ position de la variable de param‚trage ®I¯. Elle incr‚mente la variable
+ … la fin de sa recherche pour permet une poursuite dans un autre cas de
+ recherche sur la mˆme chaŒne...
+}
+
+Function XtrkDecNm{Var I:Byte;Const L:String):String};Begin
+ XtrkDecNm:=XtrkXNm(10,I,L)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction XtrkHexNm                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction extraŒt des caractŠres  hexad‚cimal num‚rique minuscule
+ ou majuscule  sans distinction  de race  … partir  de la position de la
+ variable de param‚trage ®I¯. Elle incr‚mente la variable … la fin de sa
+ recherche pour permet une poursuite  dans un autre cas de recherche sur
+ la mˆme chaŒne...
+}
+
+Function XtrkHexNm{Var I:Byte;Const L:String):String};Begin
+ XtrkHexNm:=XtrkXNm(16,I,L)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction XtrkOctNm                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  fonction extraŒt  des caractŠres octal num‚rique … partir de la
+ position de la variable de param‚trage ®I¯. Elle incr‚mente la variable
+ … la fin de sa recherche pour permet une poursuite dans un autre cas de
+ recherche sur la mˆme chaŒne...
+}
+
+Function XtrkOctNm{Var I:Byte;Const L:String):String};Begin
+ XtrkOctNm:=XtrkXNm(8,I,L)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction XtrkPasStr                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction extrait une chaŒne de format Pascal  (entre les '') de la
+ chaŒne de caractŠre sp‚cifi‚. Il retourne la partie entre crochet dans la
+ chaŒne sp‚cifie sans ces crochets.  Si cette chaŒne contient des crochets
+ fesant partie d'une phrase, genre ®C''est¯, il retournera ®C'est¯.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette  fonction  a  ‚t‚  ‚labor‚  …  le  demande  de  compilateurs  et
+    convertisseurs de langage de programmation.  Elle n'est pas utile pour
+    le novice et un utilisateur normal.
+}
+
+Function XtrkPasStr{Var I:Byte;Const L:String;Var EM:Boolean):String};Begin
+ {$IFDEF FLAT386}
+ {$ELSE}
+  EM:=True;Inc(I);
+  ASM
+   LES DI,@Result
+   MOV Byte Ptr ES:[DI],0
+  END;
+  While(L[I]<>'''')or((L[I]='''')and(StrI(I+1,L)=''''))do Begin
+   If I>Length(L)Then Break;
+   ASM
+    LES DI,@Result
+    PUSH ES
+    PUSH DI
+    LES DI,I
+    {$IFDEF __386__}
+     DB 26h,0Fh,0B6h,1Dh { MOVZX BX,ES:[DI] }
+    {$ELSE}
+     MOV BL,ES:[DI]
+     XOR BH,BH
+    {$ENDIF}
+    XOR AX,AX
+    SUB AX,BP
+    MOV DI,Offset L
+    SUB DI,AX
+    PUSH Word Ptr SS:[DI+BX]
+    PUSH CS
+    CALL Near Ptr IncStr
+    LES SI,I
+    {$IFDEF __386__}
+     DB 26h,0Fh,0B6h,1Ch { MOVZX BX,ES:[SI] }
+    {$ELSE}
+     MOV BL,ES:[SI]
+     XOR BH,BH
+    {$ENDIF}
+    XOR AX,AX
+    SUB AX,BP
+    MOV DI,Offset L
+    SUB DI,AX
+    CMP SS:[DI],BL
+    JE  @Skip
+    CMP Word Ptr SS:[DI+BX],39+(39 shl 8)
+    JNE @Skip
+    INC Byte Ptr ES:[SI]
+ @Skip:
+    INC Byte Ptr ES:[SI]
+   END;
+  End;
+  EM:=False;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                             Fonction XtrkWord                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction extraŒt d'une chaŒne de caractŠre de style Pascal ou Basic
+ un mot former de lettre minuscules  ou majuscules contenant dans la chaŒne
+ d'origine … la position de la variable de param‚trage ®I¯. La variable ®I¯
+ se trouve ensuite  incr‚ment‚  … la fin du mot extraŒt  de fa‡on … pouvoir
+ d'autres caractŠres de diff‚rents types la suivant.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Dans  cette fonction  nous parlons  de mot litt‚raire  (regroupement de
+    une / plusieurs  lettre(s)  variable)  et  non pas  au sens  des micro-
+    processeurs avec 2 ou 4 octets de taille fixe.
+}
+
+Function XtrkWord{Var I:Byte;L:String):String};
+Var
+ LL:Byte Absolute L;
+Begin
+ {$IFDEF FLAT386}
+ {$ELSE}
+  XtrkWord:='';
+  If(I>LL)or Not(L[I]in Coder1DefLetter)Then Exit;
+ { ASM
+   LES SI,I
+   MOV BL,ES:[SI]
+   XOR BH,BH
+   XOR AX,AX
+   SUB AX,BP
+   MOV DI,Offset L
+   SUB DI,AX
+   MOV AH,SS:[DI+BX]
+   MOV AL,1
+   LES DI,@Result
+   MOV ES:[DI],AX
+   INC Byte Ptr ES:[SI]
+  END;}
+  While(I<=LL)do If(L[I]in CoderDefLetter)Then ASM
+   LES DI,@Result
+   PUSH ES
+   PUSH DI
+   LES DI,I
+   {$IFDEF __386__}
+    DB 26h,0Fh,0B6h,1Dh { MOVZX BX,ES:[DI] }
+   {$ELSE}
+    MOV BL,ES:[DI]
+    XOR BH,BH
+   {$ENDIF}
+   INC Byte Ptr ES:[DI]
+   XOR AX,AX
+   SUB AX,BP
+   MOV DI,Offset L
+   SUB DI,AX
+   PUSH Word Ptr SS:[DI+BX]
+   PUSH CS
+   CALL Near Ptr IncStr
+  END
+   Else
+  Break;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                               Fonction Zero                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaŒne de caractŠre de format Pascal ou Basic
+ (STRING) contenant une longueur de ®Len¯ caractŠre ®0¯.
+}
+
+Function Zero{Len:Byte):String};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  CLD
+  LES DI,@Result
+  MOV AL,Len
+  MOV AH,0
+  STOSB
+  XCHG AX,CX
+  JCXZ @1
+  MOV AL,'0'
+  REP STOSB
+@1:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                      Fonction _CopyFile                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction copie un fichier d'un unit‚ … une autre, ou d'un
+ r‚pertoire  … un autre.  Il retourne vrai  si l'op‚ration  c'est
+ correctement d‚roul‚ ou faux si des problŠmes ont eu lieu.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction r‚clame un systŠme d'exploitation compatible …
+    un DOS version 2 ou post‚rieurs (datant de moins mars 1983)!
+
+  ş A la diff‚rence de la fonction parallŠle ®CopyFile¯, celle-ci
+    appelle  une proc‚dure virtuel  de progression  de la copie …
+    mesure qu'elle s'effectue.
+}
+
+{$I \Source\Chantal\Library\_CpyFile.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure _DelAllSpcRight                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  proc‚dure  enlŠve  tous  les  espaces  de la  chaŒne  de caractŠres
+ variable de param‚trage ®S¯ se trouvant … la fin et retourne dans la chaŒne
+ de caractŠres  ®S¯ la partie  restante. Si  plus  aucune  caractŠres  n'est
+ pr‚sent dans la chaŒne, elle retourne une chaŒne de caractŠres vide.
+}
+
+Procedure _DelAllSpcRight{Var S:String};Assembler;ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  LES DI,S
+  {$IFDEF __386__}
+   DB 26h,0Fh,0B6h,1Dh { MOVZX BX,ES:[DI] }
+  {$ELSE}
+   MOV BL,ES:[DI]
+   XOR BH,BH
+  {$ENDIF}
+  JMP @2
+@1:
+  DEC BX
+@2:
+  OR  BL,BL
+  JZ  @3
+  CMP ES:[DI+BX].Byte,' '
+  JBE @1
+@3:
+  MOV ES:[DI],BL
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Procedure _Delay                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure attend  un certain nombre de temps  (en fonction de
+ l'horloge interruption 1Ah) puis retourne la partie restante n'ayant
+ pu ˆtre ‚limin‚.  Pendant le temps  attendu,  elle  prend  le  temps
+ d'envoyer des donn‚es … l'imprimante pour ce qu'elle a horreur de ne
+ rien faire...
+}
+
+Procedure _Delay{Var OneMSDelay:Integer};Assembler;
+Const
+ HiTimer:Integer=0;
+ LoTimer:Integer=0;
+ OutCount:Integer=0;
+ASM
+ {$IFDEF FLAT386}
+ {$ELSE}
+  XOR AX,AX
+  {$IFDEF DPMI}
+   MOV ES,Seg0040
+  {$ELSE}
+   MOV ES,AX
+  {$ENDIF}
+  MOV OutCount,AX
+  CALL @3
+  MOV HiTimer,CX
+  MOV LoTimer,DX
+ @1:CALL @3
+  MOV AX,CX
+  MOV BX,DX
+  SUB AX,HiTimer
+  SBB BX,LoTimer
+  JE  @1
+  MOV HiTimer,CX
+  MOV LoTimer,DX
+ @2:MOV CX,110
+ @D:LOOP @D
+  CALL @3
+  INC OutCount
+  SUB CX,HiTimer
+  SBB DX,LoTimer
+  JE  @2
+  MOV AX,OutCount
+  SHL AX,1
+  LES DI,OneMSDelay
+  MOV ES:[DI],AX
+  JMP @End
+ @3:{Routine de lecture du temps actuel}
+  {$IFNDEF NoSpooler}
+   {$IFDEF OldSpooler}
+    PUSH ES
+     PUSH CX
+      PUSH DX
+       CALL _BackKbd;
+      POP DX
+     POP CX
+    POP ES
+   {$ENDIF}
+  {$ENDIF}
+  CLI
+  {$IFDEF DPMI}
+   MOV CX,ES:[6Eh]
+   MOV DX,ES:[6Ch]
+  {$ELSE}
+   MOV CX,ES:[$46E]
+   MOV DX,ES:[$46C]
+  {$ENDIF}
+  STI
+  RETN
+ @End:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Fonction _GetAbsRec                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet  de lire un enregistrement … la position absolue
+ d‚finit par ®P¯ dans le fichier ®Handle¯.  (Il  n'est  pas  multiple  de
+ quelque forme  d'une liste  d'enregistrement).  Il  retourne  le  nombre
+ d'octets lue.  Si le pointeur de fichier est rendu  … la fin du fichier,
+ la valeur retourner indique  le nombre  d'octets ayant peut ˆtre lu.  En
+ situation normal,  la valeur retourner est  ‚gale …  la variable  ®Size¯
+ lors de l'appel de cette fonction.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction r‚clame un systŠme d'exploitation compatible  … un DOS
+    version 2 ou post‚rieurs (datant de moins mars 1983)!
+}
+
+Function _GetAbsRec{Handle:Hdl;P:Long;Size:Word;Var X):Word};Begin
+ SetFilePos(Handle,P);              { Fixe la position absolue du }
+                                    { pointeur de fichier }
+ _GetAbsRec:=_GetRec(Handle,Size,X) { Lecture de l'enregistrement }
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction _GetFile                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction lit  un enregistrement  dans le fichier sp‚cifi‚  par la
+ variable ®Name¯ … la position multiple de la taille de l'enregistrement.
+ Il ne faut pas utiliser un Handle, mais un nom de fichier pour lire dans
+ le fichier avec cette fonction!
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction permet d'‚viter  une longue proc‚dure ‚labor‚ pour une
+    simple lecture d'un petit enregistrement  dans un fichier devant ˆtre
+    fermer imm‚diatement aprŠs lecture...
+
+  ş Cette fonction r‚clame  un systŠme d'exploitation compatible  … un
+    DOS version 2 ou post‚rieurs (datant de moins mars 1983)!
+}
+
+Function _GetFile{Const Name:String;Size:Word;Var Buf):Word};
+Var
+ Handle:Hdl;
+Begin
+ Handle:=FileOpen(Name,fmRead);
+   { Impossible d'ouvrir le fichier? }
+ If(Handle=errHdl)Then Begin
+  _GetFile:=errHdl;
+  Exit;
+ End;
+ GetRec(Handle,0,Size,Buf);
+ _Close(Handle);
+ _GetFile:=0;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction _GetFilePTxtLn                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction lit une ligne texte  ASCII … la  position  du pointeur d'un
+ Handle DOS. Elle retourne cette ligne dans une chaŒne de caractŠres contenu
+ dans une variable de param‚trage ®Buffer¯.
+}
+
+Function _GetFilePTxtLn{Handle:Hdl;Buf:PChr;SizeBuf:Word):Word};Begin
+ _GetRec(Handle,SizeBuf,Buf^);
+ ASM
+  CLD
+  LES DI,Buf
+  MOV CX,SizeBuf
+  MOV BX,CX
+  MOV AX,13+(10 shl 8)
+@1:
+  SCASW
+  JE  @2
+  DEC DI
+  DEC CX
+  JNZ @1
+  DEC DI
+@2:
+  DEC DI
+  DEC DI
+  SUB BX,CX
+  XOR AL,AL
+  STOSB
+  MOV @Result,BX
+ END;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure _GetFileTxtLn                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction lit une ligne texte  ASCII … la  position  du pointeur d'un
+ Handle DOS. Elle retourne cette ligne dans une chaŒne de caractŠres contenu
+ dans une variable de param‚trage ®S¯.
+}
+
+Procedure _GetFileTxtLn{Handle:Hdl;Var S:String};
+Var
+ Buf:PChrAByte;
+Begin
+ {$IFDEF FLAT386}
+ {$ELSE}
+  _GetRec(Handle,SizeOf(Buf),Buf);
+  ASM
+   XOR AX,AX
+   SUB AX,BP
+   MOV SI,Offset Buf
+   SUB SI,AX
+   MOV BX,-1
+ @1:INC BX
+   OR BH,BH
+   JNE @3
+   CMP Word Ptr SS:[SI+BX],13+(10 shl 8)
+   JNE @1
+   JMP @2
+ @3:DEC BX
+ @2:LES DI,S
+   MOV ES:[DI],BL
+   INC DI
+   CLD
+   MOV CX,BX
+   PUSH DS
+    PUSH SS
+    POP DS
+    SHR CX,1
+    REP MOVSW
+    ADC CX,CX
+    REP MOVSB
+   POP DS
+  END;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction _GetRec                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure lit un tampon dans un fichier … la position courante
+ du pointeur de fichier ®Handle¯.  L'‚tat de l'op‚ration est retourn‚e
+ dans la variable  ®SysErr¯  de cette unit‚.  Il  retourne  le  nombre
+ d'octets lue.Si le pointeur de fichier est rendu … la fin du fichier,
+ la valeur retourner indique le nombre d'octets ayant peut ˆtre lu. En
+ situation normal, la valeur retourner est ‚gale … la variable  ®Size¯
+ lors de l'appel de cette fonction.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction r‚clame  un systŠme d'exploitation compatible  … un
+    DOS version 2 ou post‚rieurs (datant de moins mars 1983)!
+
+  ş Cette fonction peut s'adapter … l'environnement  ®Windows¯ si vous
+    sp‚cifi‚ au compilateur le format Windows.
+
+  ş Elle optimize ces codes d'instructions  machine  format  Intel  si
+    vous sp‚cifi‚ au compilateur de compiler l'unit‚ sp‚cialement pour
+    des micro-processeur 80286 ou ses succ‚dants.
+}
+
+Function _GetRec{Handle:Hdl;Size:Word;Var X):Word};Assembler;ASM
+ {$IFDEF Win32}
+ {$ELSE}
+  CLD
+  XOR AX,AX
+  MOV CX,Size
+  LES DI,X
+  MOV DX,DI
+  SHR CX,1
+  REP STOSW
+  ADC CX,CX
+  REP STOSB
+  {$IFDEF __Windows__}
+   MOV BX,Handle
+   CMP BX,errHdl
+  {$ELSE}
+   MOV AX,3F00h
+   MOV BL,Handle
+   XOR BH,BH
+   CMP BL,errHdl
+  {$ENDIF}
+  JE  @1
+  OR  BL,BL
+  JZ  @1
+  MOV CX,Size
+  PUSH DS
+   {$IFDEF __Windows__}
+    LDS DX,X
+    {$IFOPT G+}
+     PUSH BX
+    {$ELSE}
+     MOV CX,Size
+     PUSH BX
+    {$ENDIF}
+    PUSH DS
+    PUSH DX
+    {$IFOPT G+}
+     PUSH Size
+    {$ELSE}
+     PUSH CX
+    {$ENDIF}
+    CALL _WGetRec
+   {$ELSE}
+    PUSH ES
+    POP DS
+    INT 021h
+   {$ENDIF}
+  POP DS
+  {$IFNDEF __Windows__}
+   JNC @1
+   MOV SysErr,AX
+   XOR AX,AX
+  {$ENDIF}
+ @1:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction _GetSerialNmStr                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction convertie une valeur entiŠre longue en un num‚ro de s‚rie
+ du systŠme  d'exploitation DOS  et la retourne  sous  forme  de chaŒne de
+ caractŠres de format Pascal standard. Le format est de style ®XXXX-XXXX¯.
+}
+
+Function _GetSerialNmStr{Serial:LongInt):String};Begin
+ _GetSerialNmStr:=HexWord2Str(Serial shr 16)+'-'+HexWord2Str(Serial)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure _Left                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure retourne dans la chaŒne de caractŠres de variable de
+ param‚trage  ®Str¯  les  ®Num¯  premiers  caractŠres  de la chaŒne de
+ caractŠres sp‚cifi‚ par la variable de param‚trage ®Str¯.
+}
+
+Procedure _Left{Var Str:String;Num:Byte};Assembler;ASM
+ {$IFDEF FLAT386}
+  CMP DL,[EAX]
+  JA  @1
+  MOV [EAX],DL
+@1:
+ {$ELSE}
+  LES DI,Str
+  MOV AL,Num
+  CMP AL,ES:[DI]
+  JA  @1
+  STOSB
+@1:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                       Fonction _MoveFile                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction d‚place un fichier d'un unit‚ … une autre, ou d'un
+ r‚pertoire  … un  autre.  Il retourne  vrai  si l'op‚ration  c'est
+ correctement d‚roul‚ ou faux si des problŠmes ont eu lieu.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction r‚clame  un systŠme  d'exploitation compatible …
+    un DOS version 2 ou post‚rieurs (datant de moins mars 1983)!
+}
+
+Function _MoveFile{Const Source:String;Target:String;Proc:BackgroundCopy):Byte};
+Var
+ Err:Byte;
+Begin
+ _MoveFile:=0;
+ If DirExist(Target)Then AddStr(Target,Path2NoExt(Source));
+ If Path2Dsk(Source)=Path2Dsk(Target)Then Begin{ S'agit-il plut“t de renommer }
+  Proc(100,0,0);                               { un fichier?}
+  RenameFile(Source,Target);
+  _MoveFile:=SysErr;
+  Exit;
+ End;
+ Err:=_CopyFile(Source,Target,Proc);
+ If Err>0Then Begin { La copie s'est-elle correctement effectu‚? }
+  _MoveFile:=Err;
+  Exit;
+ End;
+ _MoveFile:=DeleteFile(Source);
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction _NmHandle                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le nombre de Handle utiliser par l'application en
+ cours, c'est-…-dire celle-ci.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction r‚clame  un  systŠme d'exploitation compatible  … un DOS
+    version 2 ou post‚rieurs (datant de moins mars 1983)!
+}
+
+{$I \Source\Chantal\Library\System\Dos\_NmHandl.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction _Open                            Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction ouvre un fichier ®Handle¯ existant d‚j… sur une unit‚ en
+ autorisant le mode lecture aussi bien qu'‚criture.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction r‚clame un systŠme d'exploitation compatible  … un DOS
+    version 2 ou post‚rieurs (datant de moins mars 1983)!
+}
+
+Function _Open{Const Name:String):Hdl};Begin
+ _Open:=FileOpen(Name,fmDef)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction _PrgPath                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne le r‚pertoire complet d'o— a ‚t‚ lanc‚ le
+ programme actuellement en op‚ration.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette fonction r‚clame  un systŠme d'exploitation compatible au
+    DOS 3 ou post‚rieur.
+}
+
+Function _PrgPath{:String};
+{$IFDEF __Windows__}
+ Var
+  Title:Array[0..255]of Char;
+{$ENDIF}
+Begin
+ {$IFDEF __Windows__}
+  {$IFDEF Win32}
+  {$ELSE}
+   GetModuleFileName(HInstance,Title,SizeOf(Title));
+   _PrgPath:=StrPas(@Title)
+  {$ENDIF}
+ {$ELSE}
+  _PrgPath:=PrgPath(PrefixSeg)
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure _PutFileLn                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure ‚crit un retour de chariot ASCII du DOS dans le fichier
+ sp‚cifi‚ par la variable de param‚trage ®Handle¯  … la position courante
+ du pointeur de fichier.
+}
+
+Procedure _PutFileLn{Handle:Hdl};Begin
+ _SetRec(Handle,2,CRLF[1])
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure _PutFileTxt                          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'‚crire une ligne dans un fichier ®Handle¯ de style
+ ASCII du DOS. Le code de retour de chariot n'est pas additionner s'il manque
+ … la fin  de la chaŒne  de caractŠres,  il faudra  donc  le rajouter.  Cette
+ fonction ‚crit la ligne  en question  … la position courante  du pointeur de
+ fichier et pas n‚cessairement  … la fin  du fichier sp‚cifi‚ par la variable
+ de param‚trage ®Handle¯.
+}
+
+Procedure _PutFileTxt{Handle:Hdl;Const X:String};Begin
+ {$IFDEF FLAT386}
+ {$ELSE}
+  _SetRec(Handle,Byte(X[0]),X[1])
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure _PutFileTxtLn                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'‚crire une ligne dans un fichier Handle de style
+ ASCII  du  DOS.  Le  code  de retour  de chariot  est  compris  dans cette
+ ‚criture...  Cette  fonction  ‚crit la  ligne  … la  position  courante du
+ pointeur du fichier Handle et pas n‚cessairement … la fin!
+}
+
+Procedure _PutFileTxtLn{Handle:Hdl;X:String};Begin
+ AddStr(X,CRLF);
+ _PutFileTxt(Handle,X)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure _SetAbsRec                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet d'‚crire un enregistrement … la position absolue
+ d‚finit par ®P¯ dans le fichier  ®Handle¯. (Il  n'est  pas  multiple  de
+ quelque forme d'une liste d'enregistrement).
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure r‚clame un systŠme d'exploitation compatible … un DOS
+    version 2 ou post‚rieurs (datant de moins mars 1983)!
+}
+
+Procedure _SetAbsRec{Handle:Hdl;P:LongInt;Size:Word;Const X};Begin
+ SetFilePos(Handle,P);
+ _SetRec(Handle,Size,X)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                      Proc‚dure _SetFilePos                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de fixer la position du pointeur de fichier …
+ l'int‚rieur d'un fichier handle selon les 3 techniques habituelle:
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ ®Method¯   ³ Description                                          ³
+ ÆÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+ ³ fpStart=0  ³ Position du pointeur … partir du d‚but du fichier.   ³
+ ³ fpCur=1    ³ Position du pointeur … partir de l'emplacement actuel³
+ ³            ³ du fichier.                                          ³
+ ³ fpEnd=2    ³ Position du pointeur … partir de la fin du fichier.  ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  L'‚tat  de l'op‚ration est retourn‚e  dans la variable  ®SysErr¯  de
+ cette unit‚.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Si vous utilisez un  ®Handle¯ correspondant … un  ®Handle¯ erron‚,
+    soit $FFFF, la proc‚dure n'est tout simplement ex‚cuter.
+
+  ş Vous pouvez ‚galement utiliser la proc‚dure  ®SetFilePos¯  si vous
+    souhaŒter faire des ajustements  du pointeur  toujours calculer en
+    fonction du fichier Handle.
+
+  ş Cette proc‚dure r‚clame un systŠme d'exploitation compatible  … un
+    DOS version 2 ou post‚rieurs (datant de moins mars 1983)!
+
+  ş Cette proc‚dure peut s'adapter … l'environnement ®Windows¯ si vous
+    sp‚cifi‚ au compilateur le format Windows.
+}
+
+Procedure _SetFilePos{Handle:Hdl;P:LongInt;Method:Byte};
+{$IFDEF __Windows__}
+ Begin
+  {$IFDEF Win32}
+  {$ELSE}
+   GetSysErr:=Abs(Not(_WSetFilePos(Handle,P,Method)))
+  {$ENDIF}
+ End;
+{$ELSE}
+ Assembler;ASM
+  MOV AH,042h
+  MOV AL,Method
+  MOV BL,Handle
+  XOR BH,BH
+  CMP BL,0FFh
+  JE  @2
+  LES DX,P
+  MOV CX,ES
+  INT 021h
+  JC  @1
+  XOR AX,AX
+@1:MOV GetSysErr,AX
+@2:
+ END;
+{$ENDIF}
+
+Function GetFilePos{Handle:Hdl):LongInt};
+{$IFDEF __Windows__}
+ Begin
+ End;
+{$ELSE}
+ Assembler;ASM
+  MOV GetSysErr,0
+  MOV AX,04201h
+  MOV BL,Handle
+  XOR BH,BH
+  CMP BL,0FFh
+  JE  @1
+  XOR DX,DX
+  XOR CX,CX
+  INT 021h
+  JNC @1
+  MOV GetSysErr,AX
+@1:
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Fonction _SetRec                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure fixe un tampon dans un fichier … la position courante
+ du pointeur de fichier  ®Handle¯.  L'‚tat de l'op‚ration est retourn‚e
+ dans la variable ®SysErr¯ de cette unit‚.
+
+
+ Remarques
+ ÍÍÍÍÍÍÍÍÍ
+
+  ş Cette proc‚dure r‚clame un systŠme d'exploitation compatible  … un
+    DOS version 2 ou post‚rieurs (datant de moins mars 1983)!
+
+  ş Cette proc‚dure peut s'adapter … l'environnement  ®Windows¯ si vous
+    sp‚cifi‚ au compilateur le format Windows.
+
+  ş Elle optimize ces codes d'instructions machine format Intel si vous
+    sp‚cifi‚ au compilateur  de compiler l'unit‚ sp‚cialement  pour des
+    processeur 80286 ou ses succ‚dants.
+}
+
+Function _SetRec{Handle:Hdl;Size:Word;Const X};Assembler;ASM
+ {$IFDEF Win32}
+ {$ELSE}
+  PUSH DS
+   LDS DX,X
+   {$IFDEF __Windows__}
+    MOV BX,Handle
+    CMP BX,errHdl
+   {$ELSE}
+    MOV BL,Handle
+    XOR BH,BH
+    CMP BL,errHdl
+   {$ENDIF}
+   JE  @0
+   {$IFDEF __Windows__}
+    {$IFOPT G+}
+     PUSH BX
+    {$ELSE}
+     MOV CX,Size
+     PUSH BX
+    {$ENDIF}
+    PUSH DS
+    PUSH DX
+    {$IFOPT G+}
+     PUSH Size
+    {$ELSE}
+     PUSH CX
+    {$ENDIF}
+    CALL _WSetRec
+   {$ELSE}
+    MOV CX,Size
+    MOV AX,04000h
+    INT 021h
+   {$ENDIF}
+ @0:POP DS
+  {$IFNDEF __Windows__}
+   JC @1
+   XOR AX,AX
+  {$ENDIF}
+@1:
+  MOV GetSysErr,AX
+@End:
+ {$ENDIF}
+END;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction _StrW                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction retourne une chaŒne de caractŠre contenant la valeur
+ num‚rique d‚cimal des 2 premiers octets pointer par le tampon ®X¯.
+}
+
+Function _WordToStr{Const X):String};Begin
+ _WordToStr:=WordToStr(Word(X))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure _XGetRec                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  proc‚dure  charge un enregistrement  de la ressource sp‚cifi‚
+ par sa variable de structure … partir de la position courant attribu‚
+ par le ®Handle¯ dans le tampon d‚sir‚.
+}
+
+Procedure _XGetRec{Var Inf:XInf;Size:Word;Var Buf};
+{$IFDEF FLAT386}
+ Begin
+  MoveLeft(Buf,Inf.Memory^[Inf.Pos],Size);
+ End;
+{$ELSE}
+ Var
+  TInd:PVSIndex;
+  {$IFDEF Security}
+   Ok:Boolean;
+  {$ENDIF}
+  P:LongInt;
+  a2:LongInt;
+  l,a1W,W:Word;
+  XC:XmsGetRec;
+ Begin
+  If Size=0Then Exit;
+  If(Inf.Handle=$FFFF)or(Inf.Output=$FF)Then Begin
+   FillClr(Buf,Size);
+   Exit;
+  End;
+  If VSExist[Inf.Output]Then Begin
+   TInd:=_ALGetBuf(VSData[Inf.Output].Ix,Inf.Handle);
+   {$IFDEF Security}Ok:=TInd^.Methode=fmWrite;{$ENDIF}
+   If(TInd=NIL){$IFDEF Security}or(Ok){$ENDIF}Then Begin
+    ASM
+     CLD
+     LES DI,Buf
+     MOV CX,Size
+     MOV AL,0
+     REP STOSB
+     MOV AX,$126
+     {$IFDEF Security}
+     CMP Ok,Ya
+     JE  @@SkipOther
+     MOV AL,$27
+ @@SkipOther:{$ENDIF}
+     MOV SysErr,AX
+    END;
+    Exit;
+   End;
+   ASM
+    LES DI,TInd
+    MOV AX,VSIndexRec(ES:[DI]).Lo.Word
+    MOV DX,VSIndexRec(ES:[DI]).Lo.Word[2]
+    ADD AX,VSIndexRec(ES:[DI]).Pos.Word
+    ADC DX,VSIndexRec(ES:[DI]).Pos.Word[2]
+    MOV P.Word,AX;MOV P.Word[2],DX
+   END;
+   irmSetPos(Inf.Output,P);
+   Case(Inf.Output)of
+    irmDsk:_GetAbsRec(DskSwp.Handle,DskP,Size,Buf);
+    {$IFNDEF NotReal}
+     irmXms:Begin;
+      XC.Size:=Size and$FFFE;   { Taille du bloc d'enregistrement }
+      XC.QHdl:=Xms.Handle;      { Handle de ressource XMS }
+      XC.QOfs:=IoXMSP;          { Position dans la ressource m‚moire }
+      XC.ZHdl:=0;               { Origine du mode prot‚g‚ }
+      XC.ZOfs:=@Buf;            { Tampon dans la mode r‚el }
+      MoveExtMemBlockXMS(ExtMemMoveRec(XC));
+      If Size and 1=1Then Begin { Lecture d'un octet impaire }
+       l:=Size and$FFFE;XC.Size:=SizeOf(W);XC.QHdl:=Xms.Handle;
+       XC.QOfs:=IoXMSP+l;XC.ZHdl:=0;XC.ZOfs:=@W;
+       MoveExtMemBlockXMS(ExtMemMoveRec(XC));
+       TByte(Buf)[l]:=Byte(W);
+      End;
+     End;
+     irmEms:Begin
+      a2:=IOEmsP+(Size-1); a1W:=IOEmsP mod EmsSzPgDef;
+      EmmSetMapping(Ems.Handle,0,IOEmsP div EmsSzPgDef);
+      If(IOEmsP div EmsSzPgDef=a2 div EmsSzPgDef)Then MoveLeft(Mem[EmmSeg:a1W],Buf,Size)
+       Else
+      Begin
+       l:=EmsSzPgDef-(1+a1W);
+       MoveLeft(Mem[EmmSeg:a1W],Buf,l);
+       EmmSetMapping(Ems.Handle,0,a2 div EmsSzPgDef);
+       MoveLeft(Mem[EmmSeg:0],TByte(Buf)[l],Size-l)
+      End;
+     End;
+    {$ENDIF}
+    {$IFNDEF __Windows__}
+     irmVram:ReadBnk(LongInt(Vram.HomeAddr)+LongInt(VramP),Size,Buf);
+    {$ENDIF}
+   End;
+  End
+   Else
+  ASM MOV SysErr,errReadHiMem;END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure _XSetRec                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  proc‚dure  copie  un enregistrement  de la ressource sp‚cifi‚
+ par sa variable de structure … partir de la position courant attribu‚
+ par le ®Handle¯ … partir du tampon d‚sir‚.
+}
+
+Procedure _XSetRec{Var Inf:XInf;Size:Word;Const Buf};
+{$IFDEF FLAT386}
+ Begin
+  MoveLeft(Buf,Inf.Memory^[Inf.Pos],Size);
+ End;
+{$ELSE}
+ Var
+  TInd:PVSIndex;
+  P:LongInt;
+  a2:LongInt;
+  l,W:Word;
+  Map:Record
+   Seg:Word;
+   Ofs:Word;
+  End;
+  XC:XmsSetRec;
+  XR:XmsGetRec;
+ Begin
+  If(Inf.Handle=$FFFF)or(Inf.Output=$FF)or(Size=0)Then Exit;
+  If VSExist[Inf.Output]Then Begin
+   TInd:=_ALGetBuf(VSData[Inf.Output].Ix,Inf.Handle);
+   IF(TInd=NIL)Then Begin
+    GetSysErr:=errHandleHiMem;
+    Exit;
+   End;
+   {$IFDEF Security}
+    If(TInd^.Methode=fmRead)Then Begin
+     GetSysErr:=errOnlyReadHiMem;
+     Exit;
+    End;
+   {$ENDIF}
+   ASM
+    LES DI,TInd
+    MOV AX,Word Ptr ES:[DI].VSIndexRec.Lo
+    MOV DX,Word Ptr ES:[DI].VSIndexRec.Lo[2]
+    ADD AX,Word Ptr ES:[DI].VSIndexRec.Pos
+    ADC DX,Word Ptr ES:[DI].VSIndexRec.Pos[2]
+    MOV Word Ptr P,AX
+    MOV Word Ptr P[2],DX
+   END;
+    { En dehors de sa zone respective? }
+   If(P>=TInd^.Hi)Then Exit;
+   irmSetPos(Inf.Output,P);
+    { D‚fonce la zone attribu‚? }
+   If(P+Size>TInd^.Hi)Then Size:=TInd^.Hi-P;
+    { En dehors des limites physique de la ressouces? }
+   If(VSData[Inf.Output].SizeMem<P)or(VSData[Inf.Output].SizeMem<P+Size)Then Exit;
+   Case(Inf.Output)of
+    irmDsk:_SetAbsRec(DskSwp.Handle,DskP,Size,Buf);
+    {$IFNDEF NotReal}
+     irmXms:Begin
+      XC.Size:=Size and$FFFE; { Taille de l'enregistrement }
+      XC.QHdl:=0;             { Source du mode r‚el }
+      XC.QOfs:=@Buf;          { L'adresse du tampon }
+      XC.ZHdl:=Xms.Handle;    { Handle de la ressource XMS }
+      XC.ZOfs:=IoXmsP;        { Position absolue dans le bloc d'XMS r‚serv‚e }
+      MoveExtMemBlockXMS(ExtMemMoveRec(XC));
+      If Size and 1=1Then Begin { Taille impaire? }
+        {Le transfert avec la m‚moire XMS se fait toujours par mots, donc}
+        {quand la taille est  d'une longueur impaire,  il faut absolument}
+        {transfer‚e  manuellement le  dernier octets  de  fa‡on manuel en}
+        {passant tout simplement  par la lecture d'un mot,  la copie d'un}
+        {l'octet et le renvoie du mot...}
+       l:=Size and$FFFE;
+        {Lecture de 2 octets }
+       XR.Size:=SizeOf(W);    { Taille de l'enregistrement }
+       XR.QHdl:=Xms.Handle;   { Handle de la ressource XMS }
+       XR.QOfs:=IoXMSP+l;     { Position absolue dans le bloc d'XMS r‚serv‚e }
+       XR.ZHdl:=0;            { Source du mode prot‚g‚ }
+       XR.ZOfs:=@W;           { Adresse du tampon }
+       MoveExtMemBlockXMS(ExtMemMoveRec(XR));
+        { criture de l'octet impaire }
+       Byte(W):=TByte(Buf)[l];
+       XC.Size:=SizeOf(W);    { Taille de l'enregistrement }
+       XC.QHdl:=0;            { Source du mode r‚el }
+       XC.QOfs:=@W;           { L'adresse du tampon }
+       XC.ZHdl:=Xms.Handle;   { Handle de la ressource XMS }
+       XC.ZOfs:=IoXmsP+l;     { Position absolue dans le bloc d'XMS r‚serv‚e }
+       MoveExtMemBlockXMS(ExtMemMoveRec(XC))
+      End;
+     End;
+     irmEms:Begin
+      a2:=IoEmsP+(Size-1);
+      Map.Ofs:=IoEmsP mod EmsSzPgDef;
+      Map.Seg:=IoEmsP div EmsSzPgDef;
+      EmmSetMapping(Ems.Handle,0,Map.Seg);
+      If(Size>EmsSzPgDef)Then Begin
+       EmmSetMapping(Ems.Handle,1,Map.Seg+1);
+       EmmSetMapping(Ems.Handle,2,Map.Seg+2);
+       EmmSetMapping(Ems.Handle,3,Map.Seg+3);
+      End;
+      If(Map.Seg=a2 div EmsSzPgDef)Then MoveLeft(Buf,Mem[EmmSeg:Map.Ofs],Size)
+       Else
+      Begin
+       l:=EmsSzPgDef-(1+Map.Ofs);
+       MoveLeft(Buf,Mem[EmmSeg:Map.Ofs],l);
+       EmmSetMapping(Ems.Handle,0,a2 div EmsSzPgDef);
+       MoveLeft(TByte(Buf)[l],Mem[EmmSeg:0],Size-l)
+      End;
+     End;
+    {$ENDIF}
+    {$IFNDEF __Windows__}
+     irmVram:WriteBnk(LongInt(Vram.HomeAddr)+LongInt(VramP),Size,Buf);
+    {$ENDIF}
+   End;
+  End
+   Else
+  ASM MOV SysErr,errWriteHiMem;END;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Proc‚dure __GetAbsFilePTxtLn                    Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure lit une ligne texte ASCII … la position absolue sp‚cifi‚e
+ par la  variable  de param‚trage  ®P¯.  Elle retourne cette ligne dans une
+ chaŒne  de caractŠres contenu  dans une variable de param‚trage  ®Buffer¯.
+ Ensuite  elle met  …  jour la  position  du pointeur  … la fin de la ligne
+ venant d'ˆtre lu.
+}
+
+Procedure __GetAbsFilePTxtLn{Handle:Hdl;Var P:LongInt;Buf:PChr;SizeBuf:Word};Begin
+ SetFilePos(Handle,P);
+ Inc(P,LongInt(_GetFilePTxtLn(Handle,Buf,SizeBuf)+2))
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                     Proc‚dure __GetAbsFileTxtLn                   Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure lit une ligne dans un texte ASCII de format DOS … la
+ position  ®P¯  et  incr‚mente  la  variable  ®P¯ pour ˆtre prˆt … une
+ lecture d'une prochaŒne ligne sans ajustement de cette variable.
+}
+
+Procedure __GetAbsFileTxtLn{Handle:Hdl;Var P:LongInt;Var S:String};Begin
+ {$IFDEF FLAT386}
+ {$ELSE}
+  _GetAbsFileTxtLn(Handle,P,S);
+  ASM{Inc(P,Length(S)+2);}
+   LES DI,S
+   MOV BL,ES:[DI]
+   XOR BH,BH
+   CMP BL,0FFh
+   JNE @Ok
+   CLD
+   MOV CX,BX
+   MOV AL,10
+   MOV BX,DI
+   INC DI
+ @1:
+   REPNE SCASB
+   JCXZ @NoFound
+ @2:
+   XCHG BX,DI
+   SUB BX,DI
+   DEC BX
+   DEC BX
+   MOV ES:[DI],BL
+   JMP @3
+ @NoFound:
+   MOV CX,00FFh
+   MOV AL,0
+   MOV DI,BX
+   INC DI
+   REPNE SCASB
+   JCXZ @Nada
+   JMP @2
+ @Nada:
+   MOV BX,000FFh
+   JMP @4
+ @Ok:
+   INC BX
+ @3:
+   INC BX
+ @4:
+   LES DI,P
+   ADD Word Ptr ES:[DI],BX
+   ADC Word Ptr ES:[DI+2],0
+  END;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·}
+{³                     Z o n e  P r i v ‚ s                    º}
+{ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼}
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                            Fonction BfSpool                         Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction retourne l'‚l‚ment courant du pointeur et pointe sur le
+  suivant pour la prochaine fois qu'on appellera cette fonction.
+}
+
+{$IFNDEF NoSpooler}
+ Function BfSpool(P:LongInt):Char;Begin
+  If PSpool and 1023=0Then Systems.GetRec(HSpool,PSpool shr 10,1024,BufSpool^);
+  BfSpool:=BufSpool^[PSpool and 1023]
+ End;
+{$ENDIF}
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                             Fonction FCBRen                          Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction permet de renommer un fichier, r‚pertoire ou volume avec
+  le nom sp‚cifier.
+}
+
+Function FCBRen(Attr,Dsk:Byte;Const Source,Target:String):Boolean;
+Label Xit;
+Var
+ Q:SearchRec;
+ Buf:Array[0..63]of Byte;
+ _AH:Byte;
+ PtrBuf:Pointer;
+ OldDir,SN,TN:String;
+Begin
+ OldDir:=FileExpand(GetCurrentDir);
+ If(Attr and faVolumeID=faVolumeID)Then Begin
+  If Dsk=0Then Dsk:=GetDsk+1;
+  ChDir(Chr(Dsk+64)+':\')
+ End
+  Else
+ ChDir(Path2Dir(FileExpand(Source)));
+ FillClr(Buf,SizeOf(Buf));
+ Buf[0]:=$FF;
+ Buf[6]:=Attr;
+ Buf[7]:=Dsk;
+ PtrBuf:=@Buf;
+ TN:=SetFullName(Path2NoDir(Target));
+ DelChrAt(TN,9);
+ If(Attr and faVolumeID=faVolumeID)Then Begin
+  FindFirst('*.*',faVolumeID,Q);
+  If SysErr=0Then Begin
+   SN:=SetFullName(Path2NoDir(Source));
+   MoveLeft(SN[1],Buf[8],11);
+   ASM
+    PUSH DS
+     LDS DX,PtrBuf
+     MOV AH,13h
+     INT 21h
+    POP DS
+   END;
+  End;
+  If Target=''Then Begin
+   FCBRen:=True;
+   Goto Xit;
+  End;
+  MoveLeft(TN[1],Buf[8],11);
+  _AH:=$16;
+ End
+  Else
+ Begin
+  SN:=SetFullName(Path2NoDir(Source));
+  DelChrAt(SN,9);
+  MoveLeft(SN[1],Buf[8],11);
+  Buf[$17]:=Dsk;
+  MoveLeft(TN[1],Buf[$18],11);
+  _AH:=$17;
+ End;
+ ASM
+  PUSH DS
+   LDS DX,PtrBuf
+   MOV AH,_AH
+   INT 21h
+  POP DS
+  XOR AL,1
+  AND AL,1
+  MOV @Result,AL
+ END;
+Xit:
+ ChDir(OldDir);
+End;
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                        Interruption Int09h                        Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette interruption est une solution de remplacement … l'interruption
+  clavier classique visant … lire  le code clavier de fa‡on brute et de
+  les envoyers  dans  un  tampon  clavier  retirable  par un  ®ReadKey¯
+  classique!
+}
+
+{$IFNDEF NoInt09h}
+Procedure Int09h;Interrupt;
+Const
+ Qwerty1:Array[0..Length('QWERTYUIOP')]of Char='QWERTYUIOP';
+ Qwerty2:Array[0..Length('ASDFGHJKL')]of Char='ASDFGHJKL';
+ Qwerty3:Array[0..Length('ZXCVBNM')]of Char='ZXCVBNM';
+Var
+ Code,InPort,Attr,AttrFull:Byte;
+ K,K2,K3:Word;
+Begin
+ If(InIRQ1)Then Exit;
+ InIRQ1:=True;
+ AttrFull:=Mem[_0040:$17];
+ InPort:=Port[$60];Attr:=AttrFull and 15;K:=0;
+ Code:=InPort and$7F;
+ Case(Code)of
+  iokbEsc:Case(Attr)of
+   mAlt:K:=kbAltEsc;
+   mCtrl:K:=kbCtrlEsc;
+   mCtrl+mAlt:K:=kbCtrlAltEsc;
+   mShift,mShiftLeft,mShiftRight:K:=kbShiftEsc;
+  End;
+  iokb2:If(Attr=mCtrl)Then K:=kbCtrl2;
+  iokbBackSpace:Case(Attr)of
+   mAlt:K:=kbAltBackSpace;
+   mCtrl:K:=kbCtrlBackSpace;
+  End;
+  iokbTab:If(Attr=mShift)Then K:=kbShiftTab;
+  iokbEnter:If(Attr=mCtrl)Then K:=kbCtrlEnter;
+  iokbSpaceBar:If(Attr=mAlt)Then K:=kbAltSpc;
+  iokbUp:If(Attr=mCtrl)Then K:=kbCtrlUp;
+  iokbKeypad5:K:=kbKeypad5;
+  iokbDown:If(Attr=mCtrl)Then K:=kbCtrlDown;
+{  iokbQ..iokbP:
+  Begin
+   K2 := Code-iokbQ;
+   K3 := Byte(Not(((AttrFull and $40)=$40)xor((AttrFull and 3)>0)))*32;
+   Case Attr of
+    mAlt: K:=Byte(ShiftCode[Qwerty1[K2]])shl 8;
+    mCtrl: K:=(Byte(ShiftCode[Qwerty1[K2]])shl 8)+Byte(Qwerty1[K2]);
+    mNone: K:=Byte(Qwerty1[K2])+K3;
+    Else K:=Byte(Qwerty1[K2])+K3;
+   End;
+  End;
+  iokbF1..iokbF10:Begin
+   K2:=(Code-iokbF1)shl 8;
+   Case Attr of
+    mAlt: K:=kbAltF1+K2;
+    mCtrl: K:=kbCtrlF1+K2;
+    mNone: K:=kbF1+K2;
+    Else K:=kbShiftF1+K2;
+   End;
+  End;}
+  iokbF11:Case(Attr)of
+   mAlt:K:=kbAltF11;
+   mCtrl:K:=kbCtrlF11;
+   mNone:K:=kbF11;
+   Else K:=kbShiftF11;
+  End;
+  iokbF12:Case(Attr)of
+   mAlt: K:=kbAltF12;
+   mCtrl: K:=kbCtrlF12;
+   mNone: K:=kbF12;
+   Else K:=kbShiftF12;
+  End;
+ End;
+ If K<>0Then Begin
+  If K<>$FFFFThen PushKey(K);
+  ASM
+   MOV AL,020h
+   OUT 020h,AL
+  END;
+ End
+  Else
+ ASM
+  PUSHF
+  CALL OldInt09h
+ END;
+ InIRQ1:=False;
+End;
+{$ENDIF}
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                          Interruption Int17h                           Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette  interruption  une remplacement  de l'interruption  d'imprimante et
+  envoie donc les donn‚es re‡u dans un tampon m‚moire d'impression (Spooler)
+  en attendant que l'imprimante soit prŠs … envoyer les donn‚es.
+}
+
+{$IFNDEF NoSpooler}
+ {$IFDEF MaxInt}
+  Procedure Int17h(Flags,CS,IP,AX,BX,CX,DX,SI,DI,DS,ES,BP:Word);Begin
+   If(DX=PrnOutput)Then Case Hi(AX)of
+    0:Begin
+     STI;
+     PushStrSpooler(Char(AX));
+     AX:=$9000;
+    End;
+    1,2:AX:=Port[Mem[_0040:8+((DX and 3)shl 1)]]shl 8;
+   End
+    Else
+   ASM
+    PUSHF
+    CALL OldInt17h
+   END;
+  End;
+ {$ENDIF}
+{$ENDIF}
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                            Interruption Int28h                          Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette interruption remplace l'ancienne interruption 28h ‚tant appeler lors
+  que  le systŠme  d'exploitation  n'a rien  … faire.  Dans  ce cas  si,  les
+  routines de Spooler d'imprimante devrait se trouver appeler.
+}
+
+{$IFDEF MaxInt}
+ Procedure Int28h;Assembler;ASM
+  CALL _BackKbd
+  PUSHF
+  CALL OldInt28h
+ END;
+{$ENDIF}
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                         Proc‚dure irmSetPos                        Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure permet de fixer la position du pointeur courant d'une
+  ressources de m‚moire de masse.
+}
+
+{$IFNDEF __Windows__}
+ Procedure irmSetPos(Output:Byte;P:LongInt);Begin
+  Case(Output)of
+   irmDsk:Begin
+    Systems.SetFilePos(DskSwp.Handle,P);
+    DskP:=P;
+   End;
+   {$IFNDEF NotReal}
+    irmEms:ASM
+     LES BX,P
+     MOV IOEmsP.Word,BX
+     MOV IOEmsP.Word[2],ES
+    END;
+   {$ENDIF}
+   {$IFNDEF __Windows__}
+    irmVram:ASM
+     LES BX,P
+     MOV VramP.Word,BX
+     MOV VramP.Word[2],ES
+    END;
+   {$ENDIF}
+   {$IFNDEF NotReal}
+    irmXms:ASM
+     LES BX,P
+     MOV IOXmsP.Word,BX
+     MOV IOXmsP.Word[2],ES
+    END;
+   {$ENDIF}
+  End;
+ End;
+{$ENDIF}
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                      Proc‚dure TruncAfterSemicolon                   Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure efface tous ce qui se trouve aprŠs le caractŠres point-
+  virgule (;)  dans la chaŒne  de  caractŠres  d‚finit  comme  variable de
+  param‚trage ®S¯.
+}
+
+Procedure TruncAfterSemicolon(Var S:String);
+Var
+ I:Byte;
+Begin
+ For I:=1to Length(S)do If S[I]=';'Then Begin
+  {$IFDEF Win32}
+   SetLength(S,I-1);
+  {$ELSE}
+   S[0]:=Chr(I-1); { Fixe la longueur de la chaŒne de caractŠres }
+                   { … la position du point-virgule(;) - 1 }
+  {$ENDIF}
+  Exit;
+ End;
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Fonction XtrkXNm                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette  fonction  permet  d'extraire  le  contenu  dans  une  chaŒne  de
+ caractŠres d'une base num‚rique d‚finit selon la variable de param‚trage
+ ®X¯.
+}
+
+Function XtrkXNm(X:Byte;Var I:Byte;Const L:String):String;
+Var
+ J:Byte;
+Begin
+ XtrkXNm:='';
+ If I>Length(L)Then Exit;
+ J:=I;
+ Case(X)of
+  2:While I<=Length(L)do If(L[I]in BinArabicDigit)Then Inc(I)Else Break;
+  8:While I<=Length(L)do If(L[I]in OctArabicDigit)Then Inc(I)Else Break;
+ 10:While I<=Length(L)do If(L[I]in ArabicDigit)Then Inc(I)Else Break;
+ 16:While I<=Length(L)do If(L[I]in ArabicXDigit)Then Inc(I)Else Break;
+ End;
+ If(I=J)Then Exit;
+ XtrkXNm:=Copy(L,J,I-J)
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                           Proc‚dure _Close                           Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet la fermeture d'un fichier de format Handle selon
+ le systŠme d'exploitation.
+}
+
+Procedure _Close(Handle:Hdl);
+{$IFDEF __Windows__}
+ Begin
+  FileClose(Handle);
+ End;
+{$ELSE}
+ Assembler;ASM
+  MOV AX,3E00h
+  MOV BL,Handle
+  OR  BL,BL
+  JZ  @Null
+  XOR BH,BH
+  INT 021h
+  JC @1
+@Null:
+  XOR AX,AX
+@1:
+  MOV GetSysErr,AX
+ END;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Fonction aSEb                             Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction indique si le premier entiers long est sup‚rieur ou ‚gal
+ au  deuxiŠme  et  retourne  vrai  dans  ce cas  sinon  faux  dans le cas
+ inf‚rieur seulement.
+}
+
+{$IFNDEF NoSpooler}
+ Function aSEb(a,b:LongInt):Boolean;Near;Begin
+  aSEb:=a>=b
+ End;
+{$ENDIF
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                      Fonction _TaskSpooler                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction est ex‚cutez en arriŠre plan afin de permettre les
+ caractŠres   contenu  dans  le  tampon  de  m‚moire   d'impression
+ (Spooler) par l'ensemble Malte Genesis.
+}
+
+{$IFNDEF NoSpooler}
+Function _TaskSpooler:Boolean;Begin
+ _TaskSpooler:=False;
+ If FSSpool>0Then Begin
+  If(FSSpool>PSpool)Then ASM
+   MOV AL,PrnOutput
+   AND AL,3
+   SHL AL,1
+   ADD AL,8
+   {$IFDEF DPMI}
+    MOV AH,0
+   {$ELSE}
+    MOV AH,4
+   {$ENDIF}
+   MOV DI,AX
+   {$IFDEF DPMI}
+    MOV ES,_0040
+   {$ELSE}
+    XOR AX,AX
+    MOV ES,AX
+   {$ENDIF}
+   MOV DX,ES:[DI]
+   INC DX
+   IN  AL,DX
+   TEST AL,$80
+   JZ  @@End
+   PUSH DX
+    PUSH PSpool.Word[2]
+    PUSH PSpool.Word
+    CALL BfSpool
+   POP DX
+   DEC DX
+   OUT DX,AL
+   INC DX
+   INC DX
+   IN  AL,DX
+   OR  AL,1
+   OUT DX,AL
+   IN  AL,DX
+   AND AL,NOT 1
+   OUT DX,AL
+   MOV AX,PSpool.Word
+   MOV DX,PSpool.Word[2]
+   ADC AX,1
+   ADC DX,0
+   MOV PSpool.Word,AX
+   MOV PSpool.Word[2],DX
+   PUSH DX
+   PUSH AX
+   PUSH FSSpool.Word[2]
+   PUSH FSSpool.Word
+   CALL aSEb
+   CMP AL,0
+   JE  @@NoReset
+   XOR AX,AX
+   MOV FSSpool.Word,AX;MOV FSSpool.Word[2],AX
+   MOV PSpool.Word,AX;MOV PSpool.Word[2],AX
+   {$IFNDEF OldSpooler}
+    {$IFDEF DPMI}
+     MOV ES,Seg0040
+     MOV DX,ES:[8]
+    {$ELSE}
+     XOR AX,AX
+     MOV ES,AX
+     MOV DX,ES:[$408]
+    {$ENDIF}
+    INC DX
+    INC DX
+    IN  AL,DX
+    AND AL,Not 16
+    OUT DX,AL
+   {$ENDIF}
+@@NoReset:
+   MOV @Result,True
+@@End:
+  END;
+ End;
+End;
+{$ENDIF}
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·}
+{³                     D e s t r u c t e u r                   º}
+{ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                          Proc‚dure DoneMemManagers                     Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure permet de mettre fin … toutes les allocations m‚moires et
+ attribution au ‚l‚ment de ressources pr‚c‚damment allou‚:  XMS, EMS, VRAM,
+ ExtBios, Disque,...
+}
+
+Procedure DoneMemManagers;Begin
+ {$IFDEF FLAT386}
+ {$ELSE}
+  If(VSwpInit)Then Begin
+   {$IFNDEF NotReal}
+   If VSExist[irmXms]Then Begin
+    ASM
+     MOV AX,00A00h
+     MOV DI,Offset XMMCtrl
+     MOV DX,Xms.Handle
+     PUSH BP
+      DB 0FFh,01Dh{CALL FAR[DI]}
+     POP BP
+     MOV XmsErr,BL
+     MOV VSExist.Byte[irmXms],False
+    END;
+    ALDone(VSData[irmXms].Ix)
+   End;
+   If VSExist[irmEms]Then Begin
+    ASM
+     MOV AX,04500h
+     MOV DX,Ems.Handle
+     INT 067h
+     MOV EmmErr,AH
+     MOV VSExist.Byte[irmEms],False
+    END;
+    ALDone(VSData[irmEms].Ix)
+   End;
+   {$ENDIF}
+   If VSExist[irmDsk]Then Begin
+    ASM
+     PUSH DS
+     {$IFOPT G+}
+      PUSH Offset DskSwp.Handle
+     {$ELSE}
+      MOV AX,Offset DskSwp.Handle
+      PUSH AX
+     {$ENDIF}
+     PUSH CS
+     CALL Near Ptr FileClose
+     PUSH DS
+     {$IFOPT G+}
+      PUSH Offset PathDskSwp
+     {$ELSE}
+      MOV AX,Offset PathDskSwp
+      PUSH AX
+     {$ENDIF}
+     PUSH CS
+     CALL Near Ptr DeleteFile
+     MOV VSExist.Byte[irmDsk],False
+    END;
+    ALDone(VSData[irmDsk].Ix)
+   End;
+  End;
+  VSwpInit:=False;
+ {$ENDIF}
+End;
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                         Proc‚dure DoneSpooler                       Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+
+  Cette proc‚dure restitue l'‚tat original de l'imprimante ainsi que les
+ zones m‚moires allou‚s afin de permettre la gestion de celle-ci,  comme
+ par exemple le tampon de m‚moire d'imprimante (Spooler).
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette routine  doit  avoir  ‚t‚ pr‚c‚d‚ par l'appel  du constructeur
+    InitSpooler sinon elle risque  de cr‚er des problŠmes  plus ou moins
+    soluble.
+}
+
+{$IFNDEF NoSpooler}
+ Procedure DoneSpooler;Begin
+  {$IFDEF NaxInt}SetIntVec($17,OldInt17h);{$ENDIF}
+  {$IFNDEF OldSpooler}
+   ASM
+    IN AL,021h
+    OR AL,080h
+    OUT 021h,AL
+   END;
+   SetIntVec($0F,OldInt0Fh);
+  {$ENDIF}
+  If(BufSpool<>NIL)Then Begin
+   If(HSpool<>errHdl)Then Begin
+    FileClose(HSpool);
+    If(DelSpooler)Then DeleteFile(SpoolName);
+   End;
+   FreeMemory(BufSpool,1024);
+   ASM
+    XOR AX,AX
+    MOV Word Ptr BufSpool,AX
+    MOV Word Ptr BufSpool[2],AX
+   END;
+  End;
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                            Proc‚dure DoneSystems                        Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette proc‚dure effectue la restitution de tous les m‚canismes en m‚moire,
+ interruption,  gestionnaire  de  ressources,...  afin  de  pouvoir  quitter
+ proprement au systŠme d'exploitation.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Cette  routine  doit  avoir  ‚t‚ pr‚c‚d‚  par  l'appel  du  constructeur
+    InitSystems sinon  elle risque de cr‚er  des  problŠmes  plus  ou  moins
+    soluble.
+}
+
+Procedure DoneSystems;Begin
+ {$IFNDEF NoInt09h}
+  SetIntVec($09,OldInt09h);
+ {$ENDIF}
+ {$IFDEF MaxInt}
+  SetIntVec($28,OldInt28h);
+ {$ENDIF}
+ {$IFDEF HighSecurity}
+  DoneMemManagers;
+ {$ENDIF}
+End;
+
+{ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ}
+
+{$IFDEF NotReal}
+ {$IFNDEF __Windows__}
+  Function HeapFunc(X:Word):Integer;Far;Begin
+   HeapFunc:=1;
+  End;
+
+ BEGIN
+  HeapError:=@HeapFunc;
+  HeapAllocFlags:=gmem_FIXED+gmem_ZeroInit;
+ {$ENDIF}
+{$ENDIF}
+END.

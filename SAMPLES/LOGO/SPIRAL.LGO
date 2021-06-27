@@ -1,0 +1,6 @@
+L=2
+FOR I TO 60 DO
+   LEFT 60
+   L=L+2
+   FORWARD L
+OD

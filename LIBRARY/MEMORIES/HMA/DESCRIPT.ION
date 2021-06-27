@@ -1,0 +1,3 @@
+hmaavail.inc Retourne la taille de libre de l'HMA
+gatehma.inc GateHMA
+isa20on.inc Indique de canal A20 libre

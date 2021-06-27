@@ -1,0 +1,12 @@
+adele.rc Fichier ressource de la bibliothŠque Vid‚o
+bhsx256.inc BarSpaceHori en 256 couleurs
+brtxt256.inc BarTextHori en 256 couleurs
+drv16.inc Pilote 16 couleurs
+drv16.pas Pilote 16 couleurs
+drv19.pas Pilote 320x200 en 256 couleurs
+bthdef.inc BarTextHori par d‚faut
+circle.inc Cercle
+clrwn256.inc ClrWn en 256 couleurs
+clscurgr.inc CloseCursor en graphique
+videomod.pas Vid‚oMode
+vga256.inc Mode VGA en 256 couleurs

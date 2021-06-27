@@ -1,0 +1,16 @@
+NumberIndex=1
+
+Copyright 'BibliothŠque d''OverCode avanc‚e - '
+Copyright 'Tous droits r‚serv‚s par les Chevaliers de Malte (C) 1995 … 2000.'
+
+// D‚finition du Type de projet que le compilateur doit produire:
+
+IndexDialog 0
+   Size 56,17
+   WindowColorClassic 'Type de Projet'
+   CloseIcon
+   BarUp
+   RadioButton (0,1),'SystŠme d''exploitation','DOS|DOS ‚tendu|OS/2|Windows 3.1|Win32s|Windows 95|Windows 98|Windows NT|Windows 2000|Linux'
+   RadioButton (27,1),'Format','®.COM¯|®.EXE¯|®.MEX¯|Secteur de d‚marrage|Unit‚ compacte|Unit‚ ‚tendue|BibliothŠque'
+   KeyHoriDown 'Correcte|Annuler'
+End

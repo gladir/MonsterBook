@@ -1,0 +1,50 @@
+Program NouveauDessinElectronique;
+
+Uses Adele,Systex,Systems,Video,Mouse,Isatex,Dials,Apps,TechDraw;
+
+Const
+ NumApp=0;
+ LstHWin:Array[0..NumApp]of HWin=(
+ (SerialNumber:1;
+   Init:TDNewElectronic;
+   Load:TDOpen;
+   Run:NIL;
+   Done:TDDone;
+   Refresh:TDRefresh;
+   Save:TDSave;
+   SaveAs:TDSaveAs;
+   SizeOfQ:SizeOf(TechDrawRec);
+   Title:TDTitle;
+   ReSize:NIL;
+   NumXTexts:0;
+   NumYTexts:0;
+   OnDeactivate:NIL;
+   Move2:NIL;
+   OnWaiting:TDBackOperation;
+   OnKeyPress:NIL;
+   OnKeyDown:TDOnKeyDown;
+   OnKeyUp:NIL;
+   OnMouseDown:TDOnMouseDown;
+   OnMouseUp:NIL;
+   OnMouseMove:TDOnMouseMove;
+   OnMouseControl:TDOnMouseControl));
+
+Var
+ I:Byte;
+ Windows:HWins;
+ Q:TechDrawRec;
+
+BEGIN
+ InitSystems(suIsabel);
+ InitMemManagers;
+ SetVideoModeDeluxe(vmGrf800x600c65536);
+ _InitEnv(MtxOs2Win95);
+ HInit(Windows);
+ For I:=0to(NumApp)do HAddNewModel(Windows,LstHWin[I]);
+ __InitMouse;
+ HNew(Windows,1);
+ HRun(Windows);
+{ HDone(Windows);}
+ SetVideoMode(vmTxtDef);
+ DoneMemManagers;
+END.

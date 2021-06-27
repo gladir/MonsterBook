@@ -1,0 +1,51 @@
+// BibliothŠque de structure de luxe du traŒtement de texte.
+// Ensemble Malte Genesis IV: Chantal
+// Tous droits r‚serv‚ par les Chevaliers de Malte (C) 1995 … 1997
+// __________________________________________________________________________
+//
+//
+// Description
+// ÍÍÍÍÍÍÍÍÍÍÍ
+//
+//  Cette ressource contient tous les ‚l‚ments n‚cessaire  … la gestion  d'un
+// ‚diteur de traŒtement de texte reconnaŒssant le langage Fortran, Euphoria,
+// Pascal, C/C++, Basic,...
+//
+//
+// Remarques
+// ÍÍÍÍÍÍÍÍÍ
+//
+//  ş Cette ressource est tir‚e … l'origine de l'unit‚ ®MKLANG¯ de l'ensemble
+//    Malte Genesis III/Isabel dans son r‚pertoire ®RLL¯.
+//
+//  ş Son ancˆtre devait ˆtre compil‚ par un Turbo  Pascal  6  ou  post‚rieur
+//    tandis   que  lui  r‚clame  simplement  le  petit   programme   ®CRLL¯:
+//    Compilateur de ®Real-Link-Library¯.
+
+NumberIndex=1
+Copyright 'TraŒtement de texte'
+Copyright 'Tous droits r‚serv‚s par les Chevaliers de Malte (C) 1995 … 1997.'
+
+IndexAscii 0
+C'est un avertissement d'urgence!
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Vous n'avez pas sauvegarder votre document  et c'est  votre
+derniŠre chance  de renverser la situation!  Vous risquez de
+tous perdre si vous ne  l'autorisez pas maintenant.  Si vous
+indiquez ®Oui¯,  pressez  ®Enter¯  sur la bouton clignotant,
+vous pourrez  alors sauvegarder le texte  que  vous ‚criviez
+ou modifiez sur une unit‚ disque.
+
+Dans l'‚ventualit‚ o— vous choisissez non (cliquez le bouton
+®Non¯), le programme ferme cette fenˆtre sans avoir modifier
+vos  derniŠres   modifications   ou  votre  toute   nouvelle
+cr‚ation.
+
+ Vous   pouvez   ‚galement  pressez   la   touche  ®Esc¯  ou
+®Ctrl+Break¯  pour annuler l'op‚ration.  Vous  pourrez  donc
+continuer  l…  o—  vous  ‚tiez  rendu  dans  votre  travail.
+Naturellement,  il abandonnera  la processus  de quitter  si
+vous l'aviez demand‚!
+End
+

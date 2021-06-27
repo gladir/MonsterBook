@@ -1,0 +1,93 @@
+{CpyNT256.Inc}
+
+Procedure CopT8Bin;Assembler;ASM
+ CLD
+ MOV ES,DataVideo.MIV.SegVideo
+ MOV BX,Y
+ CMP BX,DataVideo.MIV.NumYPixels
+ JAE @End
+ SHL BX,1
+ MOV DI,X
+ {$IFOPT G+}
+  SHR DI,2
+ {$ELSE}
+  SHR DI,1
+  SHR DI,1
+ {$ENDIF}
+ ADD DI,Word Ptr RealRawY[BX]
+ {$IFNDEF __360x480c256}
+  ADD DI,DataVideo.MIV.AddrPage
+ {$ENDIF}
+ TEST Byte Ptr X,1
+ JZ  @9
+ INC DI
+@9:
+ MOV DX,3C4h
+ MOV AH,Value
+ AND AH,0Fh
+ MOV AL,02h
+ OUT DX,AX
+ MOV AL,Fore
+ STOSB
+ MOV AH,Value
+ {$IFOPT G+}SHR AH,4{$ELSE}SHR AH,1;SHR AH,1;SHR AH,1;SHR AH,1{$ENDIF}
+ MOV AL,02h
+ OUT DX,AX
+ MOV AL,Fore
+ STOSB
+@End:
+END;
+
+Procedure Copy8Bin;Assembler;ASM
+ CLD
+ MOV ES,DataVideo.MIV.SegVideo
+ MOV BX,Y
+ CMP BX,DataVideo.MIV.NumYPixels
+ JAE @End
+ SHL BX,1
+ MOV DI,X
+ {$IFOPT G+}
+  SHR DI,2
+ {$ELSE}
+  SHR DI,1
+  SHR DI,1
+ {$ENDIF}
+ ADD DI,Word Ptr RealRawY[BX]
+ {$IFNDEF __360x480c256}
+  ADD DI,DataVideo.MIV.AddrPage
+ {$ENDIF}
+ TEST Byte Ptr X,1
+ JZ  @9
+ INC DI
+@9:
+ MOV DX,3C4h
+ MOV AH,Value
+ AND AH,0Fh
+ MOV AL,02h
+ OUT DX,AX
+ MOV AL,Fore
+ STOSB
+ MOV AH,Value
+ {$IFOPT G+}SHR AH,4{$ELSE}SHR AH,1;SHR AH,1;SHR AH,1;SHR AH,1{$ENDIF}
+ MOV AL,02h
+ OUT DX,AX
+ MOV AL,Fore
+ STOSB
+ DEC DI
+ DEC DI
+ MOV AH,Value
+ NOT AH
+ AND AH,0Fh
+ MOV AL,02h
+ OUT DX,AX
+ MOV AL,Back
+ STOSB
+ MOV AH,Value
+ NOT AH
+ {$IFOPT G+}SHR AH,4{$ELSE}SHR AH,1;SHR AH,1;SHR AH,1;SHR AH,1{$ENDIF}
+ MOV AL,02h
+ OUT DX,AX
+ MOV AL,Back
+ STOSB
+@End:
+END;

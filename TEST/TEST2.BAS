@@ -1,0 +1,4 @@
+A=8*9+4+2
+PRINT A*7+4+A
+
+10 A$=INKEY$:IF A$=""THEN 10

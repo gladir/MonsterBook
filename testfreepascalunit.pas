@@ -1,0 +1,7 @@
+Unit TestFreePascalUnit;
+
+INTERFACE
+
+IMPLEMENTATION
+
+END.

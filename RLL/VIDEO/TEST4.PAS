@@ -1,0 +1,69 @@
+Uses Drv4,Systex,Systems;
+
+Const HorseA:Array[0..79]of Word=({64x20}
+$0000,$0000,$4001,$0002,$0000,$0000,$4005,$802A,
+$0000,$0000,$0005,$60AA,$0000,$0000,$0215,$A8AA,
+$0000,$0000,$0215,$AAAA,$0000,$0000,$5A55,$2AA0,
+$0000,$0100,$AA54,$0880,$0000,$AAAA,$AA56,$0080,
+$2A00,$AAAA,$AA96,$0080,$A200,$AAAA,$AA96,$0080,
+$8200,$AAAA,$AA5A,$00A8,$8200,$AAAA,$AA5A,$80AA,
+$0200,$A1AA,$AA62,$A000,$0A00,$018A,$0A00,$2800,
+$0A00,$0028,$0200,$0880,$2800,$0020,$0000,$0A80,
+$2000,$0008,$0000,$2820,$A000,$0008,$0000,$2820,
+$8000,$0002,$0000,$00A0,$A000,$8002,$0000,$00A0);
+
+Const PtrDrv:Pointer=@_Driver4;
+Var I,J:Word;Buffer:Array[0..255]of Byte;Int43h:Pointer;
+
+BEGIN
+ InitSystems(suIsabel);
+ For I:=0to 255do Buffer[I]:=I;
+ ASM
+  MOV AX,4
+  INT $10
+ END;
+ Int43h:=TableInt[$43];
+ ASM
+  LES DI,PtrDrv
+  MOV AX,Int43h.Word
+  MOV ES:[DI+238].MIV.TxtMtx.Word,AX
+  MOV AX,Int43h.Word[2]
+  MOV ES:[DI+238].MIV.TxtMtx.Word[2],AX
+ END;
+ Init;
+ BarSpcHor(1,0,4,$C0);
+ SetPixel(0,8,1);SetPixel(8,8,2);SetPixel(32,8,3);
+ ClrWn(4,4,12{0},5{4},$F0);
+ SetPixel(0,31,2);
+ SetPixel(0,30,1);
+ SetPixel(0,29,3);
+ SetPixel(1,31,3);
+ SetPixel(1,30,2);
+ SetPixel(1,29,1);
+ SetPixel(4,31,2);
+ SetPixel(4,30,1);
+ SetPixel(4,29,3);
+ For I:=0to 12do SetGCubeT(I shl 3,16,'M',$5);
+ For I:=0to 12do SetGCube(I shl 4,32,'A',$F0);
+ PutTxtXY(8,8,'Salut',$C0);
+ PutLnHor(8,100,{199}8*8-1,1);
+ SetPixel(64,99,2);
+ For I:=0to 24do FillBox(15,I,39,I,Chr(I),$F0);
+ MoveText(20,3,20+9,3+19-1,20,3+1);
+ PutSmlImg(0,0,30,19,HorseA);
+ PutSmlImg(1,20,31,39,HorseA);
+ GetSmlImg(0,20,31,39,HorseA);
+ PutSmlImg(0,40,31,59,HorseA);
+{ MoveText(61,3+1,69,3+19-1,61,3);
+{ FillBox(10,10,121,40,'@',$7E);
+ SetPixel(512,70,$C);
+ For I:=600to 699do PutLnHor(257,I,800,$9);
+ For I:=700to 767do ClrLnHorImg(0,I,256,8,Buffer);}
+ For J:=0to 10do For I:=0to 10do SetPixel(I,J,GetPixel(I,J));
+ Done;
+ ASM
+  XOR AX,AX
+  INT 16h
+ END;
+ DoneSystems;
+END.

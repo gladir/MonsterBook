@@ -1,0 +1,78 @@
+
+NumberIndex=10
+
+IndexDialog 0
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   CloseIcon
+   BarUp
+   Text 12,5,'texte1'
+   CheckBox (8,8),0,'Check box patate'
+End
+
+IndexDialog 1
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   CloseIcon
+   BarUp
+   Text 4,4,'texte1'
+   Text 13,3,'texte2'
+   Text 17,5,'texte3'
+   CheckBox (8,10),0,'CheckBox1'
+   CheckBox (8,9),0,'CheckBox2'
+   CheckBox (8,8),0,'CheckBox3'
+End
+
+
+IndexDialog 2
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   CloseIcon
+   BarUp
+End
+
+IndexDialog 3
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   CloseIcon
+   BarUp
+End
+
+IndexDialog 4
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   CloseIcon
+   BarUp
+End
+
+IndexDialog 5
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   CloseIcon
+   BarUp
+End
+
+IndexDialog 6
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   CloseIcon
+   BarUp
+End
+
+IndexDialog 7
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   BarUp
+End
+
+IndexDialog 8
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   BarUp
+End
+
+IndexDialog 9
+   Size 40,15
+   WindowColorClassic 'Sans titre'
+   BarUp
+End

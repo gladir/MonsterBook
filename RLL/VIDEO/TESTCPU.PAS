@@ -1,0 +1,10 @@
+BEGIN
+ ASM
+  PUSH DS
+   MOV AX,0B800h
+   MOV DS,AX
+   MOV SI,0FFFEh
+   LODSW
+  POP DS
+ END;
+END.

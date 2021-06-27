@@ -1,0 +1,11 @@
+Program ClrKbd;
+
+ASM
+ XOR AX,AX
+ MOV ES,AX
+ CLI
+ MOV AX,ES:[$480]
+ MOV ES:[$41C],AX
+ MOV ES:[$41A],AX
+ STI
+END.

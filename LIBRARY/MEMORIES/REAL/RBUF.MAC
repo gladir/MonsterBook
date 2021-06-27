@@ -1,0 +1,889 @@
+;\Source\Chantal\Library\Memories\Real\RBuf.Mac
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                 Malte Genesis/BibliothŠque individuel                 Û
+;³                    dition Chantal/IV - Version 1.1                   Û
+;³                             1994/01/16                                Û
+;³                                                                       Û
+;³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+;Nom des programmeurs
+;ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Sylvain Maltais
+; ...? Bien il y en qu'un!
+;
+;
+;Description
+;ÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Cette inclusion vise  … permettre une universialisation des donn‚es …
+;compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+;traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+;on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+;bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+;ou sa plante comme jamais avant...
+;
+; Toutes les d‚finitions et routines de cette inclusion sont d‚velopp‚s
+;pour ˆtre utilis‚e seulement en mode r‚el avec la technique de gestion
+;de liste sym‚trique  o— il est question  d'une suite d'‚l‚ment pouvant
+;se reperer par avant comme par arriŠre.
+;
+; Voici la liste des proc‚dures et fonctions fournit dans ce fichier:
+;
+;  RBInit             = Initialisation de la liste sym‚trique
+;  RBAdd              = Additionne un enregistrement
+;  RBAddBuf           = Additionne une zone m‚moire
+;  RBDelCurrBuf       = Efface l'‚l‚ment courant
+;  RBDelLast          = Efface le dernier ‚l‚ment de la liste
+;  RBNext             = Passe … l'‚l‚ment suivant
+;  RBPopCurrPtr       = Restitution d'une ancienne position courante
+;  RBPrevious         = Passe … l'‚l‚ment pr‚c‚dent
+;  RBPushCurrPtr      = Sauvegarde la position courante
+;  RBSetCurrBuf       = Modifie le contenu et la longueur de l'‚l‚ment courant
+;  RBSetPtrHome       = Fixe la position du pointeur au d‚but la liste
+;  _RBGetCurrBuf      = Demande le contenu de l'‚l‚ment courant
+;  RBDone             = Terminaison et restitue de la liste sym‚trique
+
+INCLUDE \Source\Chantal\Library\Compiler\Assemble.ur\Dialect.Inc
+INCLUDE \Source\Chantal\Library\Memories\Real\RBufHead.Mac
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                            Proc‚dure RBInit                           Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure sert … initialiser la liste sym‚trique manipuler par
+; l'enregistrement de format ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registres d‚truit AX, CX, DI, Drapeaux
+
+RBInit Proc Near
+ MOV CX,TYPE RBuf
+ MOV AL,0
+endp
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                           Proc‚dure FillChar                          Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure sert … effacer le contenu d'une zone m‚moire … partir
+; du point ®ES:DI¯pendant une longueur ®CX¯ avec la valeur de l'octet du
+; registre ®AL¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse o— commence la zone … effacer
+;  CX        = Longueur de la zone en octet(s)
+;  AL        = Nouvelle valeur devant ˆtre appliqu‚e
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registres d‚truit AX, CX, DI, Drapeaux
+
+FillChar Proc Near ; AL=Valeur, CX=Longueur, ES:DI=Tampon
+ CLD
+ MOV AH,AL
+ SHR CX,1
+ REP STOSW
+ ADC CX,CX
+ REP STOSB
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                      Proc‚dure RBPrevious                     Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure sert … d‚placer le pointeur courant de la liste
+; sym‚trique … son ‚l‚ment pr‚c‚dent de l'enregistrement de format
+; ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registres d‚truit AX, CX, Drapeaux
+
+RBPrevious Proc Near
+ PUSH DS
+  PUSH DI
+   PUSH ES
+   POP DS
+   MOV SI,DI
+   LES DI,DS:[SI].RBuf.CurrPtr
+   MOV CX,ES
+   OR  CX,DI
+   JCXZ @EndRBP
+   LES AX,ES:[DI].RBufRec.Prev
+   MOV Word Ptr DS:[SI].RBuf.CurrPtr,AX
+   MOV Word Ptr DS:[SI].RBuf.CurrPtr[2],ES
+@EndRBP:
+  POP DI
+ POP DS
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                         Proc‚dure RBNext                      Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure sert … d‚placer le pointeur courant de la liste
+; sym‚trique … son ‚l‚ment suivant  de l'enregistrement  de format
+; ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registres d‚truit AX, CX, Drapeaux
+
+RBNext Proc Near ; ES:DI=Adresse du RBuf
+ PUSH ES
+  PUSH SI
+   PUSH DS
+    PUSH DI
+     _MOV_DS_ES
+     MOV SI,DI
+     LES DI,DS:[SI].RBuf.CurrPtr
+     MOV CX,ES
+     OR  CX,DI
+     JCXZ @EndRBN
+     LES AX,ES:[DI].RBufRec.Nxt
+     MOV Word Ptr DS:[SI].RBuf.CurrPtr,AX
+     MOV Word Ptr DS:[SI].RBuf.CurrPtr[2],ES
+@EndRBN:
+    POP DI
+   POP DS
+  POP SI
+ POP ES
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                         Fonction _RBGetCurrBuf                   Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette fonction permet de connaŒtre l'emplacement du tampon courant
+; dans la liste sym‚trique de l'enregistrement de format ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registres d‚truit CX, Drapeaux
+;
+;
+; Retour
+; ÍÍÍÍÍÍ
+;  DX:AX     = Adresse du tampon courant
+
+_RBGetCurrBuf Proc Near
+ PUSH ES
+  PUSH DI
+   XOR AX,AX
+   XOR DX,DX
+   LES DI,ES:[DI].RBuf.CurrPtr
+   MOV CX,ES
+   OR  CX,DI
+   JCXZ @EndRBGCB
+   LES AX,ES:[DI].RBufRec.Buf
+   MOV DX,ES
+@EndRBGCB:
+  POP DI
+ POP ES
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                        Proc‚dure RBSetPtrHome                    Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure permet de fixer le pointeur courant au d‚but de la
+; liste sym‚trique de l'enregistrement ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registres d‚truit AX et DX
+
+RBSetPtrHome Proc Near
+ MOV AX,Word Ptr ES:[DI].RBuf.Ls
+ MOV DX,Word Ptr ES:[DI].RBuf.Ls[2]
+ MOV Word Ptr ES:[DI].RBuf.CurrPtr,AX
+ MOV Word Ptr ES:[DI].RBuf.CurrPtr[2],DX
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                      Fonction RBPushCurrPtr                  Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette fonction retourne l'adresse du pointeur courant de liste
+; sym‚trique de l'enregistrement ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+;
+; Retour
+; ÍÍÍÍÍÍ
+;
+;  DX:AX     = Adresse du pointeur courant dans la liste sym‚trique
+
+RBPushCurrPtr Proc Near
+ PUSH ES
+  LES AX,ES:[DI].RBuf.CurrPtr
+  MOV DX,ES
+ POP ES
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                      Proc‚dure RBPopCurrPtr                   Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure restitue l'adresse du pointeur courant de liste
+; sym‚trique de l'enregistrement ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;  DX:AX     = Adresse du nouveau pointeur courant dans la liste sym‚trique
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Aucun registre d‚truit
+
+RBPopCurrPtr Proc Near
+ MOV Word Ptr ES:[DI].RBuf.CurrPtr,AX
+ MOV Word Ptr ES:[DI].RBuf.CurrPtr[2],DX
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                            Fonction RBGetCurrBuf                       Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure restitue l'adresse du tampon courant de liste sym‚trique
+; de l'enregistrement ®RBuf¯ ainsi que sa taille.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  ***Registre de drapeaux d‚truit
+;
+;  CX        = Taille du tampon courant
+;
+;
+; Retour
+; ÍÍÍÍÍÍ
+;
+;  DX:AX     = Adresse du tampon courant dans la liste sym‚trique
+
+RBGetCurrBuf Proc Near
+ PUSH ES
+  PUSH DI
+   XOR AX,AX
+   XOR DX,DX
+   LES DI,ES:[DI].RBuf.CurrPtr
+   MOV CX,ES
+   OR  CX,DI
+   JCXZ @EndRGCB99
+   MOV CX,ES:[DI].RBufRec.SizeBuf
+   LES AX,ES:[DI].RBufRec.Buf
+   MOV DX,ES
+@EndRGCB99:
+  POP DI
+ POP ES
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                            Fonction NewBlock                          Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette fonction alloue une zone de m‚moire de la taille sp‚cifier par le
+; registre CX et si l'op‚ration r‚ussi  il copie le bloc de taille CX dans
+; la nouvelle adresse venant d'ˆtre d'allou‚e.  Si un manque de m‚moire se
+; produit, il retourne DX:AX=0.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse du bloc de structure devant ˆtre copi‚
+;  CX        = Taille du bloc allant ˆtre copi‚
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registres d‚truit AX, BX, CX, DX, DI, SI et le registre des drapeaux
+;
+;
+; Retour
+; ÍÍÍÍÍÍ
+;
+;  DX:AX     = Adresse du tampon allou‚e
+
+NewBlock Proc Near
+ PUSH DS
+  PUSH ES
+   PUSH DI
+    PUSH CX
+     PUSH CX
+     CALL Far Ptr MemAlloc
+    POP CX
+   POP SI
+  POP DS
+  MOV BX,AX
+  OR  BX,DX
+  JZ  @FinNewBlock
+  MOV ES,DX
+  MOV DI,AX
+  CLD
+  SHR CX,1
+  REP MOVSW
+  ADC CX,CX
+  REP MOVSB
+@FinNewBlock:
+ POP DS
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                            Fonction RBAddBuf                          Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette fonction additionne … la fin de la liste sym‚trique un nouveau
+; tampon et retourne l'adresse lui ‚tant attribu‚ en m‚moire.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;  CX        = Taille du tampon devant ˆtre allou‚e.
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registre d‚truit BX, CX, SI et les drapeaux
+;
+;
+; Retour
+; ÍÍÍÍÍÍ
+;
+;  DX:AX     = Adresse du nouveau tampon
+
+W RBufRec ?
+
+RBAddBuf Proc Near
+Local WPtr:DWord,Addr:DWord,_Size:Word,Q:DWord
+ MOV Word Ptr Q,DI
+ MOV Word Ptr Q[2],ES
+ XOR AX,AX
+ MOV _Size,CX
+ XOR DX,DX
+ _MOV_ES_CS
+ MOV DI,Offset W
+ CLD
+ PUSH CX
+  MOV CX,TYPE RBufRec
+  REP STOSB
+ POP CX
+ LES DI,Q
+ JCXZ @PasAlloc
+ PUSH ES
+  PUSH DI
+   PUSH _Size
+   CALL MemAlloc
+  POP DI
+ POP ES
+ MOV BX,AX
+ OR  BX,DX
+ JZ  @EndRBAddBuf99
+ MOV Word Ptr W.Buf,AX
+ MOV Word Ptr W.Buf[2],DX
+ MOV Word Ptr Addr,AX
+ MOV Word Ptr Addr[2],DX
+ MOV CX,_Size
+ MOV W.SizeBuf,CX
+@PasAlloc:
+ MOV BX,Word Ptr ES:[DI].RBuf.Ls
+ OR  BX,Word Ptr ES:[DI].RBuf.Ls[2]
+ JNZ @DejaDuMonde
+ PUSH CS
+ POP ES
+ MOV DI,Offset W
+ MOV CX,TYPE RBufRec
+ CALL NewBlock
+ MOV BX,AX
+ OR  BX,DX
+ JZ  @EndRBAddBuf
+ LES DI,Q
+ MOV Word Ptr ES:[DI].RBuf.EndLsPtr,AX
+ MOV Word Ptr ES:[DI].RBuf.EndLsPtr[2],DX
+ MOV Word Ptr ES:[DI].RBuf.Ls,AX
+ MOV Word Ptr ES:[DI].RBuf.Ls[2],DX
+ JMP @DerniereCroisade
+@EndRBAddBuf99:
+ RET
+@DejaDuMonde:
+ MOV AX,Word Ptr ES:[DI].EndLsPtr
+ MOV DX,Word Ptr ES:[DI].EndLsPtr[2]
+ MOV BX,AX
+ OR  BX,DX
+ JZ  @EndRBAddBuf
+ MOV Word Ptr W.Prev,AX
+ MOV Word Ptr W.Prev[2],DX
+ PUSH CS
+ POP ES
+ MOV DI,Offset W
+ MOV CX,TYPE RBufRec
+ CALL NewBlock
+ LES DI,Q
+ LES DI,ES:[DI].RBuf.EndLsPtr
+ MOV Word Ptr ES:[DI].RBufRec.Nxt,AX
+ MOV Word Ptr ES:[DI].RBufRec.Nxt[2],DX
+ LES DI,Q
+ MOV Word Ptr ES:[DI].RBuf.EndLsPtr,AX
+ MOV Word Ptr ES:[DI].RBuf.EndLsPtr[2],DX
+@DerniereCroisade:
+ MOV AX,Word Ptr Addr
+ MOV DX,Word Ptr Addr[2]
+ INC ES:[DI].RBuf.NB
+@EndRBAddBuf:
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                          Proc‚dure RBAdd                            Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure additionne … la fin de la liste sym‚trique un nouveau
+; tampon et copie … partir de l'adresse  DS:SI le contenu de tampon dans
+; la structure d'enregistrement ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;  DS:SI     = Adresse du nouveau tampon
+;  CX        = Taille du tampon devant ˆtre allou‚e.
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registre d‚truit AX, BX, CX, DX, SI et drapeaux
+
+RBAdd Proc Near
+ PUSH CX
+  PUSH SI
+   CALL RBAddBuf
+  POP SI
+ POP CX
+ PUSH DI
+  PUSH ES
+   MOV DI,AX
+   OR  DI,DX
+   JZ  @ProblemeNonDisponible
+   XCHG DI,AX
+   MOV ES,DX
+   CLD
+   REP MOVSB
+@ProblemeNonDisponible:
+  POP ES
+ POP DI
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                           Proc‚dure RBDelLast                        Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure efface le dernier ‚l‚ment de la liste sym‚trique de la
+; la structure d'enregistrement ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registre d‚truit AX, BX, CX, DX, DI, SI, ES et les drapeaux
+
+RBDelLast Proc Near ; ES:DI=Adresse du RBuf
+Local Q:DWord
+ MOV Word Ptr Q,DI
+ MOV Word Ptr Q[2],ES
+ MOV AX,Word Ptr ES:[DI].RBuf.EndLsPtr
+ OR  AX,Word Ptr ES:[DI].RBuf.EndLsPtr[2]
+ JZ  @FinRBDelLast
+ LES DI,ES:[DI].RBuf.EndLsPtr
+ MOV CX,ES:[DI].RBufRec.SizeBuf
+ LES DI,ES:[DI].RBufRec.Buf
+ PUSH ES
+ PUSH DI
+ PUSH CX
+ CALL Far Ptr Free
+ LES DI,Q
+ DEC ES:[DI].RBuf.NB
+ MOV CX,ES:[DI].RBuf.NB
+ PUSH CX
+  LES DI,ES:[DI].RBuf.EndLsPtr
+  PUSH Word Ptr ES:[DI].RBufRec.Prev
+   PUSH Word Ptr ES:[DI].RBufRec.Prev[2]
+    PUSH ES
+    PUSH DI
+    MOV CX,TYPE RBufRec
+    PUSH CX
+    CALL Far Ptr Free
+   POP ES
+  POP DI
+ POP CX
+ JCXZ @SetZero
+ MOV Word Ptr ES:[DI].RBufRec.Nxt,0
+ MOV Word Ptr ES:[DI].RBufRec.Nxt[2],0
+ MOV DX,ES
+ XCHG AX,DI
+ LES DI,Q
+ MOV Word Ptr ES:[DI].RBuf.EndLsPtr,AX
+ MOV Word Ptr ES:[DI].RBuf.EndLsPtr[2],DX
+ JMP @FinRBDelLast
+@SetZero:
+ LES DI,Q
+ CALL RBInit
+@FinRBDelLast:
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                         Proc‚dure RBDelCurrBuf                      Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure efface l'‚l‚ment courant de la liste sym‚trique de la
+; structure d'enregistrement ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registre d‚truit AX, BX, CX, DX, SI et les drapeaux
+
+RBDelCurrBuf Proc Near
+ MOV AX,ES:[DI].RBuf.NB
+ OR  AX,AX
+ JZ  @EndDel
+ CMP AX,1
+ JE  @DelLast
+ PUSH ES
+  PUSH DI
+   LES DI,ES:[DI].RBuf.CurrPtr
+   PUSH DS
+    PUSH SI
+     LDS AX,ES:[DI].RBufRec.Prev
+     MOV DX,DS
+     LDS SI,ES:[DI].RBufRec.Nxt
+     MOV CX,DS
+     OR  CX,SI
+     JCXZ @PPPPDelLast
+     MOV Word Ptr DS:[SI].RBufRec.Prev,AX
+     MOV Word Ptr DS:[SI].RBufRec.Prev[2],DX
+     LDS AX,ES:[DI].RBufRec.Nxt
+     MOV DX,DS
+     LDS SI,ES:[DI].RBufRec.Prev
+     MOV CX,DS
+     OR  CX,SI
+     JCXZ @SkipDelCurrBuf
+     MOV Word Ptr DS:[SI].RBufRec.Nxt,AX
+     MOV Word Ptr DS:[SI].RBufRec.Nxt[2],DX
+@SkipDelCurrBuf:
+    POP SI
+   POP DS
+   PUSH AX
+    PUSH DX
+     PUSH CX
+      PUSH ES
+      PUSH DI
+      MOV CX,TYPE RBufRec
+      PUSH CX
+       PUSH Word Ptr ES:[DI].RBufRec.Buf[2]
+       PUSH Word Ptr ES:[DI].RBufRec.Buf
+       PUSH Word Ptr ES:[DI].RBufRec.SizeBuf
+       CALL Far Ptr Free
+      CALL Far Ptr Free
+     POP CX
+    POP DX
+   POP AX
+  POP DI
+ POP ES
+ OR  CX,CX
+ JNZ @PasPremier
+ MOV Word Ptr ES:[DI].RBuf.Ls[2],DX
+ MOV Word Ptr ES:[DI].RBuf.Ls,AX
+@PasPremier:
+ DEC ES:[DI].RBuf.NB
+ JMP @EndDel
+@PPPPDelLast:
+    POP SI
+   POP DS
+  POP DI
+ POP ES
+@DelLast:
+ CALL RBDelLast
+@EndDel:
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                         Fonction RBSetCurrBuf                     Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette fonction modifie le contenu du tampon de l'‚l‚ment courant de
+; la liste sym‚trique de la structure d'enregistrement ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;  CX        = Taille du nouveau tampon
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registre d‚truit AX, BX, CX, DX, SI et les drapeaux
+;
+;
+; Retour
+; ÍÍÍÍÍÍ
+;
+;  DX:AX     = Adresse du nouveau tampon
+
+RBSetCurrBuf Proc Near
+ Local Q:DWord,_Size:Word
+ MOV Word Ptr Q,DI
+ MOV Word Ptr Q[2],ES
+ MOV _Size,CX
+ LES DI,ES:[DI].RBuf.CurrPtr
+ MOV CX,ES
+ OR  CX,DI
+ JCXZ @RSCB1
+ PUSH ES
+ MOV  SI,DI
+ ADD  SI,Offset RBufRec.Buf
+ PUSH SI
+ PUSH ES
+ MOV  SI,DI
+ ADD  SI,Offset RBufRec.SizeBuf
+ PUSH SI
+ CALL Far Ptr Free
+ MOV CX,_Size
+ JCXZ @RSCB1
+ PUSH CX
+ CALL Far Ptr MemAlloc
+ MOV CX,AX
+ OR  CX,DX
+ JCXZ @RSCBEnd
+ LES DI,Q
+ LES DI,ES:[DI].RBuf.CurrPtr
+ MOV CX,_Size
+ MOV ES:[DI].RBufRec.SizeBuf,CX
+ MOV Word Ptr ES:[DI].RBufRec.Buf,AX
+ MOV Word Ptr ES:[DI].RBufRec.Buf[2],DX
+ JMP @RSCBEnd
+@RSCB1:
+ XOR AX,AX
+ XOR DX,DX
+@RSCBEnd:
+EndProc
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                            Proc‚dure RBDone                       Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Propri‚taire: RBuf
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette proc‚dure permet de lib‚rer la m‚moire utilis‚e par la liste
+; sym‚trique de l'enregistrement ®RBuf¯.
+;
+;
+; Entr‚e
+; ÍÍÍÍÍÍ
+;
+;  ES:DI     = Adresse de la structure ®RBuf¯.
+;
+;
+; Sortie
+; ÍÍÍÍÍÍ
+;
+;  Registre d‚truit AX, BX, CX, DX, SI et les drapeaux
+;
+
+RBDone Proc Near
+ MOV CX,ES:[DI].RBuf.NB
+ JCXZ @FinDone
+@LibereDernier:
+ PUSH CX
+  CALL RBDelLast
+ POP CX
+ LOOP @LibereDernier
+@FinDone:
+EndProc

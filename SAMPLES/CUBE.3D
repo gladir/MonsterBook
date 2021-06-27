@@ -1,0 +1,18 @@
+8 {nombre de pts au total}
+6 {nombre de faces au total}
+          {*** espace obligatoire ***}
+-100 100 -100 {coordonnees (x,y,z) de tout les points}
+100 100 -100
+-100 -100 -100
+100 -100 -100
+-100 100 100
+100 100 100
+-100 -100 100
+100 -100 100
+          {*** espace obligatoire ***}
+4 3 4 2 1 {1er chiffre = nombre de points de la face et les autres chiffres
+4 2 6 5 1  sont les points qui composent la face (dans le sens des aiguilles
+4 5 7 3 1  d'une montre selon les axes de l'ecran)}
+4 4 8 6 2
+4 3 7 8 4
+4 6 8 7 5

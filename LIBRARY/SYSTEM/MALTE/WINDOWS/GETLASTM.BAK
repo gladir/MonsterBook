@@ -1,0 +1,22 @@
+{Library\System\Malte\Windows\GetLastM.Inc}
+
+{$IFNDEF __GetLastModel}
+ {$DEFINE __GetLastModel}
+
+Function GetLastModel:Byte;
+Var
+ Old:Byte;
+ WPtr:^WinRec;
+Begin
+ If _Windows.Count-1<1Then GetLastModel:=0
+  Else
+ Begin
+  Old:=CurrEdit;
+  If CurrEdit>0Then Dec(CurrEdit)Else CurrEdit:=_Windows.Count-1;
+  WPtr:=_RBGetBuf(_Windows,CurrEdit);
+  GetLastModel:=WPtr^.Model;
+  CurrEdit:=Old;
+ End;
+End;
+
+{$ENDIF}

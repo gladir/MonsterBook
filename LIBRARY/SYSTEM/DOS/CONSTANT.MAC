@@ -1,0 +1,41 @@
+;\Source\Chantal\Library\System\Dos\Constant.Mac
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                 Malte Genesis/BibliothŠque individuel                 Û
+;³                    dition Chantal/IV - Version 1.1                   Û
+;³                             1998/01/16                                Û
+;³                                                                       Û
+;³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+;Nom des programmeurs
+;ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Sylvain Maltais
+;
+;
+;Description
+;ÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Cette inclusion vise  … permettre une universialisation des donn‚es …
+;compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+;traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+;on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+;bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+;ou sa plante comme jamais avant...
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                            Mode fichier                               Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Ces constantes … d‚finir les valeurs autoris‚es pour les m‚thodes
+; d'accŠs au fichier sous le systŠme d'exploitation via les Handles.
+
+fmRead   Equ 0    ; Lecture seulement
+fmWrite  Equ 1    ; Ecriture seulement
+fmDef    Equ 2    ; Lecture et ‚criture

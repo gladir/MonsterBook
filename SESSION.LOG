@@ -1,0 +1,37 @@
+         1 - 0060h:0100h E9 6D 16                      JMP 1670h
+         2 - 0060h:1770h BC 3E 05                      MOV SP,053Eh
+         3 - 0060h:1773h B4 50                         MOV AH,50h
+         4 - 0060h:1775h 8C C3                         MOV BX,BX
+         5 - 0060h:1777h CD 21                         INT 21h
+         6 - 0060h:1779h B4 30                         MOV AH,30h
+         7 - 0060h:177Bh CD 21                         INT 21h
+         8 - 0060h:177Dh 3D 05 00                      CMP AX,0005h
+         9 - 0060h:1780h 74 11                         JZ  0013h
+        10 - 0060h:1793h BA 4F 25                      MOV DX,254Fh
+        11 - 0060h:1796h B1 04                         MOV CL,04h
+        12 - 0060h:1798h D3 EA                         SHR DX,CL
+        13 - 0060h:179Ah 8C C8                         MOV AX,AX
+        14 - 0060h:179Ch 03 C2                         ADD DX,AX
+        15 - 0060h:179Eh A3 DC 20                      MOV [20DCh],AX
+        16 - 0060h:17A1h E8 31 07                      CALL 0734h
+        17 - 0060h:1ED5h BE 81 00                      MOV SI,0081h
+        18 - 0060h:1ED8h BF E6 20                      MOV DI,20E6h
+        19 - 0060h:1EDBh 33 C9                         XOR CX,CX
+        20 - 0060h:1EDDh 33 D2                         XOR DX,DX
+        21 - 0060h:1EDFh FF 1E DA                      CALL Far Ptr [20DAh]
+        22 - 0060h:4FFBh 20 6C 65                      AND Byte Ptr [SI+65h],CH
+        23 - 0060h:4FFEh 20 73 79                      AND Byte Ptr [BP+DI+79h],DH
+        24 - 0060h:5001h 73 74                         JNC 0076h
+        25 - 0060h:5077h 65 20 6C 61                   AND Byte Ptr GS:[SI+61h],CH
+        26 - 0060h:507Bh 20 64 61                      AND Byte Ptr [SI+61h],AH
+        27 - 0060h:507Eh 74 65                         JZ  0067h
+        28 - 0060h:50E5h 65 7A 20                      JP  0023h
+        29 - 0060h:5108h 65 20 64 61                   AND Byte Ptr GS:[SI+61h],AH
+        30 - 0060h:510Ch 74 65                         JZ  0067h
+        31 - 0060h:5173h 20 5B 2F                      AND Byte Ptr [BP+DI+2Fh],BL
+        32 - 0060h:5176h 50                            PUSH AX
+        33 - 0060h:5177h 5D                            POP BP
+        34 - 0060h:5178h 0D 0A 0D                      OR AX,0D0Ah
+        35 - 0060h:517Bh 0A 71 20                      OR DH,Byte Ptr [BX+DI+20h]
+        36 - 0060h:517Eh 20 5B 75                      AND Byte Ptr [BP+DI+75h],BL
+        37 - 0060h:5181h 6E                            OUTSB

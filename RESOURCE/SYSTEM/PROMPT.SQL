@@ -1,0 +1,69 @@
+CREATE TABLE Prompt (
+   ID      WORD,
+   Batch   BOOLEAN,
+   Command VARCHAR
+);
+
+CREATE INDEX;
+
+INSERT INTO Prompt VALUES (  1, False, '4MAT');
+INSERT INTO Prompt VALUES (  2, False, 'ALIAS');
+INSERT INTO Prompt VALUES (  3, False, 'ATTRIB');
+INSERT INTO Prompt VALUES (  4, False, 'BEEP');
+INSERT INTO Prompt VALUES (  5, False, 'BE');
+INSERT INTO Prompt VALUES (  6, False, 'CD');
+INSERT INTO Prompt VALUES (  7, False, 'CRLL');
+INSERT INTO Prompt VALUES (  8, False, 'CHCP');
+INSERT INTO Prompt VALUES (  6, False, 'CHDIR');
+INSERT INTO Prompt VALUES (  9, False, 'CLS');
+INSERT INTO Prompt VALUES ( 10, False, 'COMSPEC');
+INSERT INTO Prompt VALUES ( 11, False, 'CONFIG');
+INSERT INTO Prompt VALUES ( 12, False, 'CPUID');
+INSERT INTO Prompt VALUES ( 13, False, 'DESCRIBE');
+INSERT INTO Prompt VALUES ( 14, False, 'DIR');
+INSERT INTO Prompt VALUES ( 15, False, 'COPY');
+INSERT INTO Prompt VALUES ( 16, False, 'DEL');
+INSERT INTO Prompt VALUES ( 17, False, 'DELQ');
+INSERT INTO Prompt VALUES ( 18, False, 'DUMP');
+INSERT INTO Prompt VALUES ( 19, False, 'ECHO');
+INSERT INTO Prompt VALUES ( 17, False, 'ERAQ');
+INSERT INTO Prompt VALUES ( 16, False, 'ERASE');
+INSERT INTO Prompt VALUES ( 20, False, 'EXIT');
+INSERT INTO Prompt VALUES ( 21, False, 'FASTHELP');
+INSERT INTO Prompt VALUES ( 22, False, 'FIND');
+INSERT INTO Prompt VALUES (  1, False, 'FORMAT');
+INSERT INTO Prompt VALUES ( 23, False, 'FREE');
+INSERT INTO Prompt VALUES ( 24, False, 'GREP');
+INSERT INTO Prompt VALUES ( 25, False, 'LABEL');
+INSERT INTO Prompt VALUES ( 26, False, 'MD');
+INSERT INTO Prompt VALUES ( 27, False, 'MEMORY');
+INSERT INTO Prompt VALUES ( 26, False, 'MKDIR');
+INSERT INTO Prompt VALUES ( 28, False, 'MODE');
+INSERT INTO Prompt VALUES ( 29, False, 'MOVE');
+INSERT INTO Prompt VALUES ( 30, False, 'PATH');
+INSERT INTO Prompt VALUES ( 31, False, 'PAUSE');
+INSERT INTO Prompt VALUES ( 32, False, 'PRNFILE');
+INSERT INTO Prompt VALUES ( 33, False, 'PROMPT');
+INSERT INTO Prompt VALUES ( 34, False, 'RD');
+INSERT INTO Prompt VALUES ( 34, False, 'RMDIR');
+INSERT INTO Prompt VALUES ( 35, True,  'REM');
+INSERT INTO Prompt VALUES ( 36, False, 'REN');
+INSERT INTO Prompt VALUES ( 36, False, 'RENAME');
+INSERT INTO Prompt VALUES ( 37, False, 'RENDIR');
+INSERT INTO Prompt VALUES ( 38, False, 'SCREEN');
+INSERT INTO Prompt VALUES ( 39, False, 'SERNO');
+INSERT INTO Prompt VALUES ( 40, False, 'SETPRN');
+INSERT INTO Prompt VALUES ( 41, False, 'SET');
+INSERT INTO Prompt VALUES ( 42, False, 'TIME');
+INSERT INTO Prompt VALUES ( 43, False, 'TRUENAME');
+INSERT INTO Prompt VALUES ( 44, False, 'TRUNCTEXT');
+INSERT INTO Prompt VALUES ( 45, False, 'TYPE');
+INSERT INTO Prompt VALUES ( 46, False, 'VER');
+INSERT INTO Prompt VALUES ( 47, False, 'VERIFY');
+INSERT INTO Prompt VALUES ( 48, False, 'VOL');
+INSERT INTO Prompt VALUES ( 49, False, 'UNASM');
+INSERT INTO Prompt VALUES ( 49, False, 'UNASSEMBLER';
+INSERT INTO Prompt VALUES ( 49, False, 'UNCODE');
+INSERT INTO Prompt VALUES ( 50, False, 'XDIR');
+
+

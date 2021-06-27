@@ -1,0 +1,54 @@
+// Library\Disk\CDROM\Number.CAS
+
+/*ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                 Malte Genesis/BibliothŠque individuel                 Û
+  ³                    dition Chantal/IV - Version 1.1                   Û
+  ³                             1997/04/01                                Û
+  ³                                                                       Û
+  ³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Nom des programmeurs
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  Sylvain Maltais
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette inclusion vise  … permettre une universialisation des donn‚es …
+ compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+ traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+ on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+ bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+ ou sa plante comme jamais avant...
+*/
+
+#ifndef __NumberCDROM
+ #define __NumberCDROM
+
+/*ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                          Fonction NumberCDROM                     Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction retourne le nombre de lecteur de CD-ROM disponible en
+  mˆme temps sur la machine.  Si la valeur retourn‚ est 0, alors il n'y
+  a pas d'unit‚ de CD-ROM install‚.
+*/
+
+unsigned short NumberCDROM(void) {
+ asm {
+  MOV AX,1500h
+  XOR BX,BX
+  INT 2Fh
+ }
+ return _AX;
+}
+
+#endif

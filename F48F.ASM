@@ -1,0 +1,613 @@
+
+; *******************************************************
+; *							*
+; *     Turbo Pascal Run-time Library                   *
+; *	Real Standard Functions				*
+; *							*
+; *     Copyright (c) 1988,92 Borland International     *
+; *							*
+; *******************************************************
+
+	TITLE	F48F
+
+	INCLUDE	SE.ASM
+
+CODE	SEGMENT	BYTE PUBLIC
+
+	ASSUME	CS:CODE
+
+; Externals
+
+	EXTRN	RealAdd:NEAR,RealSub:NEAR,RealMul:NEAR,RealDiv:NEAR
+	EXTRN	RealCmp:NEAR,RealFloat:NEAR,RealTrunc:NEAR
+	EXTRN	HaltError:NEAR
+
+; Publics
+
+	PUBLIC	RInt,RFrac,RSqrt,RSin,RCos,RLn,RExp,RArcTan
+
+; All standard functions operate on floating-point register R1
+; (DX:BX:AX) and modify floating-point register R2 (DI:SI:CX).
+
+; Save R2 and add
+
+RealAddP:
+
+	PUSH	DI
+	PUSH	SI
+	PUSH	CX
+	CALL	RealAdd
+	POP	CX
+	POP	SI
+	POP	DI
+	RET
+
+; Save R2 and subtract
+
+RealSubP:
+
+	PUSH	DI
+	PUSH	SI
+	PUSH	CX
+	CALL	RealSub
+	POP	CX
+	POP	SI
+	POP	DI
+	RET
+
+; Save R2 and multiply
+
+RealMulP:
+
+	PUSH	DI
+	PUSH	SI
+	PUSH	CX
+	CALL	RealMul
+	POP	CX
+	POP	SI
+	POP	DI
+	RET
+
+; Save R2 and divide
+
+RealDivP:
+
+	PUSH	DI
+	PUSH	SI
+	PUSH	CX
+	CALL	RealDiv
+	POP	CX
+	POP	SI
+	POP	DI
+	RET
+
+; Int standard function
+
+RInt:
+
+	CMP	AL,80H+40
+	JAE	@@7
+	MOV	CX,AX
+	MOV	SI,BX
+	MOV	DI,DX
+	XOR	AH,AH
+	XOR	BX,BX
+	XOR	DX,DX
+	SUB	CL,80H
+	JBE	@@8
+@@2:	CMP	CL,16
+	JB	@@3
+	MOV	AH,BH
+	MOV	BX,DX
+	MOV	DX,0FFFFH
+	SUB	CL,16
+	JMP	@@2
+@@3:	CMP	CL,8
+	JB	@@4
+	MOV	AH,BL
+	MOV	BL,BH
+	MOV	BH,DL
+	MOV	DL,DH
+	MOV	DH,0FFH
+	SUB	CL,8
+@@4:	OR	CL,CL
+	JZ	@@6
+@@5:	STC
+	RCR	DX,1
+	RCR	BX,1
+	RCR	AH,1
+	DEC	CL
+	JNZ	@@5
+@@6:	AND	DX,DI
+	AND	BX,SI
+	AND	AH,CH
+@@7:	RETF
+@@8:	XOR	AL,AL
+	RETF
+
+; Frac standard function
+
+RFrac:
+
+	PUSH	DX
+	PUSH	BX
+	PUSH	AX
+	PUSH	CS
+	CALL	RInt
+	MOV	CX,AX
+	MOV	SI,BX
+	MOV	DI,DX
+	POP	AX
+	POP	BX
+	POP	DX
+	CALL	RealSub
+	RETF
+
+; Sqrt standard function
+
+RSqrt:
+
+	LOC	Expo,BYTE,2
+	LOC	Temp,BYTE,6
+
+	ENTRY	FAR
+	MOV	CX,AX
+	MOV	SI,BX
+	MOV	DI,DX
+	OR	AL,AL
+	JZ	@@2
+	TEST	DH,80H
+	JNZ	@@3
+	MOV	Temp.w0,AX
+	MOV	Temp.w2,BX
+	MOV	Temp.w4,DX
+	ADD	CL,80H
+	SAR	CL,1
+	ADD	CL,80H
+	MOV	AL,CL
+	SUB	AL,20
+	MOV	Expo,AL
+@@1:	MOV	AX,Temp.w0
+	MOV	BX,Temp.w2
+	MOV	DX,Temp.w4
+	CALL	RealDivP
+	CALL	RealAddP
+	DEC	AL
+	PUSH	DX
+	PUSH	BX
+	PUSH	AX
+	CALL	RealSub
+	CMP	AL,Expo
+	POP	CX
+	POP	SI
+	POP	DI
+	JAE	@@1
+@@2:	MOV	AX,CX
+	MOV	BX,SI
+	MOV	DX,DI
+	EXIT
+@@3:	MOV	SP,BP
+	POP	BP
+	MOV	AX,207
+	JMP	HaltError
+
+; Cos standard function
+
+RCos:
+
+	MOV	CX,02181H	;-PI/2
+	MOV	SI,0DAA2H
+	MOV	DI,0C90FH
+	CALL	RealAdd
+	OR	AL,AL
+	JE	RSin
+	XOR	DH,80H
+
+; Sin standard function
+
+RSin:
+
+	CMP	AL,80H-20
+	JB	@@6
+	MOV	CX,02183H	;PI*2
+	MOV	SI,0DAA2H
+	MOV	DI,0490FH
+	PUSH	DX
+	AND	DH,7FH
+	CALL	RealCmp
+	POP	DX
+	JB	@@1
+	CALL	RealDivP
+	PUSH	DI
+	PUSH	SI
+	PUSH	CX
+	PUSH	CS
+	CALL	RFrac
+	POP	CX
+	POP	SI
+	POP	DI
+	CALL	RealMulP
+@@1:	TEST	DH,80H
+	JZ	@@2
+	CALL	RealAddP
+@@2:	DEC	CL
+	CALL	RealCmp
+	PUSHF
+	JB	@@3
+	CALL	RealSubP
+@@3:	DEC	CL
+	CALL	RealCmp
+	JB	@@4
+	INC	CL
+	OR	DH,80H
+	CALL	RealAdd
+@@4:	CMP	AL,80H-20
+	JB	@@5
+	MOV	DI,OFFSET CS:SinConst
+	MOV	CX,7
+	CALL	CalcSer2
+@@5:	POPF
+	JB	@@6
+	OR	AL,AL
+	JZ	@@6
+	XOR	DH,80H
+@@6:	RETF
+
+; Sin series constants
+
+SinConst:
+
+	DB	058H,09DH,039H,09FH,03FH,0D7H
+	DB	060H,043H,09DH,030H,092H,030H
+	DB	067H,0AAH,03FH,028H,032H,0D7H
+	DB	06EH,0B6H,02AH,01DH,0EFH,038H
+	DB	074H,00DH,0D0H,000H,00DH,0D0H
+	DB	07AH,088H,088H,088H,088H,008H
+	DB	07EH,0ABH,0AAH,0AAH,0AAH,0AAH
+
+; Ln standard function
+
+RLn:
+
+	OR	AL,AL
+	JE	@@1
+	TEST	DH,80H
+	JE	@@2
+@@1:	MOV	AX,207
+	JMP	HaltError
+@@2:	MOV	CL,80H+1
+	SUB	AL,CL
+	PUSH	AX
+	MOV	AL,CL
+	MOV	CX,0FB80H	;1/SQRT(2)
+	MOV	SI,0F333H
+	MOV	DI,03504H
+	CALL	RealMul
+	MOV	CX,AX
+	MOV	SI,BX
+	MOV	DI,DX
+	MOV	AX,81H		;1.0
+	XOR	BX,BX
+	XOR	DX,DX
+	CALL	RealAddP
+	PUSH	DX
+	PUSH	BX
+	PUSH	AX
+	MOV	AX,81H		;-1.0
+	XOR	BX,BX
+	MOV	DX,8000H
+	CALL	RealAdd
+	POP	CX
+	POP	SI
+	POP	DI
+	CALL	RealDiv
+	MOV	DI,OFFSET CS:LnConst
+	MOV	CX,6
+	CALL	CalcSer2
+	INC	AL
+	MOV	CX,0D27FH	;LN(2)/2
+	MOV	SI,017F7H
+	MOV	DI,03172H
+	CALL	RealAdd
+	POP	CX
+	PUSH	DX
+	PUSH	BX
+	PUSH	AX
+	MOV	AL,CL
+	CBW
+	CWD
+	CALL	RealFloat
+	MOV	CX,0D280H	;LN(2)
+	MOV	SI,017F7H
+	MOV	DI,03172H
+	CALL	RealMul
+	POP	CX
+	POP	SI
+	POP	DI
+	CALL	RealAdd
+	CMP	AL,80H-25
+	JAE	@@3
+	XOR	AX,AX
+	XOR	BX,BX
+	XOR	DX,DX
+@@3:	RETF
+
+; Ln series constants
+
+LnConst:
+
+	DB	07DH,08AH,09DH,0D8H,089H,01DH
+	DB	07DH,0E9H,0A2H,08BH,02EH,03AH
+	DB	07DH,08EH,0E3H,038H,08EH,063H
+	DB	07EH,049H,092H,024H,049H,012H
+	DB	07EH,0CDH,0CCH,0CCH,0CCH,04CH
+	DB	07FH,0ABH,0AAH,0AAH,0AAH,02AH
+
+; Exp standard function
+
+RExp:
+
+	TEST	DH,80H
+	PUSHF
+	AND	DH,7FH
+	MOV	CX,0D280H	;LN(2)
+	MOV	SI,017F7H
+	MOV	DI,03172H
+	CALL	RealDiv
+	CMP	AL,80H+8
+	JAE	@@4
+	PUSH	DX
+	PUSH	BX
+	PUSH	AX
+	INC	AL
+	MOV	CH,-1
+	CALL	RealTrunc
+	POP	CX
+	POP	SI
+	POP	DI
+	PUSH	AX
+	PUSH	CX
+	CALL	RealFloat
+	POP	CX
+	OR	AL,AL
+	JZ	@@1
+	DEC	AL
+@@1:	XCHG	AX,CX
+	XCHG	BX,SI
+	XCHG	DX,DI
+	CALL	RealSub
+	MOV	DI,OFFSET CS:ExpConst
+	MOV	CX,8
+	CALL	CalcSer1
+	POP	CX
+	SHR	CX,1
+	JNC	@@2
+	PUSH	CX
+	MOV	CX,0FB81H	;SQRT(2)
+	MOV	SI,0F333H
+	MOV	DI,03504H
+	CALL	RealMul
+	POP	CX
+@@2:	ADD	AL,CL
+	JC	@@4
+	POPF
+	JZ	@@3
+	MOV	CX,AX
+	MOV	SI,BX
+	MOV	DI,DX
+	MOV	AX,81H
+	XOR	BX,BX
+	XOR	DX,DX
+	CALL	RealDiv
+@@3:	RETF
+@@4:	POP	AX
+	MOV	AX,205
+	JMP	HaltError
+
+; Exp series constants
+
+ExpConst:
+
+	DB	06DH,02EH,01DH,011H,060H,031H
+	DB	070H,046H,02CH,0FEH,0E5H,07FH
+	DB	074H,036H,07CH,089H,084H,021H
+	DB	077H,053H,03CH,0FFH,0C3H,02EH
+	DB	07AH,0D2H,07DH,05BH,095H,01DH
+	DB	07CH,025H,0B8H,046H,058H,063H
+	DB	07EH,016H,0FCH,0EFH,0FDH,075H
+	DB	080H,0D2H,0F7H,017H,072H,031H
+
+; ArcTan standard function
+
+RArcTan:
+
+	LOC	Temp,BYTE,6
+
+	ENTRY	FAR
+	OR	AL,AL
+	JNZ	@@0
+	JMP	@@8
+@@0:	XOR	CX,CX
+	TEST	DH,80H
+	JZ	@@1
+	INC	CX
+	AND	DH,7FH
+@@1:	PUSH	CX
+	MOV	CX,81H
+	XOR	SI,SI
+	XOR	DI,DI
+	CALL	RealCmp
+	JB	@@2
+	XCHG	AX,CX
+	XCHG	BX,SI
+	XCHG	DX,DI
+	CALL	RealDiv
+	POP	CX
+	INC	CX
+	INC	CX
+	PUSH	CX
+@@2:	MOV	CX,04A7EH	;PI/24
+	MOV	SI,0E98EH
+	MOV	DI,00C6FH
+	CALL	RealCmp
+	JAE	@@3
+	CALL	ArcTan
+	JMP	SHORT @@6
+@@3:	MOV	DI,OFFSET CS:ArcTanScale
+	MOV	CX,2
+@@4:	PUSH	CX
+	PUSH	DI
+	MOV	CX,CS:[DI].w0
+	MOV	SI,CS:[DI].w2
+	MOV	DI,CS:[DI].w4
+	CALL	RealCmp
+	POP	DI
+	POP	CX
+	JB	@@5
+	ADD	DI,18
+	LOOP	@@4
+	SUB	DI,6
+@@5:	ADD	DI,6
+	MOV	Temp.w0,AX
+	MOV	Temp.w2,BX
+	MOV	Temp.w4,DX
+	PUSH	DI
+	MOV	CX,CS:[DI].w0
+	MOV	SI,CS:[DI].w2
+	MOV	DI,CS:[DI].w4
+	CALL	RealSubP
+	PUSH	DX
+	PUSH	BX
+	PUSH	AX
+	MOV	AX,Temp.w0
+	MOV	BX,Temp.w2
+	MOV	DX,Temp.w4
+	CALL	RealMul
+	MOV	CX,81H
+	XOR	SI,SI
+	XOR	DI,DI
+	CALL	RealAdd
+	MOV	CX,AX
+	MOV	SI,BX
+	MOV	DI,DX
+	POP	AX
+	POP	BX
+	POP	DX
+	CALL	RealDiv
+	CALL	ArcTan
+	POP	DI
+	ADD	DI,6
+	MOV	CX,CS:[DI].w0
+	MOV	SI,CS:[DI].w2
+	MOV	DI,CS:[DI].w4
+	CALL	RealAdd
+@@6:	POP	CX
+	TEST	CL,2
+	JZ	@@7
+	PUSH	CX
+	MOV	CX,AX
+	MOV	SI,BX
+	MOV	DI,DX
+	MOV	AX,02181H	;PI/2
+	MOV	BX,0DAA2H
+	MOV	DX,0490FH
+	CALL	RealSub
+	POP	CX
+@@7:	TEST	CL,1
+	JZ	@@8
+	OR	DH,80H
+@@8:	EXIT
+
+; ArcTan scaling constants
+
+ArcTanScale:
+
+	DB	07FH,0E7H,0CFH,0CCH,013H,054H
+	DB	07FH,0F6H,0F4H,0A2H,030H,009H
+	DB	07FH,06AH,0C1H,091H,00AH,006H
+	DB	080H,0B5H,09EH,08AH,06FH,044H
+	DB	080H,082H,02CH,03AH,0CDH,013H
+	DB	080H,06AH,0C1H,091H,00AH,006H
+	DB	081H,000H,000H,000H,000H,000H
+	DB	080H,021H,0A2H,0DAH,00FH,049H
+
+; ArcTan series constants
+
+ArcTanConst:
+
+	DB	07DH,0E8H,0A2H,08BH,02EH,0BAH
+	DB	07DH,08EH,0E3H,038H,08EH,063H
+	DB	07EH,049H,092H,024H,049H,092H
+	DB	07EH,0CDH,0CCH,0CCH,0CCH,04CH
+	DB	07FH,0ABH,0AAH,0AAH,0AAH,0AAH
+
+; Compute fractional ArcTan
+
+ArcTan:
+
+	MOV	DI,OFFSET CS:ArcTanConst
+	MOV	CX,5
+
+; Evaluate 2nd power series
+
+CalcSer2:
+
+	PUSH	DX
+	PUSH	BX
+	PUSH	AX
+	PUSH	CX
+	PUSH	DI
+	MOV	CX,AX
+	MOV	SI,BX
+	MOV	DI,DX
+	CALL	RealMul
+	POP	DI
+	POP	CX
+	CALL	CalcSer1
+	POP	CX
+	POP	SI
+	POP	DI
+	JMP	RealMul
+
+; Evaluate 1st power series
+; In	CX    = Number of constants
+;	CS:DI = Pointer to first constant
+; Out	R1    = (((C1*R1+C2)*R1+C3)*R1...+Cn)*R1+1
+
+CalcSer1:
+
+	LOC	Temp,BYTE,6
+
+	ENTRY
+	MOV	Temp.w0,AX
+	MOV	Temp.w2,BX
+	MOV	Temp.w4,DX
+	MOV	AX,CS:[DI].w0
+	MOV	BX,CS:[DI].w2
+	MOV	DX,CS:[DI].w4
+	PUSH	CX
+	PUSH	DI
+	JMP	SHORT @@2
+@@1:	PUSH	CX
+	PUSH	DI
+	MOV	CX,CS:[DI].w0
+	MOV	SI,CS:[DI].w2
+	MOV	DI,CS:[DI].w4
+	CALL	RealAdd
+@@2:	MOV	CX,Temp.w0
+	MOV	SI,Temp.w2
+	MOV	DI,Temp.w4
+	CALL	RealMul
+	POP	DI
+	POP	CX
+	ADD	DI,6
+	LOOP	@@1
+	MOV	CX,81H
+	XOR	SI,SI
+	XOR	DI,DI
+	CALL	RealAdd
+	EXIT
+
+CODE	ENDS
+
+	END

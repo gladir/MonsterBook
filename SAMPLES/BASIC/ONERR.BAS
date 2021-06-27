@@ -1,0 +1,8 @@
+10 ON ERROR GOTO 100
+20 PRINT "BONJOUR"
+30 PROUT "ERROR!"
+40 END
+100 PRINT "Erreur … la ligne: ";ERLIN
+110 PRINT "Erreur num‚ro: ";ERNO
+120 PRINT "Description de l'erreur: ";ERDESCR$
+120 K%=READKEY

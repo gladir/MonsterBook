@@ -1,0 +1,23 @@
+// BibliothŠque de communication en fran‡ais.
+// Tous droits r‚serv‚ par les Chevaliers de Malte (C) 1995.
+NumberIndex=17
+Copyright 'Loup.French/Real.Link.Library=2/Isabel.Psychotic>'
+Copyright 'Tous droits r‚serv‚s par les Chevaliers de Malte (C).'
+ // Nom des protocols de transmission
+IndexMsg 0,'Aucun'
+IndexMsg 1,'Ascii'
+IndexMsg 2,'XModem Checksum'
+IndexMsg 3,'XModem CRC'
+IndexMsg 4,'Kermit'
+IndexMsg 5,'Telink'
+IndexMsg 6,'Modem 7 Checksum'
+IndexMsg 7,'Modem 7 CRC'
+IndexMsg 8,'XModem 1K'
+IndexMsg 9,'XModem 1K G'
+IndexMsg 10,'YModem Batch'
+IndexMsg 11,'YModem G'
+IndexMsg 12,'ZModem'
+IndexMsg 13,'Externe 1'
+IndexMsg 14,'Externe 2'
+IndexMsg 15,'Externe 3'
+IndexMsg 16,'Externe 4'

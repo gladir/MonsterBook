@@ -1,0 +1,60 @@
+;\Source\Chantal\Video\Card\ChkXGA.Mac
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                 Malte Genesis/BibliothŠque individuel                 Û
+;³                    dition Chantal/IV - Version 1.1                   Û
+;³                             1998/01/16                                Û
+;³                                                                       Û
+;³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+;Nom des programmeurs
+;ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Sylvain Maltais
+;
+;
+;Description
+;ÍÍÍÍÍÍÍÍÍÍÍ
+;
+; Cette inclusion vise  … permettre une universialisation des donn‚es …
+;compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+;traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+;on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+;bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+;ou sa plante comme jamais avant...
+
+;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+;³                           Fonction ChkXGA:CF                         Û
+;ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+;
+;
+; Description
+; ÍÍÍÍÍÍÍÍÍÍÍ
+;
+;  Cette macro permet d'effectuer une v‚rification de la carte XGA. Si la
+; pr‚sence  de la  XGA  est  d‚tect‚,  le drapeau  de  retenue  (CF)  est
+; positionn‚ … 1 sinon, si rien n'est d‚tect‚ alors il retourne 0.
+;
+; Remarque
+; ÍÍÍÍÍÍÍÍ
+;
+;  ş Attention! Aucune pr‚servation des registres n'est effectu‚.
+
+ChkXGA Macro
+ MOV AX,0C400h     ; Appel de la fonction C4h, sous-fonction 00h
+ MOV DX,-1
+ INT 15h           ; Interruption 15h, Extension des Entr‚es/Sorties
+ JC  cxEnd         ; Si le drapeau est fix‚ c'est qu'il n'existe pas!
+ CMP DX,-1         ; Si DX = -1 alors c'est que la carte n'existe pas!
+ JE  cxSet
+ CLC               ; Efface le drapeau de retenu
+ JMP Short cxEnd
+cxSet:
+ STC               ; Fixe le drapeau de retenu
+cxEnd:
+ CMC               ; Inverse le drapeau de retenu car tous les tests
+                   ; ont ‚t‚ effectu‚ … l'envers dans cette routine
+                   ; … cause de l'interruption 15h...
+EndM

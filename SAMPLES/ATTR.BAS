@@ -1,0 +1,2 @@
+ATTR 1,13
+PRINT "SALUT"

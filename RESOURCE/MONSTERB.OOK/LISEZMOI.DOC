@@ -1,0 +1,464 @@
+Documentation d'Aide - MonsterBook - SHAREWARE
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+
+Table des matiŠres
+
+ 1.1 - Avertissement
+ 1.2 - SystŠme requis
+ 1.3 - Installer le MonsterBook
+ 1.4 - Le MonsterBook qu'est-ce que c'est?
+
+ 2.0 - Optimisation
+ 2.1 - Augmentation de la m‚moire de travail
+ 2.2 - Gestion des ressources
+
+ 3.0 - SystŠme
+ 3.1 - DOS
+ 3.2 - R‚seau
+ 3.3 - Windows 3.1
+ 3.4 - Windows 95 et 98
+ 3.5 - OS/2
+ 3.6 - WINDOWS NT
+
+ 4.0 - TECHNIQUE
+ 4.1 - Mode vid‚o for‡‚
+
+ 5.0 - PROBLEME DIVERS
+ 5.1 - ProblŠme de d‚tection d'ancienne Super VGA sans BIOS VESA
+ 5.2 - ProblŠme d'affichage en mode vid‚o 256 et 65536 couleurs
+ 5.3 - Police vid‚o "fucker"
+ 5.4 - Construction des r‚pertoires
+ 5.5 - Fichier de configuration non conserv‚e
+ 5.6 - ProblŠme de restauration d'une boŒte de dialogue
+ 5.7 - Pointeur de souris laisse des traces
+ 5.8 - N'imprime rien
+
+ 6.0 - Enregistrement
+
+
+1.1 - AVERTISSEMENT
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Tous les logiciels ou mat‚riel mentionner sont des marques d‚pos‚s selon
+les compagnies respectives...
+
+ Nous ne somme pas responsable des r‚actions de se programme pendant que
+vous tentez de le HACKER o— tous autres utilisations disons simplement d'un
+style psychotique. Il n'est pas construire pour d‚truire mais Dieu seul
+c'est jusqu'… quel point certains utilisateurs sont dangereux pour leur
+machine...
+
+Exemple: Est-ce de notre faute si l'application … endomage votre disquette
+         lorsque vous vous amusiez avec un tourne-vise dans votre lecture
+         et qu'il s'est mit … faire des flameches tout … fait par hasard!
+
+ En r‚sum‚, la "casse" n'arrive jamais pour un rien, si vous aimez vivre
+dangereusement, c'est votre affaire, mais de grƒce faite des copies de
+s‚curit‚! Puisque le ®MonsterBook¯ n'interdit aucunement le copiage quel
+qu'il soit, nous nous fiions toujours sur votre honnˆtet‚.
+
+
+1.2 - SystŠme requis
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Ce programme requŠre au minimum au processeur 8088, 10 Mhz avec un 
+DOS 3.0 ou post‚rieur. Un mat‚riel 100% compatible IBM.
+
+ Cependant, si vous disposez d'un microprocesseur sup‚rieur ce serait
+souhaitable et en les ajustements des accŠs 8 bits, 16 bits ou 32 bits
+sont effectu‚es automatiquement en fonction du microprocesseur.
+
+
+1.3 - Installer le MonsterBook
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Si vous voulez installer le MonsterBook sur un autre unit‚, vous pouvez
+le faire en sp‚cifiant le paramŠtre /INSTALL lors du lancement de
+l'application.
+
+
+1.4 - Le MonsterBook qu'est-ce que c'est?
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Qu'est-ce que c'est le MonsterBook, ce logiciel vise … offrir un peu
+tout les petits servir particulier qu'… besoin un usager modeste. Un
+traitement de texte, un gestionnaire de fichiers, un petit programme
+de dessin, information sur l'‚quipement,...
+
+
+2.0 - Optimisation
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Il est grandement recommander d'avoir un cache disque d'un minimum de
+50 Ko afin d'acc‚l‚rer le chargement des fichiers en m‚moire (un cache
+disque est un programme comme ®SMARTDRV¯, ®PC-CACHE¯, ®Norton CACHE¯,...).
+NOTE: Le cache disque est charg‚e automatiquement sous OS/2, Windows 95
+et Windows NT et n'a donc pas besoin d'ˆtre ajouter manuellement.
+
+ Il est ‚galement possible d'acc‚l‚rer les accŠs disque sur une partition
+de format FAT16 sur de nombreuses machines. Plut“t que de passer par le
+systŠme d'exploitation DOS par exemple, il fait des accŠs directes en
+lecture afin d'acc‚l‚rer se m‚canisme h‚las trop lent dans de nombreuses
+situation. Il est toutefois que certaine partition mˆme si elle se
+pr‚tende FAT16 ne fonctionne pas correctement, c'est le cas par exemple
+lorsque le DR-DOS fait un multi-boot ou que Windows 95 ou 98 modifie la
+FAT avec des noms long. Pour v‚rifier si cette option est support‚ o—
+non, vous pouvez le fixer … l'aide du menu ®Option¯, ®SystŠme¯. Dans la
+boŒte de dialogue ®Ajustement du systŠme¯, cliquez sur ®AccŠs direct au
+DOS¯. Vous pouvez ‚galement aller le modifier directement dans le fichier
+de configuration du MonsterBook ®MB.INI¯ et modifier la variable
+®DirectDos=Yes¯ dans la section ®[Systems]¯.
+
+ Sous le systŠme d'exploitation Windows NT de Microsoft, il est 
+n‚cessaire d'obtenir le Service Pack 3 minimum afin de corriger les
+innombrable incompatibilit‚ avec ce logiciel au niveau des modes vid‚o
+support‚e par exemple.
+
+
+2.1 - Augmentation de la m‚moire de travail
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Il est possible d'augmenter la m‚moire de travail centrale si vous
+disposer de m‚moire UMB sur votre systŠme d'exploitation. Pour se faire
+vous devez ajouter le paramŠtre /UMB sous le prompt DOS: ®MB /UMB¯ et
+il l'additionnera automatiquement et la g‚ra avec le reste de la m‚moire
+conventionnel (640 Ko <) disponible sur la machine. Cependant vous
+risquez d'avoir certain problŠme lorsque vous tenterez d'appeler un
+programme externe et donc de sortir du MonsterBook. Ce peut tout de
+mˆme ˆtre une bonne solution de secours dans certain cas lorsque vous
+tentez de g‚rer des documents ou texte trop gros pour la m‚moire.
+
+
+2.2 - Gestion des ressources
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Le ®MonsterBook¯ est construit de fa‡on … utiliser toutes les formes de
+m‚moires trouvable sur votre machine et autoris‚e par le systŠme
+d'exploitation … ˆtre utilis‚e, m‚moire vid‚o, XMS, EMS, disque,... Ce
+op‚ration est effectu‚e automatiquement et il ne laisse absolument rien
+pour les autres programmes. Si vous voulez le limiter, alors vous devez
+le restreindre manuellement … partir d'une session.
+
+
+3.0 - SYSTEMES
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Cette section s'applique … des systŠmes particulier, comme les systŠmes
+d'exploitation, r‚seau et autres.
+
+
+3.1 - DOS
+ÄÄÄÄÄÄÄÄÄ
+
+ Sous le bon vieux systŠme d'exploitation DOS monotƒche, le MonsterBook
+utilise des accŠs au clavier et … l'horloge directe afin d'acc‚l‚rer la
+vitesse de traŒtement. Si le clavier ne r‚agit pas correctement, rajouter
+comme paramŠtre l'option ®/NODIRKEY¯ pour indiquer que le MonsterBook
+n'agit pas correctement avec votre ordinateur.
+
+ S'il manifeste des problŠmes de fichiers introuvables lorsqu'ils existent
+alors augmenter la valeur ®FILES=50¯ dans le ®CONFIG.SYS¯ du systŠme
+d'exploitation afin qu'il puisse ouvrir autant de fichier qu'il le d‚sir.
+
+
+3.1.1 - DR-DOS
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ S'il vous plait ne mettez pas le "Swapping" de recouvrement dans la
+m‚moire EMS ou XMS car il risque pour une raison obscure de planter …
+tous moments.
+
+
+3.2 - R‚seau
+ÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Si vous avez un r‚seau il est possible que cette application fasse
+planter votre systŠme … cause de la d‚tection de la carte de son. Pour
+‚viter se genre de problŠme, nous vous sugg‚rons d'ajouter comme
+paramŠtre de lancement … MonsterBook le paramŠtre ®/NOSOUNDCARD¯
+interdisant carr‚ment la d‚tection de carte de son.
+
+ A noter que lorsque le MonsterBook d‚tecte un r‚seau Novell, il 
+n'effectue pas de d‚tection de carte de son car il ne veut pas cr‚er
+d'instabilit‚ dans votre systŠme...
+
+
+3.3 - Windows 3.1
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Sous Windows 3.1, le MonsterBook utilise les routines du BIOS plut“t que
+les accŠs directe au risque de consid‚rablement rallentir votre systŠme
+car il ne r‚vŠle pas une bonne stabilit‚ dans l'‚ventualit‚ contraire.
+
+
+3.4 - Windows 95 et 98
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Sous Windows 95 et 98, pour une raison assez obscure, l'horloge et
+l'affichage de l'heure … tendance pour des raisons t‚n‚breuses, on
+tendance … se planter et cesser d'avancer, si se problŠme se manifeste,
+il sera pr‚f‚r‚able de sortie de 95 ou 98 et de passer en mode MS-DOS.
+
+ Sous Windows 95 et 98 l'impression directe vers l'imprimante peut ne pas
+fonctionner correctement si vous utilisez par exemple un ‚mulateur pour
+rendre compatible ce logiciel … votre imprimante, pour r‚gler se problŠme
+vous devez sp‚cifiez que l'impression doit se faire en passant par le DOS
+et non plus directement... Alors s‚lectionnez ®LPT1: par le DOS¯ s'il
+s'agit du premier port d'imprimante, de ®LPT2: par le DOS¯ s'il s'agit du
+second et ainsi de suite. Dans le cas o— vous utiliseriez un port 
+d'imprimante totalement invraisemblable, genre ®WD-40:¯ vous pouvez tout
+simplement le faire imprimer dans un fichier (®Fichier:¯), ceci devrait
+permettre de r‚gler les problŠmes de d‚bilit‚ profonde dont font souvent
+fois certains concepteurs vivant dans une galaxie ‚loign‚e.
+
+
+3.5 - OS/2
+ÄÄÄÄÄÄÄÄÄÄ
+
+Si vous utilisez le MonsterBook dans une session DOS, vous ne devez pas
+oublier de sp‚cifier dans les paramŠtres de configuration du programme
+d'OS/2, session, l'option ®HW_ROM_TO_RAM¯ doit ˆtre activ‚ (EF).
+
+ Ne surtout pas oubli‚e de fixer l'option ®VIDEO_RETRACE_EMULATION¯ afin
+qu'elle soit d‚sactiv‚ (HF). Si vous ne le faŒtes pas, les effaces
+d'animation de la barre du dessous ne seront pas ad‚quate et les 
+‚conomiseurs d'‚cran ne fonctionneront s–rement pas correctement.
+
+Pour utiliser correctement les modes vid‚o, n'oublions pas d'utiliser
+cette application en session DOS pleine ‚cran.
+
+
+3.5.1 - WarpAMP pour OS/2
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Lorsque que vous faŒtes fonctionner le joueur de MP3 ®WarpAMP¯ il est
+possible que pour des raisons obscure, cette application ce met … planter
+1 secondes, 10 minutes, 1 heures plus tard (donc totalement impr‚visible
+de dire quand) si le ®MonsterBook¯ d‚tecte la carte de son. Pour r‚gler se
+problŠme, vous pouvez entrer comme paramŠtre ®MB /NOSOUNDCARD¯ pour ‚viter
+ce conflit. Remarque qu'il vous faudra ajouter ce paramŠtres … chaque que
+vous le jugerez n‚cessaire car il n'affecte pas le fichier de
+configuration du ®MonsterBook¯. Ainsi, si vous n'ˆtes pas en train
+d'utiliser cette application vous pourrez … nouveau avoir du son en
+enlevant tout simplement ce paramŠtres. D‚sol‚ pour WarpOS2!!!
+
+
+3.6 - WINDOWS NT
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Pour des raisons assez obscure, les modes vid‚o sup‚rieur … 16 couleurs
+ne semblent presque jamais fonctionner sur ce systŠme d'exploitation.
+Alors ‚viter de d‚passer le mode classique 640x480 en 16 couleurs S.V.P
+sinon vous en subirez les cons‚quences tragiques... Puisque il semble bien
+que l'‚mulateur DOS soit totalement d'un go–t douteux et notament beaucoup
+moins bien construit que celui d'OS/2 par exemple, malgr‚ les annonces
+publicitaire figurant toujours sur un emballage de cette compagnie.
+
+
+4.0 - TECHNIQUE
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Cette section s'adresse … ceux d‚sirez utiliser des propri‚t‚s particuliŠre
+du ®MonsterBook¯ lorsque les techniques traditionnelles ne r‚pondes pas au
+besoin.
+
+
+4.1 - Mode vid‚o for‡‚
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Vous pouvez obliger le MonsterBook … ˆtre lancer automatiquement dans
+un mode vid‚o particulier, pour se faire vous devez rajouter comme
+paramŠtre pour un mode vid‚o graphique la syntaxe suivante:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ /VG:nombredepixelshorizontal,nombredepixelvertical,nombredecouleur    ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+On en mode texte la syntaxe suivante:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ /VT:nombredecolonne,nombredeligne                                     ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+
+5.0 - PROBLEME DIVERS
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Si le MonsterBook ne d‚marre pas, vous pouvez sp‚cifier comme paramŠtre
+/VERBOSE vous indiquant la configuration de base que le ®StartUp¯ du
+MonsterBook a d‚tect‚. Si vous voyez qu'il ne d‚marre pas par exemple
+aprŠs l'affichage des ressources c'est probablement la technique de
+d‚tection de carte vid‚o Super VGA ‚tant incompatible avec votre carte
+vid‚o. Allez soit d‚sactiv‚ la variable ®CheckSVGA¯ … ®No¯ pour interdire
+la prise en charge de d‚tection SuperVGA et installer un pilote VESA si
+votre carte ne dispose pas de ce pilote sur votre carte et relancer 
+l'application.
+
+ Vous pouvez ‚galement effacer le fichier de configuration ®MB.INI¯
+afin de r‚utiliser la configuration par d‚faut de cette application.
+
+ ProblŠme de d‚marrage et vous avez un r‚seau, lancez-le comme suit:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ MB /NOSOUNDCARD                                                       ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+
+
+5.1 - ProblŠme de d‚tection d'ancienne Super VGA sans BIOS VESA
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Les anciennes cartes vid‚o ne supportant pas le standard VESA, exemple
+IT-VGA2 clone de Tseng Labs ET4000 de 1989 permettait des affichages
+extraordinaire en mode Super VGA mais h‚las le BIOS VESA chargeable
+… partir d'un programme DOS n'est pas efficace. Vous pouvez passez
+directement par l'‚lectronique en d‚chargeant ce programme et en
+fixant la variable ®CheckSVGA=Yes¯ de la section ®[Video]¯ du fichier
+®MB.INI¯. Vous pouvez ‚galement fixer cette variable dans le programme
+®MonsterBook¯ dans le menu ®Option¯, item ®Vid‚o¯, sous-item
+®Environnement¯. Cliquer sur ®V‚rification pouss‚ Super VGA¯ jusqu'… ce
+qu'il est un ®X¯ entre les deux crochets. Puis relancer le ®MonsterBook¯.
+Lorsque cette modification sera apport‚, en principe les nouveaux modes
+vid‚o seront maintenant support‚ et la routine d'accŠs de pagination de
+la carte vid‚o se fixeront automatiquement. Si ce n'est pas le cas, et
+que le programme plante, c'est que cette possibilit‚ n'est pas support‚
+par ce programme.
+
+
+5.2 - ProblŠme d'affichage en mode vid‚o 256 et 65536 couleurs
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Si vous avez une carte ®ATI Mach64 - Rage II¯ par exemple, il existe un
+bug ‚trange au niveau de la routine d'appel directe VESA pour la
+pagination de la m‚moire Vid‚o. Cependant, l'appel par l'interruption
+BIOS l‚gŠrement plus lente fonctionne correctement, dans ce cas modifier
+la variable ®VesaBiosBank=Yes¯ dans la section ®[Video]¯ dans le fichier
+®MB.INI¯ afin de forcer l'utilisation de l'interruption VESA plut“t que
+sa routine d'appel. Vous pouvez ‚galement le faire directement dans le
+®MonsterBook¯ dans le menu ®Option¯, item ®Vid‚o¯, sous-item
+®Environnement¯. Cliquez le paramŠtre ®Banque m‚moire par VESA BIOS¯ de
+fa‡on … voir apparaŒtre un X … l'int‚rieur des deux crochets. Quittez le
+®MonsterBook¯ et relancer le programme.
+
+
+5.3 - Police vid‚o "fucker"
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Si l'affichage de votre police vid‚o ne s'effectue par correctement dans
+le cas de caractŠre r‚duit lorsqu'il ont des accents, vous n'avez peut
+ˆtre pas sp‚cifier une police graphique de remplacement … l'interruption
+1Fh affectu‚ automatiquement par des programmes DOS style ®GRAFTABL¯. Nous
+voulons bien que le MonsterBook soit l‚ger au fonctionnement mais si vous
+ne sp‚cifiez aucun pilote de base, comment pouvons exploiter correctement
+votre systŠme...
+
+ S'ils sont incompr‚hensible dans un mode vid‚o de 256 couleurs ou plus,
+vous avez … faire … un BIOS cod‚e 5 minutes avant la fabrication et pour
+l'instant, il n'y a pas de solution de remplacement pour ce genre de
+situation.
+
+
+5.4 - Construction des r‚pertoires
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Vous pouvez mettre tous les fichiers du MonsterBook dans un seul et
+mˆme r‚pertoire si vous le d‚sirez, aussi bien les pilotes que le
+programem lui-mˆme, cependant les performances seront s–rement
+l‚gŠrement d‚terior‚ si vous n'avez pas une structure similaire … celle-
+ci:
+
+ \MALTE                Programme principal
+ \MALTE\SYSTEMS        Pilote vid‚o, bibliothŠque de langue,...
+ \MALTE\SPELL          Dictionnaire, bescherelle
+
+ La variable d'environnement doit toujours ˆtre fix‚ ®MALTE¯ dans
+l'®AUTOEXEC.BAT¯ en fonction du r‚pertoire ou installer le
+®MonsterBook¯. Exemple:
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ SET MALTE=C:\MALTE                                                    ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+Si cette instruction n'est pas fixer des problŠmes de toutes sortes
+peuvent se manifester pour des ressources myst‚rieuses … cause qu'il
+ne trouve pas ses ressources...
+
+
+5.5 - Fichier de configuration non conserv‚e
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Si le fichier de configuration ne se sauvegarde pas correctement c'est
+probablement … cause que vous n'avez pas sp‚cifier les bons chemins de
+r‚pertoires dans le fichier de configuration ®MB.INI¯ ainsi que la
+variable d'environnement ®MALTE¯.
+
+
+5.6 - ProblŠme de restauration d'une boŒte de dialogue
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Si vous vous apercevez que les boŒtes de dialogues ne restitue pas
+correctement le fond o— il ‚tait situ‚ avant de s'afficher c'est peut-
+ˆtre … cause qu'il n'y des images de comme BMP, GIF,... ayant ‚t‚
+charg‚e par le ®MonsterBook¯ et qu'ils sont incompatible avec 
+l'application mˆme s'il semble correctement fonctionner eux. C'est que
+certaines format d'image ne respecte absolument aucune documentation
+technique et qu'il presque impossible de pr‚voir comment r‚agir … leur
+attaque...
+
+
+5.7 - Pointeur de souris laisse des traces
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Il peut arriver que le pointeur de souris laisse des traces lorsqu'il
+passe par le BIOS VESA ou qu'il n'a pas trouver automatiquement une
+technique valable de changement de page vid‚o. Ce problŠme n'est pas
+dangereux pour l'int‚gralit‚ des donn‚es contenu dans le ®MonsterBook¯
+mais c'est quand mˆme fatiguant … voir … l'affichage...
+
+
+5.8 - N'imprime rien
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Dans le cas o— vous auriez se problŠme il existe trois causes possibles:
+
+ ş Le cƒble d'imprimante est mal branch‚: c'est une banale faute 
+   d'inattention et ceci ne devrait mˆme pas ˆtre sp‚cifiez comme cause.
+
+ ş Protocole d'impression totalement inconnu pour l'imprimante (E.T.
+   t‚l‚phone maison?): Vous devez s‚lectionner l'imprimante ad‚quate
+   par que se logiciel puisse fonctionner. S'il n'est pas dans la liste,
+   vous n'avez qu'… sp‚cifier ®Pas d'imprimante¯ et il se d‚brouillera
+   pour n'avez que du texte sans justification, typage ou quelque autre
+   luxe du genre.
+
+ ş Le port d'imprimante n'est pas valide, soit que l'‚mulateur DOS n'est
+   pas conforme o— que vous roulez sous Windows 95, 98 ou NT. Dans ce cas
+   vous devez sp‚cifiez que l'impression … votre imprimante se passe par
+   l'interm‚diaire du systŠme d'exploitation (exemple: ®LPT1: par le DOS¯.
+   (Voir la partie Windows 95 ou 98 si s'agit de se problŠme).
+
+
+6.0 - Enregistrement
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Ce programme est un partagiciel (un "SHAREWARE"), ou autrement dit
+vous avez 30 jours pour l'essayer aprŠs soit vous le d‚sinstaller de
+votre machine ou vous envoyez une contribution pour aider l'auteur
+… survivre...
+
+ Pour enregistrer votre programme envoyez-nous entre 15$ et 25$ plus
+taxe ainsi que votre adresser pour que nous puissions vous ‚crire pour 
+vous enregistrer (ou encore envoyer votre adresse ‚lectronique pour
+obtenir plus rapidement votre code d'enregistrement).
+
+Vous pouvez ‚galement nous ‚crire parce que vous avez des commentaires
+constructif … cette mˆme. (Un commentaire est l'endroit o— vous avez
+d‚couvert le ®BUG¯ et qu'est-ce que vous avez fait pour r‚ussir … cr‚er
+se ®BUG¯, car un commentaire ®Votre programme est plein de BUG¯ ne m'aide
+pas du tout … arranger le problŠme!¯)
+
+Notre adresse:
+
+Les Chevaliers de Malte
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+gladir@hotmail.com
+Sylvain Maltais
+1080 violette
+Ste-Doroth‚e, Laval, Qu‚bec
+H7X 2G2

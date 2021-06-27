@@ -1,0 +1,8 @@
+// AbsInt.AC
+
+Int AbsInt(Int I){
+ _AX=I,_AX|=_AX
+ ?(>=) @End
+ -_AX
+@End:
+}

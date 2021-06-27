@@ -1,0 +1,26 @@
+{Library\System\Malte\Windows\GetNxPos.Inc}
+
+{$IFNDEF __GetNextWnPos}
+ {$DEFINE __GetNextWnPos}
+
+Function GetNextWnPos(Var X1,Y1,X2,Y2:Byte;SzOf:Wd;Model:Byte):Pointer;Var Ptr:Pointer;Old:Bool;Begin
+ {$IFDEF H}SaveBack;{$ENDIF}
+ If MaxYTxts-YEditor>10Then Inc(YEditor)
+                       Else YEditor:=1+LnsMnu{$IFDEF MonsterBook}+BMUseYTexts(But){$ENDIF};
+ X1:=XEditor;Y1:=YEditor;X2:=MaxXTxts;Y2:=MaxYTxts-2;
+ Ptr:=ALAdd(_Windows,SzOf+SizeOf(Byte)+SizeOf(Byte)*4{$IFDEF H}+SizeOf(Window){$ENDIF});
+ If(Ptr<>NIL)Then Begin
+  {$IFDEF H}
+   Old:=GetShade;
+   SetShade(No);
+   WEInit(WinRec(Ptr^).BW,X1,Y1,X2,Y2);
+   SetShade(Old);
+  {$ENDIF}
+  WinRec(Ptr^).OX1:=X1;WinRec(Ptr^).OY1:=Y1;
+  WinRec(Ptr^).OX2:=X2;WinRec(Ptr^).OY2:=Y2;
+  WinRec(Ptr^).Model:=Model;CurrEdit:=_Windows.Count-1;
+ End;
+ GetNextWnPos:=Ptr;
+End;
+
+{$ENDIF}

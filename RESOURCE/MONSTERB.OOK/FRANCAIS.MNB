@@ -1,0 +1,564 @@
+Menu "^F^ichier"
+
+   Si Application = Terminal Alors
+      Item 226, "Envoie un fichier", PageUp, "Envoie un fichier par modem (Upload)"
+      Item 227, "Re‡ois un fichier", PageDown, "Recevoir un fichier par modem (Download)"
+      Item -
+   Fin Si
+
+   Groupe Item "^N^ouveau..."
+      Item 271, "^B^asic", "Cr‚e un nouveau programme Basic"
+      Item 270, "Ba^s^e de donn‚es", "Cr‚e une nouvelle base de donn‚es"
+      Item 1,   "^T^exte", "Cr‚e un nouveau fichier texte ASCII (DOS)"
+   Fin Groupe Item
+
+   Groupe Item "Ouvre...", "Ouvre des fichiers de style sp‚ciaux (C/C++, Pascal, Basic, Macro, Menu...)"
+
+      Item 120, "^A^ssembleur", "Ouvre ou cr‚e un fichier de style langage Assembleur"
+      Item 138, "Ba^s^e de donn‚es", "Ouvre une base de donn‚es"
+      Item 121, "^B^asic", "Ouvre ou cr‚e un fichier de style langage Basic"
+      Item 122, "^C^/C++", "Ouvre ou cr‚e un fichier de style langage C/C++"
+      Item  21, "^D^essin", "Ouvre ou cr‚e un dessin"
+      Item 123, "^E^uphoria", "Ouvre ou cr‚e un fichier de style langage Euphoria"
+      Item 124, "^F^ortran", "Ouvre ou cr‚e un fichier de style langage Fortran"
+      Item   4, "^G^at", "Ouvre ou cr‚e un document de traŒtement de texte de format GAT"
+      Item  23, "^I^con", "Ouvre un ensemble d'Icon de format Isabel d‚j… existant"
+      Item 125, "I^n^i(tiation)", "Ouvre ou cr‚e un fichier style .INI (Windows, GeoWorks,...)"
+      Item 109, "Macro Te^x^te", "Ouvre ou cr‚e un raccourcis clavier pour le traŒtement de texte"
+      Item  76, "^M^enu", "Ouvre ou cr‚e le menu d'application"
+      Item 126, "^P^ascal", "Ouvre ou cr‚e un fichier de style langage Pascal"
+      Item 127, "^R^essource", "Ouvre ou cr‚e un fichier de style Ressource C"
+      Item   8, "^T^ableur", "Ouvre ou cr‚e un chiffrier ‚lectronique"
+      Item   2, "Te^x^te", "Ouvre ou cr‚e un fichier texte ASCII (DOS)"
+
+   Fin Groupe Item
+
+   Si ( NombreLigneAffich‚e > 29 ) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Item 3, "Nouveau Docu^m^ent", "Cr‚e un nouveau document de format GAT"
+   Item 4, "Ouvre Doc^u^ment", "Ouvre ou cr‚e un nouveau document de format GAT"
+
+   Si Application = Editeur Alors
+      Item 219, "InsŠre fichier...", "InsŠre un fichier dans l'‚diteur"
+   Fin Si
+
+   Si ( NombreLigneAffich‚e > 28 ) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Item 5, "Regarde ^H^exad‚cimal", "Regarde un fichier existant sous sa forme hexad‚cimal"
+   Item 6, "Regarde ^A^scii", "Regarde un fichier existant sous sa forme ASCII"
+
+   Si ( NombreLigneAffich‚e > 27 ) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Item 7, "Nouveau ^T^ableur", "Cr‚e un nouveau chiffrier ‚lectronique"
+   Item 8, "Ou^v^re tableur", "Ouvre ou cr‚e un chiffrier ‚lectronique"
+
+   Si ( NombreLigneAffich‚e > 26) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Si Application dans [ Editeur, Ic“ne, Dessin, Tableur, Macro, HexView, Font ] Alors
+      Item  9, "^S^auve", "Sauvegarde le fichier en ‚dition sous son nom actuel"
+      Item 10, "Sauve so^u^s", "Sauvegarde le fichier en ‚dition sous un nouveau nom"
+      Item 14, "Sauve ^t^ous", "Sauvegarde tous les fichiers en ‚dition"
+      Item -
+   Fin Si
+
+   Si Application = Gestionnaire de fichiers Alors
+      Item  11, "Co^p^ie(s)", "Copie un fichier d'un r‚pertoire … un autre"
+      Item  12, "^D^‚place(s)/Renomme(s)","D‚place(s) ou renomme(s) un/des fichier(s)"
+      Item  13, "^E^fface(s)","Efface un r‚pertoire ou un/des fichier(s)"
+      Item 223, "Fi^x^er Attribut","Permet de fixer l'attribut du/des fichier(s)"
+   Fin Si
+
+   Item 15, "Cr‚e ^r^‚pertoire", "Cr‚e un nouveau r‚pertoire"
+   Item 16, "^C^hange r‚pertoire", "Change le r‚pertoire courant ou de travail"
+
+   Si Application = Gestionnaire de fichiers Alors
+      Item 207, "Imprime r‚pertoire", "Imprime la liste des r‚pertoires sur un mˆme unit‚"
+   Fin Si
+
+   Si Application Alors
+      Cas Application de
+       Gestionnaire de fichiers:
+          Item 17,"^I^mprime", "Imprime le fichier point‚ dans la liste"
+       Autrement:
+          Item 17, "^I^mprime", "Imprime le fichier courant en ‚dition"
+      Fin Cas
+   Fin Si
+
+   Item 18, "Interpr‚t^e^ur Dos", "Lance l'interpr‚teur de commande du systŠme d'exploitation"
+
+   Si (NombreLigneAffich‚e > 25 ) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Item 19, "^Q^uitte", "Quitte d‚finitivement l'application " NOM APPLICATION
+
+Menu "^D^essin"
+
+   Si Document Alors
+      Item 153, "Insertion d'une image", "Permet d'ins‚rer une image … l'int‚rieur mˆme du document..."
+      Item -
+   Fin Si
+
+   Item 20, "^N^ouveau", "Cr‚e un nouveau dessin"
+   Item 21, "^O^uvre", "Ouvre ou cr‚e un nouveau dessin"
+
+   Si Application = Dessin Alors
+      Item -
+      Item 223, "Mode magnifique", "Permet de voir plus gros les pixels ou reviens … l'ancienne taille"
+      Item 32, "^M^ode de sauvegarde", "Change le format de sauvegarde du fichier dessin"
+   Fin Si
+
+   Item -
+   Item 22, "Nou^v^elle Ic“ne", "Cr‚e un nouvel ensemble d'ic“ne de format Isabel"
+   Item 23, "Ouvre ^I^c“ne", "Ouvre un ensemble d'ic“ne de format Isabel d‚j… existant"
+
+   Si Application = Ic“ne Alors
+      Item 24, "Nouvelle ^p^age Icon", "Additionne une nouvelle page … l'ensemble d'Icon Isabel"
+      Item 25, "^C^hange page Icon", "Change de page d'Icon dans l'ensemble d'Icon Isabel"
+   Fin Si
+
+   Item -
+   Item 240, "Nouvelle Police", "Cr‚e une nouvelle police de caractŠres"
+   Item 241, "Ouvre Police", "Ouvre une police de caractŠres"
+   Item -
+   Item 245, "Nouveau Plan lectronique", "Permet de cr‚er un nouveau plan d'‚lectronique"
+   Item 246, "Ouvre Plan lectronique", "Permet d'ouvrir un plan existant ou d'en cr‚er un s'il n'existe pas encore"
+   Item -
+   Item 247, "Nouveau DFD", "Permet de dessin un diagramme de flux de donn‚es"
+   Item -
+   Item 250, "Nouveau Dessin vectorielle", "Permet de cr‚er un nouveau dessin technique"
+   Item 255, "Ouvrir Dessin vectorielle", "Permet d'ouvrir un dessin technique"
+
+   Si Application = Dessin Alors
+      Item -
+      Item 147, "Plein ‚cran", Ctrl+Enter, "Visualise l'image en pleine ‚cran"
+   Fin Si
+   Si Application = Tetris Alors
+      Item -
+      Item 147, "Plein ‚cran", Ctrl+Enter, "Jouer au jeux en mode pleine ‚cran"
+   Fin Si
+
+   Item -
+   Item 178, "Visualisateur Globale"
+
+Si ( NombreColonneAffich‚e >= 100 ) Alors
+   Menu "^E^dition"
+Sinon
+   Menu "^E^dite"
+Fin Si
+
+   Si Application dans [ Editeur, Dessin, Ic“ne] Alors
+      Item 26, "^A^nnule (Oops)", Alt+BackSpace, "Annule la derniŠre op‚ration, reviens … l'‚tat pr‚c‚dent"
+      Item 27, "D‚^p^lace le bloque", Shift+Delete, "Retire un bloc et le transfert temporairement dans le tampon"
+   Fin Si
+
+   Si Application dans [ Editeur, Dessin, Ic“ne] Alors
+      Item 28, "^C^opie le bloque", Ctrl+Insert, "Copie un bloc dans le tampon"
+   Sinon
+      Item 28, "^C^opie", Ctrl+Insert
+   Fin Si
+
+   Si Application dans [ Editeur, Dessin, Ic“ne ] Alors
+      Item 29, "Coller le bloque", Shift+Insert, "Transfert un bloc du tampon vers l'‚diteur"
+      Si OS/2 Alors
+         Item 143, "Coller le bloque fichier OS/^2^", "Transfert un bloc de fichier OS/2 vers l'‚diteur"
+      Sinon
+         Si fonction Presse-Papier disponible Alors
+            Item 143, "Coller le bloque de Windows", "Transfert un bloc de Windows vers l'‚diteur"
+         Fin Si
+      Fin Si
+      Item  30, "^E^fface le bloque", Ctrl+Delete, "limine le bloc s‚lectionn‚"
+      Item 213, "crit le blo^q^ue", "crit sur disque le bloc s‚lectionn‚"
+   Fin Si
+
+   Item -
+   Item 31, "P^r^esse-papier", "Editeur du tampon temporaire"
+   Cas Application de
+      Gestionnaire de programmes:
+         Item -
+         Item 222, "Propri‚t‚", "Permet de modifier les propri‚t‚s de cette application"
+      Editeur:
+         Item -
+         Item  43, "Effacer au curseur", Delete, "Effacer le caractŠre … la position actuel du curseur"
+         Item  44, "Effacer le pr‚c‚dent",BackSpace, "Recule d'un espace et efface le caractŠre … la position du curseur"
+         Item -
+         Item  32, "Mode ^A^ffichage", "Change le modŠle d'‚dition du traŒtement de texte: Gat, ASCII, Pascal,..."
+         Item  33, "Type Ca^r^actŠre", "Sp‚cifie le style de caractŠres … afficher dans le traŒtement de texte"
+         Item  256, "Changer casse", "Change les casses des caractŠres dans le traŒtement de texte"
+         Item -
+         Item  34, Bool‚en DrawMode, "^D^essiner", "Active/d‚sactive le mode dessin pour faire des lignes en d‚pla‡ant le curseur"
+         Item 214, Bool‚en ReadOnly, "Lecture seulement", "Si ce mode est actif il impossible de modifier le texte (in‚ditable)"
+         Si Document Alors
+            Item -
+            Item  35, "change des pa^g^es", "change 2 pages du traŒtement de texte (A=B, B=A)"
+         Sinon
+            Item -
+            Item 222, "Ouvre le fichier au curseur", "Ouvre le fichier indiquer par un mot au curseur"
+         Fin Si
+      HexView:
+         Item -
+         Item 214, Bool‚en EditMode, "Modification possible", "Si ce mode est actif il impossible de modifier le texte (in‚ditable)"
+      Dessin,Ic“ne:
+         Item -
+         Item  36, Bool‚en IsLine, "^L^igne", "Active le mode de ligne"
+         Item  37, Bool‚en IsBox, "^B^oite", "Active le mode boŒte"
+         Item  38, Bool‚en IsCircle, "C^e^rcle", "Active le mode cercle"
+         Item  39, Bool‚en IsPaint, "Peint^u^re", "Active le mode peinture"
+         Item  40, Bool‚en IsTrace, "T^r^ace", "Active le mode trace"
+         Item  41, Bool‚en IsText, "^T^exte", "Active le mode texte"
+         Item -
+         Item  42, Bool‚en IsFill, "Plei^n^", "Active le mode objet plein"
+         Item -
+         Item  33, "Type Ca^r^actŠre", "Sp‚cifie le style de caractŠres … utiliser dans le dessin"
+         Item -
+         Item 190, "Couleur", "Changer la couleur courante"
+      Tetris:
+         Item -
+         Item 33,"^D^‚marrer","D‚marrer une nouvelle partie"
+         Item 36,Bool‚en IsLine, "Manette de ^j^eux","Active l'utilisation de la manette de jeux"
+         Item 37,Bool‚en IsBox, "Clavier", "Active l'utilisation du clavier"
+   Fin Cas
+
+Menu "^R^echerche"
+
+   Si Application Alors
+      Cas Application de
+        Tetris:
+           Item 221, "Niveau du Jeux", "Permet de modifier le niveau de jeux de Tetris"
+           Item -
+        Calendrier:
+           Item 216, "^A^nn‚e", "Aller … une ann‚e particuliŠre"
+           Item  45, "^D^iff‚rence de jour", "Calcul le nombre de jours entre deux dates..."
+           Item -
+        Calculatrice Programmable:
+           Item  48, "quation de ^1^ier degr‚", "R‚soudre une ‚quation de premier degr‚"
+           Item  49, "quation de ^2^Šme degr‚", "R‚soudre une ‚quation de deuxiŠme degr‚"
+           Item -
+        Gestionnaire de programmes:
+           Item  48, "Onglet pr‚c‚dent", PageUp, "Aller … l'onglet pr‚c‚dent"
+           Item  49, "Onglet suivant", PageDown, "Aller … l'onglet suivant"
+           Item  -
+        Disque Compacte:
+           Item  48, "Piste pr‚c‚dente", "Aller … la piste (track) pr‚c‚dente"
+           Item  49, "Piste suivante", "Aller … la piste (track) suivante"
+           Item  -
+        Gestionnaire de fichiers:
+           Item 173, "S‚lectionne", '+', "S‚lectionne un groupe de fichier"
+           Item 172, "D‚s‚lectionne", '-', "D‚s‚lectionne un groupe de fichier"
+           Item 171, "Inverse l'ordre de s‚lection", '*', "Inverse les s‚lections d'un groupe de fichier"
+           Item -
+           Item  52, "T^r^i", "Fixe l'ordre alphab‚tique"
+           Item -
+        Prompt:
+           Item  45, "^T^rouve", "Recherche une chaŒne de caractŠre sp‚cifie dans un/des fichier(s)"
+           Item -
+        Autrement:
+           Item  45, "^T^rouve", "Recherche une chaŒne de caractŠre sp‚cifie dans le texte ‚dit‚"
+           Item  46, "^R^emplace", "Recherche une chaŒne de caractŠre et la remplace par une nouvelle"
+           Item  47, "Essaie ^E^ncore", "Continuer la recherche pr‚c‚demment demander"
+           Item -
+           Item  48, "^L^igne", "Aller … la ligne sp‚cifi‚e"
+           Item  49, "^C^olonne", "Aller … la colonne sp‚cifi‚e"
+           Si Application = Editeur Alors
+              Si Document Alors
+                 Item 216, "^P^age", "Aller … la page sp‚cifier"
+              Fin Si
+              Si Editeur dans [ Assembleur, Basic, C/C++, Pascal ] Alors
+                 Item 254, "^P^roc‚dure", "Aller … une proc‚dure"
+                 Item  50, "Aller au ^D^‚but", Ctrl+Home, "Aller au d‚but de liste du texte ‚dit‚"
+                 Item  51, "Aller … la ^F^in", Ctrl+End, "Aller … la fin de liste du texte ‚dit‚"
+              Fin Si
+           Fin Si
+           Item -
+           Item  52, "T^r^i", "Fixe l'ordre alphab‚tique"
+           Item 139, "Filtre", "Effectue un traŒtement de liste"
+           Item -
+      Fin Cas
+   Fin Si
+
+   Item 140, "^V^erbe", "Recherche un verbe"
+
+   Si Application = Editeur Alors
+      Item 142, "Correcteur", "Correcteur de faute d'orthographe"
+      Item -
+   Fin Si
+
+   Item 253, "M‚nagŠre de disque", "limine les fichiers inutile..."
+
+   Si Application = Terminal Alors
+      Item -
+      Item 104, "Analyse ^M^odem", "Effectue des testes sur l'‚tat actuel du Modem"
+      Item 105, "Liste des exportations", "Affiche la liste des fichiers exportable (download) par t‚l‚communication"
+   Fin Si
+
+Menu "^C^ommande"
+   Cas Application de
+      Terminal:
+         Item 107, "BBS Maison", "Entre en mode BBS Maison (HostMode)"
+         Item -
+         Item 225, "Raccrocher le t‚l‚phone", "Met fin … la communication par modem (Hang Up)"
+         Item 135, "Mode laissant sonner le t‚l‚phone", "Ne r‚pond pas au t‚l‚phone s'il sonne (Originate Mode)"
+         Item 224, "Mode r‚pondant au t‚l‚phone", "R‚pond au t‚l‚phone s'il sonne (Answer Mode)"
+         Item -
+      Gestionnaire de fichiers, Prompt, Aucun:
+         Si Application = Prompt Alors
+            Item 110, "Description", "D‚finit les descriptions de chaque fichier"
+            Item -
+         Fin Si
+         Item 233, "Copie un/des fichier(s)", "Permet de copier un/des fichier(s) sp‚cifique … entrer manuellement"
+         Item 232, "Efface un/des fichier(s)", "Permet d'effacer un/des fichier(s) sp‚cifique … entrer manuellement"
+         Item -
+      Editeur:
+         Groupe Item "^A^vanc‚e"
+            Item 108, "^E^xecute Macro", "Ex‚cute un raccourcis clavier"
+            Item 109, "^O^uvre un Macro", "Cr‚e ou ‚dite une raccourcis clavier"
+            Item -
+            Item 258, "Saut...","Insertion de saut de page, de ligne,..."
+            Item -
+            Item 257, "Ligne ^h^orizontal", "Insertion d'une ligne horizontal"
+            Item -
+            Item 235, "^C^r‚ation d'un cadre", "Cr‚e un cadre permettant d'ins‚rer des ‚l‚ments dans les cellules"
+         Fin Groupe Item
+         Si NombreLigneAffich‚e >25 Alors
+            Item -
+         Fin Si
+         Item 110, "Efface les espaces", "Efface tous les espaces entre le curseur et les prochains caractŠres"
+         Item 111, "Efface la ligne", "Efface la ligne courante dans le traitement de texte"
+         Item 112, "Centre la ligne", "Centre la ligne courante et descend d'une ligne"
+         Si Document Alors
+            Si Pas PH Alors
+               Item -
+            Fin Si
+            Item 221, "Mot ^N^ormal", "EnlŠve tous effets sp‚ciaux sur mot courant"
+            Item 113, "Mot en ^d^ouble", "Fixe le mot courant en format double largeur … l'impression"
+            Item 114, "Mot en ^g^ras", "Fixe le mot courant en gras … l'impression"
+            Item 115, "Mot ^s^oulign‚", "Fixe le mot courant en mode soulign‚ … l'impression"
+            Item 116, "Mot ^i^nvers‚", "Fixe le mot courant en mode imprim‚ … l'ext‚rieur des lettres … l'impression"
+            Item 176, "Mot italique", "Fixe le mot courant en mode italique des lettres … l'impression"
+            Item 217, "Mot e^x^posant", "Fixe le mot courant en mode exposant … l'impression"
+         Sinon
+            Item 114, "Mot en majuscule", "Fixe le mot courant en format majuscule"
+         Fin Si
+         Item -
+      Disque Compacte:
+         Item 113, "Jouer/Pause", "Joue la piste courante ou la met en mode pause s'il joue"
+         Item 114, "Arrˆter", "Arrˆter de faire jouer la piste"
+         Item -
+   Fin Cas
+
+   If Pas Debug Alors
+      Item 230, "Lance le d‚bogueur", "Ex‚cute un programme sous l'influence du d‚bogueur"
+   Fin Si
+
+   Groupe Item "^D^isque"
+      Si unit‚ disquette existe Alors
+         Item 166, "^F^ormatter un/des disquette(s)", "Initialise prˆt … l'emploi un/des disquette(s)"
+      Fin Si
+
+      Item 276, "Copie disque vers fichier","Copie un disque dans un fichier"
+      Item 278, "Copie ^d^isque","Copie un disque sur une autre"
+      Item 208, "Changer le nom du ^V^olume (disque)", "Modifie le nom actuel de l'unit‚ (Titre, LABEL, VOL,...)"
+      Item 165, "^R^egarde disque Hexad‚cimal", "Regarde directe en vision hexad‚cimal les secteurs d'un unit‚"
+      Item 277, "Carte du disque", "Affiche une repr‚sentation des secteurs du disque"
+
+      Si disque dur existe Alors
+         Item 145, "^P^artition", "Regarde les partitions du disque dur"
+         Item 163, "Stationner le dis^q^ue dur", "Stationne les tˆtes du disque dur … un endroit s–r pour transporter"
+      Fin Si
+   Fin Groupe Item
+
+   Groupe Item "^P^rompt"
+      Item  80, "^D^OS",       "Lancer une fenˆtre d'interpr‚teur de commande interne style DOS"
+      Item  281,"^A^migaDOS",  "Lancer une fenˆtre d'interpr‚teur de commande interne style AmigaDOS"
+      Item  264,"D^R^-DOS",    "Lancer une fenˆtre d'interpr‚teur de commande interne style DR-DOS"
+      Item  265,"^M^S-DOS",    "Lancer une fenˆtre d'interpr‚teur de commande interne style MS-DOS"
+      Item  266,"^N^DOS/4DOS", "Lancer une fenˆtre d'interpr‚teur de commande interne style NDOS/4DOS"
+      Item  267,"^O^S/2",      "Lancer une fenˆtre d'interpr‚teur de commande interne style OS/2"
+      Item  81, "^U^nix",      "Lancer une fenˆtre d'interpr‚teur de commande interne style Unix"
+      Item  268,"^V^AX/Alpha", "Lancer une fenˆtre d'interpr‚teur de commande interne style VAX/Alpha"
+      Item  269,"^W^indows 9X","Lancer une fenˆtre d'interpr‚teur de commande interne style Windows 9X"
+   Fin Groupe Item
+
+   Item 157, "^E^x‚cution d'une commande Dos", "Ex‚cute, via le l'interpr‚teur de commande, une commande Dos"
+   Item 243, "Ex‚cuter ‚conomiseur ‚cran", "Ex‚cuter l'ex‚cuter l'‚conomiseur d'‚cran maintenant sans plus attendre"
+   Item 231, "Vide le tampon d'impression", "limine toutes les donn‚es devant ˆtre imprim‚ sur l'imprimante"
+   Item -
+   Item 159, "S^Q^L","Commande SQL"
+
+   Si Programmeur Alors
+      Item -
+      Item 55, "^C^ompilation"
+      Item 58, "C^r^‚e"
+      Item 59, "^F^abrique"
+      Item 53, "^E^xecute"
+   Fin Si
+
+Menu "^O^ption"
+
+   Si Document Alors
+      Item 63, "Di^m^ension", "Fixe les marges du traŒtement de texte"
+   Fin Si
+
+   Item 66, "^R^‚pertoire", "Ajustement des r‚pertoires par d‚faut"
+
+   Groupe Item "^P^rogrammeur", "Ajustement sp‚cifique pour les programmeurs"
+      Item 236,"^S^ourceur", "D‚finit les paramŠtres du Sourceur de code machine"
+      Item 259,"^B^asic","Configuration du langage de programmation BASIC"
+      Si Programmeur Alors
+         Item 61, "^A^pplication"
+         Item 62, "^C^ompilateur"
+         Item 63, "Di^m^ension m‚moire"
+         Item 64, "^L^inkeur"
+         Item 65, "^D^‚bugueur"
+      Fin Si
+   Fin Groupe Item
+
+   Si Programmeur Alors
+      Item 54, "ParamŠtre^s^", "Les paramŠtres par d‚faut du programme"
+   Fin Si
+
+   Item -
+
+   Groupe Item "^V^id‚o", "Ajustement des paramŠtres du systŠme vid‚o primaire"
+      Item  68, "Change de Mode ^V^id‚o", "Change le dimension et l'aspect du mode vid‚o actuel"
+      Item  69, "Change de ^P^olice", "Change de police de caractŠres afficher en standard"
+      Item  71, "conomi^s^er d'‚cran", "Fixe les paramŠtres du ®Screen Saver¯"
+      Item  70, "^E^nvironnement", "Fixe les paramŠtres techniques de l'affichage vid‚o"
+      Item 249, "^P^alette", "Choisie la palette de couleur"
+      Item 152, "Papier paint", "D‚termine le papier allant ˆtre afficher comme fond"
+      Item 151, "Image de la barre titre", "D‚termine l'image allant ˆtre afficher comme arriŠre plan d'une fenˆtre"
+   Fin Groupe Item
+
+   Groupe Item "S^o^n", "Permet d'ajuste le son"
+      Item 251, "Console de S^o^n", "Permet d'ajuste le console de son"
+      Item 252, "galisateur", "Permet d'ajuste l'‚galisateur de fr‚quence"
+      Item 141, "Lecteur de compacte disque", "Permet de faire jouer des compactes disque"
+   Fin Groupe Item
+
+   Item  67, "^I^mprimantes", "Ajustement des sp‚cifications d'imprimante lors de l'impression"
+   Item  76, "dite le ^M^enu", "dite le Menu d'Application (les programmes et leurs r‚pertoires...)"
+   Groupe Item "^S^ystŠme","Param‚trages du systŠme"
+      Item 215, "^G^‚n‚ral", "Param‚trages au niveau du noyau systŠme de cette application"
+      Item 263, "P‚riph‚ri^q^ue", "Gestionnaire de p‚riph‚rique"
+      Item -
+      Item 260, "^B^ase de donn‚es","Configuration des bases de donn‚es"
+      Item 261, "^C^ompression","Mode de compression support‚"
+      Item 262, "^P^ays/R‚gion", "Configuration du pays ou de la r‚gion"
+   Fin Groupe Item
+   Item 146, "^H^orloge", "Mise … jour de l'heure de cette ordinateur"
+   Item 237, "^C^lavier", "Param‚trages, vitesse du clavier"
+   Item 218, "So^u^ris", "Param‚trages de la souris et de son aspect"
+   Groupe Item "Manette de ^J^eux"
+      Item 272, "^G^‚n‚ral", "Ajustement de la manette de jeux"
+      Item 228, "^C^alibrer","Permet de calibrer la manette de jeux et de l'autoriser"
+   Fin Groupe Item
+   Item  72, "^E^nvironnement", "Param‚trage de l'environnement de travail bureaucratique"
+   Item 244, "Securit‚", "Met un mot de passe centrale"
+   Item 220, "^A^pplication", "Param‚trage des applications"
+
+   Groupe Item "^T^erminal", "Param‚trage du Terminal de communication"
+      Item 273,"^M^odem","Configuration du Modem"
+      Item -
+      Item  73, "Message ^B^ienvenue", "Lance l'‚diteur du message de Bienvenue du BBS Maison"
+      Item 128, "Menu ^P^rincipal", "Lance l'‚diteur du menu principal du BBS Maison"
+      Item 129, "Menu de ^F^ichier", "Lance l'‚diteur du menu de fichier du BBS Maison"
+      Item -
+      Item  74, "Liste des ^U^sagers", "Lance l'‚diteur pour modifier la liste des usagers"
+   Fin Groupe Item
+
+   Si Application = Gestionnaire de fichiers Alors
+      Item -
+      Item  75, "^T^ableau", '^', "Change la plateforme de travail (fichier, info, arbres,...)"
+   Fin Si
+
+   Si Document Alors
+      Item -
+      Item 248, "Ajoute une matrice", "Additionne une matrice en plus de la standard"
+      Item  77, "^M^ot de passe", "ProtŠge avec un mot de passe le document en cours d'‚dition"
+   Fin Si
+
+Menu "Fe^n^ˆtre"
+   Item  78, "^M^enu Application", "Lancer le Menu d'Application"
+   Item  82, "C^a^lculatrice Programmable", "Lance une fenˆtre de calculatrice programmable"
+   Item  83, "^T^erminal", "Lancer une fenˆtre de terminal de communication"
+   Item  79, "^G^estionnaire Fichiers", "Lancer une fenˆtre de gestionnaire de fichier"
+   Si ‚cran graphique Alors
+      Item 149, "Gestionnaire de programmes", "Lancer une fenˆtre gestionnaire de programmes"
+   Fin Si
+
+   Item  84, "Sortie", "Voir l'‚cran de sortie (l'‚cran de l'interpr‚teur de commande...)"
+   Item -
+   Si Application Alors
+      Item  85, "Mosa‹que", "Fixe les fenˆtres en mode mosa‹que (Tile)"
+      Item  86, "^C^ascade", "Affiche les fenˆtres en cascade une par dessus l'autre"
+      Item  87, "^F^erme tous", "Ferme toutes les fenˆtres d'application"
+   Fin Si
+   Item  88, "^R^estore ‚cran", "R‚actualisation de l'‚cran"
+   Si Application Alors
+      Item -
+      Item  89, "Taille/^D^‚place", Ctrl+F5, "Change ou d‚place la fenˆtre active"
+      Item  90, "^Z^oom", "Affiche de la fenˆtre en exposant maximum (pleine ‚cran)"
+      Item  91, "^S^uivant", "Aller … la fenˆtre suivante"
+      Item  92, "^P^r‚c‚dant", "Aller … la fenˆtre pr‚c‚dente"
+      Item  93, "F^e^rme", "Ferme la fenˆtre actuel"
+      Item -
+      Item  94, "^L^iste", "Affiche et s‚lectionne la fenˆtre de travail actuel"
+   Fin Si
+
+Si ( NombreColonneAffich‚e > 90 ) Alors
+   Menu "^I^nformation"
+Sinon
+   Menu "^I^nfo"
+Fin Si
+
+   Item  96, "^P^ays/R‚gion", "Affiche les informations de param‚trage du pays ou de la r‚gion"
+   Item -
+   Item  97, "^I^nformation Sommaire", "Affiche une introduction sommaire du mat‚riel disponible"
+   Item  98, "^S^ommaire du Vid‚o Primaire", "Affiche une fiche technique du systŠme vid‚o primaire"
+   Item  99, "Sommaire du Vid‚o Secondaire", "Affiche une fiche technique du systŠme vid‚o secondaire"
+   Item 100, "^P^olice vid‚o", "Affiche la police de caractŠre courante"
+   Item 203, "C^a^rte de Son", "Affiche les informations relative … la carte de son"
+   Item 242, "Souris", "Affiche les informations sur la souris"
+   Item 238, "Manette de ^J^eux", "Affiche des informations … propos de la manette"
+   Item 239, "^C^lavier", "Affiche des informations … propos du clavier"
+   Item -
+   Item 101, "Information ^M^‚moire", "Affiche l'utilisation des ressources de m‚moire utilis‚ par l'application"
+   Item 102, "Information M^C^B", "Affiche l'utilisation de la m‚moire … la persception du Dos"
+   Item 103, "Donn‚es CM^O^S", "Affiche les donn‚es contenu dans la m‚moire sur pile de la machine"
+   Item -
+   Item 194, "Disque ^L^ogique", "Retourne les informations … la fa‡on du Dos sur une unit‚ sp‚cifi‚"
+   Cas Application de
+      Terminal:
+         Item -
+         Item 104, "Analyse ^M^odem", Ctrl+F1, "Effectue des testes sur l'‚tat actuel du Modem"
+      Gestionnaire de fichiers:
+         Item -
+         Item 117, "S^q^uelette", Ctrl+F1, "Affiche l'entˆte squel‚tique du fichier s‚lectionn‚"
+      Editeur:
+         Si Document Alors
+            Item -
+            Item 106, "^D^ocument", Ctrl+F1, "Affiche les informations techniques sur le document en ‚dition"
+         Fin Si
+   Fin Cas
+
+Menu "^A^ide"
+   Item  95, "^A^ Propos", "Affiche la versions et les droits d'auteurs de cette application"
+   Item -
+   Item 118, "Au ^s^ujet de...", F1, "Retourne de l'aide n'importe o— dans le programme sur un sujet..."
+   Item 119, "^T^ouches clavier", "Affiche une fenˆtre d'aide pour les combinaisons clavier disponible"
+   Item -
+   Item 206, "^B^escherelle", "Affiche un dictionnaire des verbes de conjuguaison"
+   Item -
+   Item 148, "^C^onversion", "Permet de convertir mesure sous un autre systŠme"
+   Item -
+   Item 150, "Calendrier", "Calendrier du mois..."
+   Item 234, "A^g^enda", "Votre agenda de num‚ro de t‚l‚phone de personnes"
+   Item 144, "^J^ournal de bord", "Affiche le contenu du journal de bord"

@@ -1,0 +1,4 @@
+FOR I TO 4 DO
+   AVANCE 40
+   DROITE 90
+OD

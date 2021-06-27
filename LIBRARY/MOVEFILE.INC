@@ -1,0 +1,26 @@
+{\Source\Chantal\Library\MoveFile.Inc}
+
+{$IFNDEF __MoveFile}
+ {$DEFINE __MoveFile}
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                          Fonction MoveFile                        Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction permet de d‚placer un fichier d'une unit‚ disque … un
+  autre.
+ }
+
+ Function MoveFile(Const Source,Target:String):Byte;
+ Var
+  E:Byte;
+ Begin
+  MoveFile:=0;E:=CopyFile(Source,Target);
+  If E>0Then MoveFile:=E Else MoveFile:=DeleteFile(Source)
+ End;
+
+{$ENDIF}

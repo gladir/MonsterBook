@@ -1,0 +1,1644 @@
+{Drv4.Inc}
+
+Procedure RawTxtY;Forward;
+Procedure RawY;Forward;
+Procedure RealRawY;Forward;
+
+Procedure _Driver4;Assembler;ASM
+ JMP Init.Near
+ JMP BarChrHor.Near
+ JMP BarChrVer.Near
+ JMP BarSpcHor.Near
+ JMP BarSpcVer.Near
+ JMP BarTxtHor.Near
+ JMP Circle.Near
+ JMP CloseCur.Near
+ JMP ClrLnHor.Near
+ JMP ClrLnHorImg.Near
+ JMP ClrWn.Near
+ JMP ClrScr.Near
+ JMP CopT8Bin.Near
+ JMP Copy8Bin.Near
+ JMP FillBox.Near
+ JMP GetAttr.Near
+ JMP GetChr.Near
+ JMP GetCube.Near
+ JMP GetLnHorImg.Near
+ JMP GetPixel.Near
+ JMP GetSizeSmlImg.Near
+ JMP GetSmlImg.Near
+ JMP MoveText.Near
+ JMP PCopy.Near
+ RETF 10{PCopy2Img(Page:Byte;X1,Y1,X2,Y2:Word)}
+ JMP PutCharGAttr.Near
+ JMP PutFillBox.Near
+ JMP PutFillCircle.Near
+ JMP PutFillRoundRect.Near
+ JMP PutLn.Near
+ JMP PutLnHor.Near
+ JMP PutRect.Near
+ JMP PutRoundRect.Near
+ JMP PutSmlImg.Near
+ JMP PutSprite.Near
+ JMP PutTxtXY.Near
+ JMP PutTxtXYUnKr.Near
+ JMP SetAttr.Near
+ JMP SetBackgroundColor.Near
+ JMP SetBlink.Near
+ JMP SetBorderColor.Near
+ JMP SetBytesPerLn.Near
+ JMP SetChr.Near
+ JMP SetChrWidth.Near
+ JMP SetCube.Near
+ JMP SetCur.Near
+ JMP SetCurPos.Near
+ RETF 2          {SetDblMtx}
+ JMP SetChr.Near {SetExtChr}
+ JMP SetCube.Near{SetExtCube}
+ JMP SetGCube.Near
+ JMP SetGCubeT.Near
+ JMP SetHorizontalScale.Near
+ JMP SetMatrix.Near
+ JMP SetModeMtx.Near
+ JMP SetModeScr.Near
+ JMP SetPalBlk.Near
+ JMP SetPaletteRGB.Near
+ JMP SetPalRGB.Near
+ JMP SetPg.Near
+ JMP SetPixel.Near
+ RETF 2 {SetUnderline(X:Bool)}
+ JMP SetVerticalScale.Near
+ JMP SetVisualPg.Near
+ JMP SetWriteMode.Near
+ JMP SplitScreen.Near
+ RETF 2 {SetBnkPg(Pg:Byte)}
+ RETF 10 {ReadBnk(P:Long;Size:Wd;Var x0)}
+ RETF 10 {WriteBnk(P:Long;Size:Wd;Var x0)}
+ RETF 8{FillBnk(aY:Long;L,Kr:Wd)}
+ JMP Done.Near
+  {Gestion des Icons/Luxe}
+ RETF 2{SetLuxe(X:Bool)}
+ JMP IsLuxe.Near
+ JMP CloseIcon.Near
+ JMP DownIcon.Near
+ JMP LeftIcon.Near
+ JMP RightIcon.Near
+ JMP SelIcon.Near
+ JMP UnSelIcon.Near
+ JMP UpIcon.Near
+ JMP ZoomIcon.Near
+ JMP DossierDocumentIcon.Near
+ JMP DossierProgramIcon.Near
+  {}
+ DW Offset RawTxtY
+ DW Offset RawY
+ DW Offset RealRawY
+END;
+
+{$I PhysDef.Inc}
+
+Procedure DataVideo;Assembler;ASM
+ DW vmGrf320x200c4{Mode:Mode vid‚o actuel (vm???)}
+ DB Ya{IbmLogic:Mode dans la logique IBM (pas hors cas texte … la SVGA...)}
+ DB Ya{BiosSupport:Mode support‚ par le Bios (Par exemple, la GS en 16 couleurs le Bios ne le connaŒt pas)}
+ DB Ya{Colr:Mode couleur? Sinon monochrome for‡‚ment...}
+ DB Ya{Graf:Mode graphique? Sinon texte}
+ DB Ya{Direct:M‚thode directe? Sinon Bios ou Dos}
+ DB No{Blink:Clignotement}
+ DB 0{Snow:Neige lors de l'envoie de donn‚e dans le tampon vid‚o?}
+ DW $B800{SegV:Segment vid‚o (A000h,B000h,B800h,...)}
+ DB 8{HeightChr:Hauteur de la police de caractŠre actuel}
+ DW 320{NmXPixels:Nombre de pixels horizontal qu'affiche l'‚cran}
+ DW 200{NmYPixels:Nombre de pixels vertical qu'affiche l'‚cran}
+ DB 40,25{NmXTxts,NmYTxts:Nombre de caractŠre texte horizontal/vertical qu'affiche l'‚cran}
+ DB 1{NmVidPgs:Nombre de page vid‚o que supporte le mode actuel}
+ DD 4{NmColrs:Nombre de couleurs affich‚}
+ DB 2{BitsPerPixel:Nombre de Bit(s) utilis‚ pour l'affichage d'un pixel}
+ DW 80{BytesPerLn:Nombre d'octet par ligne affich‚ (trŠs relatif en VGA...)}
+ DB 0{Pg:Num‚ro de la page vid‚o de travail}
+ DW 0{AddrPg:En texte, adresse en m‚moire vid‚o de la page actuel}
+ DB 0{ShowPg:Num‚ro de la page vid‚o actuellement affich‚}
+ DD 0{TxtMtx:Pointeur sur la police de caractŠre courante}
+ DD 16384{ScrSize:Taille de l'‚cran}
+ DW 0{SizeBnk:Taille d'un page de la banque (0=64Ko)}
+ DW 0{SegBuf:Segment du tampon d'acc‚l‚ration}
+ DB 0{IsDblMtx:Y a-t-il une police de 512 caractŠres?}
+ DB 0,0 {XCur,YCur:Position actuel du curseur}
+ DB 0,0 {StartCur,EndCur:D‚but et fin du curseur}
+END;
+
+Procedure RawTxtY;Assembler;ASM
+     { 0    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15}
+ DW    0,  40,  80, 120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520, 560, 600{ 0 }
+ DW  640, 680, 720, 760, 800, 840, 880, 920, 960,   0,  40,  80, 120, 160, 200, 240{ 1 }
+ DW  280, 320, 360, 400, 440, 480, 520, 560, 600, 640, 680, 720, 760, 800, 840, 880{ 2 }
+ DW  920, 960,   0,  40,  80, 120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520{ 3 }
+ DW  560, 600, 640, 680, 720, 760, 800, 840, 880, 920, 960,   0,  40,  80, 120, 160{ 4 }
+ DW  200, 240, 280, 320, 360, 400, 440, 480, 520, 560, 600, 640, 680, 720, 760, 800{ 5 }
+ DW  840, 880, 920, 960,   0,  40,  80, 120, 160, 200, 240, 280, 320, 360, 400, 440{ 6 }
+ DW  480, 520, 560, 600, 640, 680, 720, 760, 800, 840, 880, 920, 960,   0,  40,  80{ 7 }
+ DW  120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520, 560, 600, 640, 680, 720{ 8 }
+ DW  760, 800, 840, 880, 920, 960,   0,  40,  80, 120, 160, 200, 240, 280, 320, 360{ 9 }
+ DW  400, 440, 480, 520, 560, 600, 640, 680, 720, 760, 800, 840, 880, 920, 960,   0{ A }
+ DW   40,  80, 120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520, 560, 600, 640{ B }
+ DW  680, 720, 760, 800, 840, 880, 920, 960,   0,  40,  80, 120, 160, 200, 240, 280{ C }
+ DW  320, 360, 400, 440, 480, 520, 560, 600, 640, 680, 720, 760, 800, 840, 880, 920{ D }
+ DW  960,   0,  40,  80, 120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520, 560{ E }
+ DW  600, 640, 680, 720, 760, 800, 840, 880, 920, 960,   0,  40,  80, 120, 160, 200{ F }
+ DW  Offset PhysVideo
+END;
+
+Procedure RealRawY;Assembler;ASM
+ DW     0, 8192,   80, 8272,  160, 8352,  240, 8432,  320, 8512,  400, 8592
+ DW   480, 8672,  560, 8752,  640, 8832,  720, 8912,  800, 8992,  880, 9072
+ DW   960, 9152, 1040, 9232, 1120, 9312, 1200, 9392, 1280, 9472, 1360, 9552
+ DW  1440, 9632, 1520, 9712, 1600, 9792, 1680, 9872, 1760, 9952, 1840,10032
+ DW  1920,10112, 2000,10192, 2080,10272, 2160,10352, 2240,10432, 2320,10512
+ DW  2400,10592, 2480,10672, 2560,10752, 2640,10832, 2720,10912, 2800,10992
+ DW  2880,11072, 2960,11152, 3040,11232, 3120,11312, 3200,11392, 3280,11472
+ DW  3360,11552, 3440,11632, 3520,11712, 3600,11792, 3680,11872, 3760,11952
+ DW  3840,12032, 3920,12112, 4000,12192, 4080,12272, 4160,12352, 4240,12432
+ DW  4320,12512, 4400,12592, 4480,12672, 4560,12752, 4640,12832, 4720,12912
+ DW  4800,12992, 4880,13072, 4960,13152, 5040,13232, 5120,13312, 5200,13392
+ DW  5280,13472, 5360,13552, 5440,13632, 5520,13712, 5600,13792, 5680,13872
+ DW  5760,13952, 5840,14032, 5920,14112, 6000,14192, 6080,14272, 6160,14352
+ DW  6240,14432, 6320,14512, 6400,14592, 6480,14672, 6560,14752, 6640,14832
+ DW  6720,14912, 6800,14992, 6880,15072, 6960,15152, 7040,15232, 7120,15312
+ DW  7200,15392, 7280,15472, 7360,15552, 7440,15632, 7520,15712, 7600,15792
+ DW  7680,15872, 7760,15952, 7840,16032, 7920,16112
+END;
+
+Procedure RawY;Assembler;ASM
+ DW   0*8,  1*8,  2*8,  3*8,  4*8,  5*8,  6*8,  7*8,  8*8,  9*8, 10*8, 11*8, 12*8, 13*8, 14*8, 15*8
+ DW  16*8, 17*8, 18*8, 19*8, 20*8, 21*8, 22*8, 23*8, 24*8, 25*8, 26*8, 27*8, 28*8, 29*8, 30*8, 31*8
+ DW  32*8, 33*8, 34*8, 35*8, 36*8, 37*8, 38*8, 39*8, 40*8, 41*8, 42*8, 43*8, 44*8, 45*8, 46*8, 47*8
+ DW  48*8, 49*8, 50*8, 51*8, 52*8, 53*8, 54*8, 55*8, 56*8, 57*8, 58*8, 59*8, 60*8, 61*8, 62*8, 63*8
+ DW  64*8, 65*8, 66*8, 67*8, 68*8, 69*8, 70*8, 71*8, 72*8, 73*8, 74*8, 75*8, 76*8, 77*8, 78*8, 79*8
+ DW  80*8, 81*8, 82*8, 83*8, 84*8, 85*8, 86*8, 87*8, 88*8, 89*8, 90*8, 91*8, 92*8, 93*8, 94*8, 95*8
+ DW  96*8, 97*8, 98*8, 99*8,100*8,101*8,102*8,103*8,104*8,105*8,106*8,107*8,108*8,109*8,110*8,111*8
+ DW 112*8,113*8,114*8,115*8,116*8,117*8,118*8,119*8,120*8,121*8,122*8,123*8,124*8,125*8,126*8,127*8
+ DW 128*8,129*8,130*8,131*8,132*8,133*8,134*8,135*8,136*8,137*8,138*8,139*8,140*8,141*8,142*8,143*8
+ DW 144*8,145*8,146*8,147*8,148*8,149*8,150*8,151*8,152*8,153*8,154*8,155*8,156*8,157*8,158*8,159*8
+ DW 160*8,161*8,162*8,163*8,164*8,165*8,166*8,167*8,168*8,169*8,170*8,171*8,172*8,173*8,174*8,175*8
+ DW 176*8,177*8,178*8,179*8,180*8,181*8,182*8,183*8,184*8,185*8,186*8,187*8,188*8,189*8,190*8,191*8
+ DW 192*8,193*8,194*8,195*8,196*8,197*8,198*8,199*8,200*8,201*8,202*8,203*8,204*8,205*8,206*8,207*8
+ DW 208*8,209*8,210*8,211*8,212*8,213*8,214*8,215*8,216*8,217*8,218*8,219*8,220*8,221*8,222*8,223*8
+ DW 224*8,225*8,226*8,227*8,228*8,229*8,230*8,231*8,232*8,233*8,234*8,235*8,236*8,237*8,238*8,239*8
+ DW 240*8,241*8,242*8,243*8,244*8,245*8,246*8,247*8,248*8,249*8,250*8,251*8,252*8,253*8,254*8,255*8
+END;
+
+Procedure StartPlane;Assembler;ASM
+ DB 80h+40h+20h+10h+08h+04h+02h+01h
+ DB     40h+20h+10h+08h+04h+02h+01h
+ DB         20h+10h+08h+04h+02h+01h
+ DB             10h+08h+04h+02h+01h
+ DB                 08h+04h+02h+01h
+ DB                     04h+02h+01h
+ DB                         02h+01h
+ DB                             01h
+END;
+
+Procedure EndPlane;Assembler;ASM
+ DB                             80h
+ DB                         40h+80h
+ DB                     20h+40h+80h
+ DB                 10h+20h+40h+80h
+ DB             08h+10h+20h+40h+80h
+ DB         04h+08h+10h+20h+40h+80h
+ DB     02h+04h+08h+10h+20h+40h+80h
+ DB 01h+02h+04h+08h+10h+20h+40h+80h
+END;
+
+Procedure BarChrHor;Var I:Byte;Begin
+ For I:=X1 to(X2)do SetChr(I,Y,Chr)                              
+End;
+Procedure BarChrVer;Var J:Byte;Begin                             
+ For J:=Y1 to(Y2)do SetChr(X,J,Chr)                              
+End;
+
+Procedure BarSpcHor;Var I,Max:Wd;Value:Byte;Begin
+ I:=X2-X1+1;
+ Case Attr shr 4of
+  0,8: Value:=0;
+  1..7: Value:=$55;
+  9..13: Value:=$AA;
+  Else Value:=$FF;
+ End;
+ ASM
+  MOV BL,Y
+  XOR BH,BH
+  SHL BX,1
+  MOV SI,Word Ptr RawY[BX]
+  MOV AL,DataVideo.MIV.HeightChar
+  XOR AH,AH
+  ADD AX,SI
+  MOV Max,AX
+  MOV ES,MIV(DataVideo).SegVideo
+  MOV AL,Value
+  MOV AH,AL
+  CLD
+@1:MOV DI,SI
+  SHL DI,1
+  MOV DI,Word Ptr RealRawY[DI]
+  MOV BL,X1
+  XOR BH,BH
+  SHL BX,1
+  ADD DI,BX
+  MOV CX,I
+  REP STOSW
+  INC SI
+  CMP SI,Max
+  JNE @1
+   { Fixe dans le tampon acc‚l‚rateur... }
+  MOV ES,DataVideo.MIV.SegBuffer
+  MOV BL,Y
+  XOR BH,BH
+  SHL BX,1
+  MOV DI,Word Ptr RawTxtY[BX]
+  MOV BL,X1
+  ADD DI,BX
+  SHL DI,1
+  MOV CX,I
+  MOV AH,Attr
+  MOV AL,' '
+  CLD
+  REP STOSW
+ END;
+End;
+
+Procedure BarSpcVer;Assembler;ASM
+ MOV AL,X
+ XOR AH,AH
+ {$IFOPT G+}SHL AX,3{$ELSE}SHL AX,1;SHL AX,1;SHL AX,1{$ENDIF}
+ PUSH AX
+ MOV BL,Y1
+ XOR BH,BH
+ SHL BX,1
+ MOV AX,Word Ptr RawY[BX]
+ PUSH AX
+ MOV AL,X
+ XOR AH,AH
+ INC AX
+ {$IFOPT G+}SHL AX,3{$ELSE}SHL AX,1;SHL AX,1;SHL AX,1{$ENDIF}
+ DEC AX
+ PUSH AX
+ MOV BL,Y2
+ XOR BH,BH
+ INC BX
+ SHL BX,1
+ MOV AX,Word Ptr RawY[BX]
+ DEC AX
+ PUSH AX
+ MOV AL,Attr
+ XOR AH,AH
+ MOV CL,4
+ SHR AX,CL
+ PUSH AX
+ PUSH CS
+ CALL Near Ptr PutFillBox
+ {Mise … jour du tampon d'acc‚l‚ration}
+ XOR AX,AX
+ MOV BL,Y1
+ XOR BH,BH
+ SHL BX,1
+ MOV DI,Word Ptr RawTxtY[BX]
+ MOV AL,DataVideo.MIV.NumXTexts
+ MOV ES,DataVideo.MIV.SegBuffer
+ DEC AX
+ SHL AX,1
+ MOV SI,AX
+ MOV BL,X
+ ADD DI,BX
+ SHL DI,1
+ MOV AL,' '
+ MOV AH,Attr
+ MOV CL,Y1
+ MOV CH,Y2
+@@Loop:
+ STOSW
+ ADD DI,SI
+ INC CL
+ CMP CL,CH
+ JBE @@Loop
+END;
+
+{$I BTHDef.Inc}
+{$I Circle.Inc}
+{$I ClsCurGr.Inc}
+
+Procedure ClrLnHor;Begin
+ PutLnHor(X,Y,X+L-1,Kr)
+End;
+
+Procedure ClrLnHorImg;
+Label _1;
+Var
+ MX,MY,I,aK,bK:Word;
+ TBuf:TByte Absolute Buffer;
+Begin
+ ASM
+  MOV AX,DataVideo.MIV.NumXPixels
+  MOV MX,AX
+  MOV AX,DataVideo.MIV.NumYPixels
+  MOV MY,AX
+ END;
+ If(X>=MX)or(Y>MY)Then Exit;
+ If(X+L>MX)Then L:=MX-X;
+ Case(BitsPerPixel)of
+  8:For I:=0to L-1do SetPixel(X+I,Y,TBuf[I]);
+  4:For I:=0to(L-1)shr 1do Begin
+   SetPixel(X,Y,TBuf[0]shr 4);
+   Inc(X);
+   SetPixel(X,Y,TBuf[0]and 15);
+   Inc(X);
+   ASM
+    INC Word Ptr Buffer
+   END;
+  End;
+  0:Begin
+   bK:=TBuf[0];
+   ASM INC Word Ptr Buffer;END;
+   aK:=TBuf[0];
+   ASM INC Word Ptr Buffer;END;
+   Goto _1;
+  End;
+  1:Begin
+   bK:=0;aK:=3;
+_1:For I:=0to(L shr 3)-1do Copy8Bin(X+(I shl 3),Y,TBuf[I],aK,bK);
+  End;
+  Else PutSmlImg(X,Y,X+L-1,Y,Buffer);
+ End;
+End;
+
+Procedure ClrWn;Assembler;ASM
+ MOV BH,X2
+ SUB BH,X1
+ INC BH
+ MOV AL,Attr
+ MOV CL,4
+ SHR AL,CL
+ CMP AL,0
+ JE  @@Null
+ CMP AL,8
+ JE  @@Null
+ CMP AL,14
+ JE  @@Full
+ CMP AL,15
+ JE  @@Full
+ CMP AL,8
+ JL  @@C1
+ MOV BL,0AAh
+ JMP @@Next2
+@@C1:
+ MOV BL,055h
+ JMP @@Next2
+@@Null:
+ MOV BL,0
+ JMP @@Next2
+@@Full:
+ MOV BL,0FFh
+@@Next2:
+ PUSH BX
+  MOV BL,Y1
+  XOR BH,BH
+  SHL BX,1
+  MOV DX,Word Ptr RawY[BX]
+  MOV BL,Y2
+  XOR BH,BH
+  INC BX
+  SHL BX,1
+  MOV SI,Word Ptr RawY[BX]
+  DEC SI
+ POP BX
+ MOV ES,DataVideo.MIV.SegVideo
+@@Boucle:
+ MOV DI,DX
+ SHL DI,1
+ MOV DI,Word Ptr RealRawY[DI]
+ MOV AL,X1
+ MOV AH,0
+ SHL AX,1
+ ADD DI,AX
+ MOV AL,BL
+ MOV CL,BH
+ MOV AH,AL
+ REP STOSW
+ INC DX
+ CMP DX,SI
+ JLE @@Boucle
+  {Mise … jour du tampon d'acc‚l‚ration}
+ CLD
+ XOR AX,AX
+ MOV BL,Y1
+ XOR BH,BH
+ SHL BX,1
+ MOV DI,CS:[Offset RawTxtY+BX]
+ MOV AL,DataVideo.MIV.NumXTexts
+ MOV ES,DataVideo.MIV.SegBuffer
+ SHL AX,1
+ MOV SI,AX
+ MOV BL,X1
+ ADD DI,BX
+ SHL DI,1
+ MOV AL,' '
+ MOV AH,Attr
+ MOV CL,Y1
+ MOV CH,Y2
+ MOV DL,X2
+ SUB DL,X1
+ MOV DH,0
+ INC DX
+@@Loop:
+ PUSH CX
+  PUSH DI
+   MOV CX,DX
+   REP STOSW
+  POP DI
+ POP CX
+ ADD DI,SI
+ INC CL
+ CMP CL,CH
+ JBE @@Loop
+END;
+
+{$I CLSWPFBO.INC}
+
+Procedure CopT8Bin;Assembler;ASM
+ MOV BL,Value;
+ MOV DI,Y
+ SHL DI,1
+ MOV DI,CS:[Offset RealRawY+DI]
+ MOV AX,X
+ {$IFOPT G+}
+  SHR AX,3
+ {$ELSE}
+  SHR AX,1
+  SHR AX,1
+  SHR AX,1
+ {$ENDIF}
+ ADD DI,AX
+ MOV ES,MIV(DataVideo).SegVideo
+ CMP Fore,0 { Reset ? }
+ JE  @@Reset
+ MOV BH,ES:[DI]
+ OR  BH,BL
+ MOV ES:[DI],BH
+ JMP @@End
+@@Reset:
+ MOV BH,ES:[DI]
+ NOT BL
+ AND BH,BL
+ MOV ES:[DI],BH
+@@End:
+END;
+
+Procedure Copy8Bin;Assembler;ASM
+ MOV BL,Value
+ MOV CX,13
+ TEST Back,CL
+ JZ  @@Next
+@@Inv:
+ TEST Fore,CL
+ JNZ @@Next
+ NOT BL
+@@Next:
+ MOV DI,Y
+ SHL DI,1
+ MOV DI,CS:[Offset RealRawY+DI]
+ MOV AX,X
+ SHR AX,1
+ SHR AX,1
+ SHR AX,1
+ ADD DI,AX
+ MOV ES,MIV(DataVideo).SegVideo
+ MOV ES:[DI],BL
+END;
+
+Procedure FillBox;Var I,J:Byte;Begin
+ For J:=Y1 to(Y2)do For I:=X1 to(X2)do SetCube(I,J,Chr,Attr);
+End;
+
+{$I GFXGETCH.INC}
+
+Procedure GetLnHorImg;Begin;GetSmlImg(X1,Y,X2,Y,Buffer)End;
+
+Procedure XRaw;Assembler;ASM
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 0 … 31}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 32 … 63}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 64 … 95}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 96 … 127}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 128 … 159}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 160 … 191}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 192 … 223}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 224 … 255}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 256 … 287}
+ DB 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0, 6,4,2,0,6,4,2,0 { 288 … 319}
+END;
+
+Procedure NotXRaw;Assembler;ASM
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 0 … 15 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 16 … 31 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 32 … 47 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 48 … 63 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 64 … 79 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 80 … 95 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 96 … 111 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 112 … 127 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 128 … 143 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 144 … 159 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 160 … 175 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 176 … 191 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 192 … 207 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 208 … 223 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 224 … 239 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 240 … 255 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 256 … 271 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 272 … 287 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 288 … 303 }
+ DB $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC, $3F,$CF,$F3,$FC { 304 … 319 }
+END;
+
+Function GetPixel;Assembler;ASM
+ MOV BX,Y
+ SHL BX,1
+ MOV DI,CS:[Offset RealRawY+BX]
+ MOV AX,X
+ MOV BX,AX
+ {$IFOPT G+}
+  SHR AX,2
+ {$ELSE}
+  SHR AX,1
+  SHR AX,1
+ {$ENDIF}
+ ADD DI,AX
+ MOV ES,DataVideo.MIV.SegVideo
+ MOV AL,ES:[DI]
+ MOV CL,Byte Ptr XRaw[BX]
+ SHR AL,CL
+ AND AL,3
+END;
+
+Function GetSizeSmlImg;Assembler;ASM
+ MOV AX,X2
+ SUB AX,X1
+ {$IFOPT G+}SHR AX,2{$ELSE}SHR AX,1;SHR AX,1{$ENDIF}
+ INC AX
+ INC AX
+ MOV BX,Y2
+ SUB BX,Y1
+ INC BX
+ MUL BX
+END;
+
+Procedure GetSmlImg;Assembler;Var L:Wd;StupidEnd:Bool;ASM
+ PUSH DS
+  LES DI,Buffer
+  MOV DS,DataVideo.MIV.SegVideo
+  MOV CX,X2
+  SUB CX,X1
+  INC CX
+  MOV StupidEnd,No
+  TEST CX,3
+  JZ @NotStrongLengthFuckedBits
+  MOV StupidEnd,Ya
+@NotStrongLengthFuckedBits:
+  {$IFOPT G+}SHR CX,2{$ELSE}SHR CX,1;SHR CX,1{$ENDIF}
+  TEST X1,3
+  JNZ @FuckedBits
+@1:PUSH CX
+   MOV SI,Y1
+   SHL SI,1
+   MOV SI,Word Ptr RealRawY[SI]
+   MOV AX,X1
+   {$IFOPT G+}SHR AX,2{$ELSE}SHR AX,1;SHR AX,1{$ENDIF}
+   ADD SI,AX
+   SHR CX,1
+   REP MOVSW
+   ADC CX,CX
+   REP MOVSB
+   CMP StupidEnd,0
+   JE  @9
+   {***Damnation de fin monstreuse***}
+   MOV BX,X2
+   SHL BX,1
+   DEC BX
+   AND BX,7
+   MOV DL,Byte Ptr EndPlane[BX]
+   MOV BL,ES:[DI]
+   AND BL,DL
+   MOV AX,0FFh
+   AND AL,DL
+   NOT AX
+   AND DS:[SI],AL
+   OR  DS:[SI],BL
+   INC DI
+@9:
+  POP CX
+  INC Y1
+  MOV AX,Y2
+  CMP Y1,AX
+  JBE @1
+  JMP @End
+@FuckedBits:
+  MOV L,CX
+@2:
+  MOV SI,Y1
+  SHL SI,1
+  MOV SI,Word Ptr RealRawY[SI]
+  MOV AX,X1
+  MOV CL,AL
+  {$IFOPT G+}SHR AX,2{$ELSE}SHR AX,1;SHR AX,1{$ENDIF}
+  ADD DI,AX
+  NOT CL
+  INC CL
+  AND CL,3
+  SHL CL,1
+  MOV DX,L
+@3:
+  MOV BL,ES:[DI]
+  XOR BH,BH
+  SHL BX,CL
+  XCHG BL,BH
+  MOV AX,0FFh
+  SHL AX,CL
+  NOT AX
+  XCHG AL,AH
+  AND DS:[SI],AX
+  OR  DS:[SI],BX
+  INC DI
+  INC SI
+  DEC DX
+  OR  DX,DX
+  JNZ @3
+  CMP StupidEnd,0
+  JE  @6
+   {***Damnation de fin monstreuse***}
+  MOV BX,X2
+  SHL BX,1
+  DEC BX
+  AND BX,7
+  MOV DL,Byte Ptr EndPlane[BX]
+  MOV BL,ES:[DI]
+  AND BL,DL
+  XOR BH,BH
+  SHL BX,CL
+  XCHG BL,BH
+  MOV AX,0FFh
+  AND AL,DL
+  SHL AX,CL
+  NOT AX
+  XCHG AL,AH
+  AND DS:[SI],AX
+  OR  DS:[SI],BX
+  INC DI
+@6:
+  INC Y1
+  MOV AX,Y2
+  CMP Y1,AX
+  JBE @2
+@End:
+ POP DS
+END;
+
+Procedure Init;Assembler;ASM
+ MOV AX,40*25
+ {$IFOPT G+}
+  SHR AX,3
+ {$ELSE}
+  SHR AX,1 {/8}
+  SHR AX,1
+  SHR AX,1
+ {$ENDIF}
+ MOV BX,AX
+ {$IFDEF Autonome}
+  MOV AH,48h
+  INT 21h
+ {$ELSE}
+  INT 9Bh
+ {$ENDIF}
+ MOV ES,AX
+ MOV DataVideo.MIV.SegBuffer,AX
+ XOR DI,DI
+ MOV AX,' '+(7 shl 8)
+ MOV CX,40*25
+ CLD
+ REP STOSW
+END;
+
+Procedure MoveText;Var I,J,L,L2,L1,YL1,YL2,X1a,X3a:Wd;Begin
+ If(X2<X1)or(Y2<Y1)Then Exit;
+ ASM
+  PUSH DS
+  MOV AL,X2
+  SUB AL,X1
+  XOR AH,AH
+  INC AX
+  MOV L,AX
+  CLD
+  MOV ES,DataVideo.MIV.SegBuffer
+  MOV AL,Y1
+  CMP Y3,AL
+  JB  @@Inc
+  MOV DL,Y2
+  SUB DL,AL
+  INC DL
+@@Loop:
+  DEC DL
+  MOV AL,Y1
+  ADD AL,DL
+  MUL DataVideo.MIV.NumXTexts
+  MOV BL,X1
+  MOV BH,0
+  ADD AX,BX
+  SHL AX,1
+  MOV SI,AX
+  MOV AL,Y3
+  ADD AL,DL
+  MUL DataVideo.MIV.NumXTexts
+  MOV BL,X3
+  MOV BH,0
+  ADD AX,BX
+  SHL AX,1
+  MOV DI,AX
+  MOV CX,L
+  PUSH ES
+  POP DS
+  REP MOVSW
+  CMP DL,0
+  JNE @@Loop
+  JMP @@End
+@@Inc:
+  MOV DH,Y2
+  SUB DH,AL
+  INC DH
+  MOV DL,0
+@@LoopInc:
+  MOV AL,Y1
+  ADD AL,DL
+  MUL DataVideo.MIV.NumXTexts
+  MOV BL,X1
+  MOV BH,0
+  ADD AX,BX
+  SHL AX,1
+  MOV SI,AX
+  MOV AL,Y3
+  ADD AL,DL
+  MUL DataVideo.MIV.NumXTexts
+  MOV BL,X3
+  MOV BH,0
+  ADD AX,BX
+  SHL AX,1
+  MOV DI,AX
+  MOV CX,L
+  PUSH ES
+  POP DS
+  REP MOVSW
+  INC DL
+  CMP DL,DH
+  JNE @@LoopInc
+@@End:
+  POP DS
+ END;
+ X1a:=X1 shl 1;X3a:=X3 shl 1;
+ If(Y3<Y1)Then For J:=Y2-Y1+1downto 0do ASM
+  XOR BH,BH
+  MOV BL,Y1
+  SUB BL,Y3
+  ADD BL,Y2
+  SUB BX,J
+  SHL BX,1
+  MOV BX,CS:[Offset RawY+BX]
+  MOV YL1,BX
+  XOR BH,BH
+  MOV BL,Y2
+  SUB BX,J
+  SHL BX,1
+  MOV BX,CS:[Offset RawY+BX]
+  MOV YL2,BX
+  XOR BX,BX
+  PUSH DS
+  MOV ES,MIV(DataVideo).SegVideo
+  PUSH ES
+  POP DS
+  CLD
+@@Restart:
+  MOV SI,YL1
+  ADD SI,BX
+  SHL SI,1
+  MOV SI,CS:[Offset RealRawY+SI]
+  ADD SI,X1a
+  MOV DI,YL2
+  ADD DI,BX
+  SHL DI,1
+  MOV DI,CS:[Offset RealRawY+DI]
+  ADD DI,X3a
+  MOV CX,L
+  REP MOVSW
+  INC BX
+  TEST BL,DataVideo.MIV.HeightChar
+  JZ @@Restart
+  POP DS
+ END
+  Else
+ For J:=Y2-Y1 downto 0do ASM
+  XOR BH,BH
+  MOV BL,Y1
+  ADD BX,J
+  SHL BX,1
+  MOV BX,CS:[Offset RawY+BX]
+  MOV YL1,BX
+  XOR BH,BH
+  MOV BL,Y3
+  ADD BX,J
+  SHL BX,1
+  MOV BX,CS:[Offset RawY+BX]
+  MOV YL2,BX
+  XOR BX,BX
+  PUSH DS
+   MOV ES,DataVideo.MIV.SegVideo
+   PUSH ES
+   POP DS
+   CLD
+@@Restart:
+   MOV SI,YL1
+   ADD SI,BX
+   SHL SI,1
+   MOV SI,CS:[Offset RealRawY+SI]
+   ADD SI,X1a
+   MOV DI,YL2
+   ADD DI,BX
+   SHL DI,1
+   MOV DI,CS:[Offset RealRawY+DI]
+   ADD DI,X3a
+   MOV CX,L
+   REP MOVSW
+   INC BX
+   TEST BL,DataVideo.MIV.HeightChar
+   JZ @@Restart
+  POP DS
+ END;
+End;
+
+Procedure PCopy;Var A,B,C:Wd;Begin
+ C:=16000;A:=C*S;B:=C*T;
+ ASM
+  CLD
+  PUSH DS
+   MOV ES,DataVideo.MIV.SegVideo
+   MOV DI,B
+   AND DI,07FFFh
+   PUSH ES
+   POP DS
+   MOV SI,A
+   AND SI,07FFFh
+   MOV CX,C
+   REP MOVSB
+  POP DS
+ END;
+End;
+
+{$I PutCharG.Inc}
+
+Procedure PutFillBox;Var J:Wd;Begin For J:=Y1 to(Y2)do PutLnHor(X1,J,X2,Kr)End;
+
+Function AbsInt(I:Int):Int;Near;Assembler;ASM MOV AX,I;OR AX,AX;JGE @1;NEG AX;@1:END;
+
+{$I FillCirc.Inc}
+{$I FillRndR.Inc}
+
+Procedure PutLn;Var D,DX,DY,I,J,Ainc,Binc,Ic:Int;Begin
+ If(Y2=Y1)Then Begin PutLnHor(X1,Y1,X2,Kr);Exit;End;
+ If AbsInt(X2-X1)<AbsInt(Y2-Y1)Then Begin
+  If(Y1>Y2)Then ASM MOV AX,X1;XCHG AX,X2;MOV X1,AX;MOV AX,Y1;XCHG AX,Y2;MOV Y1,AX;END;
+  If(X2>X1)Then Ic:=1 Else Ic:=-1;
+  DY:=Y2-Y1;DX:=AbsInt(X2-X1);D:=(DX shl 1)-DY;Ainc:=(DX-DY)shl 1;Binc:=DX shl 1;J:=X1;
+  SetPixel(X1,Y1,Kr);
+  I:=Y1+1;
+  While(I<=Y2)do Begin
+   If D>=0Then Begin Inc(J,Ic);Inc(D,Ainc)End else Inc(D,Binc);
+   SetPixel(J,I,Kr);
+   Inc(I);
+  End;
+ End
+  else
+ Begin
+  If(X1>X2)Then ASM MOV AX,X1;XCHG AX,X2;MOV X1,AX;MOV AX,Y1;XCHG AX,Y2;MOV Y1,AX;END;
+  If(Y2>Y1)Then Ic:=1 else Ic:=-1;
+  DX:=X2-X1;DY:=AbsInt(Y2-Y1);D:=(DY shl 1)-DX;AInc:=(DY-DX)shl 1;BInc:=DY shl 1;J:=Y1;
+  SetPixel(X1,Y1,Kr);
+  I:=X1+1;
+  While(I<=X2)do Begin
+   If D>=0Then Begin Inc(J,Ic);Inc(D,Ainc)End else Inc(D,Binc);
+   SetPixel(I,J,Kr);
+   Inc(I);
+  End;
+ End;
+End;
+
+Procedure PutLnHor;
+Label _End;
+Var
+ I:Word;
+ AK:Byte;
+Begin
+ ASM
+  MOV AX,X1
+  TEST AX,8000h
+  JZ  @0
+  TEST X2,8000h
+  JNZ _End
+  XOR AX,AX
+  MOV X1,AX
+@0:
+  CMP AX,X2
+  JB  @1
+  XCHG AX,X2
+  MOV X1,AX
+@1:
+ END;
+ If(X1 and 3=0)and(X2 and 3=3)Then Begin
+  Case(Color)of
+   0:AK:=0;
+   1:AK:=$55;
+   2:AK:=$AA;
+   3:AK:=$FF;
+  End;
+  ASM
+   MOV CL,2
+   MOV AX,X1
+   SHR AX,CL
+   MOV BX,X2
+   SHR BX,CL
+   MOV DI,Y
+   SHL DI,1
+   MOV DI,Word Ptr RealRawY[DI]
+   ADD DI,AX
+   MOV CX,BX
+   SUB CX,AX
+   INC CX
+   MOV AL,AK
+@1:MOV ES,DataVideo.MIV.SegVideo
+   CLD
+   REP STOSB
+  END;
+ End
+  Else
+ For I:=X1 to(X2)do SetPixel(I,Y,Color);
+_End:
+End;
+
+{$I PutRect.Inc}
+{$I PutRndRe.Inc}
+
+Procedure PutSmlImg;Assembler;
+Var
+ L:Word;
+ StupidEnd:Boolean;
+ASM
+ PUSH DS
+  LDS SI,Buffer
+  MOV ES,DataVideo.MIV.SegVideo
+  MOV CX,X2
+  SUB CX,X1
+  INC CX
+  MOV StupidEnd,No
+  TEST CX,3
+  JZ @NotStrongLengthFuckedBits
+  MOV StupidEnd,Ya
+@NotStrongLengthFuckedBits:
+  {$IFOPT G+}SHR CX,2{$ELSE}SHR CX,1;SHR CX,1{$ENDIF}
+  TEST X1,3
+  JNZ @FuckedBits
+@1:PUSH CX
+   MOV DI,Y1
+   SHL DI,1
+   MOV DI,Word Ptr RealRawY[DI]
+   MOV AX,X1
+   {$IFOPT G+}SHR AX,2{$ELSE}SHR AX,1;SHR AX,1{$ENDIF}
+   ADD DI,AX
+   SHR CX,1
+   REP MOVSW
+   ADC CX,CX
+   REP MOVSB
+   CMP StupidEnd,0
+   JE  @9
+   {***Damnation de fin monstreuse***}
+   MOV BX,X2
+   SHL BX,1
+   DEC BX
+   AND BX,7
+   MOV DL,Byte Ptr EndPlane[BX]
+   MOV BL,DS:[SI]
+   AND BL,DL
+   MOV AX,0FFh
+   AND AL,DL
+   NOT AX
+   AND ES:[DI],AL
+   OR  ES:[DI],BL
+   INC SI
+@9:
+  POP CX
+  INC Y1
+  MOV AX,Y2
+  CMP Y1,AX
+  JBE @1
+  JMP @End
+@FuckedBits:
+  MOV L,CX
+@2:
+  MOV DI,Y1
+  SHL DI,1
+  MOV DI,Word Ptr RealRawY[DI]
+  MOV AX,X1
+  MOV CL,AL
+  {$IFOPT G+}SHR AX,2{$ELSE}SHR AX,1;SHR AX,1{$ENDIF}
+  ADD DI,AX
+  NOT CL
+  INC CL
+  AND CL,3
+  SHL CL,1
+  MOV DX,L
+@3:
+  MOV BL,DS:[SI]
+  XOR BH,BH
+  SHL BX,CL
+  XCHG BL,BH
+  MOV AX,0FFh
+  SHL AX,CL
+  NOT AX
+  XCHG AL,AH
+  AND ES:[DI],AX
+  OR  ES:[DI],BX
+  INC SI
+  INC DI
+  DEC DX
+  OR  DX,DX
+  JNZ @3
+  CMP StupidEnd,0
+  JE  @6
+   {***Damnation de fin monstreuse***}
+  MOV BX,X2
+  SHL BX,1
+  DEC BX
+  AND BX,7
+  MOV DL,Byte Ptr EndPlane[BX]
+  MOV BL,DS:[SI]
+  AND BL,DL
+  XOR BH,BH
+  SHL BX,CL
+  XCHG BL,BH
+  MOV AX,0FFh
+  AND AL,DL
+  SHL AX,CL
+  NOT AX
+  XCHG AL,AH
+  AND ES:[DI],AX
+  OR  ES:[DI],BX
+  INC SI
+@6:
+  INC Y1
+  MOV AX,Y2
+  CMP Y1,AX
+  JBE @2
+@End:
+ POP DS
+END;
+
+{Var TBuf:TByte Absolute Buffer;J,I,I2,L:Wd;Begin
+ L:=X2-X1+1;I2:=0;
+ For J:=0to(Y2-Y1)do For I:=0to L-1do Begin SetPixel(X1+I,Y1+J,TBuf[I2]);Inc(I2)End;
+End;}
+
+Procedure PutSprite;Var TBuf:TByte Absolute Buffer;J,I,I2,L:Wd;Begin
+ L:=X2-X1+1;I2:=0;
+ For J:=0to(Y2-Y1)do For I:=0to L-1do Begin
+  If TBuf[I2]<>0Then SetPixel(X1+I,Y1+J,TBuf[I2]);
+  Inc(I2)
+ End;
+End;
+
+Procedure PutTxtXY;Var I,J:Byte;Begin
+ If Attr and$F=Attr shr 4Then BarSpcHor(X,Y,X+Length(Str)-1,Attr)
+  Else
+ For I:=1to Length(Str)do Begin
+  If Str[I]=' 'Then Begin
+   J:=I;
+   For I:=J to Length(Str)do If Str[I]<>' 'Then Break;
+   BarSpcHor(X+J-1,Y,X+I-1,Attr)
+  End;
+  SetCube(X+I-1,Y,Str[I],Attr)
+ End;
+End;
+
+Procedure PutTxtXYUnKr;Var I,J:Byte;Begin
+ J:=X;
+ For I:=1to Length(Str)do Begin SetCube(J,Y,Str[I],GetAttr(J,Y));Inc(J)End;
+End;
+
+Procedure SetAttr;Begin SetCube(X,Y,GetChr(X,Y),Attr)End;
+
+Procedure SetBackgroundColor;Begin End;
+Procedure SetBlink;Begin End;
+
+Procedure SetBorderColor;Assembler;ASM
+ MOV DX,03D9h
+ MOV AL,Kr
+ AND AL,0Fh
+ OUT DX,AL
+END;
+
+Procedure SetBytesPerLn;Assembler;ASM
+ MOV AX,X
+ MOV DataVideo.MIV.BytesPerLine,AX
+ PUSH AX
+  {$IFOPT G+}
+   SHR AX,3
+  {$ELSE}
+   SHR AX,1
+   SHR AX,1
+   SHR AX,1
+  {$ENDIF}
+  MOV AH,AL
+  MOV DX,3D4h
+  MOV AL,13h
+  OUT DX,AX
+   { Fixe les longueurs des lignes... }
+  XOR AX,AX
+  MOV CX,400 { Nombre de ligne }
+  MOV BX,Offset RealRawY
+ POP DX
+@L:
+ MOV CS:[BX],AX
+ INC BX
+ INC BX
+ ADD AX,DX
+ LOOP @L
+END;
+
+Procedure SetChr;Begin SetCube(X,Y,Chr,GetAttr(X,Y))End;
+Procedure SetChrWidth;Begin End;
+
+Procedure AttributForeground;Assembler;ASM
+     {0  1   2   3   4   5   6   7   8   9   10  11  12  13  14  15}
+ DB  0,$55,$55,$55,$55,$55,$55,$55,  0,$AA, $AA,$AA,$AA,$AA,$FF,$FF { 0 }
+END;
+
+Procedure SetCube;
+Var
+ M,Mx:Byte;
+Begin
+ ASM
+  MOV AL,DataVideo.MIV.NumXTexts
+  MOV M,AL
+  DEC AL
+  MOV Mx,AL
+ END;
+ If(X>Mx)Then Begin
+  Inc(Y,X div M);
+  X:=X mod M;
+ End;
+ SetGCube(X shl 3,Y shl 3,Chr,Attr);
+ ASM
+   { Mise … jour dans le tampon d'acc‚l‚ration.}
+  MOV BL,Y
+  XOR BH,BH
+  SHL BX,1
+  MOV DI,Word Ptr RawTxtY[BX]
+  MOV BL,X
+  ADD DI,BX
+  SHL DI,1
+  MOV ES,DataVideo.MIV.SegBuffer
+  MOV AL,Chr
+  MOV AH,Attr
+  MOV ES:[DI],AX
+ END;
+End;
+
+{$I GFXSETCU.INC}
+
+Procedure SetGCube;Assembler;Var Masque,Fore,Back:Byte;ASM
+ MOV AL,Attr
+ MOV BL,AL
+ AND BX,0Fh
+ MOV BL,Byte Ptr AttributForeground[BX]
+ MOV Fore,BL
+ MOV BL,AL
+ MOV CL,4
+ SHR BL,CL
+ XOR BH,BH
+ MOV AL,Byte Ptr AttributForeground[BX]
+ MOV Back,AL
+ MOV BL,Chr
+ XOR BH,BH
+ SHL BX,1
+ MOV SI,Word Ptr RawY[BX]
+ ADD SI,Word Ptr DataVideo.MIV.TxtMtx
+ PUSH DS
+ MOV DS,Word Ptr DataVideo.MIV.TxtMtx[2]
+ MOV CL,DataVideo.MIV.HeightChar
+ XOR CH,CH
+ ADD SI,CX
+ DEC SI
+ MOV Masque,AL
+@@Loop:
+ MOV DX,$800
+ MOV AL,DS:[SI]
+ MOV Masque,AL
+@@Home:
+ PUSH DX
+  PUSH CX
+   PUSH SI
+    MOV AL,DL
+    XOR AH,AH
+    ADD AX,X
+    PUSH AX
+    MOV AX,CX
+    DEC AX
+    ADD AX,Y
+    PUSH AX
+    MOV AL,Back
+    TEST Masque,$80
+    JZ @@Back
+    MOV AL,Fore
+@@Back:
+    PUSH AX
+    PUSH CS
+    CALL Near Ptr SetPixel
+   POP SI
+  POP CX
+ POP DX
+@@Skip:
+ SHL Masque,1
+ INC DL
+ CMP DL,DH
+ JNE @@Home
+ DEC SI
+ LOOP @@Loop
+@@End:
+ POP DS
+END;
+
+Procedure SetGCubeT;Assembler;Var Masque:Byte;ASM
+ AND Attr,$F
+ MOV BL,Chr
+ XOR BH,BH
+ SHL BX,1
+ MOV SI,CS:[Offset RawY+BX]
+ ADD SI,Word Ptr DataVideo.MIV.TxtMtx
+ PUSH DS
+ MOV DS,Word Ptr DataVideo.MIV.TxtMtx[2]
+ MOV CL,DataVideo.MIV.HeightChar
+ XOR CH,CH
+ ADD SI,CX
+ DEC SI
+ MOV Masque,AL
+@@Loop:
+ MOV DX,$800
+ MOV AL,DS:[SI]
+ MOV Masque,AL
+@@Home:
+ TEST Masque,$80
+ JZ @@Skip
+ PUSH SI
+  PUSH DX
+   PUSH CX
+    MOV AL,DL
+    XOR AH,AH
+    ADD AX,X
+    PUSH AX
+    MOV AX,CX
+    DEC AX
+    ADD AX,Y
+    PUSH AX
+    PUSH Attr.Word
+    PUSH CS
+    CALL Near Ptr SetPixel
+   POP CX
+  POP DX
+ POP SI
+@@Skip:
+ SHL Masque,1
+ INC DL
+ CMP DL,DH
+ JNE @@Home
+ DEC SI
+ LOOP @@Loop
+@@End:
+ POP DS
+END;
+
+Procedure SetMatrix;Begin End;
+Procedure SetModeMtx;Begin End;
+Procedure SetModeScr;Begin End;
+
+Procedure SetPalBlk;Assembler;ASM
+ CMP PhysVideo.PIV.VGA,Ya
+ JE  @VGA
+ CMP PhysVideo.PIV.EGA,Ya
+ JE  @EGA
+ MOV DX,03C9h
+ XOR AL,AL
+ OUT DX,AL
+ JMP @End
+@EGA:
+ MOV DX,03C0h
+ MOV BX,Start
+ MOV AX,32
+ MOV CX,Nm
+@1:
+ OUT DX,AX
+ INC AL
+ LOOP @1
+ JMP @End
+@VGA:
+ MOV AL,Byte Ptr Start
+ MOV DX,03C8h
+ OUT DX,AL
+ INC DX
+ XOR AX,AX
+ MOV CX,Nm
+@Loop2:
+ OUT DX,AL
+ OUT DX,AL
+ OUT DX,AL
+ LOOP @Loop2
+@End:
+END;
+
+Procedure TmpRGB;Assembler;ASM
+ DW 0
+END;
+
+Procedure SetPaletteRGB;Assembler;ASM
+ MOV AL,R
+ MOV AH,G
+ MOV Word Ptr TmpRGB,AX
+ MOV BL,B
+ MOV Byte Ptr TmpRGB[2],BL
+ PUSH CS
+ {$IFOPT G+}
+  PUSH Offset TmpRGB
+ {$ELSE}
+  MOV AX,Offset TmpRGB
+  PUSH AX
+ {$ENDIF}
+ PUSH Start
+ {$IFOPT G+}
+  PUSH 1
+ {$ELSE}
+  MOV AX,1
+  PUSH AX
+ {$ENDIF}
+ PUSH CS
+ CALL Near Ptr SetPalRGB
+END;
+
+Procedure SetPalRGB;Assembler;ASM
+ PUSH DS
+  CLD
+  LDS SI,P
+  CMP PhysVideo.PIV.CardCat,cvnVGA
+  JB  @1
+  MOV AL,Byte Ptr Start
+  MOV DX,03C8h
+  OUT DX,AL
+  INC DX
+  XOR AX,AX
+  MOV AX,Num
+  MOV CX,AX
+  ADD CX,AX
+  ADD CX,AX
+@Loop2:
+  LODSB
+  {$IFOPT G+}
+   SHR AL,2
+  {$ELSE}
+   SHR AL,1
+   SHR AL,1
+  {$ENDIF}
+  OUT DX,AL
+  LOOP @Loop2
+  JMP @End
+@1:
+  MOV CX,Num
+  MOV DX,03C0h
+  MOV BL,Byte Ptr Start
+@2:LODSB {Rouge}
+  {$IFOPT G+}
+   SHR AL,2
+  {$ELSE}
+   SHR AL,1
+   SHR AL,1
+  {$ENDIF}
+  MOV AH,AL
+  AND AH,32
+  {$IFOPT G+}
+   SHR AL,2
+  {$ELSE}
+   SHR AL,1
+   SHR AL,1
+  {$ENDIF}
+  AND AL,4
+  OR  AH,AL
+  LODSB {Vert}
+  {$IFOPT G+}
+   SHR AL,3
+  {$ELSE}
+   SHR AL,1
+   SHR AL,1
+   SHR AL,1
+  {$ENDIF}
+  MOV BH,AL
+  AND BH,16
+  OR  AH,BH
+  {$IFOPT G+}
+   SHR AL,2
+  {$ELSE}
+   SHR AL,1
+   SHR AL,1
+  {$ENDIF}
+  AND AL,2
+  OR  AH,AL
+  LODSB{Bleu}
+  {$IFOPT G+}
+   SHR AL,4
+  {$ELSE}
+   SHR AL,1
+   SHR AL,1
+   SHR AL,1
+   SHR AL,1
+  {$ENDIF}
+  MOV BH,AL
+  AND BH,8
+  OR  AH,BH
+  {$IFOPT G+}
+   SHR AL,2
+  {$ELSE}
+   SHR AL,1
+   SHR AL,1
+  {$ENDIF}
+  MOV BH,AL
+  AND AL,1
+  OR  AH,AL
+  CMP PhysVideo.PIV.EGA,Ya
+  JE  @EGA
+@CGA:
+  MOV DX,03D9h
+  MOV AL,AH
+  JMP @Next
+@EGA:
+  MOV AL,BL { Mise … jour de la position.}
+  AND AL,1Fh
+  ADD AL,32
+  OUT DX,AX
+@Next:
+  INC BL
+  LOOP @2
+@End:
+ POP DS
+END;
+
+Procedure SetPg;Begin End;
+
+Procedure SetPixel;Assembler;ASM
+ TEST X,8000h
+ JNZ @End
+ MOV BX,Y
+ SHL BX,1
+ MOV DI,Word Ptr RealRawY[BX]
+ MOV ES,DataVideo.MIV.SegVideo
+ MOV AX,X
+ MOV BX,AX
+ {$IFOPT G+}
+  SHR AX,2
+ {$ELSE}
+  SHR AX,1
+  SHR AX,1
+ {$ENDIF}
+ ADD DI,AX
+ MOV CL,Byte Ptr XRaw[BX]
+ MOV DH,Byte Ptr Kr
+ AND DH,3
+ SHL DH,CL
+ MOV AL,ES:[DI]
+ AND AL,Byte Ptr NotXRaw[BX]
+ OR  AL,DH
+ STOSB
+@End:
+END;
+
+Procedure HoriData;Assembler;ASM
+ DW 0
+END;
+
+Procedure VertData;Assembler;ASM
+ DW 0
+END;
+
+Procedure SetVerticalScale;Assembler;ASM
+ MOV BX,Y
+ SHL BX,1
+ MOV CX,Word Ptr RealRawY[BX]
+ MOV Word Ptr VertData,CX
+ ADD CX,Word Ptr HoriData
+ XOR AX,AX
+ MOV ES,AX
+ MOV DX,ES:[463h]
+ MOV AL,0Ch
+ MOV AH,CH
+ OUT DX,AX
+ MOV AL,0Dh
+ MOV AH,CL
+ OUT DX,AX
+END;
+
+Procedure SetHorizontalScale;Assembler;ASM
+ MOV CX,X
+ {$IFOPT G+}
+  SHR CX,3
+ {$ELSE}
+  SHR CX,1
+  SHR CX,1
+  SHR CX,1
+ {$ENDIF}
+ MOV Word Ptr HoriData,CX
+ ADD CX,Word Ptr VertData
+ XOR AX,AX
+ MOV ES,AX
+ MOV DX,ES:[463h]
+ MOV AL,0Ch
+ MOV AH,CH
+ OUT DX,AX
+ MOV AL,0Dh
+ MOV AH,CL
+ OUT DX,AX
+END;
+
+Procedure SetVisualPg;Begin End;
+
+Procedure WriteMode;Assembler;ASM
+ DB 0
+END;
+
+Procedure SetWriteMode;Assembler;ASM
+ CMP PhysVideo.PIV.CardCat,cvnEGA;JB @1
+ MOV DX,03CEh
+ MOV AL,03h
+ MOV AH,Mode
+ AND AH,3
+ MOV Byte Ptr WriteMode,AH
+ {$IFOPT G+}SHL AH,3{$ELSE}SHL AH,1;SHL AH,1;SHL AH,1{$ENDIF}
+ OUT DX,AX
+@1:
+END;
+
+Procedure SplitScreen;Assembler;ASM
+ CMP PhysVideo.PIV.VGA,Ya
+ JNE @End
+ XOR AX,AX
+ MOV ES,AX
+ MOV DX,ES:[463h]
+ MOV BX,Y
+ MOV CX,BX
+ MOV AL,07h
+ OUT DX,AL
+ INC DX
+ IN  AL,DX
+ AND AL,11101111b
+ {$IFOPT G+}
+  SHR CX,4
+ {$ELSE}
+  SHR CX,1
+  SHR CX,1
+  SHR CX,1
+  SHR CX,1
+ {$ENDIF}
+ AND CL,16
+ OR  AL,CL
+ OUT DX,AL
+ DEC DX
+ MOV AL,09h
+ OUT DX,AL
+ INC DX
+ IN  AL,DX
+ AND AL,10111111b
+ {$IFOPT G+}
+  SHR BL,3
+ {$ELSE}
+  SHR BL,1
+  SHR BL,1
+  SHR BL,1
+ {$ENDIF}
+ AND BL,64
+ OR  AL,BL
+ OUT DX,AL
+ DEC DX
+ MOV AL,18h
+ MOV AH,Byte Ptr Y
+ OUT DX,AX
+@End:
+END;
+
+{$I GrfIcon.Inc}
+
+{$I Done.Inc}

@@ -1,0 +1,9 @@
+ResLoadD.PAS 2001-03-03
+ Ouverture en accŠs en lecture seulement si
+ fichier est mode lecture seulement.
+
+ResLoadI.PAS 2001-03-03
+ Conversion en assembleur de partie de routine du LoadGIF
+
+FileManager.PAS/SysInterne.PAS 2001-03-04
+ Monter un volume de fichier image EMUDOS associ‚ … une lettre d'unit‚

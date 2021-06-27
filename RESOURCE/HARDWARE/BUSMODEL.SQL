@@ -1,0 +1,13 @@
+CREATE TABLE ModeleBus (
+   ID     BYTE PRIMARY KEY,
+   Name   VARCHAR
+);
+
+CREATE INDEX;
+
+INSERT INTO ModeleBus VALUES (0x0000,'Bus inconnu');
+INSERT INTO ModeleBus VALUES (0x0001,'Bus ISA, 8-Bits');
+INSERT INTO ModeleBus VALUES (0x0002,'Bus ISA, 16-Bits');
+INSERT INTO ModeleBus VALUES (0x0003,'Bus EISA');
+INSERT INTO ModeleBus VALUES (0x0004,'Bus MCA');
+

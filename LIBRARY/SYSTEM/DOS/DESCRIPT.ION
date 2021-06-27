@@ -1,0 +1,7 @@
+setblock.cas Change la taille d'une allocation m‚moire
+setblock.inc Change la taille d'allocation m‚moire
+allocmem.inc Alloue de la m‚moire du DOS
+getdta.cas Demande l'adresse de la DTA
+getdta.inc Demande l'adresse de la DTA
+freemem.cas LibŠre la m‚moire DOS
+freemem.inc LibŠre la m‚moire DOS

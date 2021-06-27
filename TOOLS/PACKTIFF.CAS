@@ -1,0 +1,150 @@
+/* Un programme de compression d'un fragment getimage dans un fichier TIFF */
+
+#include "stdio.h"
+#include "alloc.h"
+#include "tiff.h"
+
+char BinFile[80],TifFile[80]; /* Tampons pour les noms de fichiers */
+unsigned int Wide,Deep,Bytes,Size; /* Variables globales de taille */
+
+void main(int argc,char *argv[]){
+ FILE *Source,*Dest;char *p,b[4];
+ if(argc<=1) error("Je veux un chemin d'accŠs vers un fichier binaire");
+ /* Construire les noms */
+ strmfe(BinFile,argv[1],"BIN");
+ strmfe(TifFile,argv[1],"TIF");
+ /* Ouvrir le fichier source */
+ if((Source=fopen(BinFile,"rb"))==NULL) error("Erreur pendant l'ouverture du fichier source");
+ /* Cr‚er le fichier destination */
+ if((Dest=fopen(TifFile,"wb"))==NULL) error("Erreur pendant la cr‚ation du fichier destinataire");
+ /* Lecture de la taille */
+ if(fread(b,1,4,Source)!=4) error("Erreur pendant la lecture de la taille");
+ /* et affecter les variables globales */
+ Wide=b[0]+(b[1]<<8)+1,Deep=b[2]+(b[3]<<8)+1,Bytes=pixels2bytes(Wide),Size=Bytes*Deep;
+ /* Allouer un tampon d'image */
+ if((p=malloc(Size))==NULL) error("Erreur pendant l'allocation m‚moire");
+ /* Lecture de l'image */
+ if(fread(p,1,Size,Source)!=Size) error("Erreur pendant la lecture de l'image");
+ invert(p,Size);
+ printf("Compression d'une image %dx%d pixels\n",Wide,Deep);
+ /* Compresser l'image */
+ PackTifFile(Dest,p);
+ free(p);
+ fclose(Dest);
+ fclose(Source);
+}
+
+/* Compresse une image dans un fichier TIFF */
+PackTifFile(FILE *fp,char *p){
+ int i;
+ /* ‚crire l'en-tˆte */
+ WriteTifHeader(fp);
+ /* Compresser les lignes */
+ for(i=0;i<Deep;i++) WriteTifLine(p+(i*Bytes),fp,Bytes);
+ /* crire le r‚pertoire */
+ WriteTifDict(fp);
+}
+
+/* crire un en-tˆte TIFF */
+WriteTifHeader(FILE *fp){
+ fputWord(fp,'II'); /* Format Intel */
+ fputWord(fp,42);   /* Version 42 */
+ fputLong(fp,0L);   /* Un blanc pour l'offset */
+}
+
+/* crire le r‚pertoire des marques TIFF */
+WriteTifDict(FILE *fp){
+ long l=ftell(fp); /* Stocker l'endroit courant */
+ /* il y a 6 marques */
+ fputWord(fp,6);
+ /* ‚crire les marques */
+ WriteTifTag(fp,ImageWidth,TIFFshort,0L,(long)Wide);
+ WriteTifTag(fp,ImageLength,TIFFshort,0L,(long)Deep);
+ WriteTifTag(fp,BitsPerSample,TIFFshort,0L,1L);
+ WriteTifTag(fp,Compression,TIFFshort,0L,(long)COMPmpnt);
+ WriteTifTag(fp,PhotometricInterp,TIFFshort,0L,1L);
+ WriteTifTag(fp,StripOffsets,TIFFlong,1L,8L);
+ /* Fin des marques */
+ fputLong(fp,-1L);
+ /* Vous pouvez ajouter ici toutes les marques que vous voulez */
+ /* pointe vers le champ offset de l'en-tˆte */
+ fseek(fp,4L,SEEK_SET);
+ /* pointe vers le d‚but du r‚pertoire */
+ fputWord(fp,1);
+}
+
+/* ‚crit 1 marque dans le r‚pertoire */
+WriteTifTag(FILE *fp,int Tag,int Type,int Length,int Offset){
+ fputWord(fp,Tag);fputWord(fp,Type);
+ fputWord(fp,Length);fputWord(fp,Offset);
+}
+
+/* ‚crit une ligne TIFF - compression MacPaint */
+WriteTifLine(char *p,FILE *fp,int n){
+ char b[72];unsigned int bdex=0,i=0,j=0,t=0;
+ do {
+  i=0;
+  while(p[t+i]==p[t+i+1]&& i<n-1&&t+i<71&&t+i+1<n) i++;
+  if(i>0||bdex>=71){
+   /* Regarder s'il y a d‚j… une chaŒne */
+   if(bdex){
+    fputc(((bdex-1)&0x7F),fp);
+    j++;
+    fwrite(b,1,bdex,fp);
+    j+=bdex,bdex=0;
+   }
+   if(i){ /* ...puis ‚crire la r‚p‚tition */
+    fputc((~i+1),fp);
+    fputc(p[t+i],fp);
+    j+=2,t+=i+1;
+   }
+  }
+   else
+  b[bdex++]=p[t++];
+ } while(t<n);
+ /* V‚rifier s'il y des chaŒnes en attente */
+ if(bdex){
+  fputc(((bdex-1)&0x7F),fp);
+  j++;
+  fwrite(b,1,bdex,fp);
+  j+=bdex,bdex=0;
+ }
+ /* Ce qui suit est un peu douteux; ce n'est pas la peine, en th‚orie, de
+    v‚rifier que la fin de ligne se situe sur une frontiŠre de mot paire,
+    mais certains d‚codeurs se plaignent parfois...*/
+ if(j&1) fputc(0x80,fp);
+ return ferror(fp);
+}
+
+/* Construit un nouveau nom avec une extension sp‚cifique */
+strmfe(char *new,char *old,char *ext){
+ while(*old!=0&&*old!='.') *new++=*old++;
+ *new++;
+ while(*ext) *new++=*ext++;
+ *new=0;
+}
+
+pixels2bytes(int n){
+ if(n&7) return(n>>3)+1; else return n>>3;
+}
+
+/* ‚crire un entier dans le fichier TIFF */
+fputWord(FILE *fp,int n){
+ fputc(n,fp);
+ fputc(n>>8,fp);
+}
+
+/* ‚crire un entier long dans le fichier TIFF */
+fputLong(FILE *fp,long n){
+ fputc(n,fp);
+ fputc(n>>8,fp);
+ fputc(n>>16,fp);
+ fputc(n>>24,fp);
+}
+
+invert(char *p,unsigned int n){
+ int i;
+ for(i=0;i<n;i++) p[i]=~p[i];
+}
+
+error(char *s){ puts(s);exit(1);}

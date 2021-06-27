@@ -1,0 +1,122 @@
+{RawConst.Inc}
+
+{$IFNDEF __RawKeyConst}
+ {$DEFINE __RawKeyConst}
+
+Const
+ {Code de touche clavier brute du contr“leur (Standard Querty)}
+ rqkEsc=1;{Escape}
+ rqk1=2;{1}
+ rqk2=3;{2}
+ rqk3=4;{3}
+ rqk4=5;{4}
+ rqk5=6;{5}
+ rqk6=7;{6}
+ rqk7=8;{7}
+ rqk8=9;{8}
+ rqk9=$0A;{9}
+ rqk0=$0B;{0}
+ rqkMoin=$0C;{-}
+ rqkEqual=$0D;{=}
+ rqkBS=$0E;{BackSpace}
+ rqkTab=$0F;{Tabulation}
+ rqkQ=$10;{Q}
+ rqkW=$11;{W}
+ rqkE=$12;{E}
+ rqkR=$13;{R}
+ rqkT=$14;{T}
+ rqkY=$15;{Y}
+ rqkU=$16;{U}
+ rqkI=$17;{I}
+ rqkO=$18;{O}
+ rqkP=$19;{P}
+ rqk1QuoteLeft=$1A;{[}
+ rqk1QuoteRight=$1B;{]}
+ rqkEnter=$1C;{Enter}
+ rqkCtrl=$1D;{Ctrl}
+ rqkA=$1E;{A}
+ rqkS=$1F;{S}
+ rqkD=$20;{D}
+ rqkF=$21;{F}
+ rqkG=$22;{G}
+ rqkH=$23;{H}
+ rqkJ=$24;{J}
+ rqkK=$25;{K}
+ rqkL=$26;{L}
+ rqkSemicolon=$27;{;}
+ rqkApostrophe=$28;{'}
+ rqkApoInv=$29;{`}
+ rqkShiftLeft=$2A;{Shift de gauche}
+ rqkZ=$2C;{Z}
+ rqkX=$2D;{X}
+ rqkC=$2E;{C}
+ rqkV=$2F;{V}
+ rqkB=$30;{B}
+ rqkN=$31;{N}
+ rqkM=$32;{M}
+ rqkFloat=$33;{,}
+ rqkComma=$34;{.}
+ rqkSlash=$35;{/}
+ rqkShiftRight=$36;{Shift de droite}
+ rqkAsterix=$37;{*}
+ rqkAlt=$38;{Alt}
+ rqkSpaceBar=$39;{Bar d'espacement}
+ rqkCapsLck=$3A;{CapsLock}
+ rqkF1=$3B;{F1}
+ rqkF2=$3C;{F2}
+ rqkF3=$3D;{F3}
+ rqkF4=$3E;{F4}
+ rqkF5=$3F;{F5}
+ rqkF6=$40;{F6}
+ rqkF7=$41;{F7}
+ rqkF8=$42;{F8}
+ rqkF9=$43;{F9}
+ rqkF10=$44;{F10}
+ rqkNumLck=$45;{NumLock}
+ rqkScrollLck=$46;{ScrollLock}
+ rqkHome=$47;{Home}
+ rqkUp=$48;{Up}
+ rqkPgUp=$49;{PageUp}
+ rqkLeft=$4B;{Gauche}
+ rqkKeypad5=$4C;{5 du bloc num‚rique}
+ rqkRight=$4D;{Droite}
+ rqkPlus=$4E;{+}
+ rqkEnd=$4F;{End}
+ rqkDown=$50;{Bas}
+ rqkPgDn=$51;{PageDown}
+ rqkIns=$52;{Insert}
+ rqkDel=$53;{Delete}
+ rqkSysRq=$54;{SysReq}
+ rqkBackSlash=$56;{\ (101/102 touches seulement)}
+ rqkF11=$57;{F11 (101/102 touches seulement)}
+ rqkF12=$58;{F12 (101/102 touches seulement)}
+ rqkPA1=$5A;{PA1 (122 touches seulement)}
+ rqkF13=$5B;{F13 (122 touches seulement) ou Windows Left }
+ rqkWindowsLeft=$5B;
+ rqkF14=$5C;{F14 (122 touches seulement) ou Windows Right }
+ rqkWindowsRight=$5C;
+ rqkF15=$5D;{F15 (122 touches seulement) ou Windows Menu }
+ rqkWindowsMenu=$5C;
+ rqkF16=$63;{F16 (122 touches seulement) }
+ rqkF17=$64;{F17 (122 touches seulement) }
+ rqkF18=$65;{F18 (122 touches seulement) }
+ rqkF19=$66;{F19 (122 touches seulement) }
+ rqkF20=$67;{F20 (122 touches seulement) }
+ rqkF21=$68;{F21 (122 touches seulement) }
+ rqkF22=$69;{F22 (122 touches seulement) }
+ rqkF23=$6A;{F23 (122 touches seulement) }
+ rqkF24=$6B;{F24 (122 touches seulement) }
+ rqkEraseEOF=$6D;{Efface EOF (122 touches seulement)}
+ rqkCopyPlay=$6F;{Copy/Play (122 touches seulement)}
+ rqkCrSel=$72;{CrSel (122 touches seulement)}
+ rqkExSel=$74;{ExSel (122 touches seulement)}
+ rqkClr=$76;{Clear (122 touches seulement) }
+ {Attribut des "Hot Key"}
+ mNone=0;{Aucun}
+ mShiftRight=1;{Shift droite}
+ mShiftLeft=2;{Shift gauche}
+ mShift=mShiftLeft+mShiftRight;{Shift}
+ mCtrl=4;{Ctrl}
+ mAlt=8;{Alt}
+
+{$ENDIF}

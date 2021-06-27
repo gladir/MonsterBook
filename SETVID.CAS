@@ -1,0 +1,124 @@
+#include "systex.h"
+
+extern char *PathSystems;
+extern void far *CurBuf;
+extern Wd CurBufSize;
+extern CurrMtx[8];
+extern DefRGB[2][15];
+extern Bool DrvLoad;
+extern Bool IsEGA(void);
+extern Bool Up32Bits;
+extern void Close(Hdl *);
+extern void Done(void);
+extern void DoneDrv(void);
+extern void Init(void);
+//extern void InitDrv(void);
+extern Bool IsGraf(void);
+extern Byte GetBitsPerPixel(void);
+extern void GetPhysicalInfoVideo(void far *P);
+extern long GetVideoMemory(void);
+extern void near LoadDRC(Wd X,void far *x0);
+extern Wd NmXPixels(void);
+extern Wd NmYPixels(void);
+extern void SetModeValue(Wd Mode);
+extern void SetTxtMtx(void far *TxtMtx);
+extern void SetPhysicalInfoVideo(void far *P);
+extern Byte viSetVideoModePrim(Wd Mode,void far *P,void far *Q);
+
+/*void near LoadDRC(Wd X,void far *x0) {
+ Hdl Handle;long Pos[1];
+ Handle=OpenSearchPathNDos(';'+StrPas(PathSystems)+';\MALTE\SYSTEMS','VIDEO.DRC',fmRead);
+ if(Handle==errHdl) {
+  Handle=Open(SetPath4AddFile(GetEnv('MALTE'))+'SYSTEMS\VIDEO.DRC',fmRead);
+  if(Handle==errHdl) return;
+ }
+ _GetAbsRec(Handle,X<<2,sizeof(long)<<1,&Pos);
+ _GetAbsRec(Handle,Pos[0],Pos[1]-Pos[0],*x0);
+ Close(Handle)
+}*/
+
+/*void DoneDrv(void){
+ Byte PaletteBlue[12]={0,0,64, 0,0,128, 0,0,192, 0,0,255};
+ Byte PalBlue[16*3]={0xF0,0xF0,0xF0, 224,224,232, 208,208,224,
+		     192,192,216,    176,176,208, 160,160,200,
+		     144,144,192,    128,128,184, 112,112,176,
+		     96,96,168,      80,80,160,   64,64,152,
+		     48,48,144,      32,32,132,   16,16,128, 0,0,120};
+ Byte I;Wd W;long L;Byte Pal[15][3];
+ FreeHeap(32768>>4);
+ asm {
+  MOV AX,0x5800
+  INT 0x21
+  MOV W,BX
+  MOV AX,0x5801
+  MOV BX,2
+  INT 0x21
+ };
+ Init();
+ asm {
+  MOV AX,0x5801
+  MOV BX,W
+  INT 0x21
+ };
+ MaxExpandHeap();
+ SetDefaultIcon();
+ VramSetOff(); CurrMtx[0]=0;
+ _FreeMem(Pointer(CurBuf),CurBufSize);
+ if(IsEGA()){
+  SetPalRGB(DefRGB[Blue],1,1);
+  SetPalRGB(DefRGB[Magenta],5,1);
+  if(IsGraf()){
+   if(GetBitsPerPixel()>=8){
+    SetPalRGB(DefRGB[LightBlue],9,1);
+    SetPalRGB(PalBlue,16,16);
+    for(I=0;I<=15;I++) Pal[I][0]=I<<4,Pal[I][1]=I<<4,Pal[I][2]=I<<4;
+    SetPalRGB(Pal[0],32,16);
+    for(I=0;I<=15;I++) Pal[I][0]=(15-I)<<4,Pal[I][1]=(15-I)<<4,Pal[I][2]=(I<<4)+(15-I)<<4;
+    SetPalRGB(Pal[0],48,16);
+    SetPalRGB(PaletteBlue,252,4);
+    L=(long)NmXPixels()*(long)NmYPixels();
+    if(GetVideoMemory()>>16>4) DefineVram(GetVideoMemory()>>16,L);
+   }
+  }
+ }
+  else
+ {
+  if(Seg(GetVideoTxtMtxPtr^)>>12=0xF) SetTxtMtx(AllocFont(4,MtxSize))
+   else
+  {
+   SetTxtMtx(MK_FP(0xFFA6,0xE));
+   GetSysErr=errMtxOutOfMem;
+  };
+ };
+ if(IsGraf()){
+  CurBufSize=GetSizeSmlImg(0,0,31,31),CurBuf=MemNew(CurBufSize);
+  if(CurBuf==NIL) GetSysErr=errVidAllocCur;
+  if(GetBitsPerPixel()==1) CurType=curCK64 else CurType=curCoco3;
+ }
+  else
+ CurType=curTxt;
+ if(FirstTime) OldBackKbd=_BackKbd,_BackKbd=AniCur;
+ FirstTime=No,DrvLoad=Ya;
+}*/
+
+void InitDrv(void) {
+ AutoDetect();
+ if(DrvLoad) Done();
+ DrvLoad=No;
+}
+
+Bool SetVideoMode(Wd Mode) {
+ struct PIV Info1;struct MIV Q;Byte M,R;
+ InitDrv();
+ GetPhysicalInfoVideo(&Info1);
+ LoadDRC(dvSetMode,&Init);
+ M=viSetVideoModePrim(Mode,&Info1,&Q);
+ if(M==0xFF) M=dvBios,R=No; else R=Ya;
+ if((M==dvSVGA)&&(Up32Bits)) M++;
+ LoadDRC(M,&Init);
+ SetModeValue(Q.Mode);
+ SetTxtMtx(Q.TxtMtx);
+ SetPhysicalInfoVideo(&Info1);
+ DoneDrv();
+ return R;
+}

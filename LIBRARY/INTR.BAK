@@ -1,0 +1,154 @@
+{Intr.Inc}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                 Malte Genesis/BibliothŠque individuel                 Û
+ ³                    dition Chantal/IV - Version 1.1                   Û
+ ³                             1997/04/01                                Û
+ ³                                                                       Û
+ ³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Nom des programmeurs
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  Sylvain Maltais
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette inclusion vise  … permettre une universialisation des donn‚es …
+ compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+ traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+ on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+ bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+ ou sa plante comme jamais avant...
+}
+
+{$IFNDEF __Intr}
+ {$DEFINE __Intr}
+
+Const
+  fCarry=$0001;
+  fParity=$0004;
+  fAuxiliary=$0010;
+  fZero=$0040;
+  fSign=$0080;
+  fOverflow=$0800;
+
+Type Registers=Record Case Byte of
+ 0:(AX,BX,CX,DX,BP,SI,DI,DS,ES,Flags:Word);
+ 1:(AL,AH,BL,BH,CL,CH,DL,DH:Byte);
+End;
+
+Procedure Intr(IntNo:Byte;Var Regs:Registers);Assembler;ASM
+ PUSH DS
+ {$IFDEF ProtectedMode}
+  {$IFDEF Windows}
+   PUSH CS
+   CALL AllocCSToDSAlias
+  {$ELSE}
+   MOV AX,CS
+   ADD AX,SelectorInc
+  {$ENDIF}
+  MOV DS,AX
+  CLI
+  PUSH Word Ptr DS:@@Int
+  PUSH DS
+  MOV AL,IntNo
+  MOV Byte Ptr DS:@@Int+1,AL
+ {$ELSE}
+  PUSH Word Ptr CS:@@Int
+  MOV AL,IntNo
+  MOV Byte Ptr CS:@@Int+1,AL
+ {$ENDIF}
+ {$IFDEF FLAT386}
+  LEA ESI,DWord Ptr Regs
+ {$ELSE}
+  LDS SI,Regs
+ {$ENDIF}
+ CLD
+ LODSW
+ PUSH AX
+ LODSW
+ XCHG AX,BX
+ LODSW
+ XCHG AX,CX
+ LODSW
+ XCHG AX,DX
+ LODSW
+ XCHG AX,BP
+ LODSW
+ PUSH AX
+ LODSW
+ XCHG AX,DI
+ LODSW
+ PUSH AX
+ LODSW
+ {$IFDEF DPMI}
+  VERR AX
+  JNZ  @@1
+  MOV  ES,AX
+@@1:
+  POP AX
+  VERR AX
+  JNZ @@2
+  MOV DS,AX
+@@2:
+  {$ELSE}
+   MOV ES,AX
+   POP DS
+  {$ENDIF}
+  POP SI
+  POP AX
+@@Int:
+  INT 0
+  STI
+  PUSHF
+  PUSH ES
+  PUSH DI
+  PUSH BP
+  MOV BP,SP
+  {$IFDEF ProtectedMode}
+   LES DI,Regs+14
+  {$ELSE}
+   LES DI,Regs+12
+  {$ENDIF}
+  CLD
+  STOSW
+  XCHG AX,BX
+  STOSW
+  XCHG AX,CX
+  STOSW
+  XCHG AX,DX
+  STOSW
+  POP AX
+  STOSW
+  XCHG AX,SI
+  STOSW
+  POP AX
+  STOSW
+  MOV AX,DS
+  STOSW
+  POP AX
+  STOSW
+  POP AX
+  STOSW
+  {$IFDEF ProtectedMode}
+   POP DS
+   POP Word Ptr DS:@@Int
+  {$ELSE}
+   POP Word Ptr CS:@@Int
+  {$ENDIF}
+  {$IFDEF Windows}
+   MOV AX,DS
+   POP DS
+   PUSH	AX
+   CALL	FreeSelector
+  {$ELSE}
+  POP DS
+ {$ENDIF}
+END;
+
+{$ENDIF}

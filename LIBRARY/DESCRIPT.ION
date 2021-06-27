@@ -1,0 +1,19 @@
+typemati.inc Fixe la vitesse de Typematic du clavier
+allocmem.cas Fonction AllocMem - C/Assembleur
+bdos.cas Fonction BDos - C/Assembleur
+bdosptr.cas Fonction BDosPtr - C/Assembleur
+longcall.inc Proc‚dure LongCall(Addr:Long;Reg:Registers)
+compiler Compilateur
+cpu Microprocesseur
+disk Disque
+files Fichiers
+interrup.t Interruption
+joystick Manette de jeux
+keyboard Clavier
+math Math‚matique
+memories M‚moires
+mouse Souris
+sound Son
+system SystŠme
+video Vid‚o
+com Port s‚rie

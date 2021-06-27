@@ -1,0 +1,518 @@
+
+
+           Ensemble Malte Genesis IV/Chantal Version 1.0 - Psychotic
+             Ensemble Malte Genesis V/AdŠle Version 1.0 - HardCode
+                            Travaux de 1991 … 1998
+
+                           Cr‚‚ par Malte lui-mˆme!
+
+
+
+Qu'est-ce que ceci?
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Ce sont des unit‚s ‚crites en langage Pascal destin‚ aux applications
+d'envergure sous DOS.
+
+
+Quel est le systŠme requis?
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ En th‚orie sa marche sur n'importe quoi, sauf que la r‚alit‚ est tout
+autre...  Ainsi,  mˆme  s'il  devrait  ne  r‚clamer  qu'un  DOS 2.0 ou
+post‚rieur, une carte MDA, CGA ou post‚rieur et disque dur d'environ 5
+Mo,  c'est difficile de savoir si c'est vraiment ‡a son d–.  La raison
+est fort simple,  je l'ai d‚velopp‚  sur une machine uniquement,  donc
+les autres  ce qu'ils font  je ne peux que m'en douter sans r‚ellement
+en ˆtre s–re.  Pour vous aider, cette ensemble a ‚t‚ d‚velopp‚ sous le
+systŠme d'exploitation DOS 5.0,  sur une machine 80386sx-33Mhz,  32 Mo
+de disque dur MFM et une carte Super VGA  ®IT-VGA2¯ clone de la ®Tseng
+Labs ET4000¯ pas de VESA sur la carte.
+
+ A partir de 1996, ma machine  c'est  l‚gŠrement  modifier  pour avoir
+comme disque dur, un IDE de 1 GigaOctest.  Une carte de son compatible
+Sound Blaster fut ‚galement install‚ ainsi qu'un lecteur CD-ROM.
+
+ Le langage de  programmation  utilis‚  n'est autre que le c‚lŠbrisime
+langage Pascal:  ®Borland Pascal 7¯.  Il est conseill‚  d'utiliser  la
+version  en  mode prot‚g‚  du compilateur parce que la version ®TURBO¯
+n'a pas n‚cessairement les reins assez solide!
+
+
+Quels sont les applications?
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+Dans le r‚pertoire principal:
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³Nom du fichier ³Application                                         ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ANIMAL.PAS     ³Animation Malte (Outil de d‚veloppement d'animation)³
+³BASICPRO.PAS   ³diteur et interpr‚teur de langage Basic            ³
+³FM.PAS         ³Formule Math‚matique (conversion de donn‚es)        ³
+³GRIFORM.PAS    ³Grimoire informatique (Bible fran‡ais d'informatique³
+³               ³Online)                                             ³
+³HEXAPLES.PAS   ³diteur Hexad‚cimal                                 ³
+³INSTALL.PAS    ³Programme d'installation du ®MonsterBook¯.          ³
+³INTRO.PAS      ³D‚monstrateur d'effet sp‚ciaux.                     ³
+³MB.PAS         ³MonsterBook (Power Hacken) (Logiciel tout terrain)  ³
+³MCAT.PAS       ³Catalogueur de disquette                            ³
+³OVERCODE.PAS   ³Application de d‚veloppement de programme           ³
+³               ³informatique.                                       ³
+³SYSINFO.PAS    ³SystŠme d'Information                               ³
+³TERMALTE.PAS   ³Terminal de communication                           ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+
+Jeux se trouvant dans les r‚pertoires ®GAMES\¯:
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³Nom du fichier ³Application                                         ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³GAMENU.PAS     ³S‚lectionneur de jeux.                              ³
+³BREAKOUT.PAS   ³Jeux BreakOut/Arkano‹d/Brick (mur de brique …       ³
+³               ³‚l‚miner avec une balle)                            ³
+³CHESS.PAS      ³Jeux d'‚chec                                        ³
+³DRMARIO.PAS    ³Docteur Mario                                       ³
+³FROGGER.PAS    ³Frogger (jeux de la grenouille traversant la rue)   ³
+³HANOIS.PAS     ³Tour d'Hanois                                       ³
+³HORSE.PAS      ³Horse (jeu de course de chevaux)                    ³
+³MISSILE.PAS    ³Missile Command                                     ³
+³MOON.PAS       ³Moon Mission                                        ³
+³NIBBLES.PAS    ³Nibbles (jeux du serpent)                           ³
+³PACMAN.PAS     ³Pac-Man                                             ³
+³PAIREIMP.PAS   ³Paire-Impaire                                       ³
+³PANGO.PAS      ³Pango                                               ³
+³PATIENCE.PAS   ³Jeux de carte de Patience                           ³
+³PEGLEAP.PAS    ³Peg-Leap                                            ³
+³PINBALL.PAS    ³PinBall (jeux de machine … boule)                   ³
+³QBERT.PAS      ³QBert                                               ³
+³SOKOBAN.PAS    ³Soko-Ban                                            ³
+³SPACEVAD.PAS   ³Space Invader                                       ³
+³TETRIS.PAS     ³Tetris                                              ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+Utilitaire se trouvant dans les r‚pertoires ®TOOLS\¯:
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³Nom du fichier ³Application                                         ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³2STRBIN.PAS    ³Convertie un fichier de donn‚e en chaine de         ³
+³               ³caractŠre binaire de 0 ou 1.                        ³
+³4MAT.PAS       ³Programme de formattage de disquette.               ³
+³BIN2BGI.PAS    ³Programme permettant l'‚criture l'entˆte de la      ³
+³               ³portion du pilote BGI.                              ³
+³BIOSCGA.PAS    ³TSR de BIOS CGA.                                    ³
+³BOOT.PAS       ³Programme de d‚marrage … froid.                     ³
+³C2PAS.PAS      ³Programme de conversion de langage C/C++ … Pascal.  ³
+³CLRKBD.PAS     ³Programme ‚liminant tous les caractŠres dans le     ³
+³               ³tampon clavier.                                     ³
+³CMOSXT.PAS     ³Programme de d‚tecter de CMOS de XT.                ³
+³CRLL.PAS       ³Compilateur de RLL.                                 ³
+³DI.PAS         ³®Dir¯ am‚liorer.                                    ³
+³EXEPACK.PAS    ³Compresse la table d'entˆte des ex‚cutables.        ³
+³FIND.PAS       ³L'‚quivalent du ®find¯ du DOS.                      ³
+³FLB.PAS        ³Visualisateur de police de caractŠres d'une         ³
+³               ³bibliothŠque FLB.                                   ³
+³FLB2RC.PAS     ³Conversion d'une bibliothŠque FLB en ressource.     ³
+³GREP2MSG.PAS   ³Attrape les messages de ®GREP¯.                     ³
+³INFOBOOT.PAS   ³Affiche des informations du disque sans passer par  ³
+³               ³le systŠme d'exploitation.                          ³
+³MODE.PAS       ³L'‚quivalent du ®mode¯ du DOS.                      ³
+³NGZ.PAS        ³D‚compilateur de ®Norton Guide¯.                    ³
+³PC.PAS         ³Compilateur de Pascal.                              ³
+³PRNFLTR.PAS    ³Filtreur d'impression                               ³
+³PRNGAT.PAS     ³Imprimeur de fichier de format ®.GAT¯.              ³
+³SI.PAS         ³SystŠme information                                 ³
+³SS.PAS         ³TSR Copieur d'image                                 ³
+³TCC2MSG.PAS    ³Attrape les messages du Compilateur C/C++           ³
+³VIEWGIF.PAS    ³Permet de visualiser un GIF.                        ³
+³AVE\AVE.PAS    ³D‚tecteur de virus                                  ³
+³DOSKEY\DOSKEY.*³TSR ‚quivalent du ®doskey¯ du DOS.                  ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+BibliothŠque
+ÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³Chemin (\Source\Chantal\...)        ³Description                    ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³LIBRARY\ABSINT.AC                   ³AC: Retourne la valeur absolue ³
+³                                    ³d'un entier                    ³
+³LIBRARY\ABSINT.CAS                  ³C/ASM: Retourne la valeur      ³
+³                                    ³absolue d'un ®short¯           ³
+³LIBRARY\ABSINT.INC                  ³PASCAL: Retourne la valeur     ³
+³                                    ³absolue d'un ®Integer¯.        ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\ADDPCHR.INC                 ³PASCAL: ConcatŠne une chaŒne de³
+³                                    ³caractŠres ASCIIZ … une chaŒne ³
+³                                    ³de caractŠres de style Pascal  ³
+³                                    ³(String).                      ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\ADDSTR.INC                  ³PASCAL: ConcatŠne une chaŒne de³
+³                                    ³caractŠres ®Add¯ … une chaŒne  ³
+³                                    ³de caractŠres source ®S¯.      ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\ALTPRESS.CAS                ³C/ASM: Indique si la touche    ³
+³                                    ³®Alt¯ est enfonc‚e.            ³
+³LIBRARY\ALTPRESS.INC                ³PASCAL: Indique si la touche   ³
+³                                    ³®Alt¯ est enfonc‚e.            ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CHGCHR.INC                  ³PASCAL: change un caractŠre   ³
+³                                    ³dans une chaŒne de caractŠres. ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CHRUP.INC                   ³PASCAL: Retourne la majuscule  ³
+³                                    ³caractŠres minuscule.          ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CLOSE.INC                   ³PASCAL: Ferme une fichier de   ³
+³                                    ³style ®Handle¯.                ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CLOSECUR.INC                ³PASCAL: D‚sactive le curseur.  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CLRKBD.INC                  ³PASCAL: Vide le tampon clavier.³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CONCAT.INC                  ³PASCAL: Concat‚nation de deux  ³
+³                                    ³chaŒnes de caractŠres.         ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CONSTKEY.INC                ³PASCAL: Constante des touches  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\COPYFILE.INC                ³PASCAL: Copie un fichier       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CSTR.INC                    ³PASCAL: Convertie une nombre en³
+³                                    ³une chaŒne de caractŠres en    ³
+³                                    ³format standard d'un pays.     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CSTR2.INC                   ³PASCAL: Convertie une nombre en³
+³                                    ³une chaŒne de caractŠres en    ³
+³                                    ³format standard d'un pays avec ³
+³                                    ³un certain nombre d'espaces.   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CTRLPRES.INC                ³PASCAL: Indicateur de touche   ³
+³                                    ³®Ctrl¯ enfonc‚.                ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DIREXIST.INC                ³PASCAL: Teste la pr‚sence d'un ³
+³                                    ³r‚pertoire.                    ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DIVL.INC                    ³PASCAL: Effectue une division  ³
+³                                    ³sur un double mots.            ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DOSVERSI.INC                ³PASCAL: Retourne le num‚ro de  ³
+³                                    ³version du DOS.                ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DSKFREE.INC                 ³PASCAL: Retourne l'espace      ³
+³                                    ³disponible d'une unit‚.        ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DSKRESET.INC                ³PASCAL: R‚initialisation d'une ³
+³                                    ³unit‚.                         ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DSKSIZE.INC                 ³PASCAL: Retourne la taille d'un³
+³                                    ³unit‚.                         ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DUPLHAND.INC                ³PASCAL: Duplication de ®Handle¯³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\FILLCHAR.INC                ³PASCAL: Efface une partie de   ³
+³                                    ³m‚moire avec un caractŠre.     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\FILLCLR.INC                 ³PASCAL: Efface une partie de   ³
+³                                    ³m‚moire avec des valeurs nulles³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\GETCOUNT.INC                ³PASCAL:Demande la configuration³
+³                                    ³de la r‚gion actuel.           ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\GETCPU.INC                  ³PASCAL: Demande la modŠle de   ³
+³                                    ³micro-processeur.              ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\GETDATE.INC                 ³PASCAL: Demande la date systŠme³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\GETDRVTY.INC                ³PASCAL: Demande le format d'un ³
+³                                    ³unit‚.                         ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\GETDSK.INC                  ³PASCAL:Demande l'unit‚ courante³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\GETINTVEC.INC               ³PASCAL: Demande l'adresse d'un ³
+³                                    ³vecteur d'interruption.        ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\GETRAWTI.INC                ³PASCAL: Demande l'heure brute  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\GETTIME.INC                 ³PASCAL: Demande l'heure systŠme³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\HEXBYTE.INC                 ³PASCAL: Conversion d'un octet  ³
+³                                    ³en une chaŒne de caractŠres    ³
+³                                    ³hexad‚cimal.                   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\HEXWORD.INC                 ³PASCAL: Conversion d'un mot    ³
+³                                    ³en une chaŒne de caractŠres    ³
+³                                    ³hexad‚cimal.                   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\INCSTR.INC                  ³PASCAL: Ajoute une caractŠre … ³
+³                                    ³une chaŒne de caractŠres Pascal³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\INTR.INC                    ³PASCAL: Permet d'appeler une   ³
+³                                    ³interruption … partir de Pascal³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\INVBYTE.INC                 ³PASCAL: Inverse les bits d'un  ³
+³                                    ³octet pour passer de format    ³
+³                                    ³Motorola … INTEL ou inversement³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\ISCAN.INC                   ³PASCAL: Recherche une chaŒne de³
+³                                    ³caractŠres sans distrinction de³
+³                                    ³majuscule ou minuscule dans les³
+³                                    ³limites d'un tampon.           ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\ISROMANL.INC                ³PASCAL: Indicateur de lettre   ³
+³                                    ³romaine.                       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\ISWILDCA.INC                ³PASCAL: Indicateur de g‚n‚rique³
+³                                    ³dans une chemin.               ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\JOYPOS.INC                  ³PASCAL: Demande la position de ³
+³                                    ³la manette de jeux.            ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\KEYPRESS.INC                ³PASCAL: Indique si une/des     ³
+³                                    ³touches sont contenues dans le ³
+³                                    ³tampon clavier.                ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\LEFT.INC                    ³PASCAL: Copie la partie de     ³
+³                                    ³gauche d'une chaŒne de         ³
+³                                    ³caractŠres.                    ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\LONGCALL.INC                ³PASCAL: Appel une proc‚dure    ³
+³                                    ³dont l'adresse est contenu dans³
+³                                    ³double mots.                   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\LSHIFTPR.INC                ³PASCAL: Indique si le ®Shift¯  ³
+³                                    ³de gauche est enfonc‚e.        ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\MOVELEFT.INC                ³PASCAL: Copie une partie de    ³
+³                                    ³m‚moire … partir de la gauche  ³
+³                                    ³dans une autre.                ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\MULL.INC                    ³PASCAL: Effectue une           ³
+³                                    ³multiplication de double mots. ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\MULTCHR.INC                 ³PASCAL: Retourne une chaŒne de ³
+³                                    ³caractŠres un nombre d‚fi d'un ³
+³                                    ³caractŠre sp‚cifique.          ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\OCTWORD2.INC                ³PASCAL: Conversion d'un mot en ³
+³                                    ³une chaŒne de caractŠres octal.³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\PACKTIME.INC                ³PASCAL: Conversion du temps    ³
+³                                    ³d'un fichier en un double mot. ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\PATH2DIR.INC                ³PASCAL: Retourne la partie     ³
+³                                    ³r‚pertoire d'un chemin.        ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\PATH2DRV.INC                ³PASCAL: Retourne la lettre     ³
+³                                    ³d'unit‚ d'un chemin.           ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\PATH2DSK.INC                ³PASCAL: Retourne l'unit‚       ³
+³                                    ³logique d'un chemin.           ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\PUSHKEY.INC                 ³PASCAL: Envoie une touche      ³
+³                                    ³clavier dans le tampon clavier.³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\READKEY.INC                 ³PASCAL: Lit une touche clavier ³
+³                                    ³le caractŠre et le scan code.  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\RSHIFTPR.INC                ³PASCAL: Indique si le ®Shift¯  ³
+³                                    ³droit est enfonc‚.             ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\SCAN.INC                    ³PASCAL: Recherche une chaŒne de³
+³                                    ³caractŠres avec distrinction de³
+³                                    ³majuscule ou minuscule dans les³
+³                                    ³limites d'un tampon.           ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\SETDATE.INC                 ³PASCAL: Change la date du      ³
+³                                    ³systŠme d'exploitation.        ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\SETFULLN.INC                ³PASCAL: Transforme un nom en un³
+³                                    ³nom de 12 caractŠres.          ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\SETINTVE.INC                ³PASCAL: Fixe l'adresse d'une   ³
+³                                    ³interruption.                  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\SHIFTPRESS.INC              ³PASCAL: Indique si le ®Shift¯  ³
+³                                    ³enfonc‚.                       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\SPC.INC                     ³PASCAL: Retourne une chaŒne de ³
+³                                    ³caractŠres avec tant d'espaces.³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\SPCTAB.INC                  ³PASCAL: Retourne une chaŒne de ³
+³                                    ³caractŠres avec 8 espaces.     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\STR.INC                     ³PASCAL: Conversion d'un nombre ³
+³                                    ³en chaŒne de caractŠres.       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\STR0.INC                    ³PASCAL: Conversion d'un nombre ³
+³                                    ³en chaŒne de caractŠres avec un³
+³                                    ³remplissage de "0" plus que des³
+³                                    ³espaces.                       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\STR2.INC                    ³PASCAL: Conversion d'un nombre ³
+³                                    ³en chaŒne de caractŠres avec le³
+³                                    ³nombre d'espaces manquant au   ³
+³                                    ³d‚but de la chaŒne pour obtenir³
+³                                    ³la longueur sp‚cifi‚.          ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\STRLEN.INC                  ³PASCAL: Retourne la longueur   ³
+³                                    ³chaŒne de caractŠres de format ³
+³                                    ³ASCIIZ (PChar).                ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\STRPAS.INC                  ³PASCAL: Transforme une chaŒne  ³
+³                                    ³ASCIIZ (PChar) en format Pascal³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\STRUSPC.INC                 ³PASCAL: ComplŠte une chaŒne de ³
+³                                    ³caractŠres avec des espaces.   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\TWORD.INC                   ³PASCAL: D‚finition d'un tableau³
+³                                    ³de mots.                       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\TYPEMATI.INC                ³PASCAL:Cette proc‚dure transmet³
+³                                    ³la vitesse Typematic au        ³
+³                                    ³contr“leur du clavier          ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\UNPACKTI.INC                ³PASCAL: Transforme un double   ³
+³                                    ³mots en une date et heure.     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\XTRKLONG.INC                ³PASCAL: Extrait un nombre d'une³
+³                                    ³chaŒne de caractŠres.          ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\XTRKWDIN.INC                ³PASCAL: Cherche dans une       ³
+³                                    ³chaŒne de caractŠres de format ³
+³                                    ³Pascal un nombre d‚terminer par³
+³                                    ³®Nm¯ de variable de style      ³
+³                                    ³entiŠre (Mot ou "Word"). Ceci  ³
+³                                    ³‚vitant une duplication de 3 ou³
+³                                    ³4 proc‚dures identique de      ³
+³                                    ³processus en s‚rie. Il retourne³
+³                                    ³la position … laquel il rendant³
+³                                    ³la chaŒne par la poursuite par ³
+³                                    ³un autre d'une extraction      ³
+³                                    ³d'information.                 ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\ZERO.INC                    ³PASCAL: Retourne une chaŒne de ³
+³                                    ³caractŠres avec un nombre de   ³
+³                                    ³z‚ros sp‚cifique.              ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\_CPYFILE.INC                ³PASCAL: Copie un fichier en    ³
+³                                    ³appellant une proc‚dure externe³
+³                                    ³aprŠs chaque progression.      ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\_NFILE.INC                  ³PASCAL: Retourne le nombre de  ³
+³                                    ³®Handle¯ actuellement ouvert.  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\_XCLOSE.INC                 ³PASCAL: Ferme tous les fichiers³
+³                                    ³®Handle¯ actuellement ouvert … ³
+³                                    ³l'exception de la console.     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\COM\BIOSRS23.INC            ³PASCAL: Cette proc‚dure        ³
+³                                    ³initialise un port s‚rie par   ³
+³                                    ³l'entremise des services du    ³
+³                                    ³Bios par l'interruption 14h.   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³..RY\COMPILER\ASSEMBLE.UR\OBJECT.INC³PASCAL: D‚finition des entˆtes ³
+³                                    ³de fichier objet.              ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\COMPILER\C\PXTRKCNM.INC     ³PASCAL: Extrait une un nombre  ³
+³                                    ³de format C d'une chaŒne de    ³
+³                                    ³caractŠres ASCIIZ.             ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\COMPILER\PASCAL\QPUHEADE.INC³PASCAL: Contient les entˆtes   ³
+³                                    ³des unit‚s du QuickPascal.     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\CPU\INTEL\OPCODE.INC        ³PASCAL: Constante des opcodes  ³
+³                                    ³Microprocesseur Intel 80x86.   ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DISK\BIOS\PHYSDATA.INC      ³PASCAL:Structure de param‚trage³
+³                                    ³physique … partir du BIOS.     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DISK\BIOS\SB2F.INC          ³PASCAL: Teste la pr‚sence du   ³
+³                                    ³®Super Bios II Formatter¯.     ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DISK\CDROM\NUMBER.INC       ³PASCAL: Cette fonction retourne³
+³                                    ³le nombre de lecteur de CD-ROM ³
+³                                    ³disponible en mˆme temps sur la³
+³                                    ³machine.                       ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³LIBRARY\DISK\CDROM\NUMBER.CAS       ³C/C++: Cette fonction retourne ³
+³                                    ³le nombre de lecteur de CD-ROM ³
+³                                    ³disponible en mˆme temps sur la³
+³                                    ³machine.                       ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ProblŠme de logique dans mon ensemble?
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Pourquoi des items  en anglais plut“t qu'en fran‡ais  (surtout que je
+ suis mauvais en Anglais) ?
+
+  ş Eh bien soyons r‚alistes!  Des brides  de  fran‡ais,  personne les
+    comprends  tandis que  les tournures "batarde"  anglaise sont plus
+    accessibles au commun des mortels;
+
+  ş mais il y a une  seconde raison plus  valable que celle-ci,  c'est
+    qu'en anglais  les noms sont moins long.  Imaginez en  fran‡ais de
+    quoi pourrais avoir l'air des proc‚dure pour Windows...
+
+  ş et si vous d‚sirez une troisiŠme raison (c'est que vous ˆtes d'une
+    exigeance terrible!): c'est qu'il n'y pas trŠs souvent d'accent en
+    anglais!!!
+
+ Pourquoi des proc‚dures ‚crit dans une ligne?
+
+  Sans vouloir vous attendrir, j'ai v‚cu sur un systŠme minimal: 100Ko
+  de marge d'erreur, alors imaginez ce qui se produit qu'en y en reste
+  0...  Si vous ˆtes observateur  vous remarquez  qu'on utilise  moins
+  d'octets avec plus  de marchandise  dans une mˆme ligne.  Alors vous
+  pigez?
+
+ T'aurrais pas des manuels fournit avec des fois?
+
+  Triste  tentative  de  ma  part  de  vous  faire  part  des  manuels
+  d'instructions dans le r‚pertoire  ®\MALTE\TEXT\PROJETMAL.TE\ISABEL¯
+  ou ‚quivalent.  H‚las les textes sont ‚crits en ".GAT", pour ceux ne
+  pouvant supporter  le traitement de texte de ce format,  vous devrez
+  donc  vous  accomoder  de  quelques  caractŠres  vous  semblant  par
+  rapport...  Toutefois si vous cherchez  plus loin que le bout de vos
+  pieds  (et que  vous n'avez  un systŠme impossible...)  vous  pouvez
+  utiliser le traitement inclue dans le programme MonsterBook (MB.PAS)
+  en pressant ®Shift+F3¯.
+
+
+ProblŠme d'utilisation des sources
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Sa plante au 1ier respire!
+
+  ProblŠme interressant mais pas sans int‚rˆt,  il s'agit probablement
+ d'une ommisions  d'un m‚canisme d'initialisation...  Par exemple,  si
+ vous  utilisez  une  fonction  de n'importe  quel  unit‚  vous  devez
+ obligatoirement avoir au pr‚alable  initialis‚ avec ®InitSystems¯ les
+ unit‚s:
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ Uses Systex,Systems,...;                                          ³
+ ³                                                                   ³
+ ³ BEGIN                                                             ³
+ ³  InitSystems(suIsabel); { C'est ‡a qu'initialise!!!! }            ³
+ ³   { ... votre quincarie S.V.P. }                                  ³
+ ³  DoneSystems; { C'est ‡a vidant les poubelles avant partir...}    ³
+ ³ END.                                                              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+O— se cache tes manuels d'instruction?
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Sur mon systŠme original,  on peut trouver mes manuels  d'instruction
+du    Malte     Genesis    I I I  /  Isabel    dans   le    r‚pertoire
+®\MALTE\TEXT\PROJETMA.LTE\ISABEL¯    toutefois   dans   un   emballage
+traditionnel, il doit se trouver dans ®\PROJETMA.LTE\ISABEL¯.
+
+
+DPU
+ÍÍÍ
+
+ Le DPU est un unit‚  processeur orient‚  boŒte de dialogue ayant pour
+but de r‚soudre tous les problŠmes classic ®CheckBox¯,  ®RadioButton¯,
+...  sous forme d'un simple langage machine adaptable … n'importe quel
+programme supportant le standard DPU des Chevaliers de Malte.

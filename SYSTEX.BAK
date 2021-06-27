@@ -1,0 +1,2733 @@
+{⁄ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒø
+ ≥                                                            ≥
+ ≥Malte Genesis/Module des Systems Terminator Element eXtended≥
+ ≥                                                            ≥
+ ≥        Edition Adäle pour mode rÇel/IV - Version 1.0       ≥
+ ≥                       1995/11/30 Ö 2001/06/01              ≥
+ ≥                                                            ≥
+ ≥ Tous droits rÇservÇ par les Chevaliers de Malte XXIe siäcle≥
+ ≥                                                            ≥
+ ¿ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒŸ
+
+
+ Nom du programmeur
+ ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕ
+
+  Joseph Gabriel Sylvain Maltais
+
+
+ Description
+ ÕÕÕÕÕÕÕÕÕÕÕ
+
+  Cette unitÇ renferme  toutes  les dÇfinitions  de base  de l'ensemble de
+ dÇveloppement Isabel, Chantal ou Adäle. On retrouve toutes les constantes
+ et structures exploiter  sans toutefois avoir  des routines  Ö proprement
+ parler.
+
+
+ Voici quelques prÇcisions sur les directives de compilation conditionnel:
+ ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕ
+
+   DPMI:     Interdit les accäs directe en mÇmoire et les mÇcanismes non-
+       supportÇ par le mode protÇgÇ.
+
+   Graf:     RÇclame le support d'un mode graphique.
+
+   Joystick: Supporte la manette de jeu standard.
+
+   MaxGraf:  Supporte pleinement les polices de plusieurs dimension Ö
+       l'intÇrieur des fenàtre de dialogue.
+
+   Security: Niveau de sÇcuritÇ autorisÇ dans les procÇdure de gestion de
+       mÇmoire.
+
+   Unix:     Supporte pleinement les conventions et les format Unix
+}
+
+Unit SysTex;
+
+INTERFACE
+
+{$I DEF.INC}
+{$O-}
+
+Uses Dostex
+     {$IFDEF __Windows__}
+       {$IFDEF Win32}
+        ,Windows, Messages, SysUtils, Classes,
+        Graphics, Controls, Forms, Dialogs,
+        StdCtrls, ComCtrls, Menus
+       {$ENDIF}
+     {$ENDIF};
+
+{$I \Source\Chantal\Library\System\Malte\Header.Inc}
+
+Const
+  (**********************************************************)
+  (* PrÇfixe pour les capacitÇs Minimum/Maximum des Nombres *)
+  (**********************************************************)
+
+ ByteMin=0;          { Minimal d'une variable ÆByteØ }
+ ByteMax=$FF;        { Maximal d'une variable ÆByteØ }
+ ShortIntMin=-128;   { Minimal d'une variable ÆShortIntØ }
+ ShortIntMax=127;    { Maximal d'une variable ÆShortIntØ }
+ WordMin=0;          { Minimal d'une variable ÆWordØ }
+ WordMax=$FFFF;      { Maximal d'une variable ÆWordØ }
+ IntMin=-32768;      { Minimal d'une variable ÆIntØ ou ÆIntegerØ }
+ IntMax=32767;       { Maximal d'une variable ÆIntØ ou ÆIntegerØ }
+ LongMax=2147483647; { Maximal d'une variable ÆLongØ ou ÆLongIntØ }
+ {$IFDEF __Windows__}
+  MaxArray=LongMax shr 1; { Maximal d'un tableau }
+ {$ELSE}
+  MaxArray=65520;         { Maximal d'un tableau }
+ {$ENDIF}
+
+  (**********************************)
+  (***** Constantes culturelles *****)
+  (**********************************)
+
+  {Les codes rÇgionales (version)}
+ verUS=001;                { êtat-Unis (USA) }
+ verQuebec=002;            { QuÇbec (l'ancienne Nouvelle-France) }
+ verFrCanada=002;          { QuÇbec (Canada franáais) }
+ verLatinAmerica=003;      { AmÇrique Latine }
+ verRussia=007;            { Russie }
+ verEgypt=020;             { Egypte }
+ verMalta=022;             { Ile de Malte }
+ verSouthAfrica=027;       { Afrique du Sud }
+ verGreece=030;            { Gräce }
+ verNetherlands=031;       { Les Pays-bas }
+ verFrBelgiumLux=032;      { Belgique & Luxembourg franáaise }
+ verFrance=033;            { France (les anciens Gaulois) }
+ verSpain=034;             { Espagne }
+ verHungary=036;           { Hongrie }
+ verYugoslavia=038;        { Yougoslavie }
+ verItaly=039;             { Italie (les anciens Romain) }
+ verRomania=040;           { Roumanie }
+ verSwitherland=041;       { Suisse }
+ verCzechoslavakia=042;    { Yougoslavie (Serbre/Croate/Musulman) }
+ verAustria=043;           { Autriche }
+ verBritain=044;           { Angleterre/Grande-Bretagne (les anciens Bretons) }
+ verUnitedKingdom=044;     { Synonyme d'Angleterre }
+ verDenmark=045;           { Danemark (partie des anciens Vikings) }
+ verSweden=046;            { Suäde (partie des anciens Vikings) }
+ verNorway=047;            { Norväge (partie des anciens Vikings) }
+ verPoland=048;            { Pologne }
+ verGermany=049;           { Allemagne (les anciens Germain) }
+ verPeru=051;              { PÇrou }
+ verMexico=052;            { Mexique }
+ verArgentina=054;         { Argentine }
+ verBrazil=055;            { BrÇsil }
+ verChile=056;             { Chili }
+ verColumbia=057;          { Columbie }
+ verVenesuela=058;         { VÇnÇsuela }
+ verMalaysia=060;          { Malaysia }
+ verAustralia=061;         { Australie (Çgalement Anglais international) }
+ verIndonesia=062;         { IndonÇsie }
+ verPhilippines=063;       { Philippines }
+ verNewZealand=064;        { Nouvelle ZÇlande }
+ verSingapore=065;         { Singapour }
+ verThailand=066;          { Thaãlande }
+ verJapan=081;             { Japon }
+ verKoreaSouth=082;        { CorÇe }
+ verChina=086;             { Chine }
+ verTaiwanDos5=088;        { Taãwan (Pour le Dos 5.0+) }
+ verTurkey=090;            { Turkie }
+ verIndia=091;             { Inde }
+ verPakistan=092;          { Pakistan }
+ verSriLanka=094;          { Sri Lanka }
+ verIran=098;              { Iran }
+ verMoroco=212;            { Maroc }
+ verAlgeria=213;           { AlgÇrie }
+ verTunisia=216;           { TunÇsie }
+ verPortugal=351;          { Portugal }
+ verIreland=353;           { Irlande }
+ verIceland=354;           { Islande }
+ verCyprus=357;            { Chypre }
+ verFinland=358;           { Finlande }
+ verGuatemala=502;         { Guatemala }
+ verElSalvador=503;        { Salvador }
+ verCostaRica=506;         { Costa Rica }
+ verPanama=507;            { Panama }
+ verHaiti=509;             { Haãti }
+ verMiddleEast=785;        { Middle Est }
+ verHongKong=852;          { Hong Kong }
+ verBangladesh=880;        { Bangladesh }
+ verTaiwan=886;            { Taãwan comme 88 }
+ verArabia=966;            { Arabie (saoudite) }
+ verArabic=966;            { Arabie (saoudite) }
+ verSaudiArabia=966;       { Arabie saoudite }
+ verUnitedArabEmirates=971;{ êmirats Arabes Unis }
+ verIsrael=972;            { Israâl }
+ verUnknown=$FFFF;         { Inconnue }
+
+  { Ordre des dates }
+ mdy=0;                    { MM/JJ/AA }
+ dmy=1;                    { JJ/MM/AA }
+ ymd=2;                    { AA/MM/JJ }
+ myd=3;                    { MM/AA/JJ }
+ dym=4;                    { JJ/AA/MM }
+ ydm=5;                    { AA/JJ/MM }
+
+  (**************************************)
+  (***** Constante Micro-Processeur *****)
+  (**************************************)
+
+ { Les diffÇrents Micro-Processeur (CPU) }
+ cpu8088=0;                { Intel 8088 }
+ cpu8086=1;                { Intel 8086 }
+ cpuV20=2;                 { NEC V20 }
+ cpuV30=3;                 { NEC V30 }
+ cpu80188=4;               { Intel 80188 }
+ cpu80186=5;               { Intel 80186 }
+ cpu80286=6;               { Intel 80286 }
+ cpui386=7;                { Intel 80386 }
+ cpui486=8;                { Intel 80486 }
+ cpuCyrix5x86=9;           { Cyrix 5x86 }
+ cpuCyrix6x86=10;          { Cyrix 6x86 }
+ cpuPentium=11;            { Pentium }
+ cpuPentiumMMX=12;         { Pentium-MMX }
+ cpuPentiumII=13;          { Pentium II }
+
+  {Les diffÇrants fabricants du CPU}
+ cvIntel=0;                { Intel, par dÇfaut }
+ cvCyrix=1;                { Cyrix }
+ cvIBM=2;                  { IBM }
+ cvAMD=3;                  { AMD }
+
+{$I \Source\Chantal\Library\CPU\Intel\OpCode.Inc}
+
+  { Information sur le contrìleur d'interruption }
+
+ IRQCtrlIRQ=$02;         { Cascade d'interruption }
+ PortCtrlIRQ0To7=$20;    { Port du contrìleur d'interruption de 0 Ö 7 }
+ PortCtrlIRQ8To15=$A0;   { Port du contrìleur d'interruption de 8 Ö 15 }
+
+  { Horloge systäme }
+ IRQClock=$00;           { IRQ de l'horloge systäme }
+ PortClock=$40;          { Port de l'horloge systäme }
+
+  (**************************************************)
+  (**** Constante de la structure de la machine *****)
+  (**************************************************)
+
+  { Les noms des diffÇrents ordinateur (Computer Name) }
+ (*cnIBM7561_2=$0002;          { IBM 7561/2 }
+ cnPS2M90XP=$0003;           { PS/2 Modäle 90XP }
+ cnPS2M95XP=$0004;           { PS/2 Modäle 95XP }
+ cnAST=$0010;                { AST }
+ cnTandy1000=$0021;          { Tandy 1000 }
+ cnTandy3000NL=$0023;        { Tandy 3000NL }
+ cnCompaqPC=$002D;           { Compaq PC/Compaq Deskpro }
+ cnSperryPC=$0030;           { Sperry PC }
+ cnOlivettiM15=$0046;        { Olivetti M15 }
+ cnPS2M55_5551=$0055;        { PS/2 Modäle 55-5551 }
+ cnContermMax=$0056;         { ContermMax }
+ cnCompaqXT=$009A;           { Compaq XT/Compaq Plus }
+ cnHewlettPackard110=$00B6;  { Hewlett-Packard 110 }
+ cnPS2M55_5530=$00E1;        { PS/2 Modäle 55-5530 Laptop }
+ cnPS2M80_16=$00F8;          { PS/2 Modäle 80, 16 Mhz 386 }
+ cnPCConv=$00F9;             { PC-Convertible }
+ cnPS2M30=$00FA;             { PS/2 Modäle 30 }*)
+ cnAT=$00FC;                 { Clone AT }
+ cnPCJunior=$00FD;           { PC Junior }
+ cnXT=$00FE;                 { PC XT }
+ cnPC=$00FF;                 { PC original }
+(* cnPS2M80_20=$01F8;          { PS/2 Modäle 80, 20 Mhz 386 }
+ cnPS2M25=$01FA;             { PS/2 Modäle 25/25L }
+ cnPCXT2=$01FB;              { PC-XT/2 }
+ cnPS2M55_5571=$02F8;        { PS/2 Modäle 55-5571 }
+ cnPCXT286=$02FC;            { PC-XT/286 }
+ cnPS2M70_16=$04F8;          { PS/2 Modäle 70, 16 Mhz 386 }
+ cnPS2M50=$04FC;             { PS/2 Modäle 50, 10 Mhz 286 }
+ cnPS2M50Z=$04FF;            { PS/2 Modäle 50Z,10 Mhz 286 }
+ cnIBMPC7568=$05F8;          { IBM PC 7568 }
+ cnPS2M60=$05FC;             { PS/2 Modäle 60, 10Mhz 286 }
+ cnIBM7552Gearbox=$06FC;     { IBM 7552 Gearbox }
+ cnPS2M70_20=$09F8;          { PS/2 Modäle 70,20Mhz 386 }
+ cnPS2M25i286=$09FC;         { PS/2 Modäle 25-286 }
+ cnPS2M30i286=$09FE;         { PS/2 Modäle 30-286 }
+ cnPS2MP70=$0BF8;            { PS/2 Modäle P70 }
+ cnPS1M2011=$0BFC;           { PS/1 Modäle 2011 }
+ cnPS2M55SZ=$0CF8;           { PS/2 Modäle 55SZ }
+ cnPS2M70i386_25=$0DF8;      { PS/2 Modäle 70, 25Mhz 386 }
+ cnPS1i486SX=$0EF8;          { PS/1 486SX }
+ cnPS1i486DX=$0FF8;          { PS/1 486DX }
+ cnPS2M90_25=$11F8;          { PS/2 Modäle 90, 25 Mhz 386 }
+ cnPS2M90_33=$13F8;          { PS/2 Modäle 90, 33 Mhz 386 }
+ cnPS2M90AK9=$14F8;          { PS/2 Modäle 90, AK9 25 Mhz 486}
+ cnPS2M90AKD=$16F8;          { PS/2 Modäle 90, AKD 33 Mhz 486}
+ cnPS2M35=$18F8;             { PS/2 Modäle 35/35LS/40 20 Mhz 386SX}
+ cnPS2M70i486_25=$1BF8;      { PS/2 Modäle 70, 25 Mhz 486}
+ cnPS2M65_121=$1CF8;         { P2/2 Modäle 65-121,16 Mhz 386SX }
+ cnPS2M55LS=$1EF8;           { PS/2 Modäle 55LS, 16 Mhz }
+ cnCompaqProLinea=$20FC;     { Compaq Pro Linea }
+ cnPS2ML40=$23F8;            { PS/2 Modäle L40, 20 Mhz 386SX }
+ cnPS2MM57=$25F8;            { PS/2 Modäle M57, 20 Mhz 386SLC }
+ cnToshibaT5200_200=$2639;   { Toshiba T5200/200 }
+ cnPS2M57=$26F8;             { PS/2 Modäle 57, 20 Mhz 386SX }
+ cnPS2M95_50=$2AF8;          { PS/2 Modäle 95, 50 Mhz 486 }
+ cnPS2M90_50=$2BF8;          { PS/2 Modäle 90, 50 Mhz 486 }
+ cnPS2M95_20=$2CF8;          { PS/2 Modäle 95, 20 Mhz 486SX }
+ cnPS2M95_SX87_20=$2EF8;     { PS/2 Modäle 95, 20 Mhz 486SX + 487SX }
+ cnPS2M90_SX87_20=$2FF8;     { PS/2 Modäle 90, 20 Mhz 486SX + 487SX }
+ cnPS1M2121=$30F8;           { PS/1 Modäle 2121 }
+ cnIBMRestaurantTerm=$30FA;  { IBM Restaurant Terminal }
+ cnEpson1=$30FC;             { Epson, modäle inconnue }
+ cnEpson2=$31FC;             { Epson, modäle inconnue }
+ cnEpson3=$33FC;             { Epson, modäle inconnue }
+ cnPCAT319=$3538;            { PC-AT 319 ou PC-AT 339 Ö 8 Mhz }
+ cnTandy3000=$3738;          { Tandy 3000 }
+ cnToshibaT5200_100=$3838;   { Toshiba T5200/100 }
+ cnToshibaT1200XE=$3938;     { Toshiba T1200/XE }
+ cnToshibaT4500SX_C=$4139;   { Toshiba T4500SX-C }
+ cnPS2M77=$41F8;             { PS/2 Modäle 77 }
+ cnOlivettiM280=$42FC;       { Olivetti M280 }
+ cnPS1=$4320;                { PS/1 }
+ cnOlivettiM240=$43FF;       { Olivetti M240 }
+ cnToshiba4400C=$4539;       { Toshiba 4400C }
+ cnPS2M90XPPentium=$45F8;    { PS/2 Modäle 90 XP Pentium }
+ cnOlivettiM380=$45FC;       { Olivetti M380 (XP1/XP3/XP5) }
+ cnPS2M95XPPentium=$46F8;    { PS/2 Modäle 95 XP Pentium }
+ cnPCXT_=$46FF;              { PC XT d'IBM inconnue }
+ cnPS2M85=$48F8;             { PS/2 Modäle 85 }
+ cnOlivettiM290=$48FC;       { Olivetti M290 }
+ cnPSVP325T=$49F8;           { PS/ValuePoint 325T }
+ cnPSVP425SX=$4AF8;          { PS/ValuePoint 425SX }
+ cnPSVP433DX=$4BF8;          { PS/ValuePoint 433DX }
+ cnOlivettiM200=$4CFB;       { Olivetti M200 }
+ cnPS2M295=$4EF8;            { PS/2 Modäle 295 }
+ cnOlivettiM111=$4EFE;       { Olivetti M111 }
+ cnOlivettiM250=$4FFC;       { Olivetti M250 }
+ cnPS2MP70_16=$50F8;         { PS/2 Modäle P70, 80386 Ö 16 Mhz }
+ cnOlivettiM380XP7=$50FC;    { Olivetti M380 (XP7) }
+ cnOlivettiPCS286=$51FC;     { Olivetti PCS286 }
+ cnPS2MP75_33=$52F8;         { PS/2 Modäle P75, 80386 Ö 33 Mhz }
+ cnOlivettiM300=$52FC;       { Olivetti M300 }
+ cnPS2MCL57SX=$56F8;         { PS/2 Modäle CL57 SX }
+ cnPS2MN51SLC=$5DF8;         { PS/2 Modäle N51 SLC }
+ cnIBMThinkPad700=$5EF8;     { IBM Think Pad 700 }
+ cnOlivettiP500=$61F8;       { Olivetti P500 }
+ cnOlivettiP800=$62F8;       { Olivetti P800 }
+ cnToshiba1850SX=$6E39;      { Toshiba 1850SX }
+ cnToshiba1800SX=$6F39;      { Toshiba 1800SX }
+ cnPS2M80_25=$80F8;          { PS/2 Modäle 80, 80386 Ö 25 Mhz }
+ cnPS2M55_5502=$81F8;        { PS/2 Modäle 55-5502 }
+ cnPS2M55N33SX=$87F8;        { PS/2 Modäle 55 N33SX }
+ cnPS2M55_5530T=$88F8;       { PS/2 Modäle 55-5530T }
+ cnZenith386=$94FC;          { Zenith 386 }
+ cnPS2M55N28SX=$97F8;        { PS/2 Modäle 55 Note N28SX }
+ cnPS2MN51SX=$99F8;          { PS/2 Modäle N51 SX }
+ cnDell200=$A302;            { Dell 200 }
+ cnDell300=$A303;            { Dell 300 }
+ cnDell220=$A305;            { Dell 220 }
+ cnDell310=$A306;            { Dell 310 }
+ cnDell325=$A307;            { Dell 325 }
+ cnDell310A=$A309;           { Dell 310A }
+ cnDell316=$A30A;            { Dell 316 }
+ cnDell220E=$A30B;           { Dell 220E }
+ cnDell210=$A30C;            { Dell 210 }
+ cnDell316SX=$A30D;          { Dell 316SX }
+ cnDell316LT=$A30E;          { Dell 316LT }
+ cnDell320LX=$A30F;          { Dell 320LX }
+ cnDell425E=$A311;           { Dell 425E }
+ cnQuadramQuad386=$A6FE;     { Quadram Quad 386 }
+ cnReplyModel32=$F2F8;       { Reply Modäle 32 }
+ cnMemorexTelex=$F6F8;       { Memorex Telex }
+ cnCompaq286=$FA00;          { Compaq 286 ou clone }
+ cnCompaq386=$FA01;          { Compaq 386 ou clone }
+ cnIBMProcessorComplex=$FDF8;{ Processeur IBM complexe }
+ cnIBMPCradio9075=$FEFA;     { IBM PCradio 9075 }*)
+
+  { Modäle de Bus systäme }
+ busUnknown=$00;             { Bus inconnue }
+ busISA8=$08;                { Bus ISA, 8-Bits }
+ busISA16=$16;               { Bus ISA, 16-Bits }
+ busISAPCI=$20;              { Bus ISA et PCI }
+ busEISA=$30;                { Bus EISA }
+ busMCA=$40;                 { Bus MCA }
+
+{$I \Source\Chantal\Library\Memories\Cmos\Model.Inc}
+
+  (*******************************)
+  (***** Constante de Disque *****)
+  (*******************************)
+
+{$I Library\Disk\Bios\Int13h.Inc}
+
+  { Constante de partition de disque dur }
+ MinPart=1;                  { Nombre minimal partition }
+ MaxPart=4;                  { Nombre maximal partition }
+
+  { Les types de contrìleur de Disque Dur }
+ ctrlhdNo=$0000;             { Pas de contrìleur de disque dur }
+ ctrlhdUnknown=$0001;        { Contrìleur de disque dur inconnu }
+ ctrlhdMFM=$0002;            { Contrìleur MFM }
+ ctrlhdIDE=$0003;            { Contrìleur IDE }
+ ctrlhdScsiTMC1680=$0200;    { Contrìleur SCSI TMC-1680 }
+ ctrlhdScsiTMC1650=$0203;    { Contrìleur SCSI TMC-1650/1660/1670/1680 }
+ ctrlhdScsiTMC820=$040A;     { Contrìleur SCSI TMC-820/830/860/870/875/880/885 }
+ ctrlhdScsiTMC840=$050D;     { Contrìleur SCSI TMC-840/880/881 }
+ ctrlhdScsiTMC830=$0700;     { Contrìleur SCSI TMC-830/850/860/875/885 }
+
+  { Port d'EntrÇe/Sortie de disque }
+ DiskettePort=$3F2;          { Port d'entrÇe/sortie associÇ au lecteur de disquette }
+ DisketteDMA=2;              { DMA utilisÇ par le lecteur de disquette }
+ DisketteIRQ=6;              { IRQ associÇ au lecteur de disquette }
+
+  { Constante de structure d'un disque }
+ dskSectorSize=512;          { Taille d'un secteur en octet }
+ dskMediaHardDsk=$F8;        { MÇdia de type disque dur }
+ dskMediaDbl15SecTrk=$F9;    { MÇdia de type disquette double face, 15 secteurs/piste }
+ dskMediaSmp9SecTrk=$FC;     { MÇdia de type disquette simple face, 9 secteurs/piste }
+ dskMediaDbl9SecTrk=$FD;     { MÇdia de type disquette double face, 9 secteurs/piste }
+ dskMediaSmp8SecTrk=$FE;     { MÇdia de type disquette simple face, 8 secteurs/piste }
+ dskMediaDbl8SecTrk=$FF;     { MÇdia de type disquette double face, 8 secteurs/piste }
+
+  (***************************)
+  (***** Constante VidÇo *****)
+  (***************************)
+
+  { Les diffÇrents nom de modäle de carte vidÇo }
+ vnUnknown=0;                { DÇtectection automatique ou inconnu }
+ vnAhead=1;                  { Ahead }
+ vnAheadB=2;                 { Ahead B (SVGA) }
+ vnAheadBWizard3270=3;       { Ahead B-Wizard/3270 (SVGA) }
+ vnAheadEGA2001=4;           { Ahead EGA2001 (Super EGA) }
+ vnAllstarPeacock=5;         { Allstar Peacock (VGA) }
+ vnASTVGAPlus=6;             { AST VGA Plus (SVGA) }
+ vnATT=7;                    { AT&T }
+ vnATT6300=8;                { AT&T 6300 (Super EGA) }
+ vnATTVDC600=9;              { AT&T VDC600 (SVGA) }
+ vnCardinal=10;              { Cardinal (SVGA) }
+ vnCGA=11;                   { CGA }
+ vnCirrus=12;                { Cirrus (SVGA) }
+ vnCompaqPortable=13;        { Compaq Portable }
+ vnCompaqVGA=14;             { Compaq VGA (SVGA) }
+ vnCTI82C451=15;             { CTI 82C451 (SVGA) }
+ vnCTI82C452=16;             { CTI 82C452 (SVGA) }
+ vnDellVGA=17;               { Dell VGA (SVGA) }
+ vnEGA=18;                   { EGA }
+ vnEGAW800=19;               { EGA Wonder 800+ (Super EGA) }
+ vnEGAW800N18800=20;         { EGA Wonder 800+-18800 (Super EGA) }
+ vnEGAW800N18800_1=21;       { EGA Wonder 800+-18800-1 (Super EGA) }
+ vnEGAW800N28800_2=22;       { EGA Wonder 800+-28800-2 (Super EGA) }
+ vnEGAW800N28800_4=23;       { EGA Wonder 800+-28800-4 (Super EGA) }
+ vnEGAW800N28800_5=24;       { EGA Wonder 800+-28800-5 (Super EGA) }
+ vnEverex=25;                { Everex }
+ vnEverexViewPoint=26;       { Everex ViewPoint }
+ vnEverexUG2=27;             { Everex UltraGraphics II }
+ vnEverexVision=28;          { Everex Vision }
+ vnEverexEVGA=29;            { Everex EVGA }
+ vnGenoa=30;                 { Genoa }
+ vnGenoa5100=31;             { Genoa 5100 }
+ vnGenoa5300=32;             { Genoa 5300 }
+ vnGenoa6100=33;             { Genoa 6100 }
+ vnGenoa6200=34;             { Genoa 6200 }
+ vnGenoa6400=35;             { Genoa 6400 (Super VGA) }
+ vnGS=36;                    { Graphics Solution d'ATI (Super CGA) }
+ vnGU=37;                    { Graphics Ultra d'ATI (Super VGA) }
+ vnGUPlus=38;                { Graphics Ultra d'ATI (Super VGA) }
+ vnGUPro=39;                 { Graphics Ultra d'ATI (Super VGA) }
+ vnHeadLand=40;              { HeadLand (Super VGA) }
+ vnHercule=41;               { Hercule (HGC) }
+ vnHPD1180A=42;              { Hewlett-Packard D1180A (Super VGA) }
+ vnHP95LX=43;                { HP 95LX }
+ vnIBM8514A=44;              { IBM 8514/AI }
+ vnImtec=45;                 { Imtec (Super VGA) }
+ vnITVGA2=46;                { IT-VGA2 (Super VGA) }
+ vnLavaChromeIIEGA=47;       { Lava Chrome II EGA (Super EGA) }
+ vnLogix=48;                 { Logix (Super VGA) }
+ vnMCGA=49;                  { MCGA }
+ vnMDA=50;                   { MDA }
+ vnMaxxon=51;                { Maxxon }
+ vnMorseVGA=52;              { Morse VGA (VGA) }
+ vnNSISmartEGA=53;           { NSI Smart EGA+ (Super EGA) }
+ vnOak=54;                   { Oak Technologies (Super VGA) }
+ vnOrchid=55;                { Orchid }
+ vnOrchidProDesVGA=56;       { Orchid Prodesigner VGA (Super VGA) }
+ vnOrchidProDesIIVGA=57;     { Orichid Prodesigner II VGA (SVGA/32768 couleurs) }
+ vnParadise=58;              { Paradise }
+ vnParadiseEGA480=59;        { Paradise EGA-480, Super EGA }
+ vnParadisePVGA1A=60;        { Paradise PVGA1A }
+ vnParadiseWD90C00=61;       { Paradise WD90C00 }
+ vnParadiseWD90C10=62;       { Paradise WD90C10 }
+ vnParadiseWD90C11=63;       { Paradise WD90C11 }
+ vnPC3270=64;                { PC 3270 }
+ vnPC3270G=65;               { PC 3270G }
+ vnPC3270GX=66;              { PC 3270GX }
+ vnPCJr=67;                  { PC Junior }
+ vnPGA=68;                   { PGA }
+ vnPrismElite=69;            { Prism Elite d'ATI (Super VGA) }
+ vnQU=70;                    { Quadram Ultra VGA (Super VGA) }
+ vnSEFCOTVGA=71;             { SEFCO TVGA (Super VGA) }
+ vnSigma=72;                 { Sigma (Super VGA) }
+ vnSTB=73;                   { STB (Super VGA) }
+ vnSTBVGAEM16Plus=74;        { STB VGA/EM-16 Plus (Super VGA) }
+ vnTatungVGA=75;             { Tatung VGA (Super VGA) }
+ vnTaxan565EGA=76;           { Taxan 565 EGA (Super EGA) }
+ vnTecmarVGAAD=77;           { Tecmar VGA/AD (Super VGA) }
+ vnTIGA=78;                  { TIGA de Texas Instrument }
+ vnTrident8800BR=79;         { Trident 8800BR (Super VGA) }
+ vnTrident8800CS=80;         { Trident 8800CS (Super VGA) }
+ vnTrident8900=81;           { Trident 8900 (Super VGA) }
+ vnT3000=82;                 { Tseng ET3000 (Super VGA) }
+ vnT4000=83;                 { Tseng ET4000 (Super VGA) }
+ vnT4000HiColor=84;          { Tseng ET4000 HiColor (Super VGA) }
+ vnT4000HiColorSC=85;        { Tseng ET4000 HiColor SC (Super VGA) }
+ vnUltraVisionEGA=86;        { Ultra Vision EGA (Super EGA) }
+ vnVESA=87;                  { VESA }
+ vnVGA=88;                   { VGA }
+ vnVGAW=89;                  { VGA Wonder d'ATI (Super VGA) }
+ vnVGAW18800=90;             { VGA Wonder d'ATI 18800 (Super VGA) }
+ vnVGAW18800_1=91;           { VGA Wonder d'ATI 18800-1 (Super VGA) }
+ vnVGAW28800_2=92;           { VGA Wonder d'ATI 28800-2 (Super VGA) }
+ vnVGAW28800_4=93;           { VGA Wonder d'ATI 28800-4 (Super VGA) }
+ vnVGAW28800_5=94;           { VGA Wonder d'ATI 28800-5 (Super VGA) }
+ vnV7=95;                    { Video 7 (Super VGA) }
+ vnV7Vram=96;                { Video 7 Vram (Super VGA) }
+ vnV7Vega=97;                { Video 7 Vega (Super VGA) }
+ vnV7Ver5=98;                { Video 7 Version 5 (Super VGA) }
+ vnV71024i=99;               { Video 7 1024i (Super VGA) }
+ vnVIP=100;                  { ATI VIP (Super VGA) }
+ vnXGA=101;                  { XGA (Super VGA) }
+ vnZymos=102;                { Zymos (Super VGA) }
+ vnZymosPoach=103;           { Zymos Poach (Super VGA) }
+ vnMatrox=104;               { Matrox }
+ vnMatroxMystique=105;       { Matrox Mystique }
+ vnMatroxMillenium=106;      { Matrox Millenium }
+ vnMatroxG200=107;           { Matrox G200 }
+ vnMax=107;                  { NumÇro maximal de nom de carte vidÇo. }
+
+  { CatÇgorie de carte vidÇo }
+ cvnNone=0;                  { Aucune,inconnue }
+ cvnMDA=1;                   { MDA }
+ cvnHGC=2;                   { HGC,GS en mode mono,... }
+ cvnCGA=3;                   { GS, CGA, Super CGA,... }
+ cvnEGA=4;                   { EGA, Super EGA }
+ cvnVGA=5;                   { MCGA, VGA, ... }
+ cvnSvga=6;                  { Super VGA }
+ cvnVESA=7;                  { Super VGA (VESA) }
+
+  { Les diffÇrents modäle de moniteur }
+ mnUnknown=0;                { Inconnue }
+ mn3295=1;                   { 3295 }
+ mn5151=2;                   { 5151 }
+ mn5272=3;                   { 5272 }
+ mn5279=4;                   { 5279 }
+ mn5379C01=5;                { 5379C01 }
+ mn5379M01=6;                { 5379M01 }
+ mn8514=7;                   { 8514 }
+ mnAnalog=8;                 { Analogue }
+ mnAnalogKr=9;               { Analogue Couleur }
+ mnAnalogMono=10;            { Analogue Monochrome }
+ mnAnalogMultiSync=11;       { Analogue MultiSync }
+ mnCGA=12;                   { CGA }
+ mnDigitalKr=13;             { Digital Couleur }
+ mnDigitalMultiSync=14;      { Digital MultiSync }
+ mnDigitalTTL=15;            { Digital TTL }
+ mnEGA=16;                   { EGA }
+ mnFixedSync=17;             { FixedSync }
+ mnMDA=18;                   { MDA }
+ mnMultiSync=19;             { MultiSync }
+ mnMultiSync2A=20;           { MultiSync 2A }
+ mnNEC3D=21;                 { NEC 3D }
+ mnNECMultiSync=22;          { NEC MultiSync }
+ mnRGBkr=23;                 { RGB Couleur }
+ mnSeiko1430=24;             { Seiko 1430 }
+ mnSuperMultiSync=25;        { Super MultiSync }
+ mnSuperVGA=26;              { Super VGA }
+ mnTatungOmniScan=27;        { Tatung OmniScan }
+ mnTTLDigital=28;            { TTL Digital }
+ mnTTLMonochrome=29;         { TTL Monochrome }
+ mnTVM2A=30;                 { TVM 2A }
+ mnTVM3A=31;                 { TVM 3A }
+ mnTVM3M=32;                 { TVM 3M }
+ mnVGA=33;                   { VGA }
+
+  { Constante des modes vidÇos }
+ vmTxtBW40=0;                { Texte noir et blanc 40x25 }
+ vmTxtC40=1;                 { Texte couleur 40x25 }
+ vmTxtC40x28=$1257;          { Texte couleur 40x28 }
+ vmTxtC40x43=$1258;          { Texte couleur 40x43 }
+ vmTxtC40x50=$1259;          { Texte couleur 40x50 }
+ vmTxtBW80=2;                { Texte noir et blanc 80x25 }
+ vmTxtC80=3;                 { Texte couleur 80x25 }
+ vmTxtC80x28=$1260;          { Texte couleur 80x28 }
+ vmTxtC80x30=$1261;          { Texte couleur 80x30 }
+ vmTxtC80x33=$1262;          { Texte couleur 80x33 }
+ vmTxtC80x34=$1263;          { Texte couleur 80x34 }
+ vmTxtC80x43=$1264;          { Texte couleur 80x43 }
+ vmTxtC80x50=$1265;          { Texte couleur 80x50 }
+ vmTxtC80x60=$1266;          { Texte couleur 80x60 }
+ vmTxtC80x66=$1267;          { Texte couleur 80x66 }
+ vmTxtC100x30=$1268;         { Texte couleur 100x30 }
+ vmTxtC100x37=$1269;         { Texte couleur 100x37 }
+ vmTxtC100x40=$126A;         { Texte couleur 100x40 }
+ vmTxtC100x50=$1270;         { Texte couleur 100x50 }
+ vmTxtC100x60=$1271;         { Texte couleur 100x60 }
+ vmTxtC100x75=$1272;         { Texte couleur 100x75 }
+ vmTxtC120x25=$1273;         { Texte couleur 120x25 }
+ vmTxtC120x43=$1274;         { Texte couleur 120x43 }
+ vmTxtC132=$1275;            { Texte couleur 132x25 }
+ vmTxtC132x28=$1276;         { Texte couleur 132x28 }
+ vmTxtC132x30=$1277;         { Texte couleur 132x30 }
+ vmTxtC132x43=$1278;         { Texte couleur 132x43 }
+ vmTxtC132x44=$1279;         { Texte couleur 132x44 }
+ vmTxtC132x50=$1280;         { Texte couleur 132x50 }
+ vmTxtC132x60=$1281;         { Texte couleur 132x60 }
+ vmTxtC132x100=$1282;        { Texte couleur 132x100 }
+ vmTxtC160x50=$1283;         { Texte couleur 160x50 }
+ vmTxtMono=7;                { Texte monochrome 80x25 }
+ vmTxtMono80x28=$1284;       { Texte monochrome 80x28 }
+ vmTxtMono80x30=$1285;       { Texte monochrome 80x30 }
+ vmTxtMono80x34=$1286;       { Texte monochrome 80x34 }
+ vmTxtMono80x43=$1287;       { Texte monochrome 80x43 }
+ vmTxtMono80x50=$1288;       { Texte monochrome 80x50 }
+ vmTxtMono80x60=$1289;       { Texte monochrome 80x60 }
+ vmTxtMono100x40=$128A;      { Texte monochrome 100x40 }
+ vmTxtMono100x60=$128B;      { Texte monochrome 100x60 }
+ vmTxtMono132=$128C;         { Texte monochrome 132x25 }
+ vmTxtMono132x28=$128D;      { Texte monochrome 132x28 }
+ vmTxtMono132x43=$128E;      { Texte monochrome 132x43 }
+ vmTxtMono132x44=$128F;      { Texte monochrome 132x44 }
+ vmHerc=$1321;               { Hercule monochrome 720x348 }
+ vmMinKrMode320x200=$1322;   { Avec le nombre minimal de couleur en 320x200 pixels }
+ vmMaxKrMode320x200=$1323;   { Avec le nombre maximal de couleur en 320x200 pixels }
+ vmGrf240x128c2=$1324;       { Graphique 240x128 en 2 couleurs }
+ vmGrf320x200c4=5;           { Graphique 320x200 en 4 couleurs }
+ vmGrf320x200c16=13;         { Graphique 320x200 en 16 couleurs }
+ vmGrf320x200c256=19;        { Graphique 320x200 en 256 couleurs }
+ vmGrf320x200c32768=$1325;   { Graphique 320x200 en 32768 couleurs }
+ vmGrf320x200c65536=$1326;   { Graphique 320x200 en 65536 couleurs }
+ vmGrf320x240c256=$135D;     { Graphique 320x240 en 256 couleurs }
+ vmGrf320x400c256=$1327;     { Graphique 320x400 en 256 couleurs }
+ vmGrf320x480c256=$135E;     { Graphique 320x480 en 256 couleurs }
+ vmGrf360x240c256=$135F;     { Graphique 360x240 en 256 couleurs }
+ vmGrf360x360c256=$1360;     { Graphique 360x360 en 256 couleurs }
+ vmGrf360x400c256=$1361;     { Graphique 360x400 en 256 couleurs }
+ vmGrf360x480c256=$1328;     { Graphique 360x480 en 256 couleurs }
+ vmGrf376x308c256=$1362;     { Graphique 376x308 en 256 couleurs }
+ vmGrf376x564c256=$1363;     { Graphique 376x564 en 256 couleurs }
+ vmGrf512x512c16=$1329;      { Graphique 512x512 en 16 couleurs }
+ vmGrf512x512c256=$132A;     { Graphique 512x512 en 256 couleurs }
+ vmMinKrMode640x200=6;       { Mode avec le nombre minimal de couleur en 640x200 pixels }
+ vmMaxKrMode640x200=$132B;   { Mode avec le nombre maximal de couleur en 640x200 pixels }
+ vmGrf640x200c2=6;           { Graphique 640x200 en 2 couleurs }
+ vmGrf640x200c4=10;          { Graphique 640x200 en 4 couleurs }
+ vmGrf640x200c16=14;         { Graphique 640x200 en 16 couleurs }
+ vmMinKrMode640x350=$132C;   { Mode avec le nombre minimal de couleur en 640x350 pixels }
+ vmMaxKrMode640x350=$132D;   { Mode avec le nombre maximal de couleur en 640x350 pixels }
+ vmGrf640x350c2=$132E;       { Graphique 640x350 en 2 couleurs }
+ vmGrf640x350c4=$132F;       { Graphique 640x350 en 4 couleurs }
+ vmGrf640x350c16=$1330;      { Graphique 640x350 en 16 couleurs }
+ vmGrf640x350c256=$1331;     { Graphique 640x350 en 256 couleurs }
+ vmGrf640x350c32768=$1332;   { Graphique 640x350 en 32768 couleurs }
+ vmMinKrMode640x400=$1333;   { Mode avec le nombre minimal de couleur en 640x400 pixels }
+ vmMaxKrMode640x400=$1334;   { Mode avec le nombre maximal de couleur en 640x400 pixels }
+ vmGrf640x400c2=$1335;       { Graphique 640x400 en 2 couleurs }
+ vmGrf640x400c16=$1336;      { Graphique 640x400 en 16 couleurs }
+ vmGrf640x400c256=$1337;     { Graphique 640x400 en 256 couleurs }
+ vmGrf640x400c32768=$1338;   { Graphique 640x400 en 32768 couleurs }
+ vmGrf640x462c16=$1339;      { Graphique 640x462 en 16 couleurs }
+ vmMinKrMode640x480=17;      { Mode avec le nombre minimal de couleur en 640x480 pixels }
+ vmMaxKrMode640x480=$133A;   { Mode avec le nombre maximal de couleur en 640x480 pixels }
+ vmGrf640x480c2=17;          { Graphique 640x480 en 2 couleurs }
+ vmGrf640x480c16=$133B;      { Graphique 640x480 en 16 couleurs }
+ vmGrf640x480c256=$133C;     { Graphique 640x480 en 256 couleurs }
+ vmGrf640x480c32768=$133D;   { Graphique 640x480 en 32768 couleurs }
+ vmGrf640x480c65536=$133E;   { Graphique 640x480 en 65536 couleurs }
+ vmGrf640x480c16M=$133F;     { Graphique 640x480 en 16777216 de couleurs }
+ vmGrf720x350c2=$1340;       { Graphique 720x350 en 2 couleurs }
+ vmGrf720x392c16=$1341;      { Graphique 720x392 en 16 couleurs }
+ vmGrf720x512c16=$1342;      { Graphique 720x512 en 16 couleurs }
+ vmGrf720x512c256=$1343;     { Graphique 720x512 en 256 couleurs }
+ vmGrf720x540c16=$1344;      { Graphique 720x540 en 16 couleurs }
+ vmGrf720x540c256=$1345;     { Graphique 720x540 en 256 couleurs }
+ vmGrf752x410c16=$1346;      { Graphique 752x410 en 16 couleurs }
+ vmGrf768x1024c16=$1347;     { Graphique 768x1024 en 16 couleurs }
+ vmGrf800x560c16=$1348;      { Graphique 800x560 en 16 couleurs }
+ vmMinKrMode800x600=$1349;   { Mode avec le nombre minimal de couleur en 800x600 pixels }
+ vmMaxKrMode800x600=$134A;   { Mode avec le nombre maximal de couleur en 800x600 pixels }
+ vmGrf800x600c2=$134B;       { Graphique 800x600 en 2 couleurs }
+ vmGrf800x600c16=$134C;      { Graphique 800x600 en 16 couleurs }
+ vmGrf800x600c256=$134D;     { Graphique 800x600 en 256 couleurs }
+ vmGrf800x600c32768=$134E;   { Graphique 800x600 en 32768 couleurs }
+ vmGrf800x600c65536=$134F;   { Graphique 800x600 en 65536 couleurs }
+ vmGrf960x720c16=$1350;      { Graphique 960x720 en 16 couleurs }
+ vmMinKrMode1024x768=$1351;  { Mode avec le nombre minimal de couleur en 1024x768 pixels }
+ vmMaxKrMode1024x768=$1352;  { Mode avec le nombre maximal de couleur en 1024x768 pixels }
+ vmGrf1024x768c2=$1353;      { Graphique 1024x768 en 2 couleurs }
+ vmGrf1024x768c4=$1354;      { Graphique 1024x768 en 4 couleurs }
+ vmGrf1024x768c16=$1355;     { Graphique 1024x768 en 16 couleurs }
+ vmGrf1024x768c256=$1356;    { Graphique 1024x768 en 256 couleurs }
+ vmGrf1024x768c32768=$1357;  { Graphique 1024x768 en 32768 couleurs }
+ vmGrf1280x1024c16=$1358;    { Graphique 1280x1024 en 16 couleurs }
+ vmGrf1280x1024c256=$1359;   { Graphique 1280x1024 en 256 couleurs }
+ vmGrf1024x768c65536=$135A;  { Graphique 1024x768 en 65536 couleurs }
+ vmGrf1280x1024c32768=$135B; { Graphique 1280x1024 en 32768 couleurs }
+ vmGrf1280x1024c65536=$135C; { Graphique 1280x1024 en 65536 couleurs }
+ vmTxtDef=$12F0;             { Texte 80x25 en couleur ou monochrome }
+ vmTxtMaxRes80=$12F1;        { Texte avec la rÇsolution maximal en 80 colonnes }
+ vmTxtMaxRes=$12F2;          { Texte avec la rÇsolution maximal }
+ vmNone=$FFFE;               { Pas de mode vidÇo }
+
+  { Constante des couleurs standard et d'attribut de caractäre }
+ Black=0;                    { Noir }
+ Blue=1;                     { Bleu }
+ Green=2;                    { Vert }
+ Cyan=3;                     { Cyan }
+ Red=4;                      { Rouge }
+ Magenta=5;                  { Magenta }
+ Brown=6;                    { Brun }
+ LightGray=7;                { Gris pÉle }
+ DarkGray=8;                 { Gris foncÇ }
+ LightBlue=9;                { Bleu claire }
+ LightGreen=10;              { Vert claire }
+ LightCyan=11;               { Cyan claire }
+ LightRed=12;                { Rouge claire }
+ LightMagenta=13;            { Magenta claire }
+ Yellow=14;                  { Jaune }
+ White=15;                   { Blanc }
+
+  { Constante des modäles de curseur ÆIsabelØ }
+ curTxt=0;                   { Standard Texte }
+ curCoco3=1;                 { Modäle Coco3 du mode texte basse dÇfinition }
+ curCK64=2;                  { Modäle Commodore 64Ko,carrÇ bleu clignotant }
+
+   { NumÇro d'index vidÇo }
+ NmIndVid=23;
+
+  (*****************************)
+  (***** Constante Clavier *****)
+  (*****************************)
+
+  { Les types de contrìleur clavier }
+ ctrlkbNo=$00;               { Pas de contrìleur clavier, je prÇsume que cela arrivera dans le futur... }
+ ctrlkbUnknown=$01;          { Contrìleur clavier inconnu }
+ ctrlkb8048=$02;             { Contrìleur clavier des PC, XT, PC Junior }
+ ctrlkb8042=$03;             { Contrìleur clavier des AT, PS/2 }
+
+  { Les styles de clavier (keyboard) }
+ kbPC=$00;                   { Clavier PC original }
+ kbXT=$01;                   { Clavier XT original }
+ kbAT=$04;                   { Clavier AT de 84 touches }
+ kbConterm=$40;              { Clavier Conterm Max/intÇgrÇ aux boåtier de l'ordinateur }
+ kbMF=$80;                   { Clavier MF de 101/102 touches }
+
+{$I Library\Keyboard\RawConst.Inc}
+{$I Library\ConstKey.Inc}
+
+ (***************************************************)
+ (***** Constante de systäme d'exploitation DOS *****)
+ (***************************************************)
+
+ {>ƒƒƒ≈ƒ CP/M, Dos, OS/2 et Windows 9X, NT, 2000 ƒ≈ƒƒƒ<}
+
+  { Prompt }
+ cpmPromptDef='>';           { Prompt par dÇfaut du CP/M, Dos & OS/2 }
+
+  { Convention des chemins }
+ dosSubDirSep='\';           { SÇparateur des sous-rÇpertoires sous Dos, OS/2 }
+ dosDirSep=';';              { SÇparateur des chemins sous Dos, OS/2 }
+
+ (***********************************)
+ (* Environnement graphique Windows *)
+ (***********************************)
+
+ { Les modes Windows }
+ winNo=$00;                  { Pas de Windows actif }
+ win386X=$01;                { Windows /386 Version 2.X }
+ winReal=$81;                { Windows fonctionne en mode rÇel }
+ winStandard=$82;            { Windows fonctionne en mode standard }
+ winEnhanced=$83;            { Windows fonctionne en mode Çtendu }
+ winNT=$C0;                  { Windows NT }
+
+Type
+ SysFlagsWindows=Set of (
+  wfPMode,            { Windows fonctionnant en mode protÇgÇe }
+  wfCPU286,           { Windows fonctionnant avec un 80286 }
+  wfCPU386,           { Windows fonctionnant avec un 80386 }
+  wfCPU486,           { Windows fonctionnant avec un 80486 }
+  wfWin286,           { Windows fonctionnant en mode standard }
+  wfWin386,           { Windows fonctionnant en mode 386 Çtendu }
+  wfCPU086,           { Windows fonctionnant avec un 8086 }
+  wfCPU186,           { Windows fonctionnant avec un 80186 }
+  wfLargeFrame,
+  wfSmallFrame,
+  wf80x87             { Windows fonctionannt avec un coprocesseur 80x87 }
+ );
+
+Const
+ wfStandard=wfWin286; { Windows fonctionnant en mode standard }
+ wfEnhanced=wfWin386; { Windows fonctionnant en mode 386 Çtendu }
+
+ {$IFDEF Unix}
+  {$I Library\System\Unix\CShellHeader.Inc}
+ {$ENDIF}
+
+ (*******************************)
+ (* Systäme d'exploitation OS/2 *)
+ (*******************************)
+
+  { Relation du processus }
+ prNew=$0001;                { IndÇpendant }
+ prChild=$0002;              { Enfant }
+
+  { PrioritÇ de la session }
+ prForeground=$0000;         { Premier plan }
+ prBackground=$0001;         { Arriäre plan }
+
+  { Modäle de session }
+ stDefault=$0000;            { Par dÇfaut }
+ stOS2FullScrn=$0001;        { OS/2 Plein Çcran }
+ stOS2Window=$0002;          { OS/2 en fenàtre }
+ stPM=$0003;                 { Gestionnaire de prÇsentation d'OS/2 }
+ stDosFullScrn=$0004;        { Dos pleine Çcran }
+ stDosWindow=$0007;          { Dos en fenàtre }
+
+ (*******************************)
+ (***** Constante de Souris *****)
+ (*******************************)
+
+  { Les pilotes souris }
+ msNoMouse=$00;              { Pas de souris }
+ msLogitech=$01;             { Souris Logitech }
+ msMicrosoft=$02;            { Souris Microsoft }
+ msSmooth=$03;               { Souris Smooth de Andy Hakim }
+ msZNIX=$04;                 { Souris Z-NIX }
+ msGenius=$05;               { Souris Genius }
+ msPS2=$06;                  { Souris PS/2 utilisant l'interruption 15h }
+ msCOM=$07;                  { Souris par port sÇrie installÇ manuellement }
+ msStandard=$80;             { Souris standard }
+
+  { Les masques d'Çvenements de la souris }
+ meMsMove=1;                 { DÇplacement de la souris }
+ meLeftButPressed=2;         { Le bouton de gauche enfoncÇ }
+ meLeftButReleased=4;        { Le bouton de gauche relÉchÇ }
+ meRightButPressed=8;        { Le bouton de droite enfoncÇ }
+ meRightButReleased=16;      { Le bouton de droite relÉchÇ }
+ meMiddleButPressed=32;      { Le bouton du centre enfoncÇ }
+ meMiddleButReleased=64;     { Le bouton du centre enfoncÇ }
+ meAll=$7F;                  { Tous changements de la part de la souris (DÇplacement, Bouton,...) }
+
+  { Les types de pointeurs de souris }
+ mpTxtAttr=0;                { Pointeur Souris en inverse d'attribut texte }
+ mpTxtCur=1;                 { Pointeur Souris en utilisant le curseur }
+ mpTxtGrf=2;                 { Pointeur Souris en crÇant artificiellement pointeur graphique en texte }
+ mpGrf=3;                    { Pointeur Souris Graphique }
+
+  (***************)
+  (***** Son *****)
+  (***************)
+
+ PCSpeakerPort=$0061; { Port utilisÇ pour l'haut-parleur systäme }
+
+  { Sortie de son (Sound Output) }
+ soLPT1=$01;                 { Port Paralläle 1 }
+ soLPT2=$02;                 { Port Paralläle 2 }
+ soSoundBlaster=$03;         { SoundBlaster }
+ soPCSpeaker=$04;            { PC Speaker }
+ soStereoLPT1N2=$05;         { StÇrÇo par le Port Paralläle 1 et 2 }
+ soSoundBlasterPro=$06;      { SoundBlaster Pro }
+ soStereoLPT1=$07;           { StÇrÇo par le port paralläle 1 }
+ soStereoLPT2=$08;           { StÇrÇo par le port paralläle 2 }
+ soLPT3=$09;                 { Port Paralläle 3 }
+ soMonoLPT1N2=$0A;           { Mono par le port paralläle 1 et 2 }
+ soMonoUserDef=$0B;          { Mono dÇfinie par l'utilisateur }
+ soStereoUserDef=$0C;        { StÇrÇo dÇfinie par l'utilisateur }
+ soDisneySoundLPT1=$0D;      { Disney-Sound par le port paralläle 1 }
+ soDisneySoundLPT2=$0E;      { Disney-Sound par le port paralläle 2 }
+ soDisneySoundLPT3=$0F;      { Disney-Sound par le port paralläle 3 }
+ soQuadOn1LPT=$10;           { Quadrophonique par le port paralläle 1 }
+ soAdLib=$11;                { AdLib }
+ soGravisUltraSound=$12;     { Gravis Ultra Sound }
+ soRolandMPU401=$13;         { Roland MPU 401 }
+ soTandyDigital=$14;         { Tandy Digital }
+ soNul=$FF;                  { Pas de sortie }
+
+  { Constante de la carte AdLib }
+ AdLibGTMin=0;
+ AdLibGTMax=10;
+
+  {Erreur de son}
+ feNoError=0;
+ feNotARiff=1;
+ feNotAWave=2;
+ feNotAnFMT=3;
+ feErrorInData=4;
+ feFileNotFound=5;
+ feInvalidHeader=6;
+
+ (*************************)
+ (***** Communication *****)
+ (*************************)
+
+  { Contrìle ASCII }
+ caNUL=$00;                  { Ctrl+@: Nul (Null) }
+ caSOH=$01;                  { Ctrl+A: DÇbut de l'entàte (Start Of Heading) }
+ caSTX=$02;                  { Ctrl+B: DÇbut du texte (Start of TeXt) }
+ caETX=$03;                  { Ctrl+C: Arràte le processus en cours (End of TeXt, Break) }
+ caEOT=$04;                  { Ctrl+D: Fin de transmission (End of Transmission) }
+ caENQ=$05;                  { Ctrl+E: (Enquiry) }
+ caACK=$06;                  { Ctrl+F: (Acknowledgement) }
+ caBELL=$07;                 { Ctrl+G: Bip sonore (Bell/Beep) }
+ caBS=$08;                   { Ctrl+H: Recule et efface le caractäre (BackSpace) }
+ caHT=$09;                   { Ctrl+I: Tabulation horizontal (Horizontal Tabulation) }
+ caLF=$0A;                   { Ctrl+J: DÇplacement vers le bas (Line Feed) }
+ caVT=$0B;                   { Ctrl+K: Tabulation vertical (Vertical Tabulation) }
+ caFF=$0C;                   { Ctrl+L: Efface l'Çcran (Form Feed) }
+ caCR=$0D;                   { Ctrl+M: Retour de chariot (Carriage Return) }
+ caSO=$0E;                   { Ctrl+N: (Shift Out, Echo off) }
+ caSI=$0F;                   { Ctrl+O: (Shift In) }
+ caDLE=$10;                  { Ctrl+P: (Data Link Escape, Echo on) }
+ caXON=$11;                  { Ctrl+Q: Device Control 1 (DC1/X-ON) }
+ caDC2=$12;                  { Ctrl+R: (Device Control 2) }
+ caXOFF=$13;                 { Ctrl+S: Device Conreol 3 (DC1/X-OFF/Pause) }
+ caDC4=$14;                  { Ctrl+T: (Device Control 4) }
+ caNAK=$15;                  { Ctrl+U: (Negative acknownledge) }
+ caSYN=$16;                  { Ctrl+V: (Synchronous idle) }
+ caETB=$17;                  { Ctrl+W: (End of Transmission Block) }
+ caCAN=$18;                  { Ctrl+X: Efface la ligne courant (Cancel) }
+ caEM=$19;                   { Ctrl+Y: (End of Medium) }
+ caSUB=$1A;                  { Ctrl+Z: (Substitute) }
+ caESC=$1B;                  { Ctrl+[: Echappatoire (Escape) }
+ caFS=$1C;                   { Ctrl+\: (File Separator) }
+ caGS=$1D;                   { Ctrl+]: (Groupe Separator) }
+ caRS=$1E;                   { Ctrl+^: (Record Separator) }
+ caUS=$1F;                   { Ctrl+_: (Unit Separator) }
+ caSP=$20;                   { ' ': Espace (Space) }
+ caDEL=$7F;                  { '': Efface (Delete) }
+ caFFh=$FF;                  { ASCII FFh }
+
+  { Caractäre de contrìle }
+ ccNul=^@;                   { Ctrl+@: #0 }
+ ccXon=^Q;                   { Ctrl+Q: #17 }
+ ccXoff=^S;                  { Ctrl+S: #19 }
+ ccEsc=^[;                   { Ctrl+[: #27: Esc }
+ ccStdLn=#13#10;             { Retour de ligne standard }
+
+  { Uart de communication synchronisÇ  }
+ uaTHR=$00;                  { Transmission de donnÇe (Transmit Data),accäs en Çcriture }
+ uaRBR=$00;                  { RÇception de donnÇe ("Receive By Read"Receive Data), accäs en lecture }
+ uaIER=$01;                  { Interruption active (Interrupt Enable) }
+ uaIIR=$02;                  { Identification d'Interruption (Interrupt Identification) }
+ uaLCR=$03;                  { Contrìle de la ligne (Line Control) }
+ uaMCR=$04;                  { Contrìle Modem (Modem Control) }
+ uaLSR=$05;                  { êtat de la ligne tÇlÇphonique (Line Status) }
+ uaMSR=$06;                  { êtat du Modem (Modem Status) }
+ uaCTS=$10;
+ uaRTS=$20;
+ uaDSR=$20;
+ uaDTR=$10;
+ uaRTSDTR=$30;
+ I8088IMR=$21;
+ MaxComPorts=8;
+ TimeOut=256;
+
+  { Protocol de communication Modem }
+ trsNone=0;                  { Aucun, inconnu }
+ trsAscii=1;                 { ASCII }
+ trsXmodemChk=2;             { XModem-Check }
+ trsXmodemCRC=3;             { XModem-CRC }
+ trsKermit=4;                { Kermit }
+ trsTelink=5;                { Telink }
+ trsModem7Chk=6;             { Modem 7-Check }
+ trsModem7CRC=7;             { Modem 7-CRC }
+ trsXmodem1K=8;              { XModem-1K }
+ trsXmodem1KG=9;             { XModem-1KG }
+ trsYmodemBatch=10;          { YModem-Batch }
+ trsYmodemG=11;              { YModem-G }
+ trsZModem=12;               { ZModem }
+ trsExtern1=13;              { Sortie supplÇmentaire 1 (utilisateur) }
+ trsExtern2=14;              { Sortie supplÇmentaire 2 (utilisateur) }
+ trsExtern3=15;              { Sortie supplÇmentaire 3 (utilisateur) }
+ trsExtern4=16;              { Sortie supplÇmentaire 4 (utilisateur) }
+ trsMax=16;                  { NumÇro du dernier protocol }
+
+  { Modäle de terminal }
+ teUnknown=0;                { Mode inconnue }
+ teADM3a=1;                  { Mode ADM 3a }
+ teADM5=2;                   { Mode ADM 5 }
+ teANSI=3;                   { Mode ANSI }
+ teDumb=4;                   { Mode Dumb }
+ teGossipMode=5;             { Mode Gossip }
+ teHostMode=6;               { Mode Host }
+ teTektronix401=7;           { Mode Tektronix 401 }
+ teTV925=8;                  { Mode TV925 }
+ teVT52=9;                   { Mode VT52 }
+ teVT100=10;                 { Mode VT100 }
+
+  {Commande modem par dÇfaut}
+ cmDefModemInit='AT S0=0 Q0 E1 X4|~~~AT&C1|~';
+ cmDefModemDial='ATDT';
+ cmDefModemAnswer='ATA|';
+ cmDefModemHostSet='ATZ|~ATX1|~ATS0=1|';
+ cmDefModemHostUnSet='ATZ|~ATX1|~ATS0=0|';
+
+  { ÆHandleØ PrÇdÇfinit }
+ hdlKBD=0;                   { Clavier }
+ hdlCON=1;                   { CON de Sortie }
+ hdlSCR=1;                   { êcran }
+ hdlERR=2;                   { Sortie de message d'erreur }
+ hdlAUX=3;                   { Interface sÇrielle }
+ hdlPRN=4;                   { Imprimante standard }
+ hdlClipBoard={$IFDEF __Windows__}$FE00{$ELSE}$FE{$ENDIF};
+ hdlNUL={$IFDEF __Windows__}$FFFF{$ELSE}$FF{$ENDIF}; { PÇriphÇrique fictive }
+
+  { Attribut de fichier Dos }
+ fa=$FFE7;                   { Attribut de tous fichier, sauf rÇpertoire et volume. }
+ faReadOnly=1;               { Lecture seulement }
+ faHidden=2;                 { CachÇ }
+ faSysFile=4;                { Systäme }
+ faVolumeID=8;               { Volume }
+ faDir=$10;                  { RÇpertoire }
+ faArchive=$20;              { Archive }
+ faAnyFile=$3F;              { N'importe qu'elle fichier }
+ faAll=$FFF7;                { Tous les fichiers sans exception }
+
+  { Mode fichier d'accäs d'un fichier }
+ fmRead=0;                   { Lecture seulement }
+ fmWrite=1;                  { Ecriture seulement }
+ fmDef=2;                    { Lecture et Çcriture }
+
+  { Positionnement dans Æ_SetFilePosØ }
+ fpStart=0;                  { Position du pointeur Ö partir du dÇbut du fichier }
+ fpCur=1;                    { Position du pointeur Ö partir de l'emplacement actuel du fichier }
+ fpEnd=2;                    { Position du pointeur Ö partir de la fin du fichier }
+
+ (*****************************************)
+ (**** Constante de Service d'Urgence *****)
+ (*****************************************)
+
+  { Constante des erreurs du Dos. }
+ errFuncNotFound=1;          { Fonction inexistante }
+ errFileNotFound=2;          { Fichier introuvable }
+ errPathNotFound=3;          { RÇpertoire introuvable }
+ errTooManyFileOpen=4;       { Trop de fichier ouvert }
+ errAccessDenied=5;          { Accäs refusÇ }
+ errHandleNotFound=6;        { ÆHandleØ introuvable }
+ errMCBDestroyed=7;          { ÆMCBØ dÇtruit }
+ errOutOfMem=8;              { Manque de mÇmoire }
+ errBadAddr=9;               { Adresse invalide }
+ errBadEnv=10;               { Environnement invalide }
+ errBadAccessCode=11;        { Code d'accäs invalide }
+ errData=12;                 { Erreur de donnÇe }
+ errDskNotFound=15;          { UnitÇ inexistante }
+ errDelMainPath=16;          { Tentative d'effacer le rÇpertoire principal }
+ errIncompDev=17;            { Device incompatible }
+ errTooManyHandle=18;        { Trop de Handle }
+ errDskWriteProtect=19;      { Disque protÇgÇ en Çcriture }
+ errBadDev=20;               { Device invalide }
+ errDeviceNotReady=21;       { Device pas pràte }
+ errUnknownCode=22;          { Instruction inconnue }
+ errCRC=23;                  { Erreur CRC }
+ errLenData=24;              { Erreur de longueur de donnÇe }
+ errNotFind=25;              { Introuvable }
+ errUnknownDev=26;           { Device inconnue }
+ errSectorNotFound=27;       { Secteur introuvable }
+ errOOP=28;                  { Erreur de manque de papier }
+ errWrite=29;                { Erreur d'Çcriture }
+ errRead=30;                 { Erreur de lecture }
+ errGeneral=31;              { Erreur gÇnÇrale }
+ errChgDsk=34;               { Changement de disque interdit }
+ errOutOfFCB=35;             { Manque de FCB }
+ errFileExist=80;            { Fichier dÇjÖ existant }
+ errMakeDir=82;              { Erreur de crÇation de rÇpertoire }
+ errBrkInt24h=83;            { Arràt par l'Interruption 24h }
+ { Erreur Isabel }
+  errMakeFile=$00FE;          { Erreur de crÇation de fichier (Make file error) }
+ errEOF=$00FF;               { Fin de fichier dÇjÖ atteint (End of File) }
+ errUser=$0100;              { Arràt de l'usager }
+ errInternRLL=$0101;         { Erreur interne RLL }
+ errOOM=$0102;               { Manque de mÇmoire (Out of Memory) }
+ errFlowFreeHeap=$0103;      { LibÇration interdite de mÇmoire en zone infÇrieur du tas }
+ errHeapAlloc=$0104;         { Erreur d'allocation dans la libÇration du tas }
+ errPrinterNotReady=$120;    { Imprimante: L'imprimante n'est pas pràte! }
+ errFreeHiMem=$0121;         { MÇmoire Çtendue: Tentative de libÇration d'une mÇmoire non existante }
+ errReadHiMem=$0122;         { MÇmoire Çtendue: Tentative de lecture dans une mÇmoire non existante }
+ errWriteHiMem=$0123;        { MÇmoire Çtendue: Tentative d'Çcriture dans une mÇmoire non existante }
+ errPtrWriteHiMem=$0124;     { MÇmoire Çtendue: Tentative de dÇplacement du pointeur }
+           { de tas dans une mÇmoire non existante }
+ errPtrReadHiMem=$0125;      { MÇmoire Çtendue: Tentative de lecture du pointeur de }
+                 { tas dans une mÇmoire non existante }
+ errOnlyWriHiMem=$0126;      { MÇmoire Çtendue: Tentative de lecture dans une zone de mÇmoire en Çcriture }
+ errHandleHiMem=$0127;       { MÇmoire Çtendue: Tentative d'utilisation d'un Handle inexistent }
+ errOnlyReadHiMem=$0128;     { MÇmoire Çtendue: Tentative d'Çcriture dans une zone de mÇmoire en lecture }
+ errVidAllocCur=$0131;       { VidÇo: Impossible de crÇer un tampon pour le curseur }
+ errVidAllocFunc=$0132;      { VidÇo: Impossible de charger les fonctions en mÇmoire }
+ errVidNotInit=$0133;        { VidÇo: Systäme vidÇo non initialisÇ }
+ errFPNotFound=$0134;        { VidÇo: Fichier de palette introuvable }
+ errMtxOutOfMem=$0135;       { VidÇo: Impossible de charger la police en mÇmoire }
+ errGrfRequered=$0136;       { VidÇo: Mode graphique requis }
+ errWinPushGraf=$0141;       { Window: Impossible d'effectuer un PushWn en mode graphique Ö cause d'une manque de mÇmoire }
+ errWinPushText=$0142;       { Window: Impossible d'effectuer un PushWn en mode texte }
+                             { Ö cause d'une manque de mÇmoire}
+ errSN=$0151;                { Traitement de donnÇe: Erreur de syntaxe (Syntax Error) }
+ errFC=$0154;                { Traitement de donnÇe: Appel de fonction interdite }
+ errDiv0=$015A;              { Traitement de donnÇe: Division par 0 }
+ errTM=$015C;                { Traitement de donnÇe: Type de donnÇe incompatible }
+ errDN=$0163;                { Traitement de donnÇe: Erreur de numÇro de dispositif }
+ errUnknownParameter=$169;   { Traåtement de donnÇe: Paramätre inconnue }
+ errPassWord=$170;           { Mot de passe invalide }
+ errEdtOpen=$0171;           { Editeur: Fichier introuvable/impossible d'ouvrir le fichier texte }
+ errEdtFileSize=$0172;       { Editeur: Erreur de lecture de la taille du fichier }
+ errEdtRead=$0173;           { Editeur: Erreur de lecture du fichier texte }
+ errEdtFileTooBig=$0174;     { Editeur: Fichier trop gros pour àtre chargÇ en mÇmoire }
+ errLog=$0175;               { Erreur d'Çcriture du Journal de Bord }
+ errEdtTooLowTri=$0176;      { Editeur: Nombre de ligne insuffisant pour effectuer un tri }
+ errPageNumInvalid=$0177;    { Editeur: NumÇro de page invalide }
+ errPageNumNotFound=$0178;   { Editeur: NumÇro de page inexistant }
+ errSwapData=$0179;          { Editeur: Erreur dans l'Çchange d'information }
+ errHorizontalLimit=$017A;   { Editeur: Marge gauche et droite non dÇfini }
+ errPMFunctionalityDisabled=$0301;               { APM: Fonction dÇsactivÇ }
+ errRMInterfaceAlreadyEstablished=$0302;         { APM: Interface dÇjÖ dans le processus }
+ errInterfaceNotConnected=$303;                  { APM: Interface dÇconnectÇ}
+ err16bitPMmodeInterfaceAlewadyEstablished=$0305;{ APM: Mode 16-bits d'interface dÇjÖ Çtablie}
+ errUnrecognisedDeviceID=$0309;                  { APM: Identificateur non reconnu}
+ errUnable2EnterRequestedState=$0360;            { APM: Incapable d'entrÇe dans la requàte demandÇ}
+ errProblemMode=$03FF;          { Probläme avec ce mode }
+ errTooManyOpenFile=$0FFA;      { Trop de fichier ouvert simultanÇment }
+ errFileOrDirAlreadyDelete=$0FFB;{Fichier ou rÇpertoire dÇjÖ effacÇ }
+ errCantMountVolume=$0FFC;      { Impossible de monter le volume }
+ errCantModifiedEntryAttr=$0FFD;{ Impossible de modifier l'attribut de cette entrÇe }
+ errCantModifiedFileAttr=$0FFE; { Impossible de modifier l'attribut du fichier }
+ errInvalidCopyTargetFile=$0FFF;{ Destination de copie invalide }
+ errErrorRenameFile=$1000;      { Impossible de renommer le nom de votre fichier }
+ errErrorRenameVolume=$1001;    { Impossible de renommer le volume }
+ errSourcePrinterNotFound=$1002;{ Source Ö imprimer non dÇfinit }
+ errCountryInfoNotFound=$1003;  { Information sur le pays non disponible }
+ errCanChangedCountry=$1004;    { Impossible de changer de pays! Seul l''application sera affectÇ. }
+ errOutOfResource=$1005;        { Manque de ressource }
+ errSetKeyboard=$1101;          { Probläme d''ajustement du contrìleur clavier }
+ errCmosNotFound=$1181;         { Cette machine ne dispose pas de mÇmoire sur pile ÆCMOSØ }
+ errHardwareIncompatible=$1200; { Impossible d''effectuer cette opÇration avec votre matÇriel }
+ errSoundBlasterRequered=$1201; { DÇsolÇ! Une carte de son Sound Blaster minimum est rÇclamÇ }
+ errSoundCardRequered=$1202;    { Vous n'avez pas de carte de son installÇ,
+                                  seulement votre haut-parleur de base mono de votre PC }
+ errImgPtrMouseTooBig=$1301;    { Image du pointeur de souris trop gros }
+ errMouseNotFound=$1302;        { Aucune souris dÇtectÇ }
+ errDiskWriteProtect=$1401;     { Disquette protÇgÇe contre l''Çcriture }
+ errTrack=$1402;                { Erreur de piste }
+ errFormat=$1403;               { Une erreur a interrompu le formatage }
+ errFormatIncompatible=$1404;   { Le format demandÇ ne peut àtre utilisÇ sur ce lecteur }
+ errInvalidUnitDisk=$1405;      { Cette unitÇ n'est pas une unitÇ de disquette }
+ errParkHardDisk=$1406;         { DÇsolÇ! Impossible de stationner votre/vos disque(s) dur }
+ errHardDiskNotFound=$1407;     { Disque dur introuvable! }
+ errReadBootSector=$1408;       { Erreur de lecteur en voulant accÇder au secteur de dÇmarrage }
+ errCanOpenFile=$1409;          { Impossible d'ouvrir le fichier }
+ errVESANotFound=$1500;         { DÇsolÇ votre carte vidÇo ne supporte pas le standard VESA }
+ errVideoModeNotSupport=$1501;  { Mode vidÇo non supportÇe }
+ errNoVideoModeFit=$1502;       { Aucun mode vidÇo ne permet l''affichage dÇsirez }
+ errScrnTooSmallForApp=$1503;   { Taille de l'Çcran insuffisante pour l'application demandÇ }
+ errGraphicModeRequired=$1504;  { Mode graphique requis }
+ errImageLineTooBig=$1505;      { Ligne d'image trop grande}
+ errCopyImageEmpty=$1506;       { Image Ö copier vide }
+ errCyrixCPURequired=$1601;     { Cette option est seulement disponible avec les microprocesseurs Cyrix }
+
+ errOverRun=2;               { AC: Fin de parcours}
+ errParity=4;                { AC: ParitÇ}
+ errFraming=8;               { AC: "Framing" }
+ errBrkFound=16;             { AC: Point d'arràt}
+ errGetRec=$3F00;            { ÆHandleØ invalide pour la lecture de l'enregistrement}
+ errHdl={$IFDEF __Windows__}$FFFF{$ELSE}$FF{$ENDIF};{Handle: Erreur handle}
+
+{{$I Library\System\Coco3\Error.Inc}
+
+  { Constante de manipulation des donnÇes du contrìleur CMOS }
+ CmosTimeBinary=0;           { Format de la date en format Binaire }
+ CmosTimeBCD=1;              { Format de la date en format BCD }
+
+  { Constante Dos }
+ PosAbs=0;                   { Fixe la position Ö partir du dÇbut }
+ PosCur=1;                   { Fixe la position Ö partir de la position courante }
+ PosEnd=2;                   { Fixe la position Ö partir de la fin }
+
+  { Handle }
+ SeekStart=0;
+ SeekCur=1;
+ SeekEnd=2;
+ TimeGet=0;
+ TimeSet=1;
+
+  { Constante EMS }
+ EmsSzPgDef=16384;           { Taille d'une page EMS par dÇfaut }
+
+  { Constante du ÆRemovableBufferØ }
+ rbMax=$FFFF;
+
+ (********************************)
+ (***** Constante de fichier *****)
+ (********************************)
+
+{$I Library\Compiler\Assemble.ur\Object.Inc}
+
+ (************************************)
+ (***** Constante de compilateur *****)
+ (************************************)
+
+ IncludeFile=100;
+  {Compilateur: Constante de message d'erreur}
+ PointCommaExpected=10001;      { ';' attendu }
+ SemicolonExpected=PointCommaExpected;
+ OpenEnsExpected=10002;         (* '{' attendu *)
+ CloseEnsExpected=10003;        (* '}' attendu *)
+ OpenArrayExpected=10004;       { '[' attendu }
+ CloseArrayExpected=10005;      { ']' attendu }
+ OpenParExpected=10006;         { '(' attendu }
+ CloseParExpected=10007;        { ')' attendu }
+ AsterixExpected=10008;         { '*' attendu }
+ NumExpected=10009;             { Nombre attendu }
+ GrExpected=10010;              { '>' attendu }
+ GuillExpected=10011;           { '"' attendu }
+ CommaExpected=10012;           { '.' attendu }
+ EnumExpected=10013;            { ênumÇration attendu }
+ NumberOfArrayExpected=10014;   { Nombre de l'instruction ÆARRAYØ attendu }
+ EndOfFunctionExpected=10015;   { Fin de fonction attendu }
+ EndOfSourceExpected=10016;     { Fin de source attendu }
+ EndOfStringExpected=10017;     { Fin de chaåne de caractäres attendu }
+ EndOfCommentExpected=10018;    { Fin de commentaire attendu }
+ EndOfCommandExpected=10019;    { Fin de commande attendu }
+ EndOfArgumentExpected=10020;   { Fin d'argument attendu }
+ TypeVarExpected=10021;         { Type de variable attendu }
+ VarNameExpected=10022;         { Nom de variable attendu }
+ DirectiveCommandExpected=10023;{ Directive attendu }
+ TypedefNameExpected=10024;     { Nom de l'instruction ÆtypedefØ attendu }
+ IncludeFileNameExpected=10025; { Nom de l'inclusion de fichier attendu }
+ IfDirectNameExpected=10026;    { Nom de la directive conditionnel ÆIFØ attendu }
+ IfDefDirectNameExpected=10027; { Nom de la directive conditionnel ÆIFDEFØ atetndu }
+ IfNDefDirectNameExpected=10028;{ Nom de la directive conditionnel ÆIFNDEFØ atetndu }
+ WhileExpected=10029;           { Instruction ÆWHILEØ attendu }
+ BeginExpected=10030;           { Instruction ÆBEGINØ attendu }
+ NameExpected=10031;            { Nom attendu }
+ ValueExpected=10032;           { Valeur attendu }
+ TypeExpected=10033;            { Type attendu }
+ OfExpected=10034;              { Instruction ÆOFØ attendu }
+ LabelExpected=10035;           { êtiquette attendu }
+ NamePrgExpected=10036;         { Nom de programme attendu }
+ UnitNameExpected=10037;        { Nom d'unitÇ attendu }
+ ConstNameExpected=10038;       { Nom de constante attendu }
+ EndExpected=10039;             { Instruction ÆENDØ attendu }
+ ColonExpected=10040;           { Æ:Ø attendu }
+ EqualExpected=10041;           { Æ=Ø attendu }
+ CFExpected=10042;              { Æ_CFØ attendu...}
+ IdentifierExpected=10043;      { Identificateur attendu }
+ LowerExpected=10044;           { Æ<Ø attendu }
+ PlusExpected=10045;            { Æ+Ø attendu }
+ MinusExpected=10046;           { Æ-Ø attendu }
+ VirguleExpected=10047;         { Æ,Ø attendu }
+ ThenExpected=10048;            { ÆTHENØ attendu}
+ DuplExpression=10049;          { Duplication d'expression }
+ EnumDupl=10050;                { Duplication d'ÇnumÇration }
+ VarStructDupl=10051;           { Variable de la structure dupliquÇ }
+ DuplDefUnit=10052;             { Duplication de dÇfinition d'unitÇ }
+ VarDupl=10053;                 { Variable dupliquÇ }
+ AsExpected=10054;              { Instruction ÆASØ attendu }
+ ToExpected=10055;              { ÆTOØ attendu}
+ BreakPressed=10056;            { Ctrl+Break enfoncÇ }
+ VarNotFound=10057;             { Variable introuvable! }
+ NextWithoutFor=10058;          { ÆNEXTØ sans ÆFORØ }
+ DieseExpected=10059;           { Æ#Ø attendu }
+ InvalidFunctionCall=10060;     { Appel de fonction invalide }
+ DollarExpected=10061;          { Æ$Ø attendu}
+ TooManyGosub=10062;            { Trop de 'GOSUB' }
+ ReturnWithoutGosub=10063;      { Instruction 'RETURN' sans instruction 'GOSUB'}
+ WhileWithoutWend=10064;        { Instruction 'WHILE' sans instruction 'WEND'}
+ MisplacedWend=10065;           { ÆWENDØ mal placÇ}
+ ImageTooBig=10066;             { Image trop grosse }
+ LabelDupl=10067;               { Duplication d'Çtiquette!!! }
+ ConstDupl=10068;               { Constante dupliquÇ }
+ InvalidNumber=10069;           { Nombre invalide }
+ UsePascalReservedWordForVar=10070;{Utilise un mot rÇservÇ PASCAL comme variable }
+ ITEMExpected=10071;            { Identificateur 'ITEM' attendu! }
+ TrueExpected=10072;            { 'TRUE' attendu! }
+ ExternCallExpected=10073;      { Appel externe attendu! }
+ ValidIdentificatorExpected=10074;{ Identificateur valide attendu! }
+ NumberExpected=10075;          { Nombre attendu }
+ NumberArabicExpected=10076;    { Nombre entre 1 et 9 attendu }
+ EnumEmpty=10080;               { ênumÇration vide }
+ StructEmpty=10081;             { Structure vide }
+ TooManyPathInHeader=10096;     { Trop de rÇpertoire dans l'entàte }
+ TooManyWarning=10097;          { Trop de message d'attention }
+ UnknownIdentifier=10098;       { Identificateur inconnue }
+ UnknownType=10099;             { Type inconnu }
+ SyntaxError=10100;             { Erreur de syntaxe }
+ SyntaxNumber=10101;            { Erreur de nombre }
+ SyntaxErrorRec=10102;          { Erreur de syntaxe d'un enregistrement }
+ MisplacedProgram=10124;        { ÆPROGRAMØ mal placÇ }
+ MisplacedNext=10125;           { ÆNEXTØ mal placÇ }
+ MisplacedElse=10126;           { ÆELSEØ mal placÇ }
+ MisplacedBeginSymbol=10127;    { ÆBEGINØ mal placÇ }
+ MisplacedCondDirective=10128;  { Directive conditionnel mal placÇ }
+ MisplacedEndSymbol=10129;      { Fin de symbole mal placÇ }
+ MisplacedPointComma=10130;     { ';' mal placÇ }
+ MisplacedUnit=10131;           { ÆUNITØ mal placÇ }
+ MisplacedUses=10132;           { ÆUSESØ mal placÇ }
+ MisplacedInterface=10133;      { ÆINTERFACEØ mal placÇ }
+ MisplacedImplementation=10134; { ÆIMPLEMENTATIONØ mal placÇ }
+ MisplacedInitialization=10135; { ÆINITIALIZATIONØ mal placÇ }
+ MisplacedFinalization=10136;   { ÆFINALIZATIONØ mal placÇ }
+ TooManyBoucle=10139;           { Trop de boucle }
+ TooBigNumber=10140;            { Nombre trop grand }
+ TypeMistmatch=10141;           { Type incompatible }
+ OpCode186=10150 ;              { Instruction pour 80186 }
+ OpCode286=10151;               { Instruction pour 80286 }
+ OpCode287=10152;               { Instruction coprocesseur mathÇmatique 80287 }
+ OpCode386=10153;               { Instruction pour 80386 }
+ OpCode387=10154;               { Instruction coprocesseur mathÇmatique 80387 }
+ OverloadIndex=10180;           { DÇpassement d'index! }
+ UnitNotFound=10198;            { UnitÇ introuvable! }
+ FileNotOpen=10199;             { Fichier non ouvert }
+ FileNotFound=10200;            { Fichier introuvable }
+ CannotCreateFile=10201;        { Impossible de crÇer le fichier }
+ FileReadError=10202;           { Erreur de lecture du fichier }
+ OutOfMemory=10254;             { Manque de mÇmoire }
+ InternalError=10255;           { Erreur interne }
+ ErrorParamInternal=10256;      { Erreur de paramätre interne }
+ ResFileNoSpecified=10401;      { Fichier ressource non spÇcifiÇ }
+  {Erreur SQL et de donnÇes }
+ SQLError=10701;                { Erreur de traitement SQL }
+ TooBigDBaseFile=10702;         { Base de donnÇes trop grande }
+ errOutOfData=10703;            { BASIC: Manque de ÆDATAØ }
+ errFromExpected=10704;         { ÆFROMØ attendu }
+ errTableNameExpected=10705;    { Nom de la table attendu }
+ errUnknownCommand=10706;       { Commande non reconnue }
+  {Erreur de format}
+ NoTagMP3=15001;                { Aucun renseignement sur le MP3 }
+ ErrorPrnFile=15002;            { Erreur d'impression dans un fichier }
+ FontNotFound=15003;            { Police de caractäres introuvable }
+ ErrStructFile=15004;           { Erreur de structure de fichier }
+ ErrCorruptFile=15005;          { Fichier corrompu }
+ ErrInvalidFileHeader=15006;    { Entàte de fichier invalide }
+ ErrInvalidFileData=15007;      { DonnÇes du fichier invalide }
+ ErrNoSamplesInSoundFile=15008; { Pas de "Samples" dans le fichier sonore }
+ NothingFontFound=15009;        { Aucune police de caractäres n'a ÇtÇ trouvÇ }
+ errUnknownCompress=15010;      { Technique de compression inconnue }
+  {Erreur interface }
+ ErrReadDesktop=20001;          { Erreur de lecture du Bureau }
+ CanEditDesktop=20002;          { Impossible d''Çditer le bureau }
+ LogNotFound=20003;             { Journal de bord introuvable }
+ ErrorPasteBeforeCopy=20004;    { ÆPasseØ avant un ÆCopieØ }
+ CopyIncompatible=20005;        { ÆCopieØ incompatible }
+ NoFileSelectFound=20006;       { Aucun fichier correspondant trouvÇ }
+ CantCreateDesktop=20007;       { Impossible de crÇer un fichier de bureau }
+ FunctionOutContext=20008;      { FonctionnalitÇ non disponible dans ce contexte }
+ InvalidConfirmPassword=20009;  { Confirmation invalide! Veuillez retaper le mot de passe car ils ne sont pas identitique}
+ NumCopyPrinterInvalid=20010;   { Nombre de copie d'impression invalide }
+ CantRenameDir=20011;           { Impossible de renommer votre nom de rÇpertoire }
+ ErrNoWindowOpen=20012;         { Vous n'avez pas de fenàtre ouverte }
+ ErrAppModeleNotFound=20013;    { Modäle d'application introuvable }
+ ErrSearchBad=20014;            { Recherche infructueuse }
+ ErrInvalidCommand=20015;       { Commande invalide }
+ ErrStringNotFound=20016;       { Chaåne de caractäres introuvable }
+ ErrProcedureNotFound=20017;    { ProcÇdure introuvable }
+ ErrClipboardTooBig=20101;      { Taille du presse-papier trop gros }
+ ErrCannotOpenClipboard=20102;  { Impossible d''ouvrir le Presse-Papier }
+ ErrClipboardWindows=20103;     { Le Presse-Papier n'est pas disponible.
+                                  ExÇcuter cette fonction Ö l'intÇrieur d'une session Windows-DOS }
+ ErrSecVideoNotFound=20104;     { Systäme vidÇo secondaire inexistant! Impossible d'effectuer une analyse }
+  { Erreur d'installation d'interface }
+ WriteErrAutoExec=21001;        { Probläme d'enregistrement de l'AUTOEXEC.BAT }
+ ReadErrAutoExec=21002;         { Probläme de lecture de l''ÆAUTOEXEC.BATØ OpÇration de modification abandonner }
+ errNotFoundInDistribution=21003;{Non disponible dans cette distribution }
+  {Appel d'application externe }
+ errCompilerNotFound=22001;     { Compilateur associÇe introuvable }
+ errLinkerNotFound=22002;       { Programme de liaison introuvable }
+ errWorkerNotFound=22003;       { Programme de traitement introuvable }
+ errLinkerOutput=22004;         { Erreur de sortie de liaison }
+ errCompilerOutput=22005;       { Erreur de sortie du compilateur }
+ errConversNotFound=22006;      { Conversion associÇe introuvable }
+  {Erreur application}
+ TooManyPhoneNumber=31001;      { Agenda: Trop de numÇro de tÇlÇphone }
+ TooManyPerson=31002;           { Agenda: Plus de place pour une nouvelle personne dans l'agenda }
+ TooManyPersonInDB=31003;       { Agenda: Plus de place pour une nouvelle personne dans la base de donnÇes }
+ PersonNotFound=31004;          { Agenda: Personne introuvable }
+ errPaletteNotSupported=31101;  { Dessin: Palette non-supportÇe }
+ errPointOutOfLimit=31102;      { Dessin: Point en dehors des limites permises }
+ errOnlyOnePage=31201;          { Editeur Icìne: Demande incohÇrente. Une seule page existe }
+ errImageNotFoundUnreadable=31301;{Editeur: Image introuvable ou incomprÇhensible}
+ errWriteCDTitle=31501;         { CD: Impossible d''enregistrer le titre }
+
+  { Compilateur: Constante de message d'attention }
+ SkipDefineFar=-1;              { DÇfinition ÆFARØ sans effet }
+ SkipDefineSizeOf=-2;           { DÇfinition ÆSizeOfØ sans effet }
+ DuplicateDefineSymbol=-3;      { Duplication de symbole de dÇfinition }
+ WrongValueInDefineDirective=-4;{ Mauvaise valeur dans la ÆDEFINEØ conditionnel }
+
+ (******************************************)
+ (***** Constante de l'Ensemble Isabel *****)
+ (******************************************)
+
+  { Modäle de dÇpart }
+ suIsabel=$0;                   { Mode standard Isabel }
+ suFast=$1;                     { Mode rapide en utilisant les procÇdures existente dans l'unitÇ Chantal }
+ suSecure=$E0;                  { Mode sÇcuritaire }
+ suNoInt=$F0;                   { Pas d'installation d'interruption }
+
+Type
+  { Drapeau conditionnel de vÇrification autorisÇ }
+ StartUpFlags=Set of (
+  flgProtectedMode,(* ExÇcution en mode protÇgÇ? Par dÇfaut: Non *)
+  {Ce jumper doit àtre mis  Ö vrai  quand le StartUp est lancÇ en}
+  {mÇmoire protÇgÇ;  cela aura  pour effet  qu'il n'utilisera pas}
+  {d'accäs mÇmoire directe. Attention! Ne mettre cette variable Ö}
+  {vrai  quand  cas  de nÇcessitÇ  parceque áa ralentie drìlement}
+  {l'exÇcution  en plus  d'àtre partiellement  moins fiable.  Par}
+  {dÇfaut,  màme un XT  Ö un contrìleur CMOS  pour lui,  et l'EMS}
+  {n'existe pas car inutile en mode protÇgÇ.}
+
+  flgEquipPerBios,(* Utilise le Bios pour connaåtre l'Çquipement? Par dÇfaut: Non *)
+  {Par dÇfaut le StartUp utilise l'accäs en mÇmoire pour connaåtre}
+  {l'Çquipement plutìt  que d'utiliser l'interruption  11h et 12h.}
+  {Personnellement,  j'ai jamais utilisÇ le Bios pour connaåtre se}
+  {genre  d'information,  mais  dans les cas dÇsespÇrÇs  de 0%  de}
+  {compatibilitÇ, j'imagine que sa peut servir...}
+
+  flgJoyPerBios,(* Manette de jeu accÇder par le Bios ? Par dÇfaut: Non *)
+  {Mettre  Ö  vrai  seulement  s'il  plante  en utilisant le port}
+  {d'entrÇe/sortie 201h ou qu'une Çmulation de manette de jeu est}
+  {en cours par l'entremise de l'interruption 15h,Fonction 84h...}
+
+  flgNoExtBiosMemDetect,(* Pas dÇtection de la mÇmoire Çtendue par *)
+                  (* l'interruption 15h? Par dÇfaut: Non *)
+  {Cette variable doit àtre mis Ö vrai lorsque la dÇtection de la}
+  {mÇmoire  Çtendu   par  l'interruption 15h,  Fonction 88h  fait}
+  {planter la machine  ou que  des conflits  d'adressage  mÇmoire}
+  {surviennent dans le systäme.}
+
+  flgOnlyMem4ComputerName,(* Utilise seulement la mÇmoire pour connaåtre *)
+        (* le nom de l'ordinateur? Par dÇfaut: Non *)
+  {Cette variable utilise seulement l'adresse mÇmoire FFFFxh pour}
+  {connaåtre  le  modäle  d'ordinateur  utilisÇ.  Mettre  Ö  vrai}
+  {seulement si la dÇtection de votre ordinateur, rÇväle que vous}
+  {possÇdez une %&$%^&^%&,(ou si vous prÇfÇrer: il "fuck"le chien.}
+
+  flgNoCountryDetect,(* Pas de dÇtection de pays? Par dÇfaut: Non *)
+  {Les variables  de pays ne seront pas touchÇ  si cette variable}
+  {est Ö vrai.  Interne au application,  permet,  par exemple, de}
+  {charger  Ö partir d'une fichier la configuration d'un pays. On}
+  {peut Çgalement fixÇ cette variable  Ö vrai pour le Dos 1.0, ou}
+  {un Dos incompatible pour Çviter d'avoir un retour de donnÇe en}
+  {blanc.}
+
+  flgNoMouseDetect,(* Pas de dÇtection de la souris? Par dÇfaut: Non *)
+  {Ce jumper ne doit seulement àtre utilisÇ que lorsque la souris}
+  {provoque des conflits dans le systäme.  Alors  si l'ordinateur}
+  {plante pendant  une dÇtection de souris priäre de mettre cette}
+  {variable  Ö Vrai.  On  peut  Çgalement  avoir  Ö  faire  Ö une}
+  {interruption  de la 4iäme  DIMENSION  ou  qui plus  est  Ö  un}
+  {Virus  narcotique  modifiant  cette interruption  Ö  des  fins}
+  {diablique!  Et dans cette situation, je vous suggäre Çgalement}
+  {de fixer cette variable Ö Vrai.}
+
+  flgNoSpoolerDetect,(* Pas de dÇtection de Spooler d'imprimante? Par dÇfaut: Non *)
+  {Ce jumper  doit àtre  Ö vrai  quand  la  dÇtection  du  spooler}
+  {provoque un plantage pur et dur de la machine.}
+
+  flgNoCmosDetect,(* Pas de dÇtection ou d'utilisation du CMOS? Par dÇfaut: Non *)
+  {Cette variable interdit (vrai) ou autorise (faux) la dÇtection}
+  {et la manipulation du contrìleur de CMOS. Dois-àtre mis Ö vrai}
+  {dans le cas d'incompatibilitÇ de CMOS (en particuliÇ chez les XT.}
+
+  flgJoyFunc,(* Allocation de fonction de manette de jeu ? *)
+  {Cette variable demande l'utilisation de routine clavier non-directe}
+
+  flgNotDirKey,(* Pas d'utilisation directe du clavier ? *)
+  flgSkipCPUTest,(* Pas de dÇtection du microprocesseur *)
+  flgNoNovell (* Pas de dÇtection de Novell *)
+ );
+
+Const
+  { Drapeau d'existance des Interruptions de la variable IntExistFlag }
+ flgInt10h=1;     { Drapeau indiquant l'existance de l'interruption 10h }
+ flgInt11h=2;     { Drapeau indiquant l'existance de l'interruption 11h }
+ flgInt12h=4;     { Drapeau indiquant l'existance de l'interruption 12h }
+ flgInt13h=8;     { Drapeau indiquant l'existance de l'interruption 13h }
+ flgInt14h=$0010; { Drapeau indiquant l'existance de l'interruption 14h }
+ flgInt15h=$0020; { Drapeau indiquant l'existance de l'interruption 15h }
+ flgInt16h=$0040; { Drapeau indiquant l'existance de l'interruption 16h }
+ flgInt1Ah=$0080; { Drapeau indiquant l'existance de l'interruption 1Ah }
+ flgInt21h=$0100; { Drapeau indiquant l'existance de l'interruption 21h }
+ flgInt2Ah=$0200; { Drapeau indiquant l'existance de l'interruption 2Ah }
+ flgInt2Fh=$0400; { Drapeau indiquant l'existance de l'interruption 2Fh }
+ flgInt33h=$0800; { Drapeau indiquant l'existance de l'interruption 33h }
+ flgInt67h=$1000; { Drapeau indiquant l'existance de l'interruption 67h }
+
+  { Mode de Jumper par dÇfaut}
+ stupJumperDef=[{$IFDEF NotReal}
+                  flgProtectedMode,
+                {$ENDIF}
+                {$IFDEF __Windows__}
+                  flgEquipPerBios
+                {$ENDIF}
+                {$IFDEF Joystick}
+                 flgJoyFunc
+                {$ENDIF}];
+
+ stupJumperSecure=[
+                flgSkipCPUTest,
+                flgNoNovell,
+                {$IFDEF NotReal}
+                  flgProtectedMode,
+                {$ENDIF}
+                {$IFDEF __Windows__}
+                  flgEquipPerBios
+                {$ENDIF}
+                {$IFDEF Joystick}
+                 flgJoyFunc
+                {$ENDIF}];
+
+
+ { Drapeau de resource mÇmoire }
+ rmNone=0;                      { Drapeau d'aucune ressource }
+ rmDsk=1;                       { Drapeau de ressource disque }
+ rmEms=2;                       { Drapeau de ressource EMS }
+ rmXms=4;                       { Drapeau de ressource XMS }
+ rmVram=8;                      { Drapeau de ressource mÇmoire VidÇo }
+ rmExtBios=$10;                 { Drapeau de ressource Bios,Interruption 15h }
+ rmAllRes=rmDsk+rmEms+rmXms+rmVram+rmExtBios;{ Masque pour toutes ressources }
+  { Masque pour toutes ressources non-influencable par l'environnement }
+ rmAllResSteady=rmDsk+rmEms+rmXms+rmExtBios;
+
+ (*********************************)
+ (***** Constante Application *****)
+ (*********************************)
+
+  { Constante des matrices de couleurs d'environnement }
+ MtxMonochrome=0;               { êcran de texte monochrome }
+ MtxBlackWhite=1;               { Noir et blanc }
+ MtxBlueCGA=2;                  { êcran de texte CGA, 8 couleurs de fond }
+ MtxBleuet=3;                   { êcran de texte bleu }
+ MtxMagenta=4;                  { êcran de texte magenta }
+ MtxDiablo=5;                   { êcran de texte rouge }
+ MtxGraphix=6;                  { Version spÇciale pour le mode graphique }
+ MtxMac=7;                      { Version spÇciale pour le mode Macintosh }
+ MtxOS2Win95=8;                 { Version spÇciale pour le mode OS/2 et Windows 95 }
+
+  { Constante de mode de traáage dessin }
+ drwNone=0;                     { Aucun Mode }
+ drwLine=1;                     { Ligne }
+ drwBox=2;                      { Boåte }
+ drwCadre=3;                    { Cadre }
+ drwCircle=4;                   { Cercle }
+ drwPaint=5;                    { Peinture }
+ drwTrace=6;                    { Traáage pas Ö pas }
+ drwText=7;                     { Texte }
+ drwCopy=8;                     { Copier une partie de l'image }
+ drwManyLine=9;                 { Plusieurs ligne Ö partir d'un màme point }
+ drwBrush=10;                   { Efface }
+ drwGetPixel=11;                { Prend des Çchantillions de couleurs }
+ drwMatrix=12;                  { Objet de Matrice }
+ drwDFDProcessus=100;           { DFD - Processus }
+ drwDFDDepot=101;               { DFD - DÇpot }
+ drwDFDEntite=102;              { DFD - EntitÇ }
+ drwDFDFlux=120;                { DFD - Flux }
+
+  { Constante de format de boutons de la boåte dialogue }
+ ktBig=0;                       { Gros bouton }
+ ktElvis=1;                     { êlÇment de Turbo Vision }
+ ktBubble=2;                    { Bubble (coin en ronde), mode graphique requis }
+ ktOS2Win=3;                    { OS/2 ou Windows }
+ ktMac=4;                       { Bouton Ö la Macintosh }
+
+  { Constante de format d'entrÇes }
+ itElvis=0;                     { EntrÇe en format Elvis (Turbo Vision) }
+ itOS2=1;                       { EntrÇe en format OS/2 (ligne jaune) }
+ itWindows=2;                   { EntrÇe en format Windows }
+
+  { Constante de mode d'Çcriture video }
+ vwmOverwrite=0;                { êcrasement }
+ vwmAND=1;                      { Et binaire }
+ vwmOR=2;                       { Ou binaire }
+ vwmXOR=3;                      { Ou exclusif binaire }
+
+  { Constante de format de dialogue }
+ __Center__=240;                { Demande le centrage d'un message }
+ wnMax=255;                     { Demande Ö une fenàtre de dialogue de poussÇ
+                                  au maximum la valeur permise }
+ KeyHelp=$01;                   { Touche d'aide }
+ KeyOk=$02;                     { Touche correcte }
+ KeyCancel=$04;                 { Touche d'annulation }
+ KeyYes=$08;                    { Touche Oui }
+ KeyNo=$10;                     { Touche Non }
+ KeyRetry=$20;                  { Touche de rÇessayer }
+ KeyAbort=$40;                  { Touche d'abandon }
+ KeyIgnore=$80;                 { Touche pour ignorer }
+ KeyDefault=$100;               { Touche par dÇfaut }
+ KeyAll=$200;                   { Touche par tous les cas }
+
+ SpcCode=[' ',#9];
+ MinRomanLetter=['a'..'z'];
+ MajRomanLetter=['A'..'Z'];
+ BinArabicDigit=['0'..'1'];
+ OctArabicDigit=['0'..'7'];
+ ArabicDigit=['0'..'9'];
+ ArabicXDigit=['0'..'9','A'..'F','a'..'f'];
+ Coder1DefLetter=['A'..'Z','a'..'z','_'];
+ CoderDefLetter=['A'..'Z','a'..'z','0'..'9','_'];
+
+Type
+
+  (******************************************)
+  (***** Structure de Base/MathÇmatique *****)
+  (******************************************)
+
+ TBool=Array[0..MaxArray]of Boolean;
+ TByte=Array[0..MaxArray]of Byte;
+ TPointer=Array[0..MaxArray div SizeOf(Pointer)]of Pointer;
+ PTByte=^TByte;
+ TChar=Array[0..MaxArray]of Char;
+ PChr=^TChar;{PChar=PChr;}PTChr=^TChar;
+
+{$I Library\TWord.Inc}
+ TInteger=Array[0..65520div SizeOf(Integer)]of Integer;
+ TLong=Array[0..MaxArray div SizeOf(LongInt)]of LongInt;
+ TReal=Array[0..MaxArray div SizeOf(Real)]of Real;
+ PChrAByte=Array[Byte]of Char;
+ TPChar=Array[0..MaxArray div SizeOf(PChr)]of PChr;
+ PTPChr=^TPChar;
+ BString=Array[Byte]of Byte;
+ Str12=String[12];
+ Str8=String[8];
+ Str4=String[4];
+ Str3=String[3];
+ Str2=String[2];
+ PByte=^Byte;
+ PWord=^Word;
+ PLong=^LongInt;
+ PReal=^Real;
+ CharSet=Set of Chr;
+
+  { Champs d'accäs directe au donnÇe d'un mot }
+ WordRec=Record
+  Lo,Hi:Byte;                   { Partie basse et partie haute }
+ End;
+
+  { Champ d'accäs directe au donnÇe d'un entier de format ÆIntegerØ }
+ IntRec=Record
+  Lo,Hi:ShortInt;               { Partie basse et partie haute }
+ End;
+
+  { Champ d'accäs directe au donnÇe d'un double mot }
+ LongRec=Record
+  Lo,Hi:Word;                   { Partie basse et partie haute }
+ End;
+
+  { Champ d'accäs directe d'un pointeur }
+ PtrRec=Record
+  Ofs,Seg:Word;                 { Offset et Segment }
+ End;
+
+  { Champ d'accäs directe d'un pointeur 24 bits }
+ RPtr=Record
+  Base:Word;
+  LoSeg:Byte;
+ End;
+
+ Proc=Procedure;
+ PChrDefModemInit=Array[0..Length(cmDefModemInit)]of Chr;
+ PChrDefModemDial=Array[0..Length(cmDefModemDial)]of Chr;
+ PChrDefModemAnswer=Array[0..Length(cmDefModemAnswer)]of Chr;
+ PChrDefModemHostSet=Array[0..Length(cmDefModemHostSet)]of Chr;
+ PChrDefModemHostUnSet=Array[0..Length(cmDefModemHostUnSet)]of Chr;
+
+  (******************************************)
+  (*****   Structure de type ÆVariantØ  *****)
+  (******************************************)
+
+ DefType=(    { Type de dÇfinition }
+  dtEnum,      { ênumÇration }
+  dtBool,      { BoolÇan (True/False) (Vrai/Faux) }
+  dtByte,      { Byte/Octet }
+  dtShort,     { Short (-128 Ö 127) }
+  dtChar,       { Char (caractäre)}
+  dtInt,       { Integer/entier (-32768 Ö 32767) }
+  dtWord,      { Word/Mot (0 Ö 65535) }
+  dtLong,      { LongInt }
+  dtProc,      { Procedure/ProcÇdure }
+  dtFunc,      { Function/Fonction }
+  dtPtr,       { Pointer }
+  dtArray,     { Array/RangÇe }
+  dtRec,       { RECORD }
+  dtString,    { STRING }
+  dtCString,   { ÆCSTRINGØ comme QuickPascal }
+  dtPtrString, { Pointeur de STRING }
+  dtIntervalle,{ Intervalle ?..? }
+  dtCase,      { Case Record ... of }
+  dtExternRec, { Enregistrement externe }
+  dtEnd,       { END/FIN }
+  dtExtern,    { Type externe dans le module courant (unitÇ ou programme)}
+  dtExternUnit,{ Type externe dans un autre unitÇ }
+  dtNoType,    { Sans type }
+  dtCellule,   { Cellule }
+  dtSingle,    { SINGLE du PASCAL }
+  dtDouble,    { DOUBLE du PASCAL }
+  dtReal);
+
+ XVariant=Record Case Byte of
+  0:(DataLong:LongInt);
+  1:(DataBool:Boolean);
+  2:(DataByte:Byte);
+  3:(DataChar:Char);
+  4:(DataShort:ShortInt);
+  5:(DataWord:Word);
+  6:(DataInt,IntHi:Integer);
+  12:(DataReal:Real);
+  13:(DataPChr:PChr);
+  14:(DataPString:^String);
+  15:(CelX1,CelY1,CelX2,CelY2:LongInt);
+  16:(DataSingle:Single);
+  17:(DataDoubel:Double);
+ End;
+
+ Variant=Record
+  TypeDef:DefType;
+  X:XVariant;
+ End;
+
+ (**************************************)
+ (***** Structure Micro-Processeur *****)
+ (**************************************)
+
+  { Format de la table d'Interruption }
+ TableIntRec=Array[Byte]of Pointer;
+
+ (*****************************)
+ (***** Structure de l'OS *****)
+ (*****************************)
+
+ { Structure de compilateur }
+ ModeType=(_Label_,_Const_,_Type_,_Var_,_None_);
+
+ { Structure de Copieur de fichier }
+ BackgroundCopy=Function(Pour:Byte;Curr,Total:LongInt):Boolean;
+
+ { Enregistrement pour la transformation du temps }
+ DateTime=Record
+  Year{$IFDEF DosUnit},{$ELSE}:Word;{$ENDIF}
+  Month,Day,Hour,Min,Sec:{$IFDEF DosUnit}Word{$ELSE}Byte{$ENDIF};
+ End;
+
+ (**************************************)
+ (***** Structure de communication *****)
+ (**************************************)
+
+  { Structure primaire de communication }
+ AsyncBufType=Array[0..1]of Chr;
+ AsyncPtr=^AsyncBufType;
+
+ (***************)
+ (***** Son *****)
+ (***************)
+
+  { Structure d'appelle pour connaåtre les cartes de son }
+ SoundRec=Record
+  IsAdLib,IsGravis,IsMidi,IsSoundBlaster,IsTandyDigital:Boolean;
+  Memory:Word;
+  OutputSound:Byte;
+  Port:Word;
+ End;
+
+ ProcInitSound=Procedure(Var Info:SoundRec);{ProcÇdure d'initialisation Æ.RLLØ}
+ {$IFDEF OptionAdLib}AdLibInstrum=Array[1..26]of Int;{Structure de carte AdLib}{$ENDIF}
+
+ (*******************)
+ (***** MÇmoire *****)
+ (*******************)
+
+ PCharByteRec=Record
+  PChr:PChr;
+  Nm:Byte;
+ End;
+ PPChrByte=^PCharByteRec;
+
+ StrByteRec=Record
+  PChr:PChr;
+  Nm:Byte;
+  Len:Word;
+ End;
+ PStrByte=^StrByteRec;
+
+ StrWordRec=Record
+  PChr:PChr;
+  Nm,Len:Word;
+ End;
+ PStrWord=^StrWordRec;
+
+ StrLongRec=Record
+  PChr:PChr;
+  Nm:LongInt;
+  Len:Word;
+ End;
+ PStrLong=^StrLongRec;
+
+ PCharWordRec=Record
+  PChr:PChr;
+  Nm:Word;
+ End;
+ PPChrWord=^PCharWordRec;
+
+ RBP={$IFDEF NotReal}LongInt{$ELSE}Word{$ENDIF};{RemoveBuffer Pointer Type}
+ RBufPtr=^RBufRec;
+
+ RBufRec=Record
+  Buf:Pointer;
+  Size:Word;
+  Prev,Nxt:RBufPtr;
+ End;
+
+  {Objet de gestion de liste symÇtrique }
+ ArrayList=Record
+  Count:RBP;        { ATTENTION! Ne pas dÇplacer! Nombre de tampon dans la liste symÇtrique }
+  CurrPtr:RBufPtr;  { Pointeur sur l'ÇlÇment courant de la liste }
+  Ls:RBufPtr;       { La liste symÇtrique elle-màme }
+  EndLsPtr:RBufPtr; { Fin de la liste symÇtrique }
+ End;
+
+ IBufPtr=^IBufRec;
+
+  {Objet de gestion de ÆListe symÇtrique intelligenteØ }
+ IBufRec=Record
+  Buf:Pointer;
+  Size:Word;
+  Jmp:LongInt;
+  Prev,Nxt:IBufPtr;
+ End;
+
+ IBuf=Record
+  Ls,EndLsPtr:IBufPtr;
+  NB,NV:LongInt;
+ End;
+
+  { Structure de manipulation de mÇmoire par l'Interruption 15h }
+ SDES=Record
+  Length,AdrLo:Word;
+  AdrHi,Attribut:Byte;
+  Res:Word;
+ End;
+
+ GDT=Record
+  Dummy,GDTS,Start,But,Code,Stack:SDES;
+ End;
+
+ LI=Record
+  LoWord:Word;
+  HiByte,Dummy:Byte;
+ End;
+
+  { Structure de l'XMS }
+ ExtMemMoveRec=Record
+  Length:LongInt;       { Nombre d'octets Ö copier -> Doit àtre paire }
+  SourceHandle:Word;    { Handle de la source }
+  SourceOffset:LongInt; { Pointeur de la source (en 32 bits): }
+                        { 1) Si SourceHandle est nul (=0) alors SourceOffset est }
+                        {     considÇrÇ comme en pointeur segment:offset (utilisez }
+                        {    alors la function Ptr2Long) }
+                        { 2) Si SourceHandle n'est pas nul alors SourceOffset est }
+                        {    l'offset dans le bloc mÇmoire XMS source }
+  DestHandle:Word;      { Handle de la destination }
+  DestOffset:LongInt;   { Pointeur de la destination (màme requete que SourceOffset) }
+ End;
+
+ XmsGetRec=Record
+  Size:LongInt;
+  QHdl:Word;
+  QOfs:LongInt;
+  ZHdl:Word;
+  ZOfs:Pointer;
+ End;
+
+ XmsSetRec=Record
+  Size:LongInt;
+  QHdl:Word;
+  QOfs:Pointer;
+  ZHdl:Word;
+  ZOfs:LongInt;
+ End;
+
+ EMBHandleRec=Record
+  LockCount,FreeHandles:Byte;
+  BlockLenKB:Word;
+ End;
+
+ UMBSegRec=Record
+  Seg,UMBSizeKB:Word;
+ End;
+
+  { Structure de la CMOS (MÇmoire sur Pile) }
+ CmosType=Array[0..63]of Byte;
+
+  { Structure d'un Handle d'une ressource }
+ Hdl={$IFDEF __Windows__}Word{$ELSE}Byte{$ENDIF};
+
+  { Ressource mÇmoire }
+ XInf=Record
+  Output:Byte;    { Ressource utilisÇ }
+  Handle:Word;    { Handle associÇe Ö la mÇmoire }
+  Size:LongInt;   { Taille du tampon mÇmoire }
+  {$IFDEF __Windows__}
+   Memory:^TByte; { MÇmoire associÇe }
+   Pos:LongInt;   { Position courante }
+  {$ENDIF}
+ End;
+
+ TXInf=Array[0..65520div SizeOf(XInf)]of XInf;
+
+ (*****************************************)
+ (***** Objet de traitement numÇrique *****)
+ (*****************************************)
+
+ PostFixeRec=Record
+  Operateur:Boolean; { OpÇrateur sinon nombre...}
+  OperTitle:Char;    { Titre de l'opÇrateur }
+  Valeur:Variant;    { Valeur contenu dans l'expression }
+  Priorite:Integer;  { Niveau de prioritÇ }
+ End;
+ PostFixePtr=^PostFixeRec;
+
+ FormulaObjectOption=Set of (
+  foHexPascal,    { Supporte le format hexadÇcimal de Pascal }
+  foNumberC,      { Supporte le format des nombres du C (0x00, 0b00,...)}
+  foNumberBasic,  { Supporte le format des nombres du Basic (&B00,&HFFFF,...)}
+  foExpBasic,     { Supporte le symbole BASIC d'exposant (^) }
+  foIntDiv,       { Supporte la division entiäre }
+  foStringPascal, { Supporte le format ÆStringØ de Pascal }
+  foStringC,      { Supporte le format chaåne de caratäres de C/C++, Java, Basic }
+  foPourcent,     { Supporte le symbole de pourcentage }
+  foBoolean       { Supporte les opÇrations boolÇenne }
+ );
+
+ FormulaObject=Record
+  Option:FormulaObjectOption;
+  StopChar:Set of Char; { Caractäre d'arràt comme par exemple =, :, ; }
+  StopNow:Boolean;      { Oblige a arràter maintenant la formule! }
+  Pile:ArrayList;       { Empile les instructions }
+  PostFixe:ArrayList;   { Traitement des instructions }
+  I:Byte;               { Position dans la chaåne de caractäres }
+  OldI:Byte;            { Sauvegarde de la position }
+  PostFixeData:PostFixeRec; { Traitement courant }
+  OnSymbol:Function(Var Q;Symbol:Chr;Var Context):Boolean;{ Lorsque des symboles spÇciale sont rencontrÇes }
+  OnWord:Function(Var Q;Const ThisWord:String;
+                  Var Context):Boolean; { Appel lorsqu'un mot est rencontrÇ }
+  Formula:String;                { Chaåne de caractäres contenant la formule }
+  Context:Pointer;               { Contexte des routines d'appel }
+  Result:Variant;                { RÇsultat de la formule }
+ End;
+
+ (*****************)
+ (***** VidÇo *****)
+ (*****************)
+
+  { Champs de coordonnÇes texte }
+ XYRec=Record
+  X,Y:Byte;                     { CoordonnÇe (X,Y) }
+ End;
+
+  { Structure d'Çcran texte }
+ TextCube=Record
+  Chr:Char;
+  Attr:Byte;
+ End;
+
+ TTextCube=Array[0..65520div SizeOf(TextCube)]of TextCube;
+ PTTxtCube=^TTextCube;
+
+{$I \Source\Chantal\Library\Video\Card\PC3270\InfoHead.Inc }
+
+  { Structure d'information EGA, MCGA, VGA et Super VGA }
+ VideoParamTableRec=Record
+  NumXTxts,MaxYTxts,HeightChr:Byte;
+  SizeBuf:Word;
+  SequencerRegs:Array[1..4]of Byte;
+  Miscellinous:Byte;
+  CRTC:Array[0..$18]of Byte;
+  AttrCtrlRegs:Array[0..$13]of Byte;
+  GrafCtrlRegs:Array[0..8]of Byte;
+ End;
+
+ DynamicParamSaveAreaRec=Record
+  PaletteEGA:Array[0..15]of Byte;
+  OverscanReg:Byte;
+ End;
+
+ TxtNmChrSetOverrideRec=Record
+  LenChrInByte,ChrGeneratorRamBank:Byte;
+  NmMatrixChr,FirstChrCodeInMatrix:Word;
+  FontTable:Pointer;
+  MaxYTxts,NmAppVidMode:Byte;
+  BufApplicableVidMode:Array[Byte]of Byte;
+ End;
+
+ VGARec=Record
+  NmTableEntry,
+  DccVer,
+  MaxDispTypeCode,
+  Reserved,
+  VidDispPrim,
+  VidDispSec:Byte;
+ End;
+
+ SaveOverrideRec=Record
+  VidParamTable:^VideoParamTableRec;
+  DynamicParamSaveArea:^DynamicParamSaveAreaRec;
+  TxtNmChrSetOverride:^TxtNmChrSetOverrideRec;
+  GrafNmChrSetOverride:Pointer;
+  VGA:^VGARec;
+ End;
+
+{$I \Source\Chantal\Library\Video\Vesa\Header.Inc}
+
+ OS2StartData=Record
+  LenStruct:Word;                   { Longueur de la structure (peut àtre }
+            { 0018h, 001Eh, 0020h, 0032h, 003Ch) }
+  Process:Word;                     { Relation du nouveau processus (pr??): }
+                                    { 0000h = IndÇpendant, 0001h = Enfant}
+  Priority:Word;                    { PrioritÇ de la session: }
+                                    { 0000h = Premier plan }
+                                    { 0001h = Arriäre plan }
+  Trace:Word;                       { Les options de traces }
+  Title:PChar;                      { Titre du programme }
+  Name:PChar;                       { Nom du programme }
+  Args:PChar;                       { Argument du programme }
+  TermQ:PChar;                      { "TermQ"}
+  Environment:PChar;                { Variable d'environnement }
+  Inherit:WordBool;                 { HÇritier des donnÇes }
+  SessionType:Word;                 { Modäle de session (st????) }
+  Icon:PChar;                       { Nom de l'icìne }
+  PgmHandle:PChar;                  { Le "PgmHandle" }
+  PgmControl:Word;                  { Le "PgmControl" }
+  Column:Word;                      { Colonne }
+  Row:Word;                         { Ligne }
+  Width:Word;                       { Largeur }
+  Height:Word;                      { Hauteur }
+  Reserved:Word;                    { RÇservÇe }
+  ObjectBuffer:LongInt;             { Pointeur sur le tampon d'objet }
+  ObjectBufferLen:Word;             { Longueur du tampon d'objet }
+ End;
+
+  { Structure utilisÇ pour les tampons de 64 Ko, gÇnÇralement VESA }
+ LongVesa=Record Case Byte of
+  0:(L:LongInt);
+  1:(W:Word;Page:Byte);
+ End;
+
+  { Structure des couleurs }
+{$I \Source\Chantal\Library\Video\RGBHeade.Inc}
+
+ HSV=Record
+  H,S,V:Byte;
+ End;
+
+ HLS=Record
+  H,L,S:Byte;
+ End;
+
+ CMY=Record
+  C,M,Y:Byte; { Cyan, magenta et jaune }
+ End;
+
+ YUV=Record
+  Y,U,V:Byte;
+ End;
+
+ CMYK=Record
+  C,M,Y,K:Byte;
+ End;
+
+ YIQ=Record
+  Y,I,Q:Real;
+ End;
+
+ XYZ=Record
+  X,Y,Z:Real;
+ End;
+
+  { Format et Type des modäles de fenàtre possible }
+ BorderType=Array[0..7]of Chr;
+ WinModelType=(MacOsX,Robotic,Normal,ClearWindow);
+
+  { Chaåne de caractäre pour les Icons texte d'Isabel }
+ StrIcon=String[3];
+
+  { Entàte de ProcÇdure de fixation des pages Super VGA }
+ ProcBnkType=Procedure(P:LongInt;Size:Word;Var Buffer);
+
+ {Structure de la palette des modes vidÇo}
+ PaletteMode=Array[0..79]of Word;
+
+ {Structure physique d'information vidÇo}
+ PIV=Record{PhysicalInfoVideo}
+  Card,Monitor,         { Nom de la carte vidÇo (vn????),Nom du moniteur (mn????)}
+  CardCat:Byte;         { CatÇgorie de la carte vidÇo(MDA,CGA,...)(cvn????)}
+  Memory:LongInt;       { Nombre de mÇmoire (en octet) dont dispose la carte vidÇo}
+  Font,                 { Police programme supportÇ par cette carte?}
+  Hercule:Boolean;      { Mode Hercule supportÇ par cette carte?}
+  Seg16C:Word;          { Segment par dÇfaut en 16 couleurs}
+  Palette,              { Palette de couleur programme supportÇ?}
+  Color,                { Carte de type couleur? autrement monochrome}
+  BBlink,               { Le Bios supporte le mode clignotement/intensitÇ?}
+  EGA,                  { La carte est postÇrieur ou Çgale Ö l'EGA}
+  VGA,                  { La carte est postÇrieur ou Çgale Ö la VGA}
+  VGA320x400,           { Le mode VGA 320x400 est supportÇ (pas toujours le cas chez les clones)}
+  VESA:Boolean;         { Le standard VESA supportÇ? }
+  ROM:Word;             { Adresse de la ROM Bios}
+  MousePort:Boolean;    { Port souris inclue Ö la carte vidÇo?}
+  VideoBits:Byte;       { Nombre d'accäs bits au entrÇe/sortie vidÇo}
+  ROMBits,              { Nombre d'accäs bits Ö la ROM Bios}
+  DACBits:Byte;         { Nombre de bits utilisÇ pour modifiÇ un des 3 DAC RGB}
+  PVC:Boolean;          { Horloge vidÇo programme?}
+  ProcSelBnkPg,         { Adresse d'index de la procÇdure de changement de page de la banque}
+  ProcSetVideoMode:Word;{ Adresse d'index de la procÇdure de changement de mode vidÇo}
+ End;
+
+ {Structure actuel d'information sur le mode vidÇo}
+ MIV=Record{ModeInfoVideo}
+  Mode:Word;            { Mode vidÇo actuel (vm???)}
+  IbmLogic,             { Mode dans la logique IBM (pas hors cas texte Ö la SVGA...)}
+  BiosSupport,          { Mode supportÇ par le Bios (Par exemple, la GS en 16 couleurs le Bios ne le connaåt pas) }
+  Color,                { Mode couleur? Sinon monochrome foráÇment...}
+  Graphics,             { Mode graphique? Sinon texte}
+  Direct,               { MÇthode directe? Sinon Bios ou Dos}
+  Blink,                { Clignotement?}
+  Snow:Boolean;         { Neige lors de l'envoie de donnÇe dans le tampon vidÇo?}
+  SegVideo:Word;        { Segment vidÇo (A000h,B000h,B800h,...)}
+  HeightChar:Byte;      { Hauteur de la police de caractäre actuel}
+  NumXPixels:Word;      { Nombre de pixels horizontal qu'affiche l'Çcran}
+  NumYPixels:Word;      { Nombre de pixels vertical qu'affiche l'Çcran}
+  NumXTexts,NumYTexts,  { Nombre de caractäre texte horizontal/vertical qu'affiche l'Çcran}
+  NumVideoPages:Byte;   { Nombre de page vidÇo que supporte le mode actuel}
+  NumColors:LongInt;    { Nombre de couleurs affichÇ}
+  BitsPerPixel:Byte;    { Nombre de Bit(s) utilisÇ pour l'affichage d'un pixel}
+  BytesPerLine:Word;    { Nombre d'octet par ligne affichÇ (träs relatif en VGA...)}
+  Page:Byte;            { NumÇro de la page vidÇo de travail}
+  AddrPage:Word;        { En texte, adresse en mÇmoire vidÇo de la page actuel}
+  ShowPage:Byte;        { NumÇro de la page vidÇo actuellement affichÇ}
+  TxtMtx:^TByte;        { Pointeur sur la police de caractäre courante}
+  ScrSize:LongInt;      { Taille de l'Çcran}
+  SizeBank:Word;        { Taille d'un page de la banque (0=64Ko)}
+  SegBuffer:Word;       { Segment du tampon d'accÇlÇration}
+  IsDoubleMtx:Boolean;  { Y a-t-il utilisation d'une police de 512 caractäres?}
+  XCur,YCur:Byte;       { Position actuel du curseur}
+  StartCur,EndCur:Byte; { Ligne de dÇpart et de fin du curseur}
+ End;
+
+ {Matrice standard pour les attributs des couleurs de la fenàtre}
+ MtxColors=Record
+  Title,Border,Icon,Sel,High,Key,kShade,kSel:Byte;
+ End;
+
+ BoxRectRec=Record
+  Up,Down,Left,Right:Pointer;              { Pointeur de mÇmorisation des bordures }
+  UpSize,DownSize,LeftSize,RightSize:Word; { Taille des tampons de bordures }
+  MaxXTexts,MaxYTexts:Byte;                { Largeur et hauteur moins 1 }
+  LastX,LastY:Byte;                        { Derniäre coordonnÇes de sauvegarde }
+  GX1,GY1,GX2,GY2:Word;                    { CoordonnÇes totale graphique }
+ End;
+
+ TextCharRec=Record
+  X,Y:Byte;
+ End;
+
+ {Structure d'un tampon d'image graphique}
+ ImgRec=Record
+  X:XInf;                           { Ressource tampon associÇe }
+  BitsPerPixel:Byte;                { Bits par pixel }
+  Length,Height:Word;               { Largeur et hauteur en pixel }
+  BytesPerLine:Word;                { Octets par ligne }
+  AllScreen:Boolean;                { Sauvegarde toute l'Çcran? }
+  SizeText:Word;                    { Taille du texte du tampon }
+ End;
+
+  { êtat des boutons de combinaisons des MDI pour les ÇvÇnements
+    des objets de la mÇthode ÆHØ }
+ ShiftState=Set of (
+  ssShiftRight,       { ÆShiftØ de gauche enfoncÇ? }
+  ssShiftLeft,        { ÆShiftØ de droite enfoncÇ? }
+  ssCtrl,             { Contrìle enfoncÇ? }
+  ssAlt,              { ÆAltØ enfoncÇ? }
+  ssScrollLockOn,     { Mode ÆScrollLockØ? }
+  ssNumLockOn,        { Mode ÆNumLockØ? }
+  ssCapsLockOn,       { Mode ÆCapsLockØ? }
+  ssInsertOn,         { ÆInsertØ activÇ }
+  ssCtrlLeft,         { Contrìle de gauche enfoncÇ? }
+  ssAltLeft,          { ÆAltØ de gauche enfoncÇ? }
+  ssSysReq,           { ÆSysReqØ enfoncÇ? }
+  ssPause,            { ÆPauseØ actionnÇ? }
+  ssScrollLock,       { ÆScrollLockØ enfoncÇ? }
+  ssNumLock,          { ÆNumLockØ enfoncÇ? }
+  ssCapsLock,         { ÆCapsLockØ enfoncÇ? }
+  ssInsert            { ÆInsertØ enfoncÇ?}
+ );
+
+  { CoordonnÇe d'une boåte texte }
+ TextBoxRec=Record
+  X1,Y1,X2,Y2:Byte;
+ End;
+
+  { CoordonnÇe d'une boåte graphique }
+ GraphBoxRec=Record
+  X1,Y1,X2,Y2:Word;
+ End;
+
+  { CoordonnÇe d'un couple graphique }
+ GraphPointRec=Record
+  X,Y:Word;
+ End;
+
+  { Structure d'une fenàtre vidÇo format Isabel}
+ Window=Record
+  X,Y,                              { Position courante du pointeur texte (X,Y) }
+  CurrColor:Byte;                   { Couleur courante }
+  T:TextBoxRec;                     { CoordonnÇe des couples (X1,Y1)-(X2,Y2) de la fenàtre}
+  MaxX,MaxY:Byte;                   { CoordonnÇe maximal X et Y}
+  Palette:MtxColors;                { Matrice d'attribut de couleur par dÇfaut pour la fenàtre}
+  Title:String[99];                 { Titre de la fenàtre}
+  NotFullScrnX,NotFullScrnY:Boolean;{ Image plaine Çcran horizontal,vertical?}
+  LineHome:Byte;                    { Ligne d'espace Ö laisser au dÇbut vertical de la fenàtre }
+  {$IFDEF MaxGraf}
+   Matrix:MatrixType;               { Type de police utilisÇ }
+  {$ENDIF}
+  CloseIcon,ZoomIcon,               { Icìne de fermeture et Zoom affichÇ?}
+  BarMouseRight,Shade:Boolean;      { Barre de dÇplacement Ö droite affichÇ? Ombrage actif? }
+   { Attribut de la fenàtre }
+  Attribut:Set Of (
+   winNotClearBackground,           { Permet de dÇsactiver l'affichage du fond }
+   winNotBorderUp,                  { Pas de bordure vers le haut }
+   winNotBorderRight,               { Pas de bordure vers la la droite }
+   winNotBorderDown                 { Pas de bordure par en bas }
+  );
+  Buffer:Pointer;                   { Tampon utilisÇ pour la sauvegarde de l'arriäre de la fenàtre }
+  SizeBuffer:Word;                  { Taille du tampon de l'arriäre de la fenàtre }
+  Image:ImgRec;                     { Tampon utilisÇ pour la sauvegarder en graphique }
+  InpColor1,InpColor2:Byte;         { Couleur par dÇfaut du prompt de question }
+  OX,OY:Byte;                       { Ancienne position (X,Y), utilisÇ pour certain terminal dont ANSI }
+  PauseLn:Boolean;                  { Mode pause apräs l'emplisage de la fenàtre actif }
+  Lines:Byte;                       { Nombre de ligne de remplissage (complÇment de Pause) }
+  RBPY:Word;                        { Position actuel du pointeur sur la barre de droite }
+  HeightBar:Byte;                   { Hauteur de la barre indicatrice de gauche }
+  OnCompat:Boolean;                 { Sur le compat? }
+  BackWait:Procedure(Var Context);  { ProcÇdure d'attente }
+  Context:Pointer;                  { Contexte pour la procÇdure d'attente }
+  {$IFDEF Win32}
+   Width,Height:Word;
+   Canvas:TCanvas;
+  {$ENDIF}
+ End;
+
+ (**** Disque ****)
+{$I Library\System\Dos\BootRec.Inc}
+{$I Library\Disk\Bios\PhysData.Inc}
+{$I Library\Disk\Dos\LogData.Inc}
+
+ {Structure de lecture pour la disquette}
+ SecPosType=Record
+  Head:Byte;
+  SectTrack:Word;
+ End;
+
+ {Structure de lecteur de disquette}
+ Int1EhRec=Record
+  TimeTrack2Track,ModeDMA,TimeUpMotor,SectorSize:Byte;
+  MaxSectorInTrack,GapLen,DataLen,SpcMarge,FormatValue:Byte;
+ End;
+
+ {Structure de disque dur}
+ IntHardDiskRec=Record
+  MaxTrack:Word;      { Nombre maximal de cylindres }
+  MaxHead:Byte;       { Nombre maximal de tàtes }
+  ReservedA:LongInt;  { RÇservÇe Ö des fins inconnu???}
+  LenVerSec:Byte;     { Longueur maximal des octets de vÇrifications }
+  Flags:Byte;         { Drapeaux de comportements }
+  TimeOut:Byte;       { Valeur maximal avant l'envoie d'un dÇpassement de temps }
+  FormatTimeOut:Byte; { Valeur de dÇpassement de temps lors du formatage }
+  TestTimeOut:Byte;   { Valeur de dÇpassement de temps lors de tests }
+  LandingZone:Word;   { Nombre de cylindre de la zone d'attÇrissage }
+  Sector:Byte;        { Nombre de secteur par cylindre }
+  ReservedB:Byte;     { RÇservÇe des fins inconnu??? }
+ End;
+
+ {Structure de partition}
+ PartEntryType=Record
+  Status:Byte;
+  StartSec:SecPosType;
+  PartType:Byte;
+  EndSec:SecPosType;
+  SecOfs,NumSec:LongInt;
+ End;
+
+ {Structure de Boot}
+ PartSecType=Record
+  BootCode:Array[0..$1BD]of Byte;
+  PartTable:Array[MinPart..MaxPart]of PartEntryType;
+ End;
+
+ (**** Fichier ****)
+ {Structure du Handle Isabel d'une banque de fichier}
+ Search32Rec=Record
+  Fill:Array[1..2]of Byte;      { NumÇro de ressource associÇ }
+  FirstCluster,NmCluster:Word;  { Premier cluster et le nombre cluster }
+  PtrDescr:PChr;                { Pointeur sur la description/nom long }
+  Attr:Byte;                    { Attribut }
+  Time,Size:LongInt;            { Temps et taille }
+  Name:String[12];              { Nom du fichier }
+ End;
+
+ TSearch32Rec=Array[0..65500div SizeOf(Search32Rec)]of Search32Rec;
+ FileSort=(fUnsort,fName,fExt,fSize,fTime);
+
+ BF=Record
+  {$IFDEF ShortBF}
+   Buffer:^TSearch32Rec;
+   SizeB:Word;
+  {$ELSE}
+   Buffer:ArrayList;
+  {$ENDIF}
+  Init:Boolean;       { Initialiser? }
+  SizeFiles:LongInt;  { Taille total des fichiers }
+  Tri:FileSort;       { Tri sortie par (Name, Extension,...) }
+  Compressed:Boolean; { S'agit-il d'un rÇpertoire compressÇ dans un fichier? }
+ End;
+
+{$I Library\Files\Data\DBase3He.Inc}
+
+ {Structure de fichier .EXE}
+ HeaderEXE=Record
+  Sign:Array[0..1]of Char; { Signature 'MZ' }
+  LenN511:Word;            { Longueur Module 512 (Et binaire 511) }
+  LenShr9:Word;            { Longueur Diviser 512 (Shift Right 9) }
+  NmSeg:Word;              { Nombre de segment Ö adapter }
+  SizeOfHeader:Word;       { Taille de l'entàte en paragraphe }
+  MinParagraph:Word;       { Nombre minimal de paragraphe }
+  MaxParagraph:Word;       { Nombre maximal de paragraphe }
+  OfsLoadStack:Word;       { Offset de chargement de module dans la pile }
+  SizeOfStack:Word;        { Taille de la pile (SP) }
+  CheckSum:Word;           { VÇrificateur de l'en-tàte du fichier exÇcutable }
+  IP:Word;                 { Point d'entrÇe d'instruction }
+  OfsLoad:Word;            { Offset de chargement de module dans le code }
+  AdrExeTable:Word;        { Adresse de la table de relogement du programme EXE }
+  NmOvr:Word;              { NumÇro de recouvrement (0 pour le programme principal) }
+ End;
+
+{$I Library\Files\TeleMate\TMDial30.Inc}
+
+ (***** StartUp *****)
+ {Structure des "Jumpers" du StartUp}
+ Jumper=Record
+  FlagsMethod:StartUpFlags;
+ End;
+
+ {Structure de StartUp}
+ StartUpRec=Record
+   {Info sur le Micro-Processeur et son bus systäme}
+  CPU:Byte;                { Code correspondant au CPU (cpu????) }
+  Up32Bits:Boolean;        { Supporte le code 32-bits }
+  CPUID:Boolean;           { Supporte l'instruction CPUID? }
+  CPUVendor:Byte;          { Fabricant du CPU (cv????)? }
+  Bus:Byte;                { Type de bus }
+   {Info sur le modäle d'Ordinateur}
+  ComputerName:Word;       { Code de nom d'ordinateur }
+  PS2:Boolean;             { Est-ce un PS/2 }
+  IntExistFlags:Word;      { Information sur les Interruptions }
+   { Information sur le DOS }
+  GetDosVer:Word;          { Version DOS courante }
+  GetDosBlock:DosBlockPtr; { Information sur les donnÇes interne du DOS }
+  HandleExist:Boolean;     { Fonction Handle supportÇ par le DOS }
+   { Information sur OS/2 et Windows }
+  OS2:Boolean;             { Est-ce un systäme compatible avec OS/2? }
+  OS2HiVer,OS2LoVer:Byte;  { Version et sous-version d'OS/2 si c'est le cas }
+  Win:Byte;                { CatÇgorie de Windows }
+  WinLoVer,WinHiVer:Byte;  { Version et sous-version de Windows }
+   { Information de pays }
+  CountryCode,             { Code de pays ou de la rÇgion }
+  CodePage:Word;           { Code de page de la rÇgion }
+  Date:Word;               { Format de la date }
+  Curr:Array[0..4]of Char; { "Currency" }
+  ThSep,                   { SÇparateur de millier }
+  DeSep,                   { SÇparateur de dÇcimal }
+  DtSep,                   { SÇparateur de date }
+  TmSep:Array[0..1]of Char;{ SÇparateur d'heure }
+  CurrStyle,Digits:Byte;   { Style cournat, digital }
+  Time:TimeType;           { Format de l'heure }
+  CaseUp:Pointer;          { Routine de majuscule }
+  DaSep:Array[0..1]of Char;{ SÇparateur de donnÇes }
+   { Information sur le(s) lecteur(s) de disquette}
+  FloppyDskExist:Boolean;  { UnitÇ de disquette installÇ? }
+  NmFloppyDsk:Byte;        { Nombre d'unitÇ de disquette }
+   { Information sur le(s) disque(s) dur}
+  HardDskExist:Boolean;    { Disque dur installÇ? }
+  NmHardDsk:Byte;          { Nombre de disque dur }
+  HardDskCtrl:Word;        { Contrìleur de disque dur }
+   { Information rÇseau/"spooler" d'imprimante}
+  IsNovell:Boolean;        { Fonction Novell supportÇ? }
+  Spooler:Byte;            { Modäle de spooler installÇ }
+   { Information sur la manette de jeux }
+  JoyExist,                { Manette de jeux existante? }
+  BiosJoy:Boolean;         { Fonction BIOS pour manette de jeux prÇsente? }
+  JoyPort,                 { Adresse de port E/S de la manette de jeux }
+  JoyPotentioMeter:Word;   { Potentio-mätre de la manette de jeux }
+   { Information sur le clavier }
+  KbdModel,KbdCtrl:Byte;   { Modäle et contrìleur de clavier }
+  KbdReadPort:Word;        { Adresse de port E/S du contrìleur clavier }
+  BiosKbdEnh:Boolean;      { Information sur le clavier: Clavier Çtendue? }
+   { Information sur le port paralläle }
+  LPTExist:Boolean;        { Port paralläle existant? }
+  NmLPT:Byte;              { Nombre de port paralläle }
+  Get1LPT:Byte;            { NumÇro du premier port paralläle }
+   { Information sur le port sÇrie}
+  ComExist:Boolean;        { Port sÇrie existant? }
+  NmCom:Byte;              { Nombre de port sÇrie }
+   { Information sur la mÇmoire conventionnel}
+  MemTotalSize:Word;       { QuantitÇ de mÇmoire conventionnel }
+   { Information sur l''Expanded Memory Manager (EMS)}
+  EmmExist:Boolean;        { Pilote EMM/EMS prÇsent? }
+  EmmSeg:Word;             { Adresse de segment des plages de mÇmoire EMS }
+  EmmTotalSize:Word;       { Taille total de la mÇmoire EMS }
+   { Information sur l''eXtended Memory Manager (XMS) }
+  XmmExist:Boolean;        { Pilote XMM/XMS prÇsent? }
+  XmmCtrl:Pointer;         { Adresse de routine du pilote XMM/XMS }
+  XmsTotalSize:Word;       { Taille total de la mÇmoire XMS }
+   { Information sur la mÇmoire par le BIOS Interruption 15h }
+  ExtBiosExist:Boolean;    { MÇmoire Çtendu par le BIOS Int 15h supportÇ? }
+  ExtBiosSizeK:Word;       { Information sur la mÇmoire Çtendu gÇrÇ par le Bios Int 15h}
+   { Information sur le CMOS}
+  CtrlCmos:Byte;           { Modäle de contrìleur CMOS }
+  CmosPort:Word;           { Adresse de port d'E/S de CMOS }
+   { Information sur la souris }
+  Mouse:Byte;              { Modäle de souris }
+  MouseVer:Word;           { Version du pilote de souris }
+  MsButton:Word;           { Nombre de bouton souris }
+  {Index de procÇdure ou fonction Ö rÇfÇrence resource RLL}
+  indAltPress,indCtrlPress,{ Index associÇ au ÆAltPressedØ et ÆCtrlPressedØ }
+  indFillChr,              { Index associÇ au ÆFillByte/FillCharacterØ }
+  indGetIntVec,            { Index associÇ au ÆGetInterruptVectorØ }
+  indGetRawTimer,          { Index associÇ au ÆGetRawTimerØ }
+  indGetRawTimerB,         { Index associÇ au ÆGetRawTimerInByteØ }
+  indJoyPos,               { Index associÇ au ÆJoystickPositionØ }
+  indKeyPress,             { Index associÇ au ÆKeyPressedØ }
+  indLShiftPress,          { Index associÇ au ÆLeftShiftPressedØ }
+  indMove,                 { Index associÇ au ÆMove/MoveLeftØ }
+  indPushKey,              { Index associÇ au ÆPushKeyØ }
+  indReadKey,              { Index associÇ au ÆReadKeyØ }
+  indRShiftPress,          { Index associÇ au ÆRightShiftPressedØ }
+  indSetIntVec,            { Index associÇ au ÆSetInterruptVectorØ }
+  indShiftPress:Byte;      { Index associÇ au ÆShiftPressedØ }
+ End;
+
+ {Tableau d'index du StartUp}
+ indRec=Array[0..14]of Byte;
+ {Structure l'objet centrale d'Isabel}
+ SetBnkPgType=Procedure(Page:Byte);
+
+ FileSystemObject=Record
+   { ATTENTION!!! Bloc de 17 octets a ne pas dÇplacer }
+  BytesPerSector:Word;   { Octets par secteur (dÇplacement 11 du tampon, 2 octets) }
+  SectorsPerCluster:Byte;{ Secteur par Cluster (Offset 13 du tampon, 1 octet) }
+  SectorsReserved:Word;  { Secteur rÇservÇs (Offset 14 du tampon, 2 octets) }
+  NumberOfFATs:Byte;     { Nombre de FATs (Offset 16 du tampon, 1 octet) }
+  MaxEntry:Word;         { Nombre maximal d'entrÇe (Offset 17 du tampon, 2 octets) }
+  RawTotSects:Word;      { Total de secteur brute (Offset 19 du tampon, 2 octets) }
+  Media:Byte;            { Type de mÇdia (Offset 21 du tampon, 1 octet) }
+  SectorsPerFat:Word;    { Secteurs par FAT (Offset 22 du tampon, 2 octets) }
+  SectorsPerTrack:Word;  { Secteurs par piste (Offset 24 du tampon, 2 octets) }
+  NumberHeads:Word;      { Nombre de tàtes (Offset 26 du tampon, 2 octets) }
+   { DonnÇes normal }
+  FatBits:Byte;          { Nombre de bits utilisÇ par la FAT 12, 16, 32 }
+  NumTotalSector:LongInt;{ Nombre total de secteur }
+  SizeCluster:Word;      { Taille d'une unitÇ d'allocation }
+  SectorsPerRoot:Word;   { Nombre de secteur par rÇpertoire racine }
+  FirstRoot:Word;        { Premier secteur du rÇpertoire racine }
+  FirstFAT:Word;         { Premier secteur de FAT }
+  FirstSectorData:Word;  { Premier secteur des fichiers, calculÇ }
+  TotalTrack:Word;       { Nombre de pistes, calculÇ }
+  TotalClusters:Word;    { Nombre d'unitÇ d'allocation (pour les fichiers) }
+  ClusterByFatSector:Word;{Nombre d'unitÇ d'allocation par secteur de FAT }
+   { Variable de navigation }
+  Dsk:Byte;                     { UnitÇ courante }
+  StartSecFat:Word;
+  CurrSecFat,MaxSecFat:Byte;
+  CurrSectorFAT:Array[0..511]of Byte; { Secteur de FAT courant }
+   { Variable d'objet de manipulation }
+  IsFileImage:Boolean;   { Est-ce un fichier utilisÇ comme disque? }
+  ID:Byte;               { Identificateur de modäle: 0=DOSEmu, 1=Virtual PC}
+  Handle:Hdl;            { Handle du fichier image }
+  FileStart:LongInt;     { Position de dÇpart dans le fichier image }
+  FileSize:LongInt;      { Fin du fichier d'image }
+  Method:Byte;           { MÇthode: 0=DOS, 1=BIOS }
+  EBIOS:Boolean;         { Lecture par EBIOS? }
+ End;
+
+ FileRec=Record
+  Handle:Word;
+  Mode:Word;
+  RecSize:Word;
+  Private:Array[1..26]of Byte;
+  UserData:Array[1..16]of Byte;
+  Name:Array[0..79]of Char;
+ End;
+
+ {Structure d'une entrÇe de fichier de type variante }
+ VariantSearchRec=Record Case Byte of
+  0:{DOS/Windows 3.1 en Pascal ou C/C++ }
+   (Fill:Array[1..21]of Byte;           { RÇservÇ }
+    Attr:Byte;                          { Attribut }
+    Time:LongInt;                       { Dernier modification  }
+    Size:LongInt;                       { Taille du fichier }
+    Name:Record Case Byte of
+     0:(ASCIIZ:Array[0..12]of Char);    { Nom court C/C++}
+     1:(Str:String[12]);                { Nom court Pascal }
+    End);
+  1:{Windows 32S, Windows 9X, NT, 2000, XP }
+   (wAttr:LongInt;                      { Attribut }
+    wCreationTime:Comp;                 { Date de crÇation }
+    wLastAccessTime:Comp;               { Dernier temps d'accäs }
+    wLastWriteTime:Comp;                { Derniäre modification  }
+    wFileSizeHigh:LongInt;              { Taille du fichier - Haut }
+    wFileSizeLow:LongInt;               { Taille du fichier - Bas }
+    wReserved:Comp;                     { RÇservÇ }
+    wFileName:Array[0..259]of Char;     { Nom long }
+    wShortFileName:Array[0..13]of Char; { Nom court: Seulement s'il existe }
+    wHandle:Word);                      { Handle correspondant }
+ End;
+
+ {$IFDEF __Windows__}
+  SearchRec=Record
+   Attr:Record Case Byte of
+    0:(Value:LongInt);                { Attribut }
+    1:(Flags:Set Of(
+       sfaReadOnly,                    { Lecture seulement }
+       sfaHidden,                      { CachÇ }
+       sfaSysFile,                     { Systäme }
+       sfaVolumeID,                    { Volume }
+       sfaDir,                         { RÇpertoire }
+       sfaArchive));                   { Archive }
+   End;
+   CreationTime:Comp;                 { Date de crÇation }
+   LastAccessTime:Comp;               { Dernier temps d'accäs }
+   LastWriteTime:Comp;                { Derniäre modification  }
+   FileSizeHigh:LongInt;              { Taille du fichier - Haut }
+   FileSizeLow:LongInt;               { Taille du fichier - Bas }
+   Reserved:Comp;                     { RÇservÇ }
+   FileName:Array[0..259]of Char;     { Nom long }
+   ShortName:Array[0..13]of Char;     { Nom court: Seulement s'il existe }
+   Handle:Word;                       { Handle correspondant }
+   Name:String[12];                   { Nom sous la forme d'une Pascal }
+   Size:LongInt;                      { Variable de compatibilitÇ }
+   Time:LongInt;                      { Variable de compatibilitÇ: Derniäre modification }
+   Fill:Array[1..21]of Byte;          { Variable de compatibilitÇ: RÇservÇ }
+  End;
+ {$ELSE}
+  SearchRec=Record
+   Fill:Array[1..21]of Byte;           { RÇservÇ }
+   Attr:Record Case Byte of            { Attribut }
+    0:(Value:Byte);
+    1:(Flags:Set Of(
+       sfaReadOnly,                    { Lecture seulement }
+       sfaHidden,                      { CachÇ }
+       sfaSysFile,                     { Systäme }
+       sfaVolumeID,                    { Volume }
+       sfaDir,                         { RÇpertoire }
+       sfaArchive));                   { Archive }
+   End;
+   Time:LongInt;                       { Dernier modification  }
+   Size:LongInt;                       { Taille du fichier }
+   Name:String[12];                    { Nom court Pascal }
+  End;
+ {$ENDIF}
+
+ PathStr=String[79];
+ DirStr=String[67];
+ NameStr=String[8];
+ ExtStr=String[4];
+
+  {SearchRec=TSearchRec;}
+  {DateTime=TDateTime;}
+ Registers=Record Case Byte of
+  0:(AX,BX,CX,DX,BP,SI,DI,DS,ES,Flags:Word);
+  1:(AL,AH,BL,BH,CL,CH,DL,DH:Byte);
+ End;
+
+ CenterType=(__Left__,__Justified__,__Right__);
+ MatrixType=(Default,_6x6);
+
+ PaletteModeRec=Record
+  Mode:Word;
+  AccesMode,CodeMode:Byte;
+ End;
+
+ PointType=Record
+  X,Y:Integer;
+ End;
+
+ TPointType=Array[0..65520div SizeOf(PointType)]of PointType;
+
+ VideoModeType=(vmtNone,vmtTxt,vmtGrf,vmt2);
+
+ MtxInputColors=Record
+  Border,           { Couleur d'attribut de la boåte de dialogue }
+  Title,            { Couleur d'attribut du titre de la boåte de dialogue }
+  Msg,              { Couleur d'attribut du message }
+  KeyActif,         { Couleur d'attribut du bouton actif }
+  KeyUnactif,       { Couleur d'attribut du bouton inactif }
+  KeyShade:Byte;    { Couleur d'attribut de l'ombre du bouton }
+ End;
+
+ VidBnkSwitchRec=Record
+  {$IFDEF NotReal}
+   Shade:Boolean;
+  {$ENDIF}
+  XP,YP:Byte;
+  XL,YL:Integer;
+ End;
+
+ ZoneType=Set of (ztNorth,ztSouth);
+
+{$I \Source\Chantal\Library\Video\Font\FontInde.Inc}
+
+{$IFDEF NotReal}
+ {$IFNDEF __Windows__}
+ Var
+  _0040:Word Absolute Seg0040; { Adresse du segment 0040h par dÇfaut }
+  _A000:Word Absolute SegA000; { Adresse du segment A000h par dÇfaut }
+  _B000:Word Absolute SegB000; { Adresse du segment B000h par dÇfaut }
+  _B800:Word Absolute SegB800; { Adresse du segment B800h par dÇfaut }
+ {$ENDIF}
+{$ELSE}
+ Const
+  _0040=$40;                   { Adresse du segment 0040h par dÇfaut }
+  _A000=$A000;                 { Adresse du segment A000h par dÇfaut }
+  _B000=$B000;                 { Adresse du segment B000h par dÇfaut }
+  _B800=$B800;                 { Adresse du segment B800h par dÇfaut }
+{$ENDIF}
+
+{$IFNDEF NotReal}
+Var
+  { Interruption de donnÇe systäme }
+ TableInt:TableIntRec Absolute$0:$0;      { Matrice d'Int 00h Ö FFh}
+ Int1Eh:^Int1EhRec Absolute$0:$0078;      { Int 1Eh}
+ Int41h:^IntHardDiskRec Absolute$0:$0104; { Int 41h}
+ Int46h:^IntHardDiskRec Absolute$0:$0118; { Int 46h}
+  { DonnÇes Bios }
+ COM1Port:Word Absolute$0:$400;           { Adresse de port d'E/S du COM1: }
+ COM2Port:Word Absolute$0:$402;           { Adresse de port d'E/S du COM2: }
+ COM3Port:Word Absolute$0:$404;           { Adresse de port d'E/S du COM3: }
+ COM4Port:Word Absolute$0:$406;           { Adresse de port d'E/S du COM4: }
+ LPT1Port:Word Absolute$0:$408;           { Adresse de port d'E/S du LPT1: }
+ LPT2Port:Word Absolute$0:$40A;           { Adresse de port d'E/S du LPT2: }
+ LPT3Port:Word Absolute$0:$40C;           { Adresse de port d'E/S du LPT3: }
+ LPT4Port:Word Absolute$0:$40E;           { Adresse de port d'E/S du LPT4: }
+ SizeOfRAMConv:Word Absolute$0:$413;      { Taille de la mÇmoire conventionnel }
+ CurrVideoMode:Byte Absolute$0:$449;      { NumÇro du mode vidÇo courant }
+ CurrNmXTxts:Word Absolute$0:$44A;        { Largeur de l'Çcran en caractäres }
+ XCur:Byte Absolute$0:$450;               { Position horizontal du curseur }
+ YCur:Byte Absolute$0:$451;               { Position vertical du curseur }
+ VideoPort:Word Absolute$0:$463;          { Port d'E/S de la carte vidÇo courante }
+ CurrMaxYTxts:Byte Absolute $0:$484;      { Nombre ligne texte d'affichage - 1}
+ CurrHeightChr:Byte Absolute $0:$485;     { Hauteur d'un caractäre }
+ EGAVGATable:^SaveOverrideRec Absolute$0:$4A8;
+  { ROM Bios Standard IBM }
+ Mtx8x8High:Array[0..1023]of Byte Absolute$FFA6:$E;{Ö FFE6h:Dh}
+ BootstrapCode:Byte Absolute$FFFF:0;      { DÇmarrage Ö froid }
+ RomDate:Array[0..7]of Char Absolute$FFFF:$5;{Ö FFFFh:Dh}
+ MachineID:Byte Absolute$FFFF:$E;         { Identificateur de machine }
+{$ENDIF}
+
+{$IFNDEF __Windows__}
+ {$IFNDEF __TMT__}
+  Procedure CLI;InLine(ciCLI);             { Interdit les interruptions }
+ {$ENDIF}
+{$ENDIF}
+{$IFDEF NotReal}
+ Function CurrHeightChr:Byte;             { Hauteur d'un caractäre }
+ Function CurrMaxYTxts:Byte;              { CoordonnÇe maximal texte vertical }
+ Function CurrNmXTxts:Word;               { Largeur en caractäres de l'Çcran }
+ Function CurrVideoMode:Byte;             { Mode d'affichage vidÇo courant }
+ Function SizeOfRAMConv:Word;             { Taille de la mÇmoire conventionnel }
+{$ENDIF}
+{$IFNDEF __Windows__}
+ {$IFNDEF __TMT__}
+  Procedure STI;InLine(ciSTI);             { Autorise les interruptions }
+ {$ENDIF}
+{$ENDIF}
+{$IFDEF NotReal}
+ Function VideoPort:Word;                 { Port d'E/S vidÇo }
+ Function XCur:Byte;                      { Position horizontal du curseur }
+ Function YCur:Byte;                      { Position vertical du curseur }
+{$ENDIF}
+
+IMPLEMENTATION
+
+{Remarque
+ ÕÕÕÕÕÕÕÕ
+
+  ˛ Cette fonction n'existe qu'Ö titre de compatibilitÇ en mode protÇgÇ ou
+    Windows. Ainsi, en mode rÇel,  il n'existe pas,  puisque les variables
+    absolue sont supportÇs correctement.
+}
+
+{$IFDEF NotReal}
+ Function CurrHeightChr;Begin
+  {$IFDEF __Windows__}
+   CurrHeightChr:=16
+  {$ELSE}
+   CurrHeightChr:=Mem[_0040:$85]
+  {$ENDIF}
+ End;
+
+ Function CurrMaxYTxts;Begin
+  {$IFDEF __Windows__}
+   CurrMaxYTxts:=24
+  {$ELSE}
+   CurrMaxYTxts:=Mem[_0040:$84]
+  {$ENDIF}
+ End;
+
+ Function CurrNmXTxts;Begin
+  {$IFDEF __Windows__}
+   CurrNmXTxts:=80
+  {$ELSE}
+   CurrNmXTxts:=Mem[_0040:$4A]
+  {$ENDIF}
+ End;
+
+ Function CurrVideoMode;Begin
+  {$IFDEF __Windows__}
+   CurrVideoMode:=3
+  {$ELSE}
+   CurrVideoMode:=Mem[_0040:$49]
+  {$ENDIF}
+ End;
+
+ Function SizeOfRAMConv;Begin
+  {$IFDEF __Windows__}
+   SizeOfRAMConv:=640
+  {$ELSE}
+   SizeOfRAMConv:=MemW[_0040:$13]
+  {$ENDIF}
+ End;
+
+ Function VideoPort;Begin
+  {$IFDEF __Windows__}
+   VideoPort:=$3D4
+  {$ELSE}
+   VideoPort:=MemW[_0040:$63]
+  {$ENDIF}
+ End;
+
+ Function XCur;Begin
+  {$IFDEF __Windows__}
+   XCur:=0
+  {$ELSE}
+   XCur:=Mem[_0040:$50]
+  {$ENDIF}
+ End;
+
+ Function YCur;Begin
+  {$IFDEF __Windows__}
+   YCur:=0
+  {$ELSE}
+   YCur:=Mem[_0040:$51]
+  {$ENDIF}
+ End;
+{$ENDIF}
+
+END.

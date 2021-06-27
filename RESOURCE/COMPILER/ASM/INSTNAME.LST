@@ -1,0 +1,454 @@
+AAA                8088+               Non                 37
+AAD                8088+               Non                 D50A
+AAM                8088+               Non                 D40A
+AAS                8088+               Non                 3F
+ADC                8088+               Oui                 10
+ADD                8088+               Oui                 00
+AND                8088+               Oui                 20
+ARPL               80286+              Oui
+BOUND              80186+              Oui
+BSF                80386+              Oui
+BSR                80386+              Oui
+BSWAP              80486+              Oui
+BT                 80386+              Oui
+BTC                80386+              Oui
+BTR                80386+              Oui
+BTS                80386+              Oui
+CALL               8088+               Oui
+CBW                8088+               Non                 98
+CDQ                80386+              Non                 6699
+CLC                8088+               Non                 F8
+CLD                8088+               Non                 FC
+CLI                8088+               Non                 FA
+CLTS               80286+              Non                 0F06
+CMC                8088+               Non                 F5
+CMOVA              80686+              Oui                 0F47
+CMOVB              80686+              Oui                 0F42
+CMOVBE             80686+              Oui                 0F46
+CMOVC              80686+              Oui                 0F42
+CMOVE              80686+              Oui                 0F44
+CMOVG              80686+              Oui                 0F4F
+CMOVGE             80686+              Oui                 0F4D
+CMOVL              80686+              Oui                 0F4C
+CMOVLE             80686+              Oui                 0F4E
+CMOVNA             80686+              Oui                 0F46
+CMOVNAE            80686+              Oui                 0F42
+CMOVNB             80686+              Oui                 0F43
+CMOVNE             80686+              Oui                 0F45
+CMOVNG             80686+              Oui                 0F4E
+CMOVNGE            80686+              Oui                 0F4C
+CMOVNL             80686+              Oui                 0F4D
+CMOVNO             80686+              Oui                 0F41
+CMOVNP             80686+              Oui                 0F4B
+CMOVNS             80686+              Oui                 0F49
+CMOVNZ             80686+              Oui                 0F45
+CMOVO              80686+              Oui                 0F40
+CMOVP              80686+              Oui                 0F4A
+CMOVPE             80686+              Oui                 0F4A
+CMOVPO             80686+              Oui                 0F4B
+CMOVS              80686+              Oui                 0F48
+CMOVZ              80686+              Oui                 0F45
+CMP                8088+               Oui                 38
+CMPSB              8088+               Non                 A6
+CMPSD              80386+              Non                 66A7
+CMPSW              8088+               Non                 A7
+CMPXCHG            80486+              Oui
+CMPXCHG486         80486               Oui
+CMPXCHG8B          80486+              Oui
+CPUID              80586+              Non                 0FA2
+CS                 8088+               Oui                 2E
+CWD                8088+               Non                 99
+CWDE               80386+              Non                 6698
+DAA                8088+               Non                 27
+DAS                8088+               Non                 2F
+DB                 8088+               Oui
+DD                 8088+               Oui
+DEC                8088+               Oui
+DIV                8088+               Oui                 F0
+DQ                 8088+               Oui
+DS                 8088+               Oui                 3E
+DW                 8088+               Oui
+EMMS               MMX                 Non                 0F77
+END                8088+               Oui
+ENTER              8088+               Oui
+ES                 8088+               Oui                 26
+ESC                8088+               Oui
+F2XM               8087+               Non                 D9F0
+FABS               8087+               Non                 D9E1
+FADD               8087+               Oui
+FADDF              8087+               Oui
+FBLD               8087+               Oui
+FBSTP              8087+               Oui
+FCHS               8087+               Non                 D9E0
+FCLEX              8087+               Non                 9BDBE2
+FCMOVB             80686+              Oui
+FCMOVBE            80686+              Oui
+FCMOVE             80686+              Oui
+FCMOVNB            80686+              Oui
+FCMOVNBE           80686+              Oui
+FCMOVNE            80686+              Oui
+FCMOVNU            80686+              Oui
+FCMOVU             80686+              Oui
+FCOM               8087+               Oui
+FCOMI              80686+              Oui
+FCOMIP             80686+              Oui
+FCOMP              8087+               Oui
+FCOMPP             8087+               Non                 DED9
+FCOS               8087+               Non                 D9FF
+FDECSTEP           8087+               Non                 D9F6
+FDECSTP            8087+               Non                 D9F6
+FDISI              8087+               Non                 9BDBE1
+FDIV               8087+               Oui
+FDIVP              8087+               Oui
+FDIVR              8087+               Oui
+FDIVRP             8087+               Oui
+FENI               8087                Non                 9BDBE0
+FEXTRACT           8087+               Non                 D9F4
+FFREE              8087+               Oui
+FIADD              8087+               Oui
+FICOM              8087+               Oui
+FICOMP             8087+               Oui
+FIDIV              8087+               Oui
+FIDIVR             8087+               Oui
+FILD               8087+               Oui
+FIMUL              8087+               Oui
+FIN                8088+               Oui
+FINCSTEP           8087+               Non                 D9F7
+FINCSTP            8087+               Non                 D9F7
+FINIT              8087+               Non                 9BDBE3
+FISTP              8087+               Oui
+FISUB              8087+               Oui
+FISUBR             8087+               Oui
+FLOAT              8087+               Oui
+FLOATABS           8087+               Non                 D9E1
+FLOATINIT          8087+               Non                 9BDBE3
+FLOATNOP           8087+               Non                 D9D0
+FLOATROUNDINTEGER  8087+               Non                 D9FC
+FLD                8087+               Oui
+FLD1               8087+               Non                 D9E8
+FLDCW              8087+               Oui
+FLDENV             8087+               Oui
+FLDL2E             8087+               Non                 D9EA
+FLDL2T             8087+               Non                 D9E9
+FLDLG2             8087+               Non                 D9EC
+FLDLN2             8087+               Non                 D9ED
+FLDPI              8087+               Non                 D9EB
+FLDZ               8087+               Non                 D9EE
+FMUL               8087+               Oui
+FMULP              8087+               Oui
+FNCLEX             8087+               Non                 DBE2
+FNDISI             8087                Non                 DBE1
+FNENI              8087                Non                 DBE0
+FNINIT             8087+               Non                 DBE3
+FNOP               8087+               Non                 D9D0
+FNSAVE             8087+               Oui
+FNSTENV            8087+               Oui
+FNSTCW             8087+               Oui
+FNSTSW             8087+               Oui
+FPATAN             8087+               Non                 D9F3
+FPREM              8087+               Non                 D9F8
+FPREM1             80387+              Non                 D9F5
+FPTAN              8087+               Non                 D9F2
+FROUNDINTEGER      8087+               Non                 D9FC
+FRNDINT            8087+               Non                 D9FC
+FRSTOR             8087+               Oui
+FS                 80386+              Oui                 64
+FSAVE              8087+               Oui
+FSCALE             8087+               Non                 D9FD
+FSETPM             80387+              Non                 DBE4
+FSIN               80387+              Non                 D9FE
+FSINCOS            80387+              Non                 D9FB
+FSQRT              8087+               Non                 D9FA
+FST                8087+               Oui
+FSTCW              8087+               Oui
+FSTENV             8087+               Oui
+FSTP               8087+               Oui
+FSTSW              8087+               Oui
+FSUB               8087+               Oui
+FSUBPP             8087+               Oui
+FSUBR              8087+               Oui
+FSUBRP             8087+               Oui
+FTST               8087+               Non                 D9E4
+FUCOM              80387+              Oui
+FUCOMI             80686+              Oui
+FUCOMIP            80686+              Oui
+FUCOMP             80387+              Oui
+FUCOMPP            80387+              Non                 DAE9
+FWAIT              8087+               Non
+FXAM               8087+               Non                 D9E5
+FXCH               8087+               Oui                 D9C9
+FXTRACT            8087+               Non                 D9F4
+FYL2X              8087+               Non                 D9F1
+FYL2XP1            8087+               Non                 D9F9
+GS                 80386+              Oui                 65
+HALT               8088+               Non                 F4
+HLT                8088+               Non                 F4
+IBTS               80386               Oui
+ICEBP              80686+              Non                 F1
+IDIV               8088+               Oui                 F8
+IF                 8088+               Oui
+IMUL               8088+               Oui                 E8
+IN                 8088+               Oui
+INC                8088+               Oui
+INSB               80286+              Non                 6C
+INSD               80386+              Non                 666D
+INSW               80286+              Non                 6D
+INT                8088+               Oui                 CD
+INT01              80686+              Non                 F1
+INT1               80686+              Non                 F1
+INT3               8088+               Non                 CC
+INTERRUPT          8088+               Oui                 CD
+INTERRUPTRETURN    8088+               Non                 CF
+INTO               8088+               Non                 CE
+INVD               80486+              Non                 0F08
+INVLPG             80486+              Oui
+IRET               8088+               Non                 CF
+IRETD              80386+              Non                 66CF
+IRETW              8088+               Non                 CF
+JA                 8088+               Oui                 77
+JAE                8088+               Oui                 73
+JB                 8088+               Oui                 72
+JBE                8088+               Oui                 76
+JC                 8088+               Oui                 72
+JCXZ               8088+               Oui                 E3
+JE                 8088+               Oui                 74
+JECXZ              80386+              Oui                 66E3
+JG                 8088+               Oui                 7F
+JGE                8088+               Oui                 7D
+JL                 8088+               Oui                 7C
+JLE                8088+               Oui                 7E
+JMP                8088+               Oui                 EB
+JNA                8088+               Oui                 76
+JNAE               8088+               Oui                 72
+JNB                8088+               Oui                 73
+JNC                8088+               Oui                 72
+JNE                8088+               Oui                 75
+JNG                8088+               Oui                 7E
+JNGE               8088+               Oui                 7C
+JNL                8088+               Oui                 7D
+JNLE               8088+               Oui                 7F
+JNO                8088+               Oui                 71
+JNP                8088+               Oui                 7B
+JNS                8088+               Oui                 79
+JNZ                8088+               Oui                 75
+JO                 8088+               Oui                 70
+JP                 8088+               Oui                 7A
+JPE                8088+               Oui                 7A
+JPO                8088+               Oui                 7B
+JS                 8088+               Oui                 78
+JZ                 8088+               Oui                 74
+LAHF               8088+               Non                 9F
+LAR                80286+              Oui
+LDS                8088+               Oui                 C5
+LEA                8088+               Oui                 8D
+LEAVE              80186+              Non                 C9
+LES                8088+               Oui                 C4
+LFS                80386+              Oui                 0FB4
+LGDT               80286+              Oui
+LGS                80386+              Oui                 0FB5
+LIDT               80286+              Oui
+LLDT               80286+              Oui
+LMSW               80286+              Oui
+LOADAHFLAGS        8088+               Non                 9F
+LOADALL            80386               Non                 0F07
+LOADALL286         80286               Non                 0F05
+LOADSB             8088+               Non                 AC
+LOADSD             80386+              Non                 66AD
+LOADSTRBYTE        8088+               Non                 AC
+LOADSTRDOUBLEWORD  80386+              Non                 66AD
+LOADSTRWORD        8088+               Non                 AD
+LOADSW             8088+               Non                 AD
+LOCK               8088+               Non                 F0
+LODSB              8088+               Non                 AC
+LODSD              80386+              Non                 66AD
+LODSW              8088+               Non                 AD
+LOOP               8088+               Oui                 E2
+LOOPE              8088+               Oui                 E1
+LOOPNE             8088+               Oui                 E0
+LOOPNZ             8088+               Oui                 E0
+LOOPZ              8088+               Oui                 E1
+LSL                80286+              Oui
+LSS                80386+              Oui                 0FB2
+LTR                80286+              Oui
+MOV                8088+               Oui
+MOVD               MMX                 Oui
+MOVQ               MMX                 Oui
+MOVSB              8088+               Non                 A4
+MOVSD              80386+              Non                 66A5
+MOVSW              8088+               Non                 A5
+MOVSX              80386+              Oui
+MOVZX              80386+              Oui
+MUL                8088+               Oui                 E0
+NEG                8088+               Oui                 D8
+NOP                8088+               Non                 90
+NOP386             80386+              Non                 6690
+NOT                8088+               Oui                 D0
+OR                 8088+               Oui                 08
+OUT                8088+               Oui
+OUTSB              80186+              Non                 6E
+OUTSD              80386+              Non                 666F
+OUTSW              80186+              Non                 6F
+PACKSSDW           MMX                 Oui
+PACKSSWB           MMX                 Oui
+PACKUSWB           MMX                 Oui
+PADDB              MMX                 Oui
+PADDD              MMX                 Oui
+PADDSB             MMX                 Oui
+PADDSW             MMX                 Oui
+PADDUSB            MMX                 Oui
+PADDUSW            MMX                 Oui
+PADDW              MMX                 Oui
+PAND               MMX                 Oui
+PANDN              MMX                 Oui
+PADDSIW            MMX                 Oui
+PAVEB              MMX                 Oui
+PCMPEQB            MMX                 Oui
+PCMPEQD            MMX                 Oui
+PCMPEQW            MMX                 Oui
+PCMPGTB            MMX                 Oui
+PCMPGTD            MMX                 Oui
+PCMPGTW            MMX                 Oui
+PDISTIB            MMX                 Oui
+PMACHRIW           MMX                 Oui
+PMADDWD            MMX                 Oui
+PMAGW              MMX                 Oui
+PMULHRW            MMX                 Oui
+PMULHRIW           MMX                 Oui
+PMULHW             MMX                 Oui
+PMVZB              MMX                 Oui
+PMVNZB             MMX                 Oui
+PMVLZB             MMX                 Oui
+PMVGEZB            MMX                 Oui
+POP                8088+               Oui
+POPA               80286+              Non                 61
+POPAD              80386+              Non                 6661
+POPALL             80286+              Non                 61
+POPAW              80286+              Non                 61
+POPF               8088+               Non                 9D
+POPFD              80386+              Non                 669D
+POPFLAGS           8088+               Non                 9D
+POPFW              8088+               Non                 9D
+POR                MMX                 Oui
+PSLLD              MMX                 Oui
+PSLLQ              MMX                 Oui
+PSLLW              MMX                 Oui
+PSRAD              MMX                 Oui
+PSRAW              MMX                 Oui
+PSRLD              MMX                 Oui
+PSRLQ              MMX                 Oui
+PSRLW              MMX                 Oui
+PSUBB              MMX                 Oui
+PSUBD              MMX                 Oui
+PSUBSB             MMX                 Oui
+PSUBSIW            MMX                 Oui
+PSUBSW             MMX                 Oui
+PSUBUSB            MMX                 Oui
+PSUBUSW            MMX                 Oui
+PSUBW              MMX                 Oui
+PUNPCKHBW          MMX                 Oui
+PUNPCKHWD          MMX                 Oui
+PUNPCKHDQ          MMX                 Oui
+PUNPCKLBW          MMX                 Oui
+PUNPCKLWD          MMX                 Oui
+PUNPCKLDQ          MMX                 Oui
+PUSH               8088+               Oui
+PUSHA              80286+              Non                 60
+PUSHAD             80386+              Non                 6660
+PUSHALL            80286+              Non                 60
+PUSHAW             80286+              Non                 60
+PUSHF              8088+               Non                 9C
+PUSHFD             80386+              Non                 669C
+PUSHFLAGS          8088+               Non                 9C
+PUSHFW             8088+               Non                 9C
+PXOR               MMX                 Oui
+RCL                8088+               Oui
+RCR                8088+               Oui
+RDMSR              80586+              Non                 0F32
+RDPMC              80686+              Non                 0F33
+RDTSC              80586+              Non                 0F31
+REP                8088+               Oui                 F3
+REPE               8088+               Oui                 F3
+REPNE              8088+               Oui                 F2
+REPNZ              8088+               Oui                 F2
+REPZ               8088+               Oui                 F3
+RET                8088+               Oui
+RETF               8088+               Oui
+RETN               8088+               Oui
+ROL                8088+               Oui                 00
+ROR                8088+               Oui                 08
+RSM                80586+              Non                 0FAA
+SAHF               8088+               Non                 9E
+SAL                8088+               Oui                 30
+SALC               8088+               Non                 D6
+SAR                8088+               Oui                 38
+SAVEAHFLAGS        8088+               Non                 9E
+SBB                8088+               Oui                 18
+SCASB              8088+               Non                 AE
+SCASD              80386+              Non                 66AF
+SCASW              8088+               Non                 AF
+SETA               80386+              Oui                 0F97
+SETAE              80386+              Oui                 0F93
+SETALC             8088+               Non                 D6
+SETB               80386+              Oui                 0F92
+SETBE              80386+              Oui                 0F96
+SETC               80386+              Oui                 0F92
+SETCARRY           8088+               Non                 F9
+SETCF              8088+               Non                 F9
+SETD               8088+               Non                 FD
+SETDF              8088+               Non                 FD
+SETE               80386+              Oui                 0F94
+SETG               80386+              Oui                 0F9F
+SETGE              80386+              Oui                 0F9D
+SETI               8088+               Non                 FB
+SETIF              8088+               Non                 FB
+SETL               80386+              Oui                 0F9C
+SETLE              80386+              Oui                 0F9E
+SETNA              80386+              Oui                 0F96
+SETNAE             80386+              Oui                 0F92
+SETNB              80386+              Oui                 0F93
+SETNC              80386+              Oui                 0F93
+SETNE              80386+              Oui                 0F95
+SETNG              80386+              Oui                 0F9E
+SETNGE             80386+              Oui                 0F9C
+SETNL              80386+              Oui                 0F9D
+SETNLE             80386+              Oui                 0F9F
+SETNO              80386+              Oui                 0F91
+SETNP              80386+              Oui                 0F9B
+SETNS              80386+              Oui                 0F99
+SETNZ              80386+              Oui                 0F95
+SETO               80386+              Oui                 0F90
+SETP               80386+              Oui                 0F9A
+SETPE              80386+              Oui                 0F9A
+SETPO              80386+              Oui                 0F9B
+SETS               80386+              Oui                 0F98
+SETZ               80386+              Oui                 0F94
+SGDT               80286+              Oui
+SHL                8088+               Oui                 20
+SHLD               80386+              Oui
+SHR                8088+               Oui                 28
+SHRD               80386+              Oui
+SIDT               80286+              Oui
+SLDT               80286+              Oui
+SMI                80386+              Non                 F1
+SS                 8088+               Oui                 36
+STC                8088+               Non                 F9
+STD                8088+               Non                 FD
+STI                8088+               Non                 FB
+STOSB              8088+               Non                 AA
+STOSD              80386+              Non                 66AB
+STOSW              8088+               Non                 AB
+STR                80286+              Oui
+SUB                8088+               Oui                 28
+TEST               8088+               Oui
+UMOV               80386               Oui
+VERR               80286+              Oui
+VERW               80286+              Oui
+WAIT               8088+               Non                 9B
+WBINVD             80486+              Non                 0F08
+WRMSR              80586+              Non                 0F30
+XADD               80486+              Oui
+XBTS               80386               Oui
+XCHG               8088+               Oui
+XLAT               8088+               Non                 D7
+XLATB              8088+               Non                 D7
+XOR                8088+               Oui                 30

@@ -1,0 +1,7 @@
+// Le WormHole: Un genre de trou noir
+FILE 'RESOURCE\INTRO\WORMHOLE.GFX'
+// Image de Star-Trek The Next Generation
+FILE 'RESOURCE\INTRO\TNG.GFX'
+FILE 'RESOURCE\INTRO\TNG.PAL'
+// Image de Plasma
+FILE 'RESOURCE\INTRO\PLASMA1.GFX'

@@ -1,0 +1,126 @@
+Ressource de menu contextuel
+ออออออออออออออออออออออออออออ
+
+Les ressources de menu contextuel sont des menus activ par le deuxime
+bouton de la souris.
+ฺฤฤฤฤฤฤฤฤฤฤยฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+ณ Code     ณ Affectation                                      ณ
+ฦออออออออออุออออออออออออออออออออออออออออออออออออออออออออออออออต
+ณ 00h      ณ Indicatif de terminaison                         ณ
+ณ 01h      ณ ITEM -                                           ณ
+ณ 02h      ณ ITEM ...                                         ณ
+ณ 03h      ณ ITEM switch                                      ณ
+ณ 04h      ณ ITEM ...                                         ณ
+ณ 05h      ณ GROUP ITEM                                       ณ
+ณ 06h      ณ END GROUP                                        ณ
+ณ 07h      ณ IF TRUE THEN                                     ณ
+ณ 08h      ณ ELSE                                             ณ
+ณ 09h      ณ END IF                                           ณ
+ณ 0Ah      ณ MENU message                                     ณ
+ณ 15h      ณ GROUP ITEM xxxxh,item,message                    ณ
+ภฤฤฤฤฤฤฤฤฤฤมฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+
+Ressource de dialogue
+อออออออออออออออออออออ
+
+Les ressouces de dialogue sont des codes de format DPU permettant
+d'excuter une bote de dialogue avec des composants complexes.
+
+ฺฤฤฤฤฤฤฤฤฤฤยฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+ณ Code     ณ Affectation                                      ณ
+ฦออออออออออุออออออออออออออออออออออออออออออออออออออออออออออออออต
+ณ 00h      ณ Indicatif de terminaison                         ณ
+ณ 01h      ณ SIZE X,Y                                         ณ
+ณ 02h      ณ WINDOWCOLORCLASSIC Title                         ณ
+ณ 03h      ณ CLOSEICON                                        ณ
+ณ 04h      ณ LN                                               ณ
+ณ 05h      ณ BARUP                                            ณ
+ณ 06h      ณ TEXT Message                                     ณ
+ณ 07h      ณ TEXT (X,Y),Message                               ณ
+ณ 08h      ณ TEXT (X),Message                                 ณ
+ณ 09h      ณ MESSAGE message                                  ณ
+ณ 0Ah      ณ SIMPLE GRID(x,y),attribut                        ณ
+ณ 0Bh      ณ BARHORI (x1,y,x2)                                ณ
+ณ 0Ch      ณ PUT MESSAGE...                                   ณ
+ณ 0Dh      ณ WINDOWCOLORCLASSIC CAPTION                       ณ
+ณ 0Eh      ณ SIZE_RELATIVE                                    ณ
+ณ 0Fh      ณ LOCATE x,y                                       ณ
+ณ 10h      ณ IF TRUE THEN                                     ณ
+ณ 11h      ณ ELSE                                             ณ
+ณ 12h      ณ END IF                                           ณ
+ณ 19h      ณ MESSAGE STRING                                   ณ
+ณ 21h      ณ TREE (X1,Y1)-(X2,Y2)                             ณ
+ณ 31h      ณ COLORCUBE (X,Y),Largeur,Hauteur                  ณ
+ณ 41h      ณ CAPTION BYTE                                     ณ
+ณ 42h      ณ CAPTION WORD                                     ณ
+ณ 43h      ณ CAPTION LONG                                     ณ
+ณ 44h      ณ CAPTION REAL                                     ณ
+ณ 46h      ณ CAPTION STRING                                   ณ
+ณ 4Fh      ณ CAPTION COPY (XSource,YSource),(XTarget,YTarget),ณ
+ณ          ณ              (XGlobalProgress,YGlobalProgress),  ณ
+ณ          ณ              (XLocalProgress,YLocalProgress)     ณ
+ณ 50h      ณ COPY|MOVE source,target[,OVERWRITE][,SUBFOLDER]  ณ
+ณ 6Dh      ณ RADIOBUTTON EXTERN                               ณ
+ณ 6Fh      ณ CHECKBOX EXTERN                                  ณ
+ณ 70h      ณ EXTERNAL PROCESSUS                               ณ
+ณ 71h      ณ LIST (x1,y1)-(x2,y2),nom                         ณ
+ณ 72h      ณ END LIST                                         ณ
+ณ 78h      ณ COMBOBOX (x1,y,x2)                               ณ
+ณ 80h      ณ INPUT COUNTRY (x1,y,x2),mode                     ณ
+ณ 81h      ณ INPUT BYTE                                       ณ
+ณ 82h      ณ INPUT WORD                                       ณ
+ณ 83h      ณ INPUT LONG                                       ณ
+ณ 84h      ณ INPUT REAL                                       ณ
+ณ 85h      ณ KEYHORIDOWN                                      ณ
+ณ 86h      ณ INPUT STRING                                     ณ
+ณ 87h      ณ LISTBOX                                          ณ
+ณ 88h      ณ SCROLLBAR                                        ณ
+ณ 89h      ณ INPUT FILE (x1,y,x2),Longueur chemin[,"cl"]     ณ
+ณ 8Ah      ณ TABBEDNOTEBOOK                                   ณ
+ณ 8Bh      ณ COLORGRID                                        ณ
+ณ 8Ch      ณ FRAME                                            ณ
+ณ 8Dh      ณ RADIOBUTTON                                      ณ
+ณ 8Eh      ณ KEYHORI (X,Y),Longueur,message                   ณ
+ณ 8Fh      ณ CHECKBOX                                         ณ
+ณ 91h      ณ GHOST BYTE                                       ณ
+ณ 92h      ณ GHOST WORD                                       ณ
+ณ 93h      ณ GHOST LONG                                       ณ
+ณ 94h      ณ GHOST REAL                                       ณ
+ณ 96h      ณ GHOST STRING                                     ณ
+ณ A1h      ณ INPUT EXTERN BYTE                                ณ
+ณ A2h      ณ INPUT EXTERN WORD                                ณ
+ณ A3h      ณ INPUT EXTERN LONG                                ณ
+ณ A4h      ณ INPUT EXTERN REAL                                ณ
+ณ A6h      ณ INPUT STRING                                     ณ
+ณ B0h      ณ SECTORIAL (X1,Y1)-(X2,Y2),Color1[,Color2][...]   ณ
+ณ C0h      ณ IMAGE (X,Y),Index,Source                         ณ
+ณ E1h #    ณ COPYRIGHT                                        ณ
+ณ E2h #    ณ INDEXASCII                                       ณ
+ณ E3h #    ณ INDEXSQL                                         ณ
+ณ E4h #    ณ INDEXFILE                                        ณ
+ณ E5h #    ณ INDEXREC                                         ณ
+ณ E6h #    ณ INDEXDIALOG                                      ณ
+ณ E7h #    ณ INDEXMENUCONTEXT                                 ณ
+ณ E8h #    ณ INDEXMSG                                         ณ
+ณ E9h #    ณ NUMBERINDEX                                      ณ
+ณ EAh #    ณ BIN                                              ณ
+ณ EBh #    ณ MATRIX                                           ณ
+ณ ECh #    ณ IMAGEBIN                                         ณ
+ณ EDh #    ณ HEIGHT                                           ณ
+ณ EEh #    ณ NAME                                             ณ
+ณ EFh #    ณ BANKFONT                                         ณ
+ณ F0h *    ณ INPUT ...                                        ณ
+ณ F1h *    ณ CAPTION ...                                      ณ
+ณ F2h *    ณ WINDOWCOLORCLASSIC ...                           ณ
+ณ F7h *    ณ CLICKBOX/CHECKBOX ...                            ณ
+ณ F8h *    ณ RADIOBUTTON ...                                  ณ
+ณ F9h *    ณ END ...                                          ณ
+ณ FAh *    ณ TEXT ...                                         ณ
+ณ FBh *    ณ GHOST ...                                        ณ
+ณ FCh *    ณ EXTERNAL ...                                     ณ
+ณ FDh *    ณ SIMPLE ...                                       ณ
+ณ FEh *    ณ MESSAGE ...                                      ณ
+ภฤฤฤฤฤฤฤฤฤฤมฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+
+# Code de compatibilit CRLL global
+* Code de compatibilit interne

@@ -1,0 +1,8 @@
+Procedure ProcedureNull;Begin
+End;
+
+Const
+ X:Procedure=@ProcedureNull;
+
+BEGIN
+END.

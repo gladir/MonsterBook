@@ -1,0 +1,70 @@
+// * * * * * * * * * * * * * * * * * * * * * * * *
+// *            Resource MonsterBook             *
+// * * * * * * * * * * * * * * * * * * * * * * * *
+//
+// InsSDir.RC -> Editeur de r‚pertoires
+
+USES MalBKRes, Editor, Protocol, Dialex
+
+VARIABLE
+BEGIN
+ PChr PathMalte
+END
+
+SetupDir SETUPPATH
+BEGIN
+ HEADER "MonsterBook"
+  PATH "Principal",PathMalte
+  PATH "SystŠme (RLL)",PathSystems
+ HEADER "Traitement de texte"
+  PATH "Genesis Ascii TypeWriter (GAT)", PathGat
+  PATH "Macro", PathMac
+ HEADER "Chiffrier ‚lectronique"
+//  PATH "Malte Genesis Calculator", PathCalc
+  PATH "Phoenix Calulator", PathCalc
+ HEADER "Catalogue"
+  PATH "Catalogue disque", PathCatDisk
+ HEADER "Imagerie/Dessin"
+  PATH "Draw", PathDraw
+  PATH "PCX", PathPCX
+  PATH "Macro", PathMacDrw
+ HEADER "Musique"
+  PATH "Mod", PathMod
+ HEADER "T‚l‚matique"
+  PATH "Liste de t‚l‚phone", PathPhoneList
+  PATH "Envoie de fichier", PathUpLoad
+  PATH "R‚ception de fichier", PathDownLoad
+  PATH "B.B.S.", PathBBS
+ HEADER "Programmation"
+  PATH "Ada", PathAda
+  PATH "Assembleur", PathAsm
+  PATH "Basic", PathBas
+  PATH "C/C++", PathC
+  PATH "Cobol", PathCobol
+  PATH "Euphoria", PathEuphoria
+  PATH "Forth", PathForth
+  PATH "Fortran", PathFortran
+  PATH "Pascal", PathPas
+ HEADER "Outils de programmation"
+  PATH "Objet", PathObject
+  PATH "Resource", PathResource
+  PATH "Sortie", PathOutput
+  PATH "Unit‚", PathUnit
+// HEADER "Emulateur ordinateur"
+//  PATH "Adams", PathAdams
+//  PATH "Apple ][", PathAppleII
+//  PATH "Apple Macintosh", PathAppleMac
+//  PATH "Atari 2600", PathAtari2600
+//  PATH "TRS-80", PathTRS80
+//  PATH "Coco 3", PathCoco3
+//  PATH "Commodore Amiga", PathAmiga
+//  PATH "Commodore 64K", PathCommodore64
+//  PATH "Commodore VIC-20", PathVic20
+ HEADER "SystŠme d''exploitation"
+//  PATH "Malte", PathSystems
+  PATH "OS/2", PathOS2
+  PATH "Unix", PathUnix
+  PATH "Windows", PathWin
+ HEADER "Symbole"
+  PATH "Pays", PathCountry
+END

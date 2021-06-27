@@ -1,0 +1,529 @@
+Menu "^F^iles"
+
+   Si Application = Terminal Alors
+      Item 226, "Upload", PageUp, ""
+      Item 227, "Download", PageDown, ""
+      Item -
+   Fin Si
+
+   Item 1, "^N^ew text", "Create a new text file ASCII (DOS)"
+   Item 2, "^O^pen text", "Locate and open text file ASCII (DOS)"
+
+   Groupe Item "Open...", ""
+
+      Item 120, "^A^ssembler", "Open in language Assembler"
+      Item 121, "^B^asic", "Open in language Basic"
+      Item 122, "^C^/C++", "Open in language C/C++"
+      Item  21, "^D^raw", "Open draw"
+      Item 123, "^E^uphoria", "Open in language Euphoria"
+      Item 124, "^F^ortran", "Open in language Fortran"
+      Item   4, "^G^at", "Open typewriter document in format GAT"
+      Item  23, "^I^con", "Open Icon"
+      Item 125, "I^n^i(tiation)", "Open .INI (Windows, GeoWorks,...)"
+      Item 109, "Macro Te^x^te", "Open shortcut typewriter"
+      Item  76, "^M^enu", "Open menu d'application"
+      Item 126, "^P^ascal", "Open in language Pascal"
+      Item 127, "^R^essource", "Open Ressource C"
+      Item   8, "^S^preadsheet", ""
+
+   Fin Groupe Item
+
+   Si ( NombreLigneAffich‚e > 29 ) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Item 3, "New Docu^m^ent", "Create a new document in format GAT"
+   Item 4, "Open Doc^u^ment", "Open document in format GAT"
+
+   Si Application = Editeur Alors
+      Item 219, "Insert file", ""
+   Fin Si
+
+   Si ( NombreLigneAffich‚e > 28 ) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Item 5, "View ^H^exad‚cimal", ""
+   Item 6, "View ^A^scii", ""
+
+   Si ( NombreLigneAffich‚e > 27 ) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Item 7, "New Spreadshee^t^", ""
+   Item 8, "Open Spreadsheet", ""
+
+   Si ( NombreLigneAffich‚e > 26) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Si Application dans [ Editeur, Ic“ne, Dessin, Tableur, Macro, HexView, Font ] Alors
+      Item  9, "^S^ave", ""
+      Item 10, "Save as", ""
+      Item 14, "Save all", ""
+      Item -
+   Fin Si
+
+   Si Application = Gestionnaire de fichiers Alors
+      Item  11, "Co^p^y", ""
+      Item  12, "Move/Rename",""
+      Item  13, "D^e^lete",""
+      Item 223, "Set attribut",""
+   Fin Si
+
+   Item 15, "Create directory", ""
+   Item 16, "^C^hange directory", ""
+
+   Si Application = Gestionnaire de fichiers Alors
+      Item 207, "Print directory", ""
+   Fin Si
+
+   Si Application Alors
+      Cas Application de
+       Gestionnaire de fichiers:
+          Item 17,"Pr^i^nt", ""
+       Autrement:
+          Item 17, "Pr^i^nt", ""
+      Fin Cas
+   Fin Si
+
+   Item 18, "DOS Sh^e^ll", "Temporarily exit to DOS"
+
+   Si (NombreLigneAffich‚e > 25 ) ou ( Aucun Application ) Alors
+      Item -
+   Fin Si
+
+   Item 19, "^E^xit", "Exit application " NOM APPLICATION
+
+Menu "^D^raw"
+
+   Si Document Alors
+      Item 153, "Insert draw", ""
+      Item -
+   Fin Si
+
+   Item 20, "^N^ew", "New draw"
+   Item 21, "^O^pen", "Open draw"
+
+   Si Application = Dessin Alors
+      Item -
+      Item 223, "Mode magnify", ""
+      Item 32, "Save ^M^ode", ""
+   Fin Si
+
+   Item -
+   Item 22, "New Icon", ""
+   Item 23, "Open ^I^con", ""
+
+   Si Application = Ic“ne Alors
+      Item 24, "New icon ^p^age", ""
+      Item 25, "^C^hange icon page", ""
+   Fin Si
+
+   Item -
+   Item 240, "New matrix", ""
+   Item 241, "Open matrix", ""
+   Item -
+   Item 245, "New Plan Electronic", ""
+   Item 246, "Open Plan Electronic", ""
+   Item 247, "Active/desactive Palette", ""
+   Item 250, "Option of Matrix", ""
+   Item 255, "Change character of Matrice", ""
+
+   Si Application = Dessin Alors
+      Item -
+      Item 147, "Full Screen", Ctrl+Enter, ""
+   Fin Si
+   Si Application = Tetris Alors
+      Item -
+      Item 147, "Full Screen", Ctrl+Enter, ""
+   Fin Si
+
+Si ( NombreColonneAffich‚e >= 100 ) Alors
+   Menu "^E^dition"
+Sinon
+   Menu "^E^dit"
+Fin Si
+
+   Si Application dans [ Editeur, Dessin, Ic“ne] Alors
+      Item 26, "Undo", Alt+BackSpace, ""
+      Item 27, "Cut", Shift+Delete, ""
+   Fin Si
+
+   Si Application dans [ Editeur, Dessin, Ic“ne] Alors
+      Item 28, "^C^opy bloc", Ctrl+Insert, ""
+   Sinon
+      Item 28, "^C^opy", Ctrl+Insert
+   Fin Si
+
+   Si Application dans [ Editeur, Dessin, Ic“ne ] Alors
+      Item 29, "Paste", Shift+Insert, ""
+      Si OS/2 Alors
+         Item 143, "Paste file OS/^2^", ""
+      Sinon
+         Si fonction Presse-Papier disponible Alors
+            Item 143, "Paste windows", ""
+         Fin Si
+      Fin Si
+      Item  30, "D^e^lete bloc", Ctrl+Delete, ""
+      Item 213, "Write bloc", ""
+   Fin Si
+
+   Item -
+   Item 31, "Clipboa^r^d", ""
+   Cas Application de
+      Gestionnaire de programmes:
+         Item -
+         Item 222, "Propriety", ""
+      Editeur:
+         Item -
+         Item  43, "Del at cursor", Delete, ""
+         Item  44, "Del at previous",BackSpace, ""
+         Item -
+         Item  32, "Mode visu^a^l", ""
+         Item  33, "Type cha^r^acter", ""
+         Item -
+         Item  34, Bool‚en DrawMode, "^D^raw", ""
+         Item 214, Bool‚en ReadOnly, "Read only", ""
+         Si Document Alors
+            Item -
+            Item  35, "Exchange pa^g^es", ""
+         Sinon
+            Item -
+            Item 222, "Open file at cursor", ""
+         Fin Si
+      HexView:
+         Item -
+         Item 214, Bool‚en EditMode, "Write possible", ""
+      Dessin,Ic“ne:
+         Item -
+         Item  36, Bool‚en IsLine, "^L^ine", ""
+         Item  37, Bool‚en IsBox, "^B^ox", ""
+         Item  38, Bool‚en IsCircle, "Circl^e^", ""
+         Item  39, Bool‚en IsPaint, "Paint", ""
+         Item  40, Bool‚en IsTrace, "T^r^ace", ""
+         Item  41, Bool‚en IsText, "^T^ext", ""
+         Item -
+         Item  42, Bool‚en IsFill, "Fill", ""
+         Item -
+         Item  33, "Type cha^r^acter", ""
+         Item -
+         Item 190, "Color", ""
+      Tetris:
+         Item -
+         Item 33,"Start",""
+         Item 36,Bool‚en IsLine, "^J^oystick",""
+         Item 37,Bool‚en IsBox, "Keyboard", ""
+   Fin Cas
+
+Menu "Sea^r^ch"
+
+   Si Application Alors
+      Cas Application de
+        Tetris:
+           Item 221, "Level game", ""
+           Item -
+        Calendrier:
+           Item 216, "Ye^a^r", ""
+           Item  45, "^D^ifference day", ""
+           Item -
+        Calculatrice Programmable:
+           Item  48, "Equation ^1^st degre", ""
+           Item  49, "Equation ^2^nd degre", ""
+           Item -
+        Gestionnaire de programmes:
+           Item  48, "Previous tab", PageUp, ""
+           Item  49, "Next tab", PageDown, ""
+           Item  -
+        Disque Compacte:
+           Item  48, "Previous track", ""
+           Item  49, "Next track", ""
+           Item  -
+        Gestionnaire de fichiers:
+           Item 173, "S‚lect", '+', ""
+           Item 172, "Unselect", '-', ""
+           Item 171, "Inverse select", '*', ""
+           Item -
+           Item  52, "T^r^i", ""
+           Item -
+        Prompt:
+           Item  45, "Find", ""
+           Item -
+        Autrement:
+           Item  45, "Find", ""
+           Item  46, "^R^eplace", ""
+           Item  47, "S^e^arch again", ""
+           Item -
+           Item  48, "^L^ine", ""
+           Item  49, "Row", ""
+           Si Application = Editeur Alors
+              Si Document Alors
+                 Item 216, "^P^age", ""
+              Fin Si
+              Si Editeur dans [ Assembleur, Basic, C/C++, Pascal ] Alors
+                 Item 254, "^P^rocedure", ""
+                 Item  50, "Goto home", Ctrl+Home, ""
+                 Item  51, "Goto end", Ctrl+End, ""
+              Fin Si
+           Fin Si
+           Item -
+           Item  52, "T^r^i", ""
+           Item 139, "Filter", ""
+           Item -
+      Fin Cas
+   Fin Si
+
+   Item 140, "^V^erb", ""
+
+   Si Application = Editeur Alors
+      Item 142, "Corrector", ""
+      Item -
+   Fin Si
+
+   Item 253, "Disk cleanup", ""
+
+   Si Application = Terminal Alors
+      Item -
+      Item 104, "Scan ^M^odem", ""
+      Item 105, "List exportations", ""
+   Fin Si
+
+Menu "^C^ommand"
+   Cas Application de
+      Terminal:
+         Item 107, "HostMode", ""
+         Item -
+         Item 225, "Hangup", ""
+         Item 135, "Originate mode", ""
+         Item 224, "Answer mode", ""
+         Item -
+      Gestionnaire de fichiers, Prompt, Aucun:
+         Si Application = Prompt Alors
+            Item 110, "Description", ""
+            Item -
+         Fin Si
+         Item 233, "Copy file(s)", ""
+         Item 232, "Delete file(s)", ""
+         Item -
+      Editeur:
+         Groupe Item "^A^vanced"
+            Item 108, "Execute Macro", ""
+            Item 109, "Open Macro", ""
+            Item -
+            Item 235, "Create border", ""
+         Fin Groupe Item
+         Si NombreLigneAffich‚e >25 Alors
+            Item -
+         Fin Si
+         Item 110, "Delete spaces", ""
+         Item 111, "Delete line", ""
+         Item 112, "Center line", ""
+         Si Document Alors
+            Si Pas PH Alors
+               Item -
+            Fin Si
+            Item 221, "Word ^N^ormal", ""
+            Item 113, "Word ^D^ouble", ""
+            Item 114, "Word Bold", ""
+            Item 115, "Word Underline", ""
+            Item 116, "Word ^i^nverse", ""
+            Item 176, "Word italic", ""
+            Item 217, "Word e^x^posant", ""
+         Sinon
+            Item 114, "Word shift", ""
+         Fin Si
+         Item -
+      Disque Compacte:
+         Item 113, "Play/Pause", ""
+         Item 114, "Stop", ""
+         Item -
+   Fin Cas
+
+   If Pas Debug Alors
+      Item 230, "Run debug", ""
+   Fin Si
+
+   Groupe Item "^D^isk"
+      Si unit‚ disquette existe Alors
+         Item 166, "^F^ormat disquette(s)", ""
+      Fin Si
+
+      Item 208, "Set ^v^olume name", ""
+      Item 165, "View disk hexadecimal", ""
+
+      Si disque dur existe Alors
+         Item 163, "Hard disk park", ""
+      Fin Si
+   Fin Groupe Item
+
+   Item 157, "^E^xecute DOS command", ""
+   Item 243, "Run screen saver", ""
+   Item 231, "Flush spooler", ""
+   Item -
+   Item 159, "S^Q^L",""
+
+   Si Programmeur Alors
+      Item -
+      Item 55, "^C^ompilation"
+      Item 58, "C^r^eate"
+      Item 59, "Make"
+      Item 53, "^E^xecute"
+   Fin Si
+
+Menu "^O^ption"
+
+   Si Document Alors
+      Item 63, "Size", ""
+   Fin Si
+
+   Item 66, "Di^r^ectory", ""
+
+   Groupe Item "^P^rogrammer", ""
+      Item 236,"^S^ourcer", ""
+      Si Programmeur Alors
+         Item 61, "^A^pplication"
+         Item 62, "^C^ompilateur"
+         Item 63, "Memory sizes"
+         Item 64, "^L^ink"
+         Item 65, "^D^ebug"
+      Fin Si
+   Fin Groupe Item
+
+   Si Programmeur Alors
+      Item 54, "Parameter^s^", ""
+   Fin Si
+
+   Item -
+
+   Groupe Item "^V^ideo", ""
+      Item  68, "Set video mode", ""
+      Item  69, "Change matrix", ""
+      Item  71, "Screen saver", ""
+      Item  70, "^E^nvironment", ""
+      Item 249, "^P^alette", ""
+      Item 152, "Wallpaper", ""
+      Item 151, "Image title bar", ""
+   Fin Groupe Item
+
+   Groupe Item "S^o^und", ""
+      Item 251, "S^o^n Volume", ""
+      Item 252, "Mixer", ""
+      Item 141, "Player CD", ""
+   Fin Groupe Item
+
+   Item  67, "Pr^i^nter", ""
+   Item  76, "Edit ^M^enu", ""
+   Item 215, "^S^ystem", ""
+   Item 146, "Clock", ""
+   Item 237, "Keyboard", ""
+   Item 218, "Mo^u^se", ""
+
+   Groupe Item "^J^oystick"
+      Item 272, "^G^eneral", ""
+      Item 228, "^C^alibrate",""
+   Fin Groupe Item
+
+   Item  72, "^E^nvironment", ""
+   Item 244, "Security", ""
+   Item 220, "E^d^itor", ""
+
+   Groupe Item "^T^erminal", ""
+      Item 273,"^M^odem",""
+      Item -
+      Item  73, "Welcome Message", ""
+      Item 128, "Main Menu", ""
+      Item 129, "Menu ^F^ile", ""
+      Item -
+      Item  74, "^U^sers List", ""
+   Fin Groupe Item
+
+   Si Application = Gestionnaire de fichiers Alors
+      Item -
+      Item  75, "Spreadshee^t", '^', ""
+   Fin Si
+
+   Si Document Alors
+      Item -
+      Item 248, "Addition matrix", ""
+      Item  77, "Password", ""
+   Fin Si
+
+Menu "^W^indow"
+   Item  78, "^M^enu Application", ""
+   Item  80, "Shell DOS", ""
+   Item  81, "Shell ^U^nix", ""
+   Item  82, "Programming C^a^lculator", ""
+   Item  83, "^T^erminal", ""
+   Item  79, "File manager", ""
+   Si ‚cran graphique Alors
+      Item 149, "Program manager", ""
+   Fin Si
+
+   Item  84, "Output", ""
+   Item -
+   Si Application Alors
+      Item  85, "Tile", ""
+      Item  86, "^C^ascade", ""
+      Item  87, "Close all", ""
+   Fin Si
+   Item  88, "^R^estore screen", ""
+   Si Application Alors
+      Item -
+      Item  89, "Size/Move", Ctrl+F5, ""
+      Item  90, "^Z^oom", ""
+      Item  91, "Next", ""
+      Item  92, "^P^revious", ""
+      Item  93, "Clos^e^", ""
+      Item -
+      Item  94, "^L^ist...", ""
+   Fin Si
+
+Si ( NombreColonneAffich‚e > 90 ) Alors
+   Menu "^I^nformation"
+Sinon
+   Menu "^I^nfo"
+Fin Si
+
+   Item  96, "Country", ""
+   Item -
+   Item  97, "^I^nformation Sommary", ""
+   Item  98, "^S^ommary Video Primary", ""
+   Item  99, "Sommary Video Secondary", ""
+   Item 100, "Matrix Video", ""
+   Item 203, "Sound card", ""
+   Item 242, "Mouse", ""
+   Item 238, "^J^oystick", ""
+   Item 239, "Keyboard", ""
+   Item -
+   Item 101, "Information ^M^emory", ""
+   Item 102, "Information M^C^B", ""
+   Item 103, "Data CM^O^S", ""
+   Item -
+   Item 194, "Disk ^L^ogical", ""
+   Item 145, "Partition", ""
+   Cas Application de
+      Terminal:
+         Item -
+         Item 104, "Scan ^M^odem", Ctrl+F1, ""
+      Gestionnaire de fichiers:
+         Item -
+         Item 117, "Header", Ctrl+F1, ""
+      Editeur:
+         Si Document Alors
+            Item -
+            Item 106, "^D^ocument", Ctrl+F1, ""
+         Fin Si
+   Fin Cas
+
+Menu "^H^elp"
+   Item  95, "^A^bout", ""
+   Item -
+   Item 118, "Help to...", F1, ""
+   Item 119, "Keyboard help", ""
+   Item -
+   Item 206, "^B^escherelle", ""
+   Item -
+   Item 148, "^C^onversion", ""
+   Item -
+   Item 150, "Calendar", ""
+   Item 144, "Logfile", ""

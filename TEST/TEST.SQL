@@ -1,0 +1,6 @@
+CREATE TABLE VendorComputer (
+   VID    WORD PRIMARY KEY,
+   Name   VARCHAR
+);
+
+INSERT INTO VendorComputer VALUES (0x0002,'IBM 7561/2');

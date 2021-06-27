@@ -1,0 +1,82 @@
+CREATE TABLE RamBios (
+   Adresse     WORD,
+   Longueur    BYTE,
+   Description VARCHAR
+);
+
+CREATE INDEX;
+
+INSERT INTO RamBios VALUES (0x0000, 2,'Adresse de base (port) de COM1');
+INSERT INTO RamBios VALUES (0x0002, 2,'Adresse de base (port) de COM2');
+INSERT INTO RamBios VALUES (0x0004, 2,'Adresse de base (port) de COM3');
+INSERT INTO RamBios VALUES (0x0006, 2,'Adresse de base (port) de COM4');
+INSERT INTO RamBios VALUES (0x0008, 2,'Adresse de base (port) de LPT1');
+INSERT INTO RamBios VALUES (0x000A, 2,'Adresse de base (port) de LPT2');
+INSERT INTO RamBios VALUES (0x000C, 2,'Adresse de base (port) de LPT3');
+INSERT INTO RamBios VALUES (0x000E, 2,'Adresse de base (port) de LPT4');
+INSERT INTO RamBios VALUES (0x0010, 2,'Equipement (Interruption 11h)');
+INSERT INTO RamBios VALUES (0x0012, 1,'RÇservÇ');
+INSERT INTO RamBios VALUES (0x0013, 2,'Taille mÇmoire exprime en Ko');
+INSERT INTO RamBios VALUES (0x0015, 2,'RÇservÇ');
+INSERT INTO RamBios VALUES (0x0017, 1,'êtat du clavier');
+INSERT INTO RamBios VALUES (0x0018, 1,'êtat actuel du clavier');
+INSERT INTO RamBios VALUES (0x0019, 1,'Alt-Code');
+INSERT INTO RamBios VALUES (0x001A, 2,'Adresse dÇbut tampon clavier');
+INSERT INTO RamBios VALUES (0x001C, 2,'Adresse de fin tampon clavier');
+INSERT INTO RamBios VALUES (0x001E,32,'Tampon clavier');
+INSERT INTO RamBios VALUES (0x003E, 1,'Recalibre lecteur disquette');
+INSERT INTO RamBios VALUES (0x003F, 1,'êtat du lecteur disquette');
+INSERT INTO RamBios VALUES (0x0040, 1,'Compteur temps moteur disque');
+INSERT INTO RamBios VALUES (0x0041, 1,'Erreur interruption 13h');
+INSERT INTO RamBios VALUES (0x0042, 7,'êtat du contrìleur');
+INSERT INTO RamBios VALUES (0x0049, 1,'Mode actuel de l''Çcran');
+INSERT INTO RamBios VALUES (0x004A, 2,'Nombre colonne texte');
+INSERT INTO RamBios VALUES (0x004C, 2,'Taille d''une page vidÇo');
+INSERT INTO RamBios VALUES (0x004E, 2,'Offset de l''Çcran');
+INSERT INTO RamBios VALUES (0x0050,16,'Position du curseur');
+INSERT INTO RamBios VALUES (0x0060, 1,'Ligne dÇpart du curseur');
+INSERT INTO RamBios VALUES (0x0061, 1,'Ligne fin du curseur');
+INSERT INTO RamBios VALUES (0x0062, 1,'NumÇro de la page vidÇo');
+INSERT INTO RamBios VALUES (0x0063, 2,'Adresse de base carte vidÇo');
+INSERT INTO RamBios VALUES (0x0065, 1,'Registre de sÇlection de mode');
+INSERT INTO RamBios VALUES (0x0066, 1,'Palette de couleur utilisÇ');
+INSERT INTO RamBios VALUES (0x0067, 2,'Pointeur vers routine d''init.');
+INSERT INTO RamBios VALUES (0x0069, 2,'Segment ROM d''E/S');
+INSERT INTO RamBios VALUES (0x006B, 1,'Indicateur d''interruption');
+INSERT INTO RamBios VALUES (0x006C, 2,'Compteur de l''heure (Basse)');
+INSERT INTO RamBios VALUES (0x006E, 2,'Compteur de l''heure (Haut)');
+INSERT INTO RamBios VALUES (0x0070, 1,'Indicateur de minuit');
+INSERT INTO RamBios VALUES (0x0071, 1,'Touche d''arràt a ÇtÇ enfoncÇe');
+INSERT INTO RamBios VALUES (0x0072, 2,'Indicteur dÇmarrage a chaud');
+INSERT INTO RamBios VALUES (0x0074, 1,'Erreur de disque dur');
+INSERT INTO RamBios VALUES (0x0075, 1,'Nombre disque dur');
+INSERT INTO RamBios VALUES (0x0076, 1,'Octet de contrìle');
+INSERT INTO RamBios VALUES (0x0077, 1,'Adresse de base du contrìleur');
+INSERT INTO RamBios VALUES (0x0078, 1,'Temps maximum rÇponse de LPT1');
+INSERT INTO RamBios VALUES (0x0079, 1,'Temps maximum rÇponse de LPT2');
+INSERT INTO RamBios VALUES (0x007A, 1,'Temps maximum rÇponse de LPT3');
+INSERT INTO RamBios VALUES (0x007B, 1,'Temps maximum rÇponse de LPT4');
+INSERT INTO RamBios VALUES (0x007C, 1,'Temps maximum rÇponse de COM1');
+INSERT INTO RamBios VALUES (0x007D, 1,'Temps maximum rÇponse de COM2');
+INSERT INTO RamBios VALUES (0x007E, 1,'Temps maximum rÇponse de COM3');
+INSERT INTO RamBios VALUES (0x007F, 1,'Temps maximum rÇponse de COM4');
+INSERT INTO RamBios VALUES (0x0080, 2,'Offset dÇbut tampon clavier');
+INSERT INTO RamBios VALUES (0x0082, 2,'Offset fin tampon clavier');
+INSERT INTO RamBios VALUES (0x0084, 1,'Nombre ligne -1 (EGA ou plus)');
+INSERT INTO RamBios VALUES (0x0085, 2,'Hauteur d''un caractäre');
+INSERT INTO RamBios VALUES (0x0087, 2,'Pour le contrìle du vidÇo');
+INSERT INTO RamBios VALUES (0x0089, 2,'RÇservÇ');
+INSERT INTO RamBios VALUES (0x008B, 1,'Temps de transfert disquette');
+INSERT INTO RamBios VALUES (0x008C, 1,'êtat du contrìleur');
+INSERT INTO RamBios VALUES (0x008D, 1,'Code d''erreur du contrìleur');
+INSERT INTO RamBios VALUES (0x008E, 1,'Contrìleur d''interrup. disque dur');
+INSERT INTO RamBios VALUES (0x008F, 1,'RÇservÇ');
+INSERT INTO RamBios VALUES (0x0090, 1,'Octet d''Çtat du lecteur A:');
+INSERT INTO RamBios VALUES (0x0091, 1,'Octet d''Çtat du lecteur B:');
+INSERT INTO RamBios VALUES (0x0092, 2,'RÇservÇ');
+INSERT INTO RamBios VALUES (0x0094, 1,'NumÇro de cylindre du lecteur 0');
+INSERT INTO RamBios VALUES (0x0095, 1,'NumÇro de cylindre du lecteur 1');
+INSERT INTO RamBios VALUES (0x0096, 1,'Modäle de clavier');
+INSERT INTO RamBios VALUES (0x0097, 1,'Etat des lumiäres du clavier');
+INSERT INTO RamBios VALUES (0x0098, 8,'Horloge en temps rÇel');
+

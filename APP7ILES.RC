@@ -1,0 +1,3435 @@
+NumberIndex=168
+
+Copyright 'Bibliothäque d''application avancÇe - '
+Copyright 'Tous droits rÇservÇs par les Chevaliers de Malte XXIiäme siäcle.'
+
+// Menu contextuel de l'application de dessin par dÇfaut
+
+IndexMenuContext 0
+   Item 0F015h, '^R^Çactualiser', 'Permet de rÇactualiser l''affichage du dessin'
+   Item -
+   Item 0F001h, '^C^ouleur', 'Permet de changer la couleur courante'
+   Group Item '^T^raitement Couleurs'
+      Item 0F019h,'E^c^lairement','Ajustement de luminositÇ et de la contraste'
+      Item 0F01Ah,'^M^ixeur de canal','MÇlange les canaux de couleur'
+      Item 0F01Bh,'^C^harger une palette','Charger une nouvelle palette de couleur'
+   End Group
+   Group Item '^R^otation'
+      Item 0F022h,'90¯','Effectue une rotation de l''image dans le sens des aiguilles d''une montre de 90 degrÇs'
+      Item 0F023h,'180¯','Effectue une rotation de l''image dans le sens des aiguilles d''une montre de 180 degrÇs'
+      Item 0F024h,'270¯','Effectue une rotation de l''image dans le sens des aiguilles d''une montre de 270 degrÇs'
+   End Group
+   Group Item '^G^ÇnÇrer'
+      Item 0F020h,'^P^lasma','GÇnäre comme comme fond une forme de plasma'
+   End Group
+   Item -
+   Item 0F003h, 'Copier une morceau', 'Permet de copier un morceau spÇcifique de l''image'
+   Item 0F002h, 'Co^l^ler', 'Pour coller une image Ö cette endroit'
+   Group Item 'Colla^g^e spÇcial'
+      Item 0F01Fh,'Scalaire','Collage d''une image avec une dimension particuliaire'
+   End Group
+   Item -
+   Group Item '^I^nformation'
+      Item 0F01Ch,'GÇnÇral','Information gÇnÇral sur ce dessin'
+      Item 0F01Dh,'Histogramme','Histogramme des couleurs'
+   End Group
+   Item -
+   Group Item '^E^xÇcute'
+      Item 0F021h, '^M^acro','Permet d''exÇcuter une fichier d''instruction d''un langage BASIC et de l''appliquer au dessin'
+   End Group
+End
+
+// Menu contextuel de l'application de dessin
+// -> Deuxiäme bouton sur le crayon
+
+IndexMenuContext 1
+   Item 0F00Bh, '^S^imple point', 'Trace un point simple'
+   Item 0F00Ch, 'Point ^I^nvisible', 'Ne trace pas de point'
+   Item 0F00Dh, 'Une ^c^roix', 'Trace un plus'
+   Item 0F00Eh, 'Affiche un Æ^X^Ø', 'Trace un X'
+   Item 0F00Fh, 'Une ligne ^h^orizontal', 'Trace une ligne horizontal'
+   Item 0F010h, 'Une ligne ^v^erticale', 'Trace une ligne verticale au-dessus du point'
+   Item -
+   Item 0F011h, Boolean, 'Cercle autour du point'
+   Item 0F012h, Boolean, 'Rectangle autour du point'
+   Item -
+   Item 0F013h, 'Point absolue', 'Trace un point manuellement avec des coordonnÇes absolue'
+End
+
+// Menu contextuel de l'application de dessin
+// -> Deuxiäme bouton sur l'efface
+
+IndexMenuContext 2
+   Item 0F014h, 'Taille de l''Efface', 'Modifier la taille de l''efface manuellement'
+   Item -
+   Item 0F016h, 'Efface l''image au complet', 'Efface le contenu au complet de l''image'
+   Item -
+   Item 0F017h, 'Taille rÇduite','Permet d''obtenir la taille rÇduite de l''efface'
+   Item 0F018h, 'Taille Standard','Permet d''obtenir la taille standard de l''efface'
+End
+
+// Menu contextuel de l'application de dessin
+// -> Deuxiäme bouton sur la ligne
+
+IndexMenuContext 3
+   Item 0F004h, 'CoordonnÇes ^A^bsolues', 'êcrit une ligne en entrant manuellement les coordonnÇes absolue'
+   Item 0F005h, 'CoordonnÇes ^R^elatives', 'êcrit une ligne manuellement en fonction de la prÇcÇdante'
+   Item 0F006h, 'CoordonnÇes ^P^olaires', 'êcrit une ligne manuellement en fonction d''un angle'
+End
+
+// Menu contextuel de l'application de dessin
+// -> Deuxiäme bouton sur le rectangle vide
+
+IndexMenuContext 4
+   Item 0F007h, 'CoordonnÇes ^A^bsolues', 'êcrit un rectangle en entrant manuellement les coordonnÇes absolue'
+   Item 0F008h, 'CoordonnÇes ^R^elatives', 'êcrit un rectangle manuellement en fonction de la prÇcÇdante'
+End
+
+// Menu contextuel de l'application de dessin
+// -> Deuxiäme bouton sur le rectangle plein
+
+IndexMenuContext 5
+   Item 0F009h, 'CoordonnÇes ^A^bsolues', 'êcrit un rectangle plein en entrant manuellement les coordonnÇes absolue'
+   Item 0F00Ah, 'CoordonnÇes ^R^elatives', 'êcrit un rectangle plein manuellement en fonction de la prÇcÇdante'
+End
+
+// Menu contextuel de l'affichage d'un dessin pleine Çcran
+
+IndexMenuContext 6
+   Item 0F001h, 'DÇplacement vers la ^D^roite'
+   Item 0F002h, 'DÇplacement vers la ^G^auche'
+   Item 0F003h, 'DÇplacement vers le ^H^aut'
+   Item 0F004h, 'DÇplacement vers le ^B^as'
+   Item -
+   Item 0F005h, '^I^nformations technique'
+End
+
+// Menu contextuel de l'application prompt DOS
+
+IndexMenuContext 7
+   Group Item '^I^nsertion'
+      Item 0F009h, '^R^Çpertoire','Insertion d''un chemin de rÇpertoire au prompt actuel'
+      Item 0F00Ah, '^F^ichier','Insertion d''un fichier au prompt actuel'
+   End Group
+   Item -
+   Item 0F001h, 'Effa^c^e l''Çcran','Efface la fenàtre d''application du prompt DOS'
+   Item 0F002h, 'Liste ^d^es fichiers','Afficher la liste des fichiers du rÇpertoire courant'
+   Item -
+   Item 0F008h, '^R^echercher...','Recherche du texte dans un/des fichier(s)'
+   Item -
+   Item 0F003h, 'Affichage ^t^ypÇ...','Affiche le contenu typÇ d''un fichier'
+   Item 0F007h, 'Copier fichier(s)...','Permet de copier un/des fichier(s)'
+   Item 0F006h, 'Im^p^rimer fichier...','Permet d''imprimer le fichier spÇcifier'
+   Item -
+   Item 0F004h, 'Changer l''^u^nitÇ courante...','Permet de changer la lettre d''unitÇ courante'
+   Item -
+   Item 0F005h, '^A^ide de commande','Permet d''afficher la liste des commandes'
+End
+
+IndexDialog 8
+   Size 36,11
+   WindowColorClassic 'Ligne absolues≥Absolute Line'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'(X1'
+   Text 24,','
+   Text 27,'Y1)-'
+   Ln
+   Text ' CoordonnÇe de:'
+   Ln
+   Text 16,'-(X2'
+   Text 24,','
+   Text 27,'Y2)'
+   Ln
+   Text ' CoordonnÇe Ö:'
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   Input Word (16,5,22),6
+   Input Word (25,5,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 9
+   Size 36,8
+   WindowColorClassic 'Ligne relative≥Relative Line'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'-(X2'
+   Text 24,','
+   Text 27,'Y2)'
+   Ln
+   Text ' CoordonnÇe Ö:'
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 10
+   Size 38,8
+   WindowColorClassic 'Taille de l''Efface≥Erase Size'
+   CloseIcon
+   Ln
+   BarUp
+   Text 18,'Largeur'
+   Text 27,'Hauteur'
+   Ln
+   Text ' Taille en pixel:'
+   Input Word (18,2,22),6
+   Input Word (27,2,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 11
+   Size 36,16
+   WindowColorClassic 'Ligne polaires'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'(X'
+   Text 24,','
+   Text 27,'Y)'
+   Ln
+   Text 'Centre polaire:'
+   Ln
+   Text 'Rayon:'
+   Ln
+   Text 'Angle en degrÇ:'
+   Ln
+   Text ' ('') minute(s):'
+   Ln
+   Text '(") seconde(s):'
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   Input Word (16,4,255),6
+   Input Word (16,6,255),16
+   Input Word (16,8,255),16
+   Input Word (16,10,255),16
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 12
+   Size 36,11
+   WindowColorClassic 'Rectangle absolue≥Absolute Rectangle'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'(X1'
+   Text 24,','
+   Text 27,'Y1)-'
+   Ln
+   Text ' CoordonnÇe de:'
+   Ln
+   Text 16,'-(X2'
+   Text 24,','
+   Text 27,'Y2)'
+   Ln
+   Text ' CoordonnÇe Ö:'
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   Input Word (16,5,22),6
+   Input Word (25,5,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 13
+   Size 36,8
+   WindowColorClassic 'Rectangle relative≥Relative Rectangle'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'-(X2'
+   Text 24,','
+   Text 27,'Y2)'
+   Ln
+   Text ' CoordonnÇe Ö:'
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 14
+   Size 36,11
+   WindowColorClassic 'Boåte pleine absolue≥Absolute Full Box'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'(X1'
+   Text 24,','
+   Text 27,'Y1)-'
+   Ln
+   Text ' CoordonnÇe de:'
+   Ln
+   Text 16,'-(X2'
+   Text 24,','
+   Text 27,'Y2)'
+   Ln
+   Text ' CoordonnÇe Ö:'
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   Input Word (16,5,22),6
+   Input Word (25,5,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 15
+   Size 36,8
+   WindowColorClassic 'Boåte pleine relative≥Relative Full Box'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'-(X2'
+   Text 24,','
+   Text 27,'Y2)'
+   Ln
+   Text ' CoordonnÇe Ö:'
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 16
+   Size 36,8
+   WindowColorClassic 'Point Absolue≥Plot Absolute'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'(X'
+   Text 24,','
+   Text 27,'Y)'
+   Ln
+   Text ' CoordonnÇe:'
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 17
+   Size 50,13
+   WindowColorClassic 'Taille de l''image≥Image Size'
+   CloseIcon
+   BarUp
+   Text 0,1,'Pixels Horizontal'
+   Text 0,3,'Pixels Vertical'
+   Text 0,5,'Bits par pixel'
+   Text 0,7,'Nombre de couleurs'
+   Input Word (20,1,254),12
+   Input Word (20,3,254),12
+   Input Byte (20,5,254),12
+   Input Long (20,7,254),12
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// Cette boåte de dialogue est utilisÇe dans l'application Prompt DOS afin
+// d'offrir la possibilitÇ d'effectuer une recherche plus facilement qu'avec
+// la commande ÆFINDØ ou ÆGREPØ.
+
+IndexDialog 18
+   Size 44,16
+   WindowColorClassic 'Rechercher≥Search'
+   CloseIcon
+   Ln
+   BarUp
+   Text 'Fichier:'
+   Ln
+   Ln
+   Text 'Texte:'
+   Image (36,2),30,'SYS:MEDIA.RLL'
+   Input String (0,2,33),255,'Software\DOS\SearchFiles\History'
+   Input String (0,5,33),255,'Software\DOS\SearchText\History'
+   Frame (0,7)-(41,11),'Option'
+   ClickBox (1,8),37,'Caractäre stricte'
+   ClickBox (1,9),37,'Recherche aussi dans sous-rÇpertoire'
+   ClickBox (1,10),37,'Pause lorsque la fenàtre est pleine'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// Cette boåte de dialogue permet d'effectuer Ö l'utilisateur d'effectuer
+// une copie dite "Manuel" comme par exemple on le fait avec ÆShift+F5Ø.
+
+IndexDialog 19
+   Size 40,11
+   WindowColorClassic 'Copier≥Copy'
+   CloseIcon
+   Ln
+   BarUp
+   Text 'Copie un/des fichier(s) de:'
+   Ln
+   Ln
+   Text 'Dans:'
+   Input String (0,2,254),255
+   Input String (0,5,254),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 20
+   Size 38,22
+   WindowColorClassic 'PropriÇtÇ≥Proprety'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'GÇnÇral'
+   Text 0,3,'Nom:'
+   Caption String (9,3),30
+   Text 0,4,'Type:'
+   Caption String (9,4),30
+   Text 0,5,'Taille:'
+   Caption String (9,5),30
+   BarHori (0,6,36)
+   Text 0,7,'Nom DOS:'
+   Caption String (9,7),12
+   Text 0,8,'Date:'
+   Caption String (9,8),20
+   Text 0,9,'Heure:'
+   Caption String (9,9),20
+   Frame (0,11)-(36,16),'Fixer les attributs'
+   ClickBox (1,12),28,'Lecture seulement'
+   ClickBox (1,13),28,'CachÇ'
+   ClickBox (1,14),28,'Systäme'
+   ClickBox (1,15),28,'Archive'
+   If True Then
+      TabbedNoteBook 176,'Programme'
+      Text 0,3,'Titre:'
+      Input String (7,3,254),30
+      BarHori (0,5,36)
+      Text 0,6,'Ligne de commande:'
+      Input File (20,6,254),63
+      Text 0,8,'RÇpertoire travail:'
+      Input String (20,8,254),64
+      Text 0,10,'Paramätres:'
+      Input String (20,10,254),64
+      ClickBox (0,12),20,'Fermer en quittant'
+   End If
+   If True Then
+      TabbedNoteBook 176,'Session'
+      List (1,3)-(35,9),'Fonction processeur'
+         CheckBox 'Coprocesseur'
+         CheckBox 'DÇlai d''instruction'
+         CheckBox 'Instruction CPUID'
+         CheckBox 'Instructions MMX'
+         CheckBox 'BiblioMalte'
+         CheckBox 'Code en 2D KÇbecup'
+      End List
+      RadioButton (0,11),'Mode d''affichage','Plein Çcran|Dans une fenàtre|PartagÇ'
+   End If
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 21
+   Item 0F001h,'^I^nformation', 'Tableau d''information'
+   Item 0F002h, '^F^ichier', 'Tableau de fichier(s)'
+   Item 0F003h, '^A^rbre', 'Tableau d''un arbre des rÇpertoires'
+   Item 0F004h, '^P^rÇ-Visualisation', 'Tableau pour voir des prÇvisualiations d''images'
+   Item -
+   Item 0F005h, 'In^v^erser', 'Inverser les deux tableaux'
+   Item -
+   Item 0F006h, '^C^hanger d''unitÇ', 'Changer l''unitÇ courante de ce tableau'
+   If True Then
+      Item 0F007h, '^R^electure', 'Relire le rÇpertoire du tableau'
+      Item 0F00Ch, 'Racine', 'Retourne au rÇpertoire racine de l''unitÇ courante'
+      Item 0F00Ah; '+', '^S^Çlection', 'SÇlectionne un groupe de fichier(s)'
+      Item 0F00Bh; '-', '^D^ÇsÇlection', 'DÇsÇlectionne un groupe de fichier(s)'
+      Item -
+      Item 0F008h, 'I^m^primer', 'Imprime les fichiers de ce rÇpertoire'
+      Item 0F009h, 'Co^p^ier', 'Copier les noms du rÇpertoire dans le presse-papier'
+   End If
+End
+
+IndexMenuContext 22
+   If True Then
+      Item 0F001h, '^B^arre de progression', 'Affiche la barre de mÇmoire conventionnelle disponible'
+   Else
+      Item 0F001h, '^N^umÇrique', 'Affiche l''indicateur numÇrique de mÇmoire conventionnelle libre'
+   End If
+   Item -
+   Item 0F002h, '^G^raphique', 'Affiche des graphiques d''Çtat des ressources'
+   Item 0F003h, '^I^nformation mÇmoire', 'Affiche l''information sur la mÇmoire et les ressources'
+   Item 0F004h, 'Gestionnaire de ^t^Éches', 'Affiche l''utilisation des ressources par les applications'
+End
+
+IndexDialog 23
+   Size 40,21
+   If True Then
+      WindowColorClassic 'Nouveau Type≥New Type'
+   Else
+      WindowColorClassic 'Modifier le Type≥Change Type'
+   End If
+   BarUp
+   CloseIcon
+   Text 0,1,'Nom:'
+   Text 0,3,'Extension:'
+   Text 0,5,'Ouverture avec:'
+   Ln
+   Ln
+   Input String (16,1,254),255
+   Input String (16,3,254),255
+   Input String (16,5,254),255
+   Frame (0,7)-(37,13),'Attribut'
+   ClickBox (1,8),19,'Lecture seulement'
+   ClickBox (1,9),19,'CachÇ'
+   ClickBox (1,10),19,'Systäme'
+   ClickBox (1,11),19,'Archive'
+   ClickBox (1,12),19,'RÇpertoire'
+   KeyHori (2,15),20,'Choisir icìne...'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 24
+   Item 1,'^R^enommer', 'Permet de changer le nom de l''onglet'
+   Item 2,'^C^ouleur', 'Permet de modifier la couleur'
+End
+
+IndexDialog 25
+   Size 40,13
+   WindowColorClassic 'PropriÇtÇs≥Proprety'
+   CloseIcon
+   BarUp
+   Text 0,1,'Nom'
+   Text 0,3,'Programme'
+   Text 0,5,'Argument'
+   Text 0,7,'Icìne'
+   Input String (13,1,254),80
+   Input File (13,3,254),255
+   Input String (13,5,254),255
+   Input File (13,7,254),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 26
+   If True Then
+      Item 0F006h,'^J^ouer', 'Jouer ce son'
+   Else
+      Item 0F006h,'^O^uvrir', 'ExÇcuter/EntrÇe'
+   End If
+   If True Then
+      Item 0F023h,'Ouvrir ^W^orkShop','Ouvrir un WorkShop'
+   End If
+   If True Then Begin
+      Item 0F008h,'^R^egarder', 'Regarder rapidement un fichier'
+      Group Item 'Re^g^arde'
+         Item 0F01Ah,'^A^SCII','Regarde en mode ASCII texte'
+         Item 0F019h,'^H^exadÇcimal','Regarde en mode hexadÇcimal'
+      End Group
+      Item 0F009h,'^E^diter', 'êditer ce fichier'
+      Item 0F005h,'^I^mprimer', 'Imprimer le fichier'
+      Item 0F00Ah,'In^f^ormation', 'Information sur le fichier'
+      If True Then
+         Group Item '^C^onversion', 'Effectue une conversion en un format diffÇrent'
+            Item 0F00Bh,'.^B^GX (Bitmap Genesis eXtrasimple)','Conversion en format d''image BGX'
+            Item 0F00Ch,'.BMP (Bitmap Windows)','Conversion en format d''image BitMap de Windows'
+            Item 0F01Dh,'.^G^IF (Bitmap compressÇ)','Conversion en format d''image compressÇ de Compuserve'
+            Item 0F015h,'.^I^CO (Icìne Adäle)','Conversion en icìne Adäle'
+            Item 0F00Eh,'.^P^CX (PC PaintBrush)','Conversion en format d''image PCX'
+            Item 0F00Fh,'.PPM (PPM/PGM)','Conversion en format d''image PPM'
+            Item 0F010h,'.^S^Ci (RIX)', 'Conversion en format d''image SCi'
+            Item 0F011h,'.^X^BM (Bitmap Unix)', 'Conversion en format d''image XBM'
+         End Group
+      End If
+      If True Then
+         Group Item '^C^onversion', 'Effectue une conversion en un format diffÇrent'
+            Item 0F016h,'.^H^TML','Conversion en page HTML'
+            Item 0F017h,'.^R^TF','Conversion en document ÆRich Text FormatØ'
+            Item 0F018h,'^P^remier Choix','Conversion en document de format ÆPremier ChoixØ'
+         End Group
+      End If
+      If True Then
+         Group Item '^C^onversion', 'Effectue une conversion en un format diffÇrent'
+            Item 0F013h,'.^W^AV','Conversion en format sonore de Windows'
+         End Group
+      End If
+      If True Then
+         Group Item '^C^onversion', 'Effectue une conversion en un format diffÇrent'
+            Item 0F01Bh,'^P^ascal','Conversion en langage de programmation Pascal'
+         End Group
+      End If
+      If True Then
+         Group Item '^C^onversion', 'Effectue une conversion en un format diffÇrent'
+            Item 0F01Ch,'^S^QL','Conversion en langage de base de donnÇes SQL'
+            Item 0F01Fh,'^L^otus 1-2-3','Conversion pour le format du tableur Lotus 1-2-3'
+            Item 0F026h,'^E^xcel','Conversion pour le format du tableur Excel'
+            Item 0F027h,'^M^GC','Conversion pour le format du tableur MGC'
+         End Group
+      End If
+      If True Then
+         Group Item '^C^onversion', 'Effectue une conversion en un format diffÇrent'
+            Item 0F01Eh,'^T^exte binaire','Conversion chacun des octets en un texte binaire'
+         End Group
+      End If
+      If True Then
+         Group Item '^C^onversion', 'Effectue une conversion en un format diffÇrent'
+            Item 0F029h,'^H^TML','Conversion en format typÇ HTML'
+         End Group
+      End If
+   End If
+   If True Then
+      Group Item '^E^xtraire', 'Effectue l''extractation d''un ou des fichiers compressÇs'
+         Item 0F025,'^I^ci','Extraire tous les fichiers dans le rÇpertoire courant'
+      End Group
+   End If
+   Item -
+   Item 0F001h,'^C^opier', 'Copier le fichier vers un autre rÇpertoire'
+   If True Then
+      If True Then
+         Item 0F00Dh,'Copier dans Presse-Papier', 'Envoye une copie de l''image dans le Presse-Papier'
+      Else
+         Item 0F012h,'Copier dans Presse-Papier','Envoye le contenu du fichier dans le Presse-Papier'
+      End If
+   End If
+   If True Then
+      Item -
+      Item 0F014h,'^M^onter en volume','Permet d''associer Ö une lettre d''unitÇ se volume'
+      If True Then
+         Item 0F020h,'^G^estionnaire de partition','Permet d''explorer les partitions du fichier'
+      Else
+         Item 0F021h,'^C^opier sur une disquette','Permet de transformer le contenu du volume en une disquette'
+      End If
+      Item -
+   End If
+   Item 0F002h,'^R^enommer','Changer son nom...'
+   Item 0F007h,'^D^escription','Ajouter/changer la description'
+   Item -
+   Item 0F003h,'^E^fface','L''effacer...'
+   Item -
+   If True Then
+      Item 0F022h,'^A^nalyseur','Analyse les nombres de lignes, de pages,... d''un rÇpertoires'
+   End If
+
+   Group Item 'RÇpertoire','Sortir des donnÇes en fonction de la liste des rÇpertoires'
+      Item 0F024h,'^E^nregistrer','Enregistrer la liste du rÇpertoire courant dans un fichier'
+      Item 0F028h,'^I^mprimer','Imprimer la liste du rÇpertoire courant'
+   End Group
+
+   Item -
+   Group Item '^E^xÇcute'
+      Item 0F02Ah, '^M^acro','Permet d''exÇcuter une fichier d''instruction d''un langage BASIC et de l''appliquer au gestionnaire de fichiers'
+   End Group
+   Item -
+
+   Item 0F004h,'^P^ropriÇtÇ','Changer ses attributs...'
+End
+
+IndexDialog 27
+   Size 70,9
+   WindowColorClassic 'Impression Ascii≥Print ASCII'
+   BarUp
+   Text 0,1,'De la ligne'
+   Text 35,1,'Jusqu''Ö'
+   Text 0,3,'Marge de gauche'
+   Input Long (12,1,32),20
+   Input Long (43,1,254),15
+   Input Word (16,3,32),6
+   ClickBox (35,3),'CompressÇ'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 28
+   Item 0F001h, '^R^egarder', 'Regarde rapide le document d''apräs le chemin oó est le curseur'
+   Item 0F002h;CtrlEnter, '^C^harger', 'Charger en mÇmoire un document d''apräs le chemin oó est le curseur'
+   If True Then
+      Item -
+   End If
+   If True Then
+      Item 0F003h;CtrlIns, 'Copier', 'Copier le bloque dans le presse-papier'
+   End If
+   If True Then
+      Item 0F004h;ShiftIns, 'C^o^ller', 'Coller le bloque dans le presse-papier'
+   End If
+   If True Then
+      Item 0F005h, 'Sauvegarde le bloque', 'Sauvegarde le bloque dans un fichier'
+   End If
+   If True Then
+      Item 0F00Ch, 'Sauvegarde le bloque en HTML','Sauvegarde le source en format typÇe HTML'
+   End If
+   If True Then
+      Item -
+      Item 0F007h, '^D^ouble largeur', 'Mettre le bloc en caractäres double largeur'
+      Item 0F006h, '^G^ras', 'Mettre le bloc en caractäres gras'
+      Item 0F008h, '^S^oulignÇ', 'Mettre le bloc soulignÇ'
+      Item 0F009h, 'I^n^versÇ', 'Mettre le bloc avec couleur de fond et de premier plan inversÇ'
+      Item 0F00Ah, '^I^talique', 'Mettre le bloc en caractäre italique'
+      Item 0F00Bh, '^E^xposant', 'Mettre le bloc en caractäre exponnentiel'
+   End If
+   Item -
+   Item 0F00Dh, 'Caractäre...','Changer le style du caractäres'
+   If True Then
+      Item -
+      Item 0F00Eh,'PropriÇtÇ de page','PropriÇtÇ du document et des pages'
+   End If
+   If True Then
+      Item -
+      Item 0F00Fh,'PropriÇtÇ Ligne ^H^orizontal','Modifier la propriÇtÇ de la ligne horizontal'
+      Item 0F010h,'Supprimer Ligne Horizontal','êliminer la ligne horizontal'
+   End If
+   If True Then
+      Item -
+      Item 0F011h,'PropriÇtÇ de l''Image','Modifier la propriÇtÇ de l''image'
+      Item 0F013h,'êdition de l''image','Permet d''Çditer avec un programme de dessin l''image'
+      Item 0F012h,'Supprimer de l''image','êliminer l''image'
+   End If
+   If True Then
+      Item -
+      Group Item 'InsÇrer'
+         Item 0F014h, '^F^onction','Insertion d''une fonction'
+         Item 0F015h, 'Fonction ^A^lpha','Insertion d''une fonction de chaåne de caractäres'
+         Item 0F016h, '^I^nstruction','Insertion d''une instruction'
+      End Group
+   End If
+End
+
+// Menu par dÇfaut utilisÇ pour le Bureau
+
+IndexMenuContext 29
+   If True Then
+      Group Item '^N^ouveau', 'CrÇer un nouvel ÇlÇment sur le bureau'
+         Item 0F006h, '^R^accourci','Ajouter un nouvelle icìne comme raccourci'
+         Item 0F008h, '^D^ossier','CrÇer une nouvelle fenàtre associer Ö un dossier'
+      End Group
+      Item 0F005h, '^E^diteur ÆBUREAU.INIØ', 'Modifier directement les objets du bureau'
+      Item -
+   End If
+   If True Then
+      Item 0F004h, 'Gestionnaire de ^p^rogrammes', 'Lancer une fenàtre gestionnaire de programmes'
+      Item -
+   End If
+   Item 0F009h, '^A^ssistant', 'Assistant de dÇmarrage'
+   Item 0F00Bh, '^I^nstallation sÇlective','Permet d''ajouter ou d''enlever des composantes du ÆMonsterBookØ'
+   Item 0F00Ah, 'Aju^s^tement',  'Menu d''ajustement du ÆMonsterBookØ'
+   Item -
+   Item 0F001h, '^R^Çactualiser', 'RÇactualiser l''image de fond'
+   Item 0F002h, '^P^apier peint', 'Permet l''image de fond'
+   Item -
+   Item 0F003h, '^E^conomiseur d''Çcran', 'DÇmarrer l''Çconomiseur d''Çcran'
+   Item -
+   Item 0F007h, 'PropriÇtÇ','Modifier l''affichage du Bureau'
+End
+
+IndexDialog 30
+   Size 30,13
+   WindowColorClassic 'Format de Page≥Page Format'
+   CloseIcon
+   BarUp
+   Text 0,1,'Marge Gauche'
+   Text 0,3,'Marge Droite'
+   Text 0,5,'Marge Haut'
+   Text 0,7,'Marge Bas'
+   Input Word (13,1,254),6
+   Input Word (13,3,254),6
+   Input Word (13,5,254),6
+   Input Word (13,7,254),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 31
+   Size 30,8
+   WindowColorClassic 'êchange deux Pages≥Switch 2 Pages'
+   CloseIcon
+   BarUp
+   Text 0,1,'A'
+   Text 0,3,'B'
+   Input Word (3,1,254),6
+   Input Word (3,3,254),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 32
+   Size 55,16
+   WindowColorClassic 'Rechercher≥Search'
+   CloseIcon
+   BarUp
+   Ln
+   Text 'Texte Ö trouver'
+   Input String (16,1,254),255,'Software\Text\SearchFind\History'
+   Ln
+   Image (46,3),30,'SYS:MEDIA.RLL'
+   Frame (0,3)-(25,7),'Option'
+   CheckBox (1,4),21,'Caractäre stricte'
+   CheckBox (1,5),21,'Mot entier seulement'
+   CheckBox (1,6),21,'Expression rÇguliäre'
+   RadioButton (26,3),'Direction','Avant|Arriäre'
+   RadioButton (0,8),'êtendue','Le texte entier|Le bloc seulement'
+   RadioButton (25,8),'Origine','A partir du curseur|Au dÇbut du texte'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 33
+   Size 55,18
+   WindowColorClassic 'Remplace≥Replace'
+   CloseIcon
+   BarUp
+   Ln
+   Text 'Texte Ö trouver'
+   Input String (16,1,254),255,'Software\Text\SearchFind\History'
+   Ln
+   Text 'Nouveau texte'
+   Input String (16,3,254),255,'Software\Text\SearchReplace\History'
+   Ln
+   Image (48,6),30,'SYS:MEDIA.RLL'
+   Frame (0,5)-(25,9),'Option'
+   CheckBox (1,6),21,'Caractäre stricte'
+   CheckBox (1,7),21,'Mot entier seulement'
+   CheckBox (1,8),21,'Expression rÇguliäre'
+   RadioButton (26,5),'Direction','Avant|Arriäre'
+   RadioButton (0,10),'êtendue','Le texte entier|Le bloc seulement'
+   RadioButton (25,10),'Origine','A partir du curseur|Au dÇbut du texte'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 34
+   Item 00000h, '^N^ormal (ASCII-DOS)','Traåtement texte normal sans aucune interprÇtation'
+   Item -
+   Item 00001h, 'Langage de programmation Ada'
+   Item 00002h, 'Langage de programmation ^A^ssembleur'
+   Group Item 'Langage de programmation ^B^asic'
+      Item 00003h,'Tous'
+      Item -
+      Item 03001h,'Æ^C^ommodore 64Ø'
+      Item 03002h,'Æ^A^pple ][Ø'
+      Item 03004h,'Basic Couleur du ÆC^o^co 3Ø'
+      Item 03008h,'ÆBASICA/G^W^BASICØ'
+      Item 03010h,'Æ^T^urboBasicØ'
+      Item 03020h,'Æ^G^FA BasicØ'
+      Item 03040h,'Æ^Q^Basic/QuickBasicØ'
+      Item 03080h,'Æ^V^isual BasicØ'
+      Item 03100h,'APSI'
+      Item 03200h,'Basic^P^ro'
+      Item 03400h,'VA^X^/Alpha-VMS'
+   End Group
+   Item 00004h, 'Langage de programmation ^C^/C++'
+   Item 00005h, 'Langage de programmation Cobo^l^'
+   Item 00006h, 'Langage de programmation ^E^uphoria'
+   Item 00007h, 'Langage de programmation Forth'
+   Item 00008h, 'Langage de programmation ^F^ortran'
+   Group Item 'Langage de programmation ^P^ascal'
+      Item 0000Bh, '^T^ous'
+      Item -
+      Item 0B001h, 'UC^S^D'
+      Item 0B002h, '^B^57'
+      Item 0B040h, '^C^odeWarrior'
+      Item 0B080h, '^D^elphi'
+      Item 0B100h, '^K^ylix'
+      Item 0B004h, '^Q^uickPascal'
+      Item 0B008h, 'TurboPascal ^5^'
+      Item 0B010h, 'TurboPascal ^7^'
+      Item 0B020h, '^T^inkPascal'
+   End Group
+   Item -
+   Item 00017h, 'Batch ^D^os'
+   Item 00009h, '^I^ni (Configuration)'
+   Item 0000Ah, '^M^enu Souris (PopMenu)'
+   Item 0000Dh, '^R^essource'
+   Item -
+   Item 0000Ch, 'Professionnel ^W^rite'
+   Item 0000Eh, '^G^enesis Ascii Typewriter (GAT)'
+End
+
+IndexDialog 35
+   Size 40,16
+   WindowColorClassic 'Ajustement du la palette de couleur≥Set Color Palette'
+   CloseIcon
+   BarUp
+   RadioButton (0,1),'Palette','Monochrome|Noir et blanc|CGA, 8 couleurs de fond|Bleuet|Magenta|Diablo|Graphix|Macintosh|OS/2, Windows 9X ou GeoWorks'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 36
+   Size 35,15
+   WindowColorClassic 'Ajustement du Sourceur≥Set Sourcer'
+   CloseIcon
+   BarUp
+   RadioButton (0,1),'Code Source','Langage machine Assembleur|Langage Algol 68 & Pascal|Langage C/C++'
+   RadioButton (0,6),'Code Machine','Intel 8080 et 8085|Famille des CPUs Intel x86|Motorola 6502'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 37
+   Size 30,12
+   WindowColorClassic 'Tri'
+   CloseIcon
+   BarUp
+   RadioButton (0,1),'Fichier','DÇsorde|Nom|Extension|Taille|Temps'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 38
+   Size 50,20
+   WindowColorClassic 'êdition de l''entrÇe de Dialogue≥Set Dialog Entry'
+   CloseIcon
+   BarUp
+   Ln
+   Text 'Nom'
+   Ln
+   Text 'TÇlÇphone'
+   Ln
+   Text 'Mots de passe'
+   Ln
+   Text 'Scripte'
+   Input String (14,1,254),29
+   Input String (14,3,254),20
+   Input String (14,5,254),15
+   Input String (14,7,254),8
+   RadioButton (0,9),'Connection','BIOS|Ordinateur|Fossil|Modem'
+   RadioButton (18,9),'Terminal','Ansi|TTY|VT52|VT102'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 39
+   Size 70,14
+   WindowColorClassic 'DÇfinition du membre≥Define Member'
+   CloseIcon
+   BarUp
+   Ln
+   Text 0,1,'Alias'
+   Text 34,1,'TÇlÇphone'
+   Text 0,3,'PrÇnom'
+   Text 34,3,'Nom de famille'
+   Text 0,5,'Mot de passe'
+   Input String (6,1,31),18
+   Input String (44,1,254),20
+   Input String (7,3,31),18
+   Input String (49,3,254),18
+   Input String (13,5,254),15
+   Frame (0,7)-(67,9),'Option'
+   CheckBox (2,8),'PrÇviläge de super membre'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 40
+   If True Then
+      Size 50,15
+      WindowColorClassic 'Arràter≥Shut down'
+      CloseIcon
+      BarUp
+RadioButton(0,1),'Que dÇsirez-vous faire?','Quitter le ÆMonsterBookØ|Fermer l''Application de Menu Windows 9X|RedÇmarrer le ÆMonsterBookØ|RedÇmarrer l''ordinateur|Passer en mode êconomiseur d''Çcran|Mise en veille|Mode suspendre|Fermer l''ordinateur'
+   Else
+      Size 50,13
+      WindowColorClassic 'Arràter≥Shut down'
+      CloseIcon
+      BarUp
+      RadioButton(0,1),'Que dÇsirez-vous faire?','Quitter le ÆMonsterBookØ|Fermer l''Application de Menu Windows 9X|RedÇmarrer le ÆMonsterBookØ|RedÇmarrer l''ordinateur|Passer en mode êconomiseur d''Çcran|Mise en veille'
+   End If
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 41
+   If True Then
+      Item 0F006h,'Activer/^D^Çsactiver','Autoriser ou interdire l''affichage de l''heure'
+      Item 0F004h,'^A^justement de l''heure','Changer l''heure actuellement en usage sur la machine'
+      Item -
+      Item 0F005h,'^C^alendrier','Obtenue un calendrier des mois de l''annÇe'
+      Item 0F00Ah,'A^g^enda','Permet d''accÇder votre agenda d''individu personnel'
+   Else
+      If True Then
+         Item 0F007h,'Eliminer la barre ^T^itre','Enlever la barre identifiant l''application'
+      Else
+         Item 0F007h,'Afficher la barre ^T^itre','Affiche la barre identifiant l''application'
+      End If
+      If True Then
+         Item 0F008h,'Eliminer la barre d''^O^utils','Enlever la barre contenant les icìnes les plus utilisÇes'
+      Else
+         Item 0F008h,'Afficher la barre d''^O^utils','Afficher la barre contenant les icìnes les plus utilisÇes'
+      End If
+      Item 0F001h, '^E^liminer le menu', 'Enlever le menu principal'
+      Item -
+      Item 0F002h, 'E^d^iter le menu','Modifier le menu selon ses goñts'
+      Item -
+      Item 0F003h,'Menu classique ^F^ranáais','Charger le menu franáais classique'
+      Item 0F009h,'Menu classique ^A^nglais','Charger le menu anglais classique'
+   End If
+End
+
+IndexDialog 42
+   Size 49,6
+   WindowColorClassic 'Couleur de l''onglet≥Onglet Color'
+   CloseIcon
+   BarUp
+   ColorGrid (0,1)
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 43
+   Size 40,21
+   WindowColorClassic 'SÇlection de la palette≥Set Palette'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(38,4),'Rouge'
+   ScrollBar 0:255 (1,2,36),192
+   Frame (0,5)-(38,8),'Vert'
+   ScrollBar 0:255 (1,6,36),160
+   Frame (0,9)-(38,12),'Bleu'
+   ScrollBar 0:255 (1,10,36),144
+   Frame (0,13)-(38,16),'Couleur'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 44
+   If True Then
+      Item 3,'^O^uvre un document','Ouvre un document avec le traåtement de texte'
+      Item -
+   End If
+   If True Then
+      Item 3,'^O^uvre un dessin','Ouvre un dessin Ö modifier'
+      Item -
+   End If
+   If True Then
+      Item 3,'^O^uvre un texte','Ouvre un texte quelconque de format ASCII'
+      Item -
+   End If
+   If True Then
+      Item 3,'^I^nformation','Permet de connaåtre des informations et la configuration actuel sur la souris'
+      Item -
+   End If
+   Item 1,'^R^enommer','Permet de changer le nom de cette icìne'
+   Item 2,'^P^ropriÇtÇ','Permet de modifier les propriÇtÇs de cette application'
+   Item -
+   Item 4,'^E^ffacer','Permet d''effacer cette application'
+End
+
+IndexDialog 45
+   Size 50,21
+   WindowColorClassic 'Ajustement du Clavier≥Setting Keyboard'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(48,5),'Vitesse'
+   Text 1,2,'Lent'
+   Text 43,2,'Vite'
+   ScrollBar 0:31 (1,3,46),240,False
+   Frame (0,6)-(48,10),'DÇlai'
+   ScrollBar 0:3 (1,8,46),240,False
+   Text 1,7,'Longue'
+   Text 41,7,'Courte'
+   Text 17,11,'Teste clavier'
+   Input String (0,12,254),255
+   Frame (0,14)-(48,16),'Option'
+   CheckBox (1,15),'Clavier Windows 95'
+   KeyHoriDown 'Correcte|Rapide|Annuler≥Ok|Fast|Cancel'
+End
+
+IndexDialog 46
+   Size 51,19
+   WindowColorClassic 'Ajustement la Souris≥Setting Mouse'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(49,5),'Option'
+   CheckBox (1,2),45,'Curseur graphique en mode texte'
+   CheckBox (1,3),45,'Pointeur de style OS/2'
+   CheckBox (1,4),45,'Souris pour gauchÇ (inverse les boutons)'
+   RadioButton (0,6),'Pilote','Auto-dÇtection|PS/2|Port sÇrie|Souris dÇsactivÇ'
+   Frame (24,6)-(49,11),'MultimÇdia'
+   KeyHori (27,8),20,'Image du pointeur'
+   Frame (0,12)-(49,14),'Couleur du pointeur de souris'
+   ColorGrid (1,13),16,1,False
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 47
+   Size 45,16
+   WindowColorClassic 'Environnement≥Environment'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'Base'
+   Frame (0,3)-(43,7),'Option'
+   CheckBox (1,4),38,'Journal de bord (MALTE.LOG)'
+   CheckBox (1,5),38,'Sauvegarde du bureau (MB.DSK)'
+   CheckBox (1,6),38,'CrÇe des copies de sÇcuritÇ (*.BAK)'
+   TabbedNoteBook 176,'Description'
+   Frame (0,3)-(43,10),'Support'
+   CheckBox (1,4),38,'Supporte les descriptions de fichier'
+   CheckBox (1,5),38,'Nom long de Windows 9X/NT/2000/XP'
+   CheckBox (1,6),38,'ÆGeoWorksØ/ÆNew Dial OfficeØ'
+   CheckBox (1,7),38,'Bibliothäques ÆSWAGØ de code Pascal'
+   CheckBox (1,8),38,'ÆPFSØ de ÆProfessional WriteØ'
+   CheckBox (1,9),38,'Description de musique Æ.MODØ'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// 2 couleurs
+
+IndexDialog 48
+   Size 30,8
+   WindowColorClassic 'Couleur courante≥Current Color'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(28,3),'Couleur disponible'
+   ColorGrid (1,2),2,1,Palette
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// 4 couleurs
+
+IndexDialog 49
+   Size 30,8
+   WindowColorClassic 'Couleur courante≥Current Color'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(28,3),'Couleur disponible'
+   ColorGrid (1,2),4,1,Palette
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// 8 couleurs
+
+IndexDialog 50
+   Size 30,8
+   WindowColorClassic 'Couleur courante≥Current Color'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(28,3),'Couleur disponible'
+   ColorGrid (1,2),8,1,Palette
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// 16 couleurs
+
+IndexDialog 51
+   Size 51,8
+   WindowColorClassic 'Couleur courante≥Current Color'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(49,3),'Couleur disponible'
+   ColorGrid (1,2),16,1,Palette
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// 32 couleurs
+
+IndexDialog 52
+   Size 51,9
+   WindowColorClassic 'Couleur courante≥Current Color'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(49,4),'Couleur disponible'
+   ColorGrid (1,2),16,2,Palette
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// 64 couleurs
+
+IndexDialog 53
+   Size 51,11
+   WindowColorClassic 'Couleur courante≥Current Color'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(49,6),'Couleur disponible'
+   ColorGrid (1,2),16,4,Palette
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// 128 couleurs
+
+IndexDialog 54
+   Size 51,15
+   WindowColorClassic 'Couleur courante≥Current Color'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(49,10),'Couleur disponible'
+   ColorGrid (1,2),16,8,Palette
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// 256 couleurs
+
+IndexDialog 55
+   Size 51,23
+   WindowColorClassic 'Couleur courante≥Current Color'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(49,18),'Couleur disponible'
+   ColorGrid (1,2),16,16,Palette
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// Menu d'application de Calendrier
+
+IndexMenuContext 56
+   Group Item 'Aller au ^M^ois de/d''','Changer le mois du calendrier'
+      Item 0F011h,'^J^anvier','Premier mois'
+      Item 0F012h,'^F^Çvrier','Deuxiäme mois'
+      Item 0F013h,'^M^ars','Troisiäme mois'
+      Item 0F014h,'^A^vril','Quatriäme mois'
+      Item 0F015h,'Ma^i^','Cinquiäme mois'
+      Item 0F016h,'J^u^in','Sixiäme mois'
+      Item 0F017h,'Jui^l^let','Septiäme mois'
+      Item 0F018h,'Aoñ^t^','Huitiäme mois'
+      Item 0F019h,'^S^eptembre','Neuviäme mois'
+      Item 0F01Ah,'^O^ctobre','Dixiäme mois'
+      Item 0F01Bh,'^N^ovembre','Onziäme mois'
+      Item 0F01Ch,'^D^Çcembre','Douziäme mois'
+   End Group
+   Group Item 'Aller Ö l''ÇvÇnement','Aller au moins correspondant Ö un ÇvÇnement'
+      Item 0F011h,'^J^our de l''an','Aller au mois du Jour de l''an'
+      Item 0F01Eh,'Naissance de l''^a^uteur','Aller au mois de la naissance de l''auteur du MonsterBook'
+      Item 0F01Ch,'^N^oâl','Aller au mois de Noâl'
+      Item 0F01Dh,'^P^Éque','Aller au mois de PÉque'
+      Item 0F016h,'Saint-Jean-^B^aptiste','Aller au mois de la fàte du QuÇbec (Saint-Jean-Baptiste)'
+      Item 0F013h,'^S^aint-Patrick','Aller au mois de la Saint-Patrick'
+      Item 0F012h,'^S^aint-Valentin','Aller au mois de la Saint-Valentin'
+   End Group
+   Item -
+   Group Item 'Afficher','SÇlectionner un mode d''affichage du calendrier'
+      Item 0F034h,'Semaine ^I^ndonÇsien','Affiche des jours de semaines IndonÇsien'
+      Item 0F032h,'Semaine ^L^atin','Affiche des jours de semaines en Latin'
+      Item 0F031h,'Semaine S^o^laire','Affiche des jours de semaines selon leurs astres respectif'
+      Item 0F030h,'Semaine Standard','Affiche des jours de semaines standard'
+      Item 0F042h,'Mois ^L^atin','Affiche des mois en Latin'
+      Item 0F043h,'Mois d''^O^rigine','Affiche des mois en fonction de leurs origines'
+      Item 0F040h,'Mois Standard','Affiche des mois standard'
+   End Group
+   Item -
+   Item 0F001h, '^D^iffÇrence de jour', 'Calcul le nombre de jours entre deux dates...'
+End
+
+IndexDialog 57
+   Size 40,12
+   WindowColorClassic 'Ajustement des applications≥Setting Applications'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'Editeur'
+   Frame (0,3)-(29,7),'Option'
+   CheckBox (1,4),24,'Marqueur de fin actif'
+   CheckBox (1,5),24,'Rägle (êchelle de 10)'
+   CheckBox (1,6),24,'Voir zone en dehors'
+   TabbedNoteBook 176,'Tableur'
+   Frame (0,3)-(29,7),'Support'
+   CheckBox (1,4),24,'Fonction de Lotus 1-2-3'
+   CheckBox (1,5),24,'Fonction d''Office'
+   CheckBox (1,6),24,'Fonction de Quattro Pro'
+   External Preparation
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 58
+   Size 50,24
+   WindowColorClassic 'Ajustement du Systäme≥Setting System'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'Noyau'
+   Image (39,4),4,'SYS:MEDIA.RLL'
+   Frame (1,3)-(34,18),'Option'
+   CheckBox (2,4),28,'Accäs directe au DOS'
+   CheckBox (2,5),28,'Accäs mÇmoire 32 bits'
+   CheckBox (2,6),28,'Recouvrement en EMS/XMS'
+   CheckBox (2,7),28,'Utiliser la mÇmoire EMS'
+   CheckBox (2,8),28,'DÇtection par le BIOS'
+   CheckBox (2,9),28,'DÇtection de la CMOS'
+   CheckBox (2,10),28,'DÇtection mÇmoire Ext BIOS'
+   CheckBox (2,11),28,'DÇtection Spooler d''imprim.'
+   CheckBox (2,12),28,'Recherche nom d''ordinateur'
+   CheckBox (2,13),28,'DÇtection par Mode ProtÇgÇ'
+   CheckBox (2,14),28,'DÇtection du Plug & Play'
+   CheckBox (2,15),28,'DÇtection des cartes PCI'
+   CheckBox (2,16),28,'DÇtection partition HPFS'
+   CheckBox (2,17),28,'DÇtection partition FAT32'
+   TabbedNoteBook 176,'Scripte'
+   Image (39,4),31,'SYS:MEDIA.RLL'
+   Frame (1,3)-(34,15),'AvancÇ'
+   CheckBox (2,4),28,'Supporte le code DPU'
+   CheckBox (2,5),28,'Supporte le code RLL'
+   CheckBox (2,6),28,'Supporte le code SQL'
+   CheckBox (2,7),28,'Supporte le code HTML'
+   CheckBox (2,8),28,'Supporte le code JavaScript'
+   CheckBox (2,9),28,'Supporte le Java compilÇs'
+   CheckBox (2,10),28,'Supporte le code ASP'
+   CheckBox (2,11),28,'Supporte le code PHP'
+   CheckBox (2,12),28,'Supporte les menus compilÇs'
+   CheckBox (2,13),28,'Supporte les objets compilÇs'
+   CheckBox (2,14),28,'Supporte les "ini" compilÇs'
+   TabbedNoteBook 208,'Image'
+   Image (39,4),32,'SYS:MEDIA.RLL'
+   Frame (1,3)-(34,19),'Supporte les formats'
+   CheckBox (2,4),28,'BGX des ÆCDMØ'
+   CheckBox (2,5),28,'BMP de ÆWindowsØ'
+   CheckBox (2,6),28,'BMP d''ÆOS/2Ø'
+   CheckBox (2,7),28,'GFX des "Hackers"'
+   CheckBox (2,8),28,'GIF de ÆCompuserveØ'
+   CheckBox (2,9),28,'Gem/Img de ÆVenturaØ'
+   CheckBox (2,10),28,'IMI des ÆCDMØ'
+   CheckBox (2,11),28,'LBM de ÆDelux Paint IIØ'
+   CheckBox (2,12),28,'MacPaint d''ÆAppleØ'
+   CheckBox (2,13),28,'PCX de ÆPC PaintBrushØ'
+   CheckBox (2,14),28,'PPM/PGM'
+   CheckBox (2,15),28,'SCi'
+   CheckBox (2,16),28,'Targa (TGA)'
+   CheckBox (2,17),28,'TIFF'
+   CheckBox (2,18),28,'XBM d''ÆUnixØ et ÆLinuxØ'
+   TabbedNoteBook 143,'CD-ROM'
+   Frame (1,3)-(34,5),'Option'
+   CheckBox (2,4),28,'DÇtection IDE ATAPI'
+   Text 1,6,'NumÇro du port par dÇfaut'
+   Input Byte (30,6,33),3
+   RadioButton (1,8),'Port IDE','Auto-DÇtecte|1F0h: Primaire, Maåtre|1F0h: Primaire, Esclave|170h: Secondaire, Maåtre|170h: Secondaire, Esclave|1E8h: Tertiaire, Maåtre|1E8h: Tertiaire, Esclave|168h: Quaternaire, Maåtre|168h: Quaternaire, Esclave'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 59
+   Size 45,8
+   WindowColorClassic 'Affichage par dÇfaut≥Setting Default Display'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(43,3),''
+   CheckBox (1,2),26,'Mode vidÇo de lancement'
+   KeyHoriDown 'Suivant|PrÇcÇdent|Annuler≥Ok|Cancel'
+End
+
+// Boåte de dialogue pour l'impression de fichier de format GAT
+
+IndexDialog 60
+   Size 70,18
+   WindowColorClassic 'Impression≥Print'
+   CloseIcon
+   BarUp
+   Text 0,1,'Nombre Copie'
+   Text 30,1,'Page'
+   Text 52,1,'Jusqu''Ö'
+   Text 0,7,'Additionne Ö la page'
+   Input Word (13,1,27),6
+   Input Word (35,1,49),6
+   Input Word (60,1,254),6
+   CheckBox (0,3),11,'JustifiÇ'
+   CheckBox (0,4),11,'CompressÇ'
+   CheckBox (0,5),11,'Paysage'
+   CheckBox (0,6),11,'Info.comp.'
+   Input Long (21,7,28),6
+   RadioButton (14,3),'QualitÇ','Standard|NLQ'
+   RadioButton (30,3),'NumÇro Page','Aucun|Droite|Gauche|AlternÇe'
+   ListBox (46,3)-(66,7),Shadow,'Police'
+   ListBox (0,9)-(32,13),Shadow,'Sortie Imprimante'
+   ListBox (35,9)-(66,13),Shadow,'Modäle Imprimante'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 61
+   Size 40,10
+   WindowColorClassic 'Ajouter du texte≥Add Text'
+   CloseIcon
+   BarUp
+   Text 0,1,'X'
+   Text 0,3,'Y'
+   Text 0,5,'Message'
+   Input Byte (8,1,254),6
+   Input Byte (8,3,254),6
+   Input String (8,5,254),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 62
+   Size 40,12
+   WindowColorClassic 'Ajout d''un ÆCheckBoxØ≥Add CheckBox'
+   CloseIcon
+   BarUp
+   Text 0,1,'X'
+   Text 0,3,'Y'
+   Text 0,5,'Longueur'
+   Text 0,7,'Message'
+   Input Byte (9,1,254),6
+   Input Byte (9,3,254),6
+   Input Byte (9,5,254),6
+   Input String (9,7,254),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 63
+   Size 70,24
+   WindowColorClassic 'Personne≥Person'
+   CloseIcon
+   BarUp
+   Text 0,1,'Alias'
+   Text 0,3,'Initial'
+   Text 14,3,'PrÇnom'
+   Text 39,3,'Nom de famille'
+   Text 0,5,'Fonction'
+   Text 33,5,'SociÇtÇ'
+   Text 0,7,'Adresse'
+   Text 0,9,'Ville'
+   Text 28,9,'Province'
+   Text 50,9,'Pays'
+   Text 0,11,'Code Postal'
+   Text 21,11,'Courriel'
+   Text 0,13,'Note'
+   Input String (6,1,254),30
+   Input String (8,3,11),10
+   Input String (21,3,36),30
+   Input String (54,3,254),30
+   Input String (9,5,30),20
+   Input String (41,5,254),30
+   Input String (8,7,254),40
+   Input String (6,9,25),20
+   Input String (37,9,47),10
+   Input String (55,9,254),20
+   Input String (12,11,18),6
+   Input String (30,11,254),50
+   Input String (5,13,254),255
+   Ghost String
+   Frame (0,15)-(34,19),'Liste'
+   Frame (35,15)-(67,19),'Option'
+   KeyHori (2,17),20,'NumÇro tÇlÇphone'
+   KeyHori (37,17),20,'Choisir icìne...'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 64
+   Size 38,19
+   WindowColorClassic 'Ajustement VidÇo≥Setting Video'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'Base'
+   Frame (0,3)-(36,9),'PrÇfÇrences'
+   CheckBox (1,4),31,'Dialogue avec des images'
+   CheckBox (1,5),31,'Extension avec icìne associÇe'
+   CheckBox (1,6),31,'Quadrillage des tableaux'
+   CheckBox (1,7),31,'Ligne en double banderolle'
+   CheckBox (1,8),31,'Effet spÇciaux'
+   Frame (0,10)-(36,13),'Options AvancÇe'
+   CheckBox (1,11),31,'VÇrification poussÇ Super VGA'
+   CheckBox (1,12),31,'Banque mÇmoire par VESA BIOS'
+   TabbedNoteBook 143,'Dialogue'
+   RadioButton (1,3),'Bordure','Macintosh|Robotique'
+   RadioButton (18,3),'EntrÇe','Elvis|OS/2|Windows'
+   RadioButton Extern (1,8),'Style de Bouton','Rectangulaire|Elvis (Turbo Vision)|Bubble (en boule)|OS/2 ou Windows|Macintosh'
+   TabbedNoteBook 176,'Menu'
+   RadioButton (1,3),'Style de la barre de sÇlection','Classique|Bad Seal (Cooper)'
+   RadioButton (1,7),'Style d''arriäre plan','Classique|Macintosh'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 65
+   Size 65,12
+   WindowColorClassic 'Informations sur le formatage≥Info Format'
+   CloseIcon
+   BarUp
+   Text 21,1,'octets sur le disque'
+   Caption String (0,1),20
+   Text 21,2,'octets utilisÇs par les fichiers systäme'
+   Caption String (0,2),20
+   Text 21,3,'octets dans des secteurs dÇfectueux'
+   Caption String (0,3),20
+   Text 21,4,'octets disponible sur le disque'
+   Caption String (0,4),20
+   Text 21,5,'octets dans chaque unitÇ d''allocation'
+   Caption String (10,5),10
+   Text 21,6,'unitÇs d''allocation sur le disque'
+   Caption String (0,6),20
+   Text 21,7,'NumÇro de sÇrie'
+   Caption String (5,7),15
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 66
+   If True Then
+      Size 65,9
+   Else
+      Size 40,9
+   End If
+   WindowColorClassic 'Information sur la manette de jeux≥Info Joystick'
+   CloseIcon
+   Text 0,1,'Manette de jeux existante:'
+   Caption String (30,1),3
+   Text 0,2,'Manette supportÇ par le BIOS:'
+   Caption String (30,2),3
+   Text 0,3,'Port de manette de jeux:'
+   Caption String (30,3),5
+   Text 0,4,'Potentiomätre:'
+   Caption String (30,4),10
+   External Preparation
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 67
+   If True Then
+      Size 60,23
+   Else
+      Size 60,14
+   End If
+   WindowColorClassic 'Information sur le Clavier≥Info Keyboard'
+   CloseIcon
+   BarUp
+   Text 0,1,'Modäle de clavier:'
+   Caption String (34,1),35
+   Text 0,2,'Style de contrìleur clavier:'
+   Caption String (34,2),30
+   Text 0,3,'Port du clavier:'
+   Caption String (34,3),5
+   Text 0,4,'Taille du tampon en mÇmoire:'
+   Caption String (34,4),20
+   Text 0,5,'Adresse du tampon en mÇmoire:'
+   Caption String (34,5),20
+   Text 0,6,'Indicateur Break du BIOS:'
+   Caption String (34,6),20
+   Text 0,7,'Fonction Çtendue clavier du BIOS:'
+   Caption String (34,7),3
+   Text 0,8,'Requàte d''interruption:'
+   Caption String (34,8),20
+   Text 0,9,'Interruption logiciel:'
+   Caption String (34,9),20
+   Image (3,11),0,'SYS:MEDIA.RLL'
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 68
+   Size 72,19
+   If True Then
+      WindowColorClassic 'Information du Systäme VidÇo Primaire≥Info Video Primary'
+   Else
+      WindowColorClassic 'Information du Systäme VidÇo Secondaire≥Info Video Secondary'
+   End If
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'GÇnÇral'
+   Text 0,3,'Carte vidÇo:'
+   Caption String (26,3),50
+   Text 0,4,'êquivalence vidÇo:'
+   Caption String (26,4),20
+   Text 0,5,'Moniteur:'
+   Caption String (26,5),50
+   Text 0,6,'Bios de la carte VidÇo:'
+   Caption String (26,6),50
+   Text 0,7,'MÇmoire de la carte vidÇo:'
+   Caption String (26,7),50
+   Text 0,8,'Taille d''un DAC:'
+   Caption String (26,8),40
+   Text 0,9,'Accäs RAM VidÇo:'
+   Caption String (26,9),50
+   Text 0,10,'Mode vidÇo courant:'
+   Caption String (26,10),50
+   Text 0,11,'Mode supportÇ par le Bios:'
+   Caption String (26,11),3
+   Text 0,12,'Nombre pages:'
+   Caption String (26,12),40
+   Text 0,13,'Police programmable:'
+   Caption String (26,13),40
+   Text 0,14,'Taille caractäre:'
+   Caption String (26,14),20
+   Image (57,3),3,'SYS:MEDIA.RLL'
+   If True Then
+      TabbedNoteBook 176,'Information VESA'
+      Text 0,3,'Information optionnel disponible:'
+      Caption String (34,3),3
+      Text 0,4,'Sortie ÆBIOSØ supportÇ:'
+      Caption String (34,4),3
+      Text 0,5,'Mode:'
+      Caption String (34,5),25
+      Text 0,6,'Granulation:'
+      Caption String (34,6),15
+      Text 0,7,'Taille de la fenàtre:'
+      Caption String (34,7),15
+      Text 0,8,'Octets par ligne de balayage:'
+      Caption String (34,8),15
+      Text 0,9,'Fenàtre A:'
+      Caption String (34,9),50
+      Text 0,10,'Fenàtre B:'
+      Caption String (34,10),50
+      Text 0,11,'Pointeur de la routine: '
+      Caption String (34,11),15
+      Image (51,3),6,'SYS:MEDIA.RLL'
+   End If
+   If True Then
+      TabbedNoteBook 208,'Information OEM'
+      Text 0,3,'Format de l''Çcran:'
+      Caption String (29,3),40
+      Text 0,4,'Format d''un caractäre:'
+      Caption String (29,4),10
+      Text 0,5,'Nombre de plages de mÇmoire:'
+      Caption String (29,5),10
+      Text 0,6,'Nombre de bits par pixel:'
+      Caption String (29,6),10
+      Text 0,7,'Modäle de mÇmoire:'
+      Caption String (29,7),50
+      Text 0,8,'Nombre de banque:'
+      Caption String (29,8),10
+      Text 0,9,'Taille de la banque:'
+      Caption String (29,9),10
+   End If
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 69
+   Size 40,16
+   WindowColorClassic 'SpÇcification de Formatage≥Format Specification'
+   CloseIcon
+   BarUp
+   ListBox (0,1)-(17,6),Shadow,'UnitÇ'
+   ListBox (20,1)-(37,6),Shadow,'Format'
+   Frame (0,8)-(38,11),'Option'
+   CheckBox (1,9),34,'VÇrification de Formatage'
+   CheckBox (1,10),34,'Afficher le rÇsumÇ une fois terminÇ'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 70
+   Size 40,10
+   WindowColorClassic 'Informations technique≥Technical Info'
+   CloseIcon
+   BarUp
+   Text 0,1,'Dimension:'
+   Caption String (20,1),20
+   Text 0,2,'Nombre couleurs:'
+   Caption String (20,2),20
+   Text 0,3,'Bit(s) par pixel:'
+   Caption String (20,3),10
+   Text 0,4,'Taille physique:'
+   Caption String (20,4),20
+   Text 0,5,'Format d''origine:'
+   Caption String (20,5),20
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 71
+   Size 40,8
+   WindowColorClassic 'Aide Particuliäre (Squelette)≥More Help'
+   CloseIcon
+   BarUp
+   Text 0,1,'Nom:'
+   Caption String (18,1),20
+   Text 0,2,'Date:'
+   Caption String (18,2),20
+   Text 0,3,'Attribut fichier:'
+   Caption String (18,3),40
+   KeyHoriDown 'Correcte|Suivant|PrÇcÇdent≥Ok|Next|Previous'
+End
+
+IndexDialog 72
+   Size 40,16
+   WindowColorClassic 'Information Document≥Document Info'
+   CloseIcon
+   BarUp
+   Text 0,1,'Nom du fichier:'
+   Caption String (24,1),12
+   Text 0,2,'Taille:'
+   Caption String (24,2),20
+   Text 0,3,'Nombre de mot(s) total:'
+   Caption String (24,3),10
+   Text 0,4,'Additionne Ö la page:'
+   Caption String (24,4),10
+   Text 0,5,'Nombre de page:'
+   Caption String (24,5),10
+   Text 0,6,'Marge de droite:'
+   Caption String (24,6),20
+   Text 0,7,'Marge de gauche:'
+   Caption String (24,7),20
+   Text 0,8,'Marge du haut:'
+   Caption String (24,8),20
+   Text 0,9,'Marge du bas:'
+   Caption String (24,9),20
+   Text 0,10,'Nombre d''objet:'
+   Caption String (24,10),10
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 73
+   Size 70,16
+   WindowColorClassic 'Entàte BitMap Windows≥Header Bitmap Windows'
+   CloseIcon
+   BarUp
+   Text 0,1,'Size:'
+   Caption String (15,1),40
+   Text 0,2,'Width:'
+   Caption String (15,2),40
+   Text 0,3,'Height:'
+   Caption String (15,3),40
+   Text 0,4,'Planes:'
+   Caption String (15,4),60
+   Text 0,5,'BitCount:'
+   Caption String (15,5),50
+   Text 0,6,'Compression:'
+   Caption String (15,6),50
+   Text 0,7,'SizeImage:'
+   Caption String (15,7),60
+   Text 0,8,'XPelsPerMeter:'
+   Caption String (15,8),60
+   Text 0,9,'YPelsPerMeter:'
+   Caption String (15,9),60
+   Text 0,10,'ClrUsed:'
+   Caption String (15,10),60
+   Text 0,11,'ClrImportant:'
+   Caption String (15,11),60
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 74
+   Size 70,21
+   WindowColorClassic 'Analyse du secteur de dÇmarrage≥Analyser Boot Sector'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(68,12),'Information d''entàte'
+   Text 1,2,'Nom du constructeur et version (OEM):'
+   Caption String (39,2),20
+   Text 1,3,'Taille secteur:'
+   Caption String (17,3),20
+   Text 1,4,'Secteur par unitÇ d''allocation:'
+   Caption String (33,4),30
+   Text 1,5,'Nombre de tàtes:'
+   Caption String (18,5),20
+   Text 1,6,'Nombre total de secteur:'
+   Caption String (26,6),50
+   Text 1,7,'Nombre de secteur cachÇ:'
+   Caption String (26,7),50
+   Text 1,8,'Nombre de FAT:'
+   Caption String (16,8),50
+   Text 1,9,'Nombre d''entrÇe dans le rÇpertoire principal:'
+   Caption String (47,9),10
+   Text 1,10,'Type de mÇdia:'
+   Caption String (16,10),50
+   Text 1,11,'Nom du volume:'
+   Caption String (16,11),60
+   ListBox (0,13)-(68,19),'Code de dÇmarrage'
+End
+
+IndexMenuContext 75
+   Item 0F001h, '^O^uvrir', 'Permet de lancer un raccourci'
+   Item -
+   Item 0F003h, '^R^enommer','Change le nom actuel du raccourci du Bureau'
+   Item 0F002h, '^S^upprimer', 'Enlever le raccourci du Bureau'
+   Item -
+   Item 0F005h, '^P^ropriÇtÇ','Modification des informations du raccourci'
+   Item -
+   Item 0F004h, '^E^dition de l''Icìne','Permet de modifier le dessin de l''icìne associÇe'
+End
+
+IndexDialog 76
+   Size 51,19
+   WindowColorClassic 'PropriÇtÇ du Bureau≥Desktop Proprety'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(49,3),'Couleur d''Çcriture de la tapiserie'
+   ColorGrid (1,2),16,1,False
+   Frame (0,4)-(49,6),'Couleur de fond de la tapiserie'
+   ColorGrid (1,5),16,1,False
+   RadioButton (0,7),47,'Afficher le papier-peint dans le style','CentrÇ au milieu|Mosaãque'
+   Frame (0,11)-(49,14),'Option'
+   ClickBox (1,12),45,'Afficher la barre d''Outils'
+   ClickBox (1,13),45,'Affichage d''une ligne d''aide en bas'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 77
+   Size 40,18
+   WindowColorClassic 'PropriÇtÇ du Microprocesseur≥CPU Proprety'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'GÇnÇral'
+   RadioButton (1,3),'Routine de code machine','AutodÇtection|8088/8086 ou NEC V20/V30|80286|80386'
+   If True Then
+      TabbedNoteBook 176,'Cyrix 6x86'
+      Frame (0,3)-(38,13),'Option'
+      ClickBox (1,4),33,'ÆFrameBufferØ rapide'
+      ClickBox (1,5),33,'ÆWrite-Back CacheØ'
+      ClickBox (1,6),33,'ÆWrite AllocateØ'
+      ClickBox (1,7),33,'Instruction CPUID supportÇe'
+      ClickBox (1,8),33,'Mettre en veille si ÆHALTØ'
+      ClickBox (1,9),33,'ÆCached Directory Table EntryØ'
+      ClickBox (1,10),33,'ÆNegate LockØ'
+      ClickBox (1,11),33,'ÆData ForwardingØ'
+      ClickBox (1,12),33,'ÆLoopØ accÇlÇrer'
+   End If
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 78
+   Size 64,19
+   WindowColorClassic 'Option de dossiers≥Option Folders'
+   CloseIcon
+   BarUp
+   ListBox (0,1)-(40,9),'Type de fichiers enregistrÇs'
+   KeyHori (42,2),20,'Nouveau type...'
+   KeyHori (42,5),20,'Supprimer'
+   KeyHori (42,8),20,'Modifier...'
+   Text 0,11,'Extension:'
+   Text 0,13,'Ouverture avec:'
+   External Preparation
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 79
+   Size 70,13
+   WindowColorClassic 'RÇpertoire du MonsterBook≥MonsterBook Directory'
+   CloseIcon
+   BarUp
+   Ln
+   Message 'Indiquer le rÇpertoire oó est actuellement installÇe l''application ÆMonsterBookØ. Cliquez sur (<ƒƒŸ Enter) pour confirmer le rÇpertoire s''il est exacte ou modifiez-le s''il est incorrecte.'
+   Message 'Cliquer sur le bouton ÆManuelØ si vous voulez changer des rÇpertoires manuellement.'
+   Input String (0,8,254),255
+   KeyHoriDown 'Suivant|Manuel|Annuler≥Next|Manual|Cancel'
+End
+
+IndexDialog 80
+   Size 40,23
+   WindowColorClassic 'SÇlection de la couleur≥Setting Color'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 144,'RVB'
+   Frame (0,15)-(38,18),'Couleur'
+   Frame (0,3)-(38,6),'Rouge'
+   ScrollBar 0:255 (1,4,36),192
+   Frame (0,7)-(38,10),'Vert'
+   ScrollBar 0:255 (1,8,36),160
+   Frame (0,11)-(38,14),'Bleu'
+   ScrollBar 0:255 (1,12,36),144
+   TabbedNoteBook 240,'HSV'
+   Frame (0,15)-(38,18),'Couleur'
+   Frame (0,3)-(38,6),'Teinte'
+   ScrollBar 0:360 (1,4,36),240
+   Frame (0,7)-(38,10),'Saturation'
+   ScrollBar 0:100 (1,8,36),240
+   Frame (0,11)-(38,14),'Valeur'
+   ScrollBar 0:255 (1,12,36),240
+   TabbedNoteBook 160,'Cube'
+   ColorCube (1,3),12,12
+   Frame (0,15)-(38,18),'Couleur'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 81
+   Size 72,25
+   WindowColorClassic 'Gestionnaire Imprimante≥Print Manager'
+   CloseIcon
+   BarUp
+   ListBox (0,1)-(32,6),Shadow,'Sortie Imprimante'
+   ListBox (0,8)-(32,14),Shadow,'Modäle Imprimante'
+   Text 35,1,'Dimension du papier'
+   Text 51,2,'x'
+   Text 35,4,'MÇmoire de l''Imprimante'
+   Input String (35,2,48),20
+   Input String (53,2,254),20
+   Input String (59,4,254),20
+   Frame (35,6)-(70,11),'Option'
+   CheckBox (36,7),31,'Mode "Machine Ö Çcrire"'
+   CheckBox (36,8),31,'Alimentation feuille Ö feuille'
+   CheckBox (36,9),31,'Impression en marge autorisÇ'
+   CheckBox (36,10),31,'Bordure en pixels'
+   RadioButton (35,12),'Code Impression','Seulement en Pixel|Mixte'
+   ListBox (0,16)-(254,20),Shadow,'Liste Impression'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 82
+   Size 70,17
+   WindowColorClassic 'Information disque≥Disk Info'
+   CloseIcon
+   BarUp
+   Text 5,1,'Nom du volume:'
+   Caption String (28,1),12
+   Text 5,2,'Type d''unitÇ:'
+   Caption String (28,2),20
+   Text 5,3,'NumÇro de sÇrie:'
+   Caption String (28,3),9
+   BarHori (0,4,68)
+   Simple Grid (1,5),9
+   Text 5,5,'Espace utilisÇ:'
+   Caption String (28,5),30
+   Simple Grid (1,6),10
+   Text 5,6,'Espace libre:'
+   Caption String (28,6),30
+   Text 5,7,'Taille du disque:'
+   Caption String (28,7),30
+   BarHori (0,8,68)
+   Text 5,9,'Octets par secteur:'
+   Caption String (38,9),8
+   Text 5,10,'Secteur par unitÇ d''allocation:'
+   Caption String (38,10),8
+   Text 5,11,'Nombre de unitÇ d''allocation:'
+   Caption String (38,11),8
+   Sectorial (60,5)-(67,7),9,10
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 83
+   Size 70,25
+   WindowColorClassic 'Ressource de l''Application≥Application Resource'
+   CloseIcon
+   BarUp
+   Text 0,1,'MÇmoire Conventionnel'
+   Caption String (0,2),5
+   Caption String (0,3),5
+   Sectorial (2,2)-(17,11),10,12
+   Text 0,11,'UnitÇ Disque'
+   Caption String (0,12),5
+   Caption String (0,13),5
+   Sectorial (2,12)-(17,21),10,12
+   Text 25,1,'MÇmoire XMS'
+   Caption String (25,2),5
+   Caption String (25,3),5
+   Sectorial (27,2)-(42,11),10,12
+   Text 25,11,'MÇmoire EMS'
+   Caption String (25,12),5
+   Caption String (25,13),5
+   Sectorial (27,12)-(42,21),10,12
+   Text 50,1,'MÇmoire UMB'
+   Caption String (50,2),5
+   Caption String (50,3),5
+   Sectorial (52,2)-(67,11),10,12
+   Text 50,11,'MÇmoire VidÇo'
+   Caption String (50,12),5
+   Caption String (50,13),5
+   Sectorial (52,12)-(67,21),10,12
+   Simple Grid (0,23),10
+   Text 3,23,'Libre'
+   Simple Grid (8,23),12
+   Text 11,23,'UtilisÇe'
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 84
+   Size 40,10
+   WindowColorClassic 'Information sur le MP3≥Tag MP3'
+   CloseIcon
+   BarUp
+   Text 0,1,'Titre:'
+   Text 0,2,'Album:'
+   Text 0,3,'Artiste:'
+   Text 0,4,'AnnÇe:'
+   Text 0,5,'Remarque:'
+   Caption String (10,1),30
+   Caption String (10,2),30
+   Caption String (10,3),30
+   Caption String (10,4),4
+   Caption String (10,5),30
+   KeyHoriDown 'Correcte|Suivant|PrÇcÇdent≥Ok|Next|Previous'
+End
+
+IndexDialog 85
+   Size 70,18
+   WindowColorClassic 'Aide Particuliäre (Squelette)≥More Help'
+   CloseIcon
+   BarUp
+   Text 0,1,'Nom:'
+   Text 0,2,'Format:'
+   Text 0,3,'NumÇro de recouvrement:'
+   Text 0,4,'Nombre de segment Ö adapter:'
+   Text 0,5,'Taille:'
+   Text 0,6,'Taille;'
+   Text 0,7,'Offset de chargement de module dans la pile:'
+   Text 0,8,'VÇrification d''entàte:'
+   Text 0,9,'EntrÇe de code (IP):'
+   Text 0,10,'DÇbut de segment de code:'
+   Text 0,11,'Taille fichier:'
+   Text 0,12,'Date:'
+   Text 0,13,'Attribut fichier:'
+   Caption String (29,1),12
+   Caption String (29,2),30
+   Caption String (29,3),40
+   Caption String (29,4),40
+   Caption String (8,5),70
+   Caption String (8,6),70
+   Caption String (45,7),30
+   Caption String (29,8),50
+   Caption String (29,9),50
+   Caption String (29,10),50
+   Caption String (29,11),50
+   Caption String (29,12),50
+   Caption String (29,13),50
+   KeyHoriDown 'Correcte|Suivant|PrÇcÇdent≥Ok|Next|Previous'
+End
+
+IndexDialog 86
+   Size 70,22
+   WindowColorClassic 'DonnÇes CMOS≥CMOS Data'
+   CloseIcon
+   BarUp
+   Text 0,1,'Contrìleur:'
+   Frame (0,3)-(30,6),'Disque dur'
+   Text 1,4,'Primaire:'
+   Text 1,5,'Secondaire:'
+   Frame (0,8)-(30,11),'Disques amovible'
+   Text 1,9,'Primaire:'
+   Text 1,10,'Secondaire:'
+   Frame (0,13)-(30,16),'MÇmoire installÇ'
+   Text 1,14,'Base:'
+   Text 1,15,'Xms:'
+   Frame (32,3)-(68,11),'êtat Cmos'
+   Text 33,4,'Batterie Cmos:'
+   Text 33,5,'Heure Cmos:'
+   Text 33,6,'Disque dur:'
+   Text 33,7,'MÇmoire:'
+   Text 33,8,'êquipement:'
+   Text 33,10,'Somme des vÇr.:'
+   Frame (32,13)-(68,16),'Horloge'
+   Text 33,14,'Date:'
+   Text 33,15,'Heure:'
+   Caption String (12,1),70
+   Caption String (13,4),10
+   Caption String (13,5),10
+   Caption String (13,9),15
+   Caption String (13,10),15
+   Caption String (13,14),15
+   Caption String (13,15),15
+   Caption String (49,4),30
+   Caption String (49,5),30
+   Caption String (49,6),30
+   Caption String (49,7),30
+   Caption String (49,8),30
+   Caption String (49,10),30
+   Caption String (49,14),30
+   Caption String (49,15),30
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+// Configuration de l'Çconomiseur d'Çcran (Screen Saver)
+
+IndexDialog 87
+   If True Then
+      Size 70,22
+      WindowColorClassic 'Ajustement de l''êconomiseur≥Setting Screen Saver'
+      Screen (34,1)-(67,17)
+   Else
+      Size 40,22
+      WindowColorClassic 'Ajustement de l''êconomiseur≥Setting Screen Saver'
+   End If
+   CloseIcon
+   BarUp
+   CheckBox (0,1),27,'êconomiseur d''Çcran actif'
+   RadioButton (0,3),'DÇlai d''attente','Pas de dÇlai|1 minute (60 secondes)|3 minutes (180 secondes)|5 minutes (300 secondes)|20 minutes'
+   ListBox (0,10)-(30,17),Shadow,'Modäle d''animation'
+   External Preparation
+   KeyHoriDown 'Correcte|Tester|Annuler≥Ok|Testing|Cancel'
+End
+
+// Installation: Demande si l'utilisateur souhaite adapter le systäme d'exploitation
+//               en fonction du MonsterBook
+
+IndexDialog 88
+   Size 63,15
+   WindowColorClassic 'Systäme d''exploitation≥Operating System'
+   BarUp
+   CloseIcon
+   Ln
+   Message String
+   RadioButton (0,6),'Votre choix','Modification automatiquement effectuer par l''assistant|Laissez faire ces modifications pour l''instant|Editez-vous les modifications manuellement'
+   KeyHoriDown 'Suivant|PrÇcÇdent|Annuler≥Next|Previous|Cancel'
+End
+
+IndexDialog 89
+   Size 40,20
+   WindowColorClassic 'PrÇsentation de la barre titre≥Title Bar Presentation'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(38,3),'Option'
+   CheckBox (1,2),28,'Barre titre Ö la Macintosh'
+   Text 0,5,'Image active de la barre'
+   Text 0,11,'Image inactive de la barre'
+   Input String (1,6,254),255
+   KeyHori (20,8),18,'Parcourir...'
+   Input String (1,12,254),255
+   KeyHori (20,14),18,'Parcourir...'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 90
+   Item 0F001h, '^O^uvrir', 'Lancer le processus associÇ au fichier'
+   Item -
+   Item 0F002h, '^C^opier le chemin', 'Copier le chemin dans le presse-papier'
+End
+
+// Compilateur OverCode - Ajustement de code CPU
+
+IndexDialog 91
+   Size 45,14
+   WindowColorClassic 'Ajustement du format de Code Machine≥Setting Code Machine'
+   CloseIcon
+   RadioButton (1,2),'Code Machine','INTEL 8088/8086/NEC V20/V30|INTEL 80188/80186|INTEL 80286/AMD 286|80386/AMD 386|80486/Cyrix 5x86|80586/Pentium/Cyrix 6x86|80686/Pentium Pro'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel';
+End
+
+// Cette boåte de dialogue permet d'ajuste la barre de tÉche en fonction de ses caprices
+// personnel.
+
+IndexDialog 92
+   Size 45,15
+   WindowColorClassic 'PropriÇtÇ du Windows 9X≥Windows 9X Proprety'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 143,'GÇnÇral'
+   Frame (0,3)-(43,7),'Option'
+   CheckBox (1,4),38,'Icìne de bureau sur le ÆDÇmarrerØ'
+   CheckBox (1,5),38,'Icìne de console de son'
+   CheckBox (1,6),38,'Icìne de pays ou de rÇgion'
+   TabbedNoteBook 176,'Menu'
+   Frame (0,3)-(43,6),'Option'
+   CheckBox (1,4),38,'Affiche l''icìne associÇe'
+   CheckBox (1,5),38,'Affiche la banderolle de son nom'
+   TabbedNoteBook 160,'Barre de tÉche'
+   RadioButton (0,3),'Affichage de la barre de tÉche','DÇsactivÇ|ActivÇ'
+   Frame (0,7)-(43,9),'Option'
+   CheckBox (1,8),38,'Inclusion du ÆTaskMgrØ du ÆDR-DOSØ'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// Menu contextuel sur le deuxiäme bouton de la souris sur le bureau
+// quand un dÇplacement d'icìne est effectuÇ.
+
+IndexMenuContext 93
+   Item 0F001h, '^D^Çplacement', 'DÇplacement de l''icìne ici'
+   Item -
+   Item 0F002h, '^C^opier', 'Copier un nouvelle icìne ici'
+End
+
+IndexDialog 94
+   Size 45,12
+   WindowColorClassic 'Nouveau Dossier≥New Folder'
+   CloseIcon
+   BarUp
+   Text 0,1,'Nom du dossier'
+   Text 0,4,'Chemin du dossier (rÇpertoire)'
+   Input String (1,2,254),80
+   Input String (1,6,254),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 95
+   Item 0F001h, '^V^olume',    'Ajustement du volume'
+   Item -
+   Item 0F002h, '^P^ropriÇtÇ', 'Ajustement de la barre'
+   Item -
+   Item 0F003h, 'Lecteur de ^C^D','Lecteur de disque compacte'
+End
+
+// Table SQL crÇer pour la dÇfinition des personnes de l'Agenda
+
+IndexSQL 96
+   CREATE TABLE Personne (
+      NoPersonne    SMALLINT NOT NULL,
+      Alias         CHAR(30),
+      Entete        CHAR(10),
+      Prenom        CHAR(30) PRIMARY KEY,
+      Nom           CHAR(30) PRIMARY KEY,
+      Fonction      CHAR(20),
+      Societe       CHAR(30),
+      Adresse       CHAR(40),
+      Ville         CHAR(20),
+      Province      CHAR(10),
+      Pays          CHAR(20),
+      CodePostal    CHAR(6),
+      Courriel      CHAR(50),
+      Note          CHAR(255),
+      IconeAssociee CHAR(255)
+   );
+End
+
+IndexSQL 97
+   CREATE TABLE Telephone (
+      NoPersonne        SMALLINT NOT NULL,
+      Etiquette         CHAR(10),
+      IndicatifPays     CHAR(3),
+      CodeRegion        CHAR(10),
+      Numero            CHAR(20)
+   );
+End
+
+IndexDialog 98
+   Size 45,13
+   WindowColorClassic 'NumÇro tÇlÇphone≥Phone Number'
+   CloseIcon
+   BarUp
+   Text 0,1,'êtiquette'
+   Text 0,3,'Indicatif de pays'
+   Text 0,5,'Code de rÇgion'
+   Text 0,7,'NumÇro de tÇlÇphone'
+   Input String (10,1,254),10
+   Input String (18,3,254),3
+   Input String (15,5,254),10
+   Input String (20,7,254),20
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 99
+   Item 0F009h, 'Envoyer un ^C^ourriel','Envoyer un Courriel a cette personne'
+   Item 0F001h, '^E^diter personne', 'Modifier le contenu d''une personne'
+   Item 0F002h, '^I^nsÇrer une personne', 'Ajouter une nouvelle personne'
+   Item -
+   Group Item 'Im^p^rimer','Impression'
+      Item 0F005h, '^P^ersonne', 'Imprime seulement la personne courante'
+      Item 0F006h, '^T^ous', 'Imprime toutes les personnes'
+   End Group
+   Group Item 'Rec^h^erche','Recherche'
+      Item 0F007h, '^P^ersonne', 'Recherche une personne dans l''agenda'
+   End Group
+   Item 0F008h, 'Enlever l''Ic^o^ne'
+   Item -
+   Item 0F003h, '^R^Çactualiser', 'Rafraåchir le contenu'
+   Item 0F004h, Boolean, '^T^rier la liste'
+End
+
+IndexDialog 100
+   Size 70,24
+   WindowColorClassic 'Personne≥Person'
+   CloseIcon
+   BarUp
+   Text 0,1,'Alias'
+   Text 0,3,'Initial'
+   Text 14,3,'PrÇnom'
+   Text 39,3,'Nom de famille'
+   Text 0,5,'Fonction'
+   Text 33,5,'SociÇtÇ'
+   Text 0,7,'Adresse'
+   Text 0,9,'Ville'
+   Text 28,9,'Province'
+   Text 50,9,'Pays'
+   Text 0,11,'Code Postal'
+   Text 21,11,'Courriel'
+   Text 0,13,'Note'
+   Caption String (6,1),30
+   Caption String (8,3),10
+   Caption String (21,3),30
+   Caption String (54,3),30
+   Caption String (9,5),20
+   Caption String (41,5),30
+   Caption String (8,7),40
+   Caption String (6,9),20
+   Caption String (37,9),10
+   Caption String (55,9),20
+   Caption String (12,11),6
+   Caption String (30,11),50
+   Caption String (5,13),255
+   Ghost String
+   ListBox (0,15)-(67,19),Shadow,'NumÇro de tÇlÇphone'
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 101
+   Size 53,23
+   WindowColorClassic 'Installation sÇlective≥Selective Install'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 176,'Systäme'
+   Frame (0,3)-(51,8),'MultimÇdia'
+   CheckBox (1,4),36,'Image de dÇmarrage'
+   CheckBox (1,5),36,'Les icìnes d''ÆExtensiorØ'
+   CheckBox (1,6),36,'Bibliothäque d''images'
+   CheckBox (1,7),36,'Fichiers sonore'
+   Frame (0,9)-(51,14),'Support d''aide'
+   CheckBox (1,10),36,'Assistant multimÇdia'
+   CheckBox (1,11),36,'Document ÆLISEZMOI.DOCØ'
+   CheckBox (1,12),36,'Manuel d''instruction'
+   CheckBox (1,13),36,'Aide de commande ÆDOSØ et ÆUnixØ'
+   Frame (0,15)-(51,18),'Programmeur'
+   CheckBox (1,16),36,'Source de l''ÆAPP7ILESØ'
+   CheckBox (1,17),36,'Icìne et raccourci'
+   Caption String (40,4),10
+   Caption String (40,5),10
+   Caption String (40,6),10
+   Caption String (40,7),10
+   Caption String (40,10),10
+   Caption String (40,11),10
+   Caption String (40,12),10
+   Caption String (40,13),10
+   Caption String (40,16),10
+   Caption String (40,17),10
+   TabbedNoteBook 160,'Application'
+   Frame (0,3)-(51,6),'Traåtement de texte'
+   CheckBox (1,4),36,'Dictionnaire'
+   CheckBox (1,5),36,'Bescherelle'
+   Frame (0,7)-(51,10),'Gestionnaire de fichiers'
+   CheckBox (1,8),36,'Clone Commander'
+   CheckBox (1,9),36,'Win Files Manager'
+   Frame (0,11)-(51,13),'MultimÇdia'
+   CheckBox (1,12),36,'ACDSee/Visualisateur global'
+   Caption String (40,4),10
+   Caption String (40,5),10
+   Caption String (40,8),10
+   Caption String (40,9),10
+   Caption String (40,12),10
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 102
+   Size 27,14
+   WindowColorClassic 'Type de caractäre≥Character Type'
+   CloseIcon
+   BarUp
+   Frame (1,1)-(24,8),'Format'
+   CheckBox Extern (2,2),10,'Gras'
+   CheckBox Extern (2,3),10,'SoulignÇ'
+   CheckBox Extern (2,4),10,'Italique'
+   CheckBox Extern (2,5),10,'InversÇ'
+   CheckBox Extern (2,6),10,'Double'
+   CheckBox Extern (2,7),10,'Exposant'
+   External Preparation
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 103
+   Size 50,20
+   WindowColorClassic 'PropriÇtÇ du document≥Document Proprety'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 176,'Entàte'
+   Frame (1,3)-(47,6),'Identification'
+   Text 3,4,'Nom de l''auteur'
+   Input String (19,4,44),255
+   Frame (1,7)-(47,11),'DÇtails'
+   Text 3,8,'Description du document'
+   Input String (3,9,44),255
+   TabbedNoteBook 160,'Dimension'
+   Frame (1,3)-(35,13),'Format de page'
+   Text 3,5,'Marge de gauche'
+   Text 3,7,'Marge de droite'
+   Text 3,9,'Marge du haut'
+   Text 3,11,'Marge du bas'
+   Input Word (19,5,32),6
+   Input Word (19,7,32),6
+   Input Word (19,9,32),6
+   Input Word (19,11,32),6
+   TabbedNoteBook 224,'Bas de page'
+   RadioButton (1,3),'NumÇrotation des pages','Aucune|Ö Droite|Ö Gauche|AlternÇe'
+   Frame (1,9)-(40,12),'Page'
+   Text 2,10,'Additionne Ö la page'
+   Input Long (31,10,37),6
+   Frame (1,13)-(40,15),'Option'
+   CheckBox (2,14),34,'Informations complÇmentaire'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 104
+   Size 53,18
+   WindowColorClassic 'PropriÇtÇ de la cellule≥Cell Proprety'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 143,'Modäle'
+   RadioButton (1,3),'Type de cellule','Vide|Valeur numÇrique|Texte|Formule mathÇmatique|Date'
+   RadioButton (30,3),'Justification','Gauche|Centre|Droite'
+   If True Then
+      TabbedNoteBook 160,'Nombre'
+      Text 0,3,'Nombre de dÇcimal'
+      Input Byte (18,3,22),3
+   End If
+   TabbedNoteBook 176,'Couleur'
+   Frame (0,3)-(50,6),'Option'
+   CheckBox (2,4),45,'Transparent ou couleur de la feuille'
+   CheckBox (2,5),45,'Couleur inverse'
+   Frame (0,7)-(50,9),'Arriäre plan'
+   ColorGrid (1,8)
+   Frame (0,10)-(50,12),'êcriture'
+   ColorGrid (1,11)
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 105
+   Size 48,12
+   WindowColorClassic 'Changer la casse≥Changed Case'
+   CloseIcon
+   BarUp
+   RadioButton (1,1),'Choix','Majuscule en dÇbut de phrase|Tout en minuscules|Tout en majuscules|Premiäre lettre des mots en majuscule|Inverser les casses'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 106
+   Item 0F007h, '^P^oint','Mettre des points'
+   Item 0F008h, '^T^race','Permet d''ajouter des points Ö la trace'
+   Item 0F009h, '^B^oite','Permet de mettre une boåte'
+   Item 0F00Ah, 'Cercle','Permet de mettre une cercle'
+   Item -
+   Item 0F004h, '^N^ouvelle page d''icìne','Ajoute une nouvelle page d''icìne'
+   Item 0F005h, 'C^h^anger de page d''icìne','SÇlectionner une nouvelle page d''icìne'
+   Item 0F006h, 'Nom de la page d''icìne','DÇfinir le nom de la page d''icìne'
+   Item -
+   Item 0F001h, '^E^nregistrer dans un bloc', 'Permet d''enregistrer dans un bloc le contenu'
+   Item -
+   Item 0F002h, '^C^opier', 'Copie l''image dans le presse-papier'
+   Item 0F003h, 'C^o^ller', 'Coller l''image du presse-papier'
+End
+
+IndexDialog 107
+   Size 38,15
+   WindowColorClassic 'Ligne horizontal≥Horizon Line'
+   CloseIcon
+   BarUp
+   ListBox (1,1)-(35,9),'SÇlection'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 108
+   Item 0F001h, '^P^ropriÇtÇ','DÇfinit la barre et les images associÇes'
+   Item 0F002h, 'Effet ^S^onore','DÇfinit les sons associÇes'
+   Item -
+   Item 0F003h, '^G^auche','Justifier le titre Ö gauche'
+   Item 0F004h, '^C^entrer','Justifier le titre au milieu'
+   Item 0F005h, '^D^roite','Justifier le titre Ö droite'
+   Item -
+   Item 0F006h, '^M^aximiser','Permet de rÇafficher la fenàtre'
+   Item 0F007h, 'M^i^nimiser','Permet de rÇduit la fenàtre'
+   Item -
+   Item 0F008h, '^R^Çactualiser','Permet de rÇactualiser cette fenàtre'
+   Item -
+   Item 0F009h, '^F^ermer','Permet la fermeture de la fenàtre'
+End
+
+IndexDialog 109
+   Size 40,17
+   WindowColorClassic 'Signal sonore≥Sound'
+   CloseIcon
+   BarUp
+   Text 0,2,'Son d''ouverture'
+   Text 0,8,'Son de fermeture'
+   Input String (1,3,254),255
+   KeyHori (20,5),18,'Parcourir...'
+   Input String (1,9,254),255
+   KeyHori (20,11),18,'Parcourir...'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 110
+   Size 40,20
+   WindowColorClassic 'SÇlection du pays ou de la rÇgion≥Setting Country'
+   CloseIcon
+   BarUp
+   ListBox (1,1)-(37,12),'Pays ou rÇgion'
+   External Preparation
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 111
+   Size 40,17
+   WindowColorClassic 'PropriÇtÇ de l''image≥Setting Image'
+   CloseIcon
+   BarUp
+   Text 0,2,'Nom de l''image'
+   Input String (1,3,254),255
+   RadioButton (1,5),'Justification','Gauche|Centre|Droite'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 112
+   Item 0F006h, '^P^ropriÇtÇ du dessin','DÇfinit les propriÇtÇs du dessin'
+   Item 0F007h, 'Couleur d''arriäre plan','DÇfinit la couleur d''arriäre plan du dessin'
+   Item 0F00Ah, 'Exporter...','Sauvegarde en format Bitmap l''image'
+   Item -
+   If True Then
+       Item 0F001h, '^P^ropriÇtÇ','PropriÇtÇ de l''objet'
+       Item 0F002h, '^C^ouleur','Couleur de l''objet'
+       Item 0F005h, '^S^upprimer','Supprimer l''objet'
+       Item -
+   End If
+   Group Item '^F^orme'
+      Item 0F004h,'^L^igne'
+      Item 0F008h,'^R^ectangle'
+   End Group
+   Group Item '^D^FD'
+      Item 0F003h,'^P^rocessus','êdition de nouveau processus'
+      Item 0F009h,'^F^lux de donnÇes','êdition de nouveau flux de donnÇes'
+   End Group
+   Item -
+   Item 0F00Bh,'^L^iste des Objects','Affiche la liste des objets contenu dans le dessin'
+End
+
+IndexMenuContext 113
+   If True Then
+      Item 0F005h, Boolean, 'Mode ^D^Çmarrer', 'Fixe le gestionnaire de programme en mode ÆDÇmarrerØ comme Windows 95'
+      Item -
+   End If
+   If True Then
+      Item 0F004h,'^M^aximiser','Permet de rÇafficher la fenàtre'
+      Item 0F003h,'M^i^nimiser','Permet de rÇduit la fenàtre sur la barre de tÉche'
+   Else
+      Item 0F004h,'^M^aximiser (˛)','Permet de rÇafficher la fenàtre'
+      Item 0F003h, 'M^i^nimiser (_)','Permet de rÇduit la fenàtre sur la barre de tÉche'
+   End If
+   Item 0F002h,'^R^Çactualiser','Permet de rÇactualiser cette fenàtre'
+   Item -
+   Item 0F006h, 'Gestionnaire de ^t^Éches', 'Affiche l''utilisation des ressources par les applications'
+   Item -
+   Item 0F001h,'^F^ermer','Permet la fermeture de la fenàtre'
+End
+
+IndexDialog 114
+   Size 60,17
+   WindowColorClassic 'PropriÇtÇ du processus de DFD≥Processus DFD Proprety'
+   CloseIcon
+   BarUp
+   Text 0,1,'ID numÇrique'
+   Input Word (13,1,20),6
+   Text 23,1,'ID alphanum.'
+   Input String (36,1,254),255
+   Text 0,3,'Nom'
+   Input String (13,3,254),255
+   Text 0,5,'Alias'
+   Input String (13,5,254),255
+   Text 0,7,'Nom codÇ'
+   Input String (13,7,254),255
+   Text 0,9,'Rägle synchr.'
+   Input String (13,9,254),255
+   Text 0,11,'Ensemble com.'
+   Input String (13,11,254),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 115
+   Size 40,21
+   WindowColorClassic 'Information sur le Dessin≥Draw Info'
+   CloseIcon
+   BarUp
+   Text 0,1,'Nom du fichier:'
+   Caption String (24,1),12
+   Text 0,2,'Taille:'
+   Caption String (24,2),20
+   Text 0,3,'Dimension:'
+   Caption String (24,3),20
+   Text 0,4,'Bits par pixel:'
+   Caption String (24,4),10
+   Text 0,5,'Octets par ligne:'
+   Caption String (24,5),10
+   Text 0,6,'Masque prÇsent:'
+   Caption String (24,6),20
+   Text 0,7,'Format original:'
+   Caption String (24,7),20
+   Text 0,8,'NumÇro d''index:'
+   Caption String (24,8),20
+   Text 0,9,'Nombre de palette:'
+   Caption String (24,9),20
+   Text 0,10,'Description:'
+   Caption String (24,10),10
+   Frame (0,12)-(38,16),'DÇtails'
+   KeyHori (2,14),14,'Histogramme'
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexDialog 116
+   Size 40,13
+   WindowColorClassic 'ExÇcution≥Execute'
+   CloseIcon
+   BarUp
+   RadioButton (1,1),'Mode d''exÇcution de la commande','Session DOS indÇpendante|Programme fils'
+   Text 1,6,'Entrez la commande'
+   Input String (1,7,253),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 117
+   Size 40,10
+   WindowColorClassic 'Saut≥Jump'
+   CloseIcon
+   BarUp
+   RadioButton (1,1),'InsÇrer','Saut de page|Saut de ligne'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 118
+   Size 40,18
+   WindowColorClassic 'Basic'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(38,13),'Supporte les instructions'
+   CheckBox (1,2),33,'Basic du ÆCommodore 64Ø'
+   CheckBox (1,3),33,'Basic de l''ÆApple ][Ø'
+   CheckBox (1,4),33,'Basic Couleur du ÆCoco 3Ø'
+   CheckBox (1,5),33,'ÆBASICA/GWBASICØ du PC'
+   CheckBox (1,6),33,'ÆTurboBasicØ de Borland'
+   CheckBox (1,7),33,'ÆGFA BasicØ d''Amiga'
+   CheckBox (1,8),33,'ÆQBasic/QuickBasicØ de Microsoft'
+   CheckBox (1,9),33,'Le ÆVisual BasicØ de Microsoft'
+   CheckBox (1,10),33,'Basic d''APSI'
+   CheckBox (1,11),33,'BasicPro des Chevaliers de Malte'
+   CheckBox (1,12),33,'Basic du VAX/Alpha-VMS'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 119
+   Size 40,13
+   WindowColorClassic 'êclairement≥Brillance'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(38,4),'LuminositÇ'
+   ScrollBar 0:255 (1,2,36),240
+   Frame (0,5)-(38,8),'Contraste'
+   ScrollBar 0:255 (1,6,36),240
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 120
+   Size 40,20
+   WindowColorClassic 'Mixeur de canal≥Canal Mixer'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 192,'Rouge'
+   Frame (0,3)-(38,6),'Rouge'
+   ScrollBar 0:255 (1,4,36),192
+   Frame (0,7)-(38,10),'Vert'
+   ScrollBar 0:255 (1,8,36),160
+   Frame (0,11)-(38,14),'Bleu'
+   ScrollBar 0:255 (1,12,36),144
+   TabbedNoteBook 160,'Vert'
+   Frame (0,3)-(38,6),'Rouge'
+   ScrollBar 0:255 (1,4,36),192
+   Frame (0,7)-(38,10),'Vert'
+   ScrollBar 0:255 (1,8,36),160
+   Frame (0,11)-(38,14),'Bleu'
+   ScrollBar 0:255 (1,12,36),144
+   TabbedNoteBook 144,'Bleu'
+   Frame (0,3)-(38,6),'Rouge'
+   ScrollBar 0:255 (1,4,36),192
+   Frame (0,7)-(38,10),'Vert'
+   ScrollBar 0:255 (1,8,36),160
+   Frame (0,11)-(38,14),'Bleu'
+   ScrollBar 0:255 (1,12,36),144
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+// Menu contextuel de l'application de dessin
+// -> Deuxiäme bouton sur la ligne
+
+IndexMenuContext 121
+   Item 0F01Eh, 'CoordonnÇes en 3 points', 'êcrit un cercle Ö partir de trois coordonnÇes'
+End
+
+IndexDialog 122
+   Size 36,14
+   WindowColorClassic 'Cercle Ö partir de 3 points≥3 Points Circle'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'(X1'
+   Text 24,','
+   Text 27,'Y1)-'
+   Ln
+   Text ' CoordonnÇe:'
+   Ln
+   Text 16,'-(X2'
+   Text 24,','
+   Text 27,'Y2)-'
+   Ln
+   Ln
+   Ln
+   Text 16,'-(X3'
+   Text 24,','
+   Text 27,'Y3)'
+   Ln
+   Input Word (16,2,22),6
+   Input Word (25,2,31),6
+   Input Word (16,5,22),6
+   Input Word (25,5,31),6
+   Input Word (16,8,22),6
+   Input Word (25,8,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 123
+   Size 60,22
+   WindowColorClassic 'PropriÇtÇ systäme≥System Proprety'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'Gestionnaire de pÇriphÇrique'
+   Tree (1,3)-(57,16)
+   TabbedNoteBook 192,'Performances'
+   Frame (0,3)-(58,7),'êtat des performances'
+   Text 1,4,'MÇmoire:'
+   Caption String (30,4),20
+   Text 1,5,'Ressources systäme:'
+   Caption String (30,5),12
+   Text 1,6,'MÇmoire virtuelle:'
+   Caption String (30,6),10
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 124
+   Size 60,20
+   WindowColorClassic Caption
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'GÇnÇral'
+   Text 1,3,'Type de pÇriphÇrique:'
+   Caption String (30,3),30
+   Frame (0,5)-(57,7),'Utilisation du pÇriphÇrique'
+   CheckBox (1,6),50,'Existe dans tous les profils matÇriels'
+   TabbedNoteBook 144,'Ressources'
+   CheckBox (1,3),50,'Utiliser les paramätres automatiques'
+   ListBox (0,5)-(57,12),'Liste'
+   KeyHori (1,14),30,'Modifier les paramätres...'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 125
+   Size 36,8
+   WindowColorClassic 'Scalaire≥Scalary'
+   CloseIcon
+   BarUp
+   Ln
+   Text 12,'Largeur'
+   Text 25,'Hauteur'
+   Ln
+   Text ' Dimension:'
+   Text 22,2,'x'
+   Input Word (12,2,18),6
+   Input Word (25,2,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 126
+   Size 38,18
+   WindowColorClassic 'Base de donnÇes≥Database'
+   CloseIcon
+   BarUp
+   Ln
+   Text 'Base de donnÇes: Mentronix'
+   Frame (0,3)-(35,9),'CompatibilitÇ SQL avec'
+   CheckBox (1,4),30,'Oracle'
+   CheckBox (1,5),30,'MySQL'
+   CheckBox (1,6),30,'Microsoft Access'
+   CheckBox (1,7),30,'Borland InterBase'
+   CheckBox (1,8),30,'Mentronix'
+   Frame (0,10)-(35,12),'Option'
+   CheckBox (1,11),30,'Supporte les multiples tables'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 127
+   Size 38,17
+   WindowColorClassic 'Compression'
+   CloseIcon
+   BarUp
+   Image (32,2),33,'SYS:MEDIA.RLL'
+   Frame (0,1)-(29,12),'Visualise les fichiers'
+   CheckBox (1,2),23,'ARC'
+   CheckBox (1,3),23,'ARJ'
+   CheckBox (1,4),23,'CAB'
+   CheckBox (1,5),23,'ICE'
+   CheckBox (1,6),23,'LHA'
+   CheckBox (1,7),23,'PAK'
+   CheckBox (1,8),23,'RAR'
+   CheckBox (1,9),23,'SWAG'
+   CheckBox (1,10),23,'ZIP'
+   CheckBox (1,11),23,'ZOO'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 128
+   Item 0F001h, 'Modifier', 'Modifier le numÇro de tÇlÇphone'
+   Item 0F002h, 'InsÇrer', 'InsÇrer un numÇro de tÇlÇphone'
+End
+
+IndexDialog 129
+   Size 40,13
+   WindowColorClassic 'ExÇcution≥Execute'
+   CloseIcon
+   BarUp
+   RadioButton (1,1),'Mode d''exÇcution de la commande','Session OS/2 indÇpendante|Programme fils'
+   Text 1,6,'Entrez la commande'
+   Input String (1,7,253),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 130
+   Size 70,20
+   WindowColorClassic 'PropriÇtÇ du dessin≥Draw Proprety'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'GÇnÇral'
+   Text 1,3,'Projet≥Project'
+   Input String (15,3,253),40
+   Text 1,5,'Nom du modäle≥Name'
+   Input String (15,5,253),40
+   Text 1,7,'Version'
+   Input String (15,7,25),10
+   Text 28,7,'Alias'
+   Input String (34,7,253),30
+   Text 1,9,'Auteur≥Author'
+   Input String (15,9,25),30
+   Text 28,9,'Resp.'
+   Input String (34,9,253),30
+   Text 1,11,'Courriel≥Email'
+   Input String (15,11,253),60
+   Text 1,13,'Description'
+   Input String (1,14,253),255
+   TabbedNoteBook 176,'SociÇtÇ'
+   Text 1,3,'Nom de l''organisme'
+   Input String (1,4,253),50
+   Text 1,6,'Chemin du logo'
+   Input File (1,7,253),255
+   TabbedNoteBook 208,'Paramätres'
+   Text 1,3,'êchelle horizontal: 1:'
+   Input Word (23,3,31),6
+   Text 1,5,'êchelle vertical:   1:'
+   Input Word (23,5,31),6
+   TabbedNoteBook 224,'Statistiques'
+   Text 1,3,'Nombre de modification:'
+   Caption Long (30,3),255
+   Text 1,5,'Date de crÇation:'
+   Caption String (30,5),20
+   Text 1,7,'Date de modification:'
+   Caption String (30,7),20
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 131
+   Size_Relative
+   WindowColorClassic 'Information sur la souris≥Mouse Info'
+   CloseIcon
+   BarUp
+   Ln
+   Text 1,'Modäle:'
+   Caption String (20),30
+   Ln
+   Text 1,'Type de bus:≥Bus type:'
+   Caption String (20),30
+   Ln
+   Text 1,'Version:'
+   Caption String (20),20
+   Ln
+   If True Then
+      Text 1,'Langage:≥Language:'
+      Caption String (20),30
+      Ln
+   End If
+   Text 1,'Nombre de bouton:≥Button:'
+   Caption String (20),20
+   Ln
+   If True Then
+      Text 1,'Interruption:'
+      Caption String (20),30
+      Ln
+   End If
+   Text 1,'Registre EGA:≥EGA Register'
+   Caption String (20),20
+   Ln
+   If True Then
+      Text 1,'Version:'
+      Caption String (20),30
+      Ln
+   End If
+   Text 1,'Micheys/Pixel Hor:'
+   Caption String (20),20
+   Ln
+   Text 1,'Micheys/Pixel Ver:'
+   Caption String (20),20
+   External Preparation
+   KeyHoriDown 'Correcte≥Ok'
+End
+
+IndexMenuContext 132
+   If True Then
+      Item 0F010h,'^M^ode Çdition', 'êdition du contenu de la base de donnÇes'
+      If True Then
+         Item 0F012h,'^T^aille du champ', 'SpÇcifier la taille du champs'
+      End If
+      Item -
+      Item 0F017h,'^I^nsäre un champs', 'Insäre un champs entre deux champs'
+      Item 0F016h,'^E^ffacer ce champs', 'Enlever ce champs de la structure de donnÇes'
+      Item -
+      Group Item 'DonnÇes Externe'
+         If True Then
+            Item 0F014h,'^E^nlever DonnÇes Externe', 'Enlever l''association au fichier externe contient les donnÇes'
+            Item 0F015h,'DÇplacement','DÇfinir le dÇplacement dans le fichier externe'
+         End If
+         Item 0F013h,'^D^Çfinir DonnÇes Externe', 'DÇfinir qu''un fichier externe contient les donnÇes'
+      End Group
+   Else
+      Item 0F001h, Boolean, '^L^ecture seulement', 'Lire seulement la base de donnÇes sans pouvoir la modifier'
+      Item 0F011h,'Modifier les champs', 'Modifier la structure de la base de donnÇes'
+      Group Item '^M^ode','SÇlectionne un autre mode d''affichage de la table'
+         Item 0F008h,'^N^avigateur','Affichage sous la forme d''un tableur'
+         Item 0F009h,'^C^olonne',   'Affichage en deux colonnes'
+      End Group
+      Item -
+      Group Item '^I^mprimer','Envoyer les donnÇes vers l''imprimantes'
+         Item 0F002h,'^N^avigateur','Impression de la base de donnÇes sous forme de tableur'
+         Item 0F003h,'^C^olonne',   'Impression en deux colonnes'
+         Item 0F004h,'^F^ormulaire','Impression en formulaire'
+      End Group
+      Item -
+      Group Item '^F^iltre','Filtrer les donnÇes selon un traåtement spÇcifique'
+         Item 0F006h,'ANSI Ö ASCII','Convertie le code ANSI au code ASCII'
+         Item 0F007h,'ASCII Ö ANSI','Convertie le code ASCII au code ANSI'
+      End Group
+      Item -
+      Group Item '^E^xporter','Effectue une conversion en un format diffÇrent'
+         Item 0F005h,'^S^QL','Conversion en langage de base de donnÇes SQL'
+         Item 0F018h,'^L^otus 1-2-3','Conversion pour le format du tableur Lotus 1-2-3'
+         Item 0F019h,'E^x^cel 2.1','Conversion pour le format du tableur Excel 2.1'
+         Item 0F01Ah,'^M^GC','Conversion pour le format du tableur MGC'
+      End Group
+   End If
+End
+
+IndexMenuContext 133
+   Item 0F011h,'Nouveau Document','CrÇer un nouveau document'
+   Item 0F012h,'Ouvrir Document','Ouvrir un document existant'
+   Item -
+   Group Item 0F001h,'^P^rogrammes','Lancer une/des application(s)'
+       // ...Autres items chargÇs par l'Application...
+       Item 0F00Bh,'^D^Çmarrage','Logiciel lancer au dÇmarrage du ÆMonsterBookØ'
+       Item 0F00Ah,'^E^xplorateur','Explorateur de fichier(s)'
+       Item 0F00Ch,'^C^ommande DOS','InterprÇteur de commande DOS'
+   End Group
+   Group Item 0F002h,'Docu^m^ents','Recharger un document rÇcamment fermer'
+   End Group
+   Group Item '^P^aramätres','Permet de configurer le ÆMonsterBookØ'
+      Item 0F008h,'^P^anneau de configuration','Modification des paramätres du ÆMonsterBookØ'
+      Item 0F018h,'^A^ssistant de configuration','Lancer l''assistance de configuration du ÆMonsterBookØ'
+      Item 0F00Dh,'^I^mprimantes','Configuration des imprimantes'
+      Item 0F009h,'^E^dition de la barre de menu','Modification des menus du ÆWindows 9XØ'
+      Item 0F00Eh,'^O^ption des dossiers','DÇfinit l''action parente d''un extension'
+      Item -
+      Item 0F013h,'^E^diteur ÆMB.INIØ','Modifier manuellement le fichier de configuration'
+      If True Then
+         Item 0F015h,'^E^diteur ÆAPP7ILES.RCØ','Modifier manuellement le fichier de ressource dialogue'
+      End If
+   End Group
+   Group Item '^M^aintenance','Effectue des opÇrations d''entretien ou de vÇrification'
+      Item 0F017h,'Instruction CP^U^','VÇrification des instructions du microprocesseur'
+      Item 0F01Dh,'Teste ^P^CI','VÇrification des pÇriphÇriques PCI'
+      Item 0F01Ch,'Teste la ^S^ouris','VÇrification du fonctionnement de la souris'
+      Item 0F020h,'Teste le ^M^odem','VÇrification des registres du modem'
+      Item 0F021h,'Teste le RÇsea^u^','VÇrification de la configuration du rÇseau'
+      Item -
+      Item 0F01Ah,'^B^ase de donnÇes maåtresse','Donne accäs Ö la base de donnÇes principal du systäme'
+      Item 0F01Fh,'Base de ^R^egistres','Gestion de la Base de registres du systäme'
+      If True Then
+         Item 0F01Eh,'Re^c^ompiler ÆAPP7ILES.RCØ','Recompiler le fichier de ressource dialogue'
+      End If
+   End Group
+   Group Item 0F004h,'^R^echercher','Effectue des recherches diverses'
+      Item 0F016h,'^P^ersonne','Recherche une personne dans l''Agenda'
+      Item -
+      //Group Item 0F022h,'^G^Çographie','Recherche dans l''atlas gÇographique'
+          Item 0F019h,'V^i^lle','Recherche un ville dans l''atlas de gÇographie'
+          Item 0F01Bh,'Pa^y^s','Recherche un pays dans l''atlas gÇographique'
+      //End Group
+      //Group Item 0F023h,'^M^aintenance','Recherche pour les techniciens informatique'
+      //    Item 0F024h,'^C^ode d''erreur','Recherche un code d''erreur systäme'
+      //End Group
+      Item -
+      Item 0F00Fh,'^F^ichier(s) ou dossier(s)','Recherche d''un fichier sur toutes les unitÇs');
+      Item -
+      Item 0F014h,'^M^Çnagäre de disque','Nettoye et libäre de l''espace disque en effacant les fichiers inutiles'
+      Item -
+      Item 0F010h,'^V^erbes','Recherche un verbe de conjugaison'
+   End Group
+   Item 0F005h;F1,'^A^ide','Obtenir de l''aide'
+   Item 0F006h,'E^x^Çcuter','Effectue des recherches diverses'
+   Item -
+   Item 0F007h,'Arrà^t^er','Permet de quitter le ÆMonsterBookØ'
+End
+
+IndexMenuContext 134
+   Item 0F101h,'^E^ffacer tous','Efface tous les raccourcis de document'
+End
+
+IndexDialog 135
+   Size 40,23
+   WindowColorClassic 'Assistant de configuration≥Wizard Config'
+   BarUp
+   CloseIcon
+   Ln
+   Image (1,1),35,'SYS:MEDIA.RLL'
+   Locate 17,1
+   Message 'Cet Assistant vous aidera Ö configurer rapidement le ÆMonsterBookØ Ö son niveau le plus bas.'
+   Message 'Pour commencer la configuration, cliquez sur Suivant.'
+   BarHori (0,18,38)
+   KeyHoriDown 'Suivant >|Annuler≥Next >|Cancel'
+End
+
+IndexDialog 136
+   Size 27,10
+   WindowColorClassic 'Attribut≥Attribute'
+   CloseIcon
+   BarUp
+   Frame (0,1)-(25,5),'CaractÇristiques'
+   ClickBox (1,2),19,'ClÇ primaire≥Primary Key'
+   ClickBox (1,3),19,'Unique'
+   ClickBox (1,4),19,'Non-nulle≥Not Null'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 137
+   Size 50,12
+   WindowColorClassic 'Recherche une ville≥Find city'
+   CloseIcon
+   BarUp
+   Text 0,1,'Effectue une recherche dans l''atlas gÇographique≥City to find'
+   Input String (0,2,254),255,'Software\Geographie\History'
+   Text 0,4,'En fonction de pays particulier:≥By country:'
+   Input Country (0,5,254),0
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 138
+   Size 40,11
+   WindowColorClassic 'Manette de jeux≥Joystick'
+   CloseIcon
+   BarUp
+   Image (30,2),38,'SYS:MEDIA.RLL'
+   RadioButton (1,1),'MÇthode≥Access','Auto-dÇtecte|BIOS|Direct≥Autodetect|BIOS|Raw'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 139
+   Item 0F001h, '^I^nsertion','Insertion d''une colonne'
+   Item 0F002h, '^S^uppression','Supprimer une colonne'
+   Item -
+   Item 0F003h, '^L^argeur','Modifier la largeur de la colonne'
+End
+
+IndexMenuContext 140
+   Item 0F001h, '^I^nsertion','Insertion une ligne'
+   Item 0F002h, '^S^uppression','Supprimer une ligne'
+End
+
+IndexMenuContext 141
+   If True Then
+      Item 0F001h, '^R^ecalculer','Recalculer la formule de la cellule'
+      Item -
+   End If
+   Item 0F002h, '^S^upprimer','Supprimer le contenu de la cellule'
+   Item -
+   Item 0F003h, '^P^ropriÇtÇ','Modifie les propriÇtÇs (couleurs, justification,...) de la cellule'
+   If True Then
+      Group Item '^T^ri'
+         Item 0F022h, '^A^scendante','Permet d''effectuer une tri ascendante sur les colonnes selectionnÇes'
+         Item 0F023h, '^D^escendante','Permet d''effectuer une tri descendante sur les colonnes selectionnÇes'
+      End Group
+   End If
+   Group Item '^E^xÇcute'
+      Item 0F021h, '^M^acro','Permet d''exÇcuter une fichier d''instruction d''un langage BASIC et de l''appliquer au dessin'
+   End Group
+End
+
+IndexDialog 142
+   Size 44,14
+   WindowColorClassic 'RÇpertoire du compilateur≥Directories Compiler'
+   CloseIcon
+   Ln
+   BarUp
+   Text 0,1,'Sources:'
+   Input String (0,2,41),255,'Software\Compiler\Pascal\History\Source'
+   Text 0,4,'UnitÇs:'
+   Input String (0,5,41),255,'Software\Compiler\Pascal\History\Unit'
+   Text 0,7,'Sortie:'
+   Input String (0,8,41),255,'Software\Compiler\Pascal\History\Output'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 143
+   Size 56,17
+   WindowColorClassic 'Type de Projet≥Project Type'
+   CloseIcon
+   BarUp
+   RadioButton (0,1),'Systäme d''exploitation','DOS|DOS Çtendu|OS/2|Windows 3.1|Win32s|Windows 95|Windows 98|Windows NT|Windows 2000|Linux'
+   RadioButton (27,1),'Format','Æ.COMØ|Æ.EXEØ|Æ.MEXØ|Secteur de dÇmarrage|UnitÇ compacte|UnitÇ Çtendue|Bibliothäque'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 144
+   Item 0F001h, '^O^uvre les fenàtres', 'Choisis une application'
+   Item 0F002h, '^B^ascules de fenàtres...', 'Choisis une fenàtre'
+   Item 0F003h, '^F^erme les fenàtres', 'Ferme les fenàtres'
+   Item -
+   Item 0F003h, '^Q^uitte DESQview/X', 'Quitte le mode DESQview/X'
+End
+
+IndexDialog 145
+   Size 40,9
+   WindowColorClassic 'Nombres de jours entre deux dates≥Difference Date'
+   CloseIcon
+   BarUp
+   Ln
+   Text 0,'De:≥At:'
+   Caption String (11),1
+   Caption String (16),1
+   Ln
+   Ln
+   Text 0,'Ö:≥To:'
+   Caption String (11),1
+   Caption String (16),1
+   Input Word (6,1,9),6
+   Input Byte (12,1,14),3
+   Input Byte (17,1,19),3
+   Input Word (6,3,9),6
+   Input Byte (12,3,14),3
+   Input Byte (17,3,19),3
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 146
+   Size 70,24
+   WindowColorClassic 'Modem'
+   CloseIcon
+   BarUp
+   RadioButton (1,1),'Port de communication≥Communication Port','COM1:|COM2:|COM3:|COM4:|COM5:|COM6:|COM7:|COM8:'
+   RadioButton (26,1),'Bits de donnÇes≥Data bits','7|8'
+   RadioButton (26,5),'ParitÇ≥Parity','Aucune|Paire|Impaire≥None|Odd|Even'
+   RadioButton (45,1),'Bits d''arràt≥Bit stop','1|2'
+   ListBox (0,11)-(67,19),Shadow,'Liste des modems'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 147
+   Size 75,14
+   WindowColorClassic 'Partition'
+   CloseIcon
+   BarUp
+   Text 0,1,'Type de partition:≥Partition Type:'
+   Caption String (25,1),50
+   Text 0,2,'NumÇro de sÇrie:≥Serial Number:'
+   Caption String (25,2),20
+   BarHori (0,3,73)
+   Text 0,4,'Premier secteur physique:≥First Physical Sector:'
+   Caption String (25,4),50
+   Text 0,5,'Dernier secteur physique:≥Last Physical Sector:'
+   Caption String (25,5),50
+   Text 0,6,'Total secteur physique:≥Total Physical Sector:'
+   Caption String (25,6),50
+   Text 0,8,'GÇomÇtrie physique:≥Physical Geometric:'
+   Caption String (25,7),50
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 148
+   Size 30,9
+   WindowColorClassic 'Langage≥Language'
+   CloseIcon
+   BarUp
+   RadioButton (1,1),'Langage humain≥Human language','Franáais|Anglais≥French|English'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 149
+   Item 0F001h, '^P^ays', 'Choisir le pays ou la rÇgion correspondante'
+   Item 0F004h, '^I^nformation','Information sur le pays ou la rÇgion actuel'
+   Item 0F002h, '^L^angage', 'Choisir le langage courant'
+   Item -
+   Item 0F003h, '^W^indows 9X', 'Paramätrage de la barre de tÉche Windows 9X'
+End
+
+IndexMenuContext 150
+   Item 0F101h, '^G^estionnaire de fichiers', 'Application de gestionnaire de fichiers'
+   Item -
+   Item 0F102h, 'Prompt ^D^OS', 'Fenàtre de prompt DOS'
+   Item 0F103h, '^I^nterprÇteur DOS', 'Lancer un interprÇteur de commande DOS'
+   Item -
+   Item 0F104h, '^C^lone Commander', 'Gestionnaire de fichiers'
+End
+
+IndexMenuContext 151
+   Item 0F102h, '^N^ettoyer le disque','ElÇminer les fichiers rÇsiduelle et temporaire de cette unitÇ'
+   Item -
+   Item 0F103h, '^R^enommer', 'Renommer le nom de cette unitÇ'
+   Item 0F101h, '^P^ropriÇtÇ', 'Afficher les propriÇtÇs de cette unitÇ'
+End
+
+IndexMenuContext 152
+   If True Then
+      Item 0F103h, 'Mode ^N^ormal', 'Mode normal'
+   Else
+      Item 0F103h, 'Mode ^T^echnique', 'Mode technique'
+   End If
+   Item -
+   Item 0F102h, '^S^auvegarde', 'Sauvegarde le secteur de partition'
+   Item -
+   Item 0F101h, '^I^nformation', 'Afficher les informations de cette partition'
+   Item 0F104h, 'Regarde ^H^ex', 'Afficher les informations brute en hexadÇcimal'
+   Group Item '^O^pÇration', 'Effectue des opÇrations sur la/les partitions'
+      Item 0F105h, '^A^ctive la partition','Active cette partition'
+      Item 0F106h, '^E^fface la partition','Efface cette partition'
+   End Group
+End
+
+IndexMenuContext 153
+    Group Item '^N^ouveau', 'CrÇer un nouvel ÇlÇment sur le bureau'
+       Item 0F006h, '^R^accourci','Ajouter un nouvelle icìne comme raccourci'
+    End Group
+End
+
+IndexDialog 154
+   Size 56,9
+   WindowColorClassic 'Configuration IP≥IP Config'
+   CloseIcon
+   BarUp
+   Text 0,1,'NumÇro de la carte:≥ID Adaptor:'
+   Caption String (25,1),3
+   Text 0,2,'Adresse IP Mac:≥Mac IP Address'
+   Caption String (25,2),50
+   Text 0,3,'Nom de la machine:≥Machine Name'
+   Caption String (25,3),16
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 155
+   Size 40,11
+   WindowColorClassic 'Filtre≥Filter'
+   BarUp
+   CloseIcon
+   Ln
+   Frame (0,1)-(37,6),'OpÇration'
+   ClickBox (1,2),25,'NÇgation Binaire'
+   ClickBox (1,3),25,'Ou Exclusif Binaire'
+   ClickBox (1,4),25,'Ou Binaire'
+   ClickBox (1,5),25,'Et Binaire'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 156
+   If True Then
+      Item 0F006h,'^M^ode Plein','Affichage en une partie'
+   Else
+      Item 0F006h,'^M^ode HexadÇcimal','Affichage en deux parties'
+   End If
+   Item 0F009h, Boolean, 'Modifiab^l^e', 'Autorise la modification'
+   Item -
+   Item 0F001h,'^F^iltre', 'Modifier les opÇrations d''affichage Binaire'
+   Item 0F007h,'^D^Çcomposeur', 'DÇcompose manuellement les informations'
+   If True Then
+      Item 0F008h,'^I^nformation DÇmarrage', 'DÇcompose les informations de secteur de dÇmarrage'
+   End If
+   Item -
+   Group Item '^P^age','DÇplacement'
+      Item 0F002h,'^P^remiäre Page','Aller au dÇbut'
+      Item 0F003h,'Page PrÇcÇ^d^ente','Aller Ö la page prÇcÇdente'
+      Item 0F004h,'Page ^S^uivante','Aller Ö la page suivante'
+      Item 0F005h,'^D^erniäre Page','Aller Ö la fin'
+   End Group
+End
+
+IndexDialog 157
+   Size 70,23
+   WindowColorClassic 'Fiche d''Identification'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'GÇnÇral'
+   Text 1,3,'SociÇtÇ≥Society'
+   Input String (20,3,253),255
+   Text 1,5,'Nom≥Name'
+   Input String (20,5,253),255
+   Text 1,7,'Adresse'
+   Input String (20,7,253),255
+   Text 1,9,'Ville'
+   Input String (20,9,253),255
+   Text 1,11,'Province/êtat'
+   Input String (20,11,253),255
+   Text 1,13,'Pays≥Country'
+   Input Country (20,13,252),255
+   Text 1,15,'Code Postal'
+   Input String (20,15,253),255
+   Text 1,17,'Courriel≥Email'
+   Input String (20,17,253),255
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 158
+   Size 40,16
+   WindowColorClassic 'SpÇcification de copie≥Disk Copy Specification'
+   CloseIcon
+   BarUp
+   ListBox (0,1)-(17,6),Shadow,'UnitÇ Source'
+   ListBox (20,1)-(37,6),Shadow,'UnitÇ Destinataire'
+   Frame (0,8)-(38,11),'Option'
+   CheckBox (1,9),34,'VÇrification d''Çcriture'
+   CheckBox (1,10),34,'Afficher le rÇsumÇ une fois terminÇ'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 159
+   Size 40,23
+   WindowColorClassic 'SÇlection de mode vidÇo≥Select Video Mode'
+   CloseIcon
+   BarUp
+   ListBox (0,1)-(37,18),'SÇlecte Mode VidÇo'
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 160
+ If True Then
+    Size 70,21
+ Else
+    Size 70,20
+ End If
+ WindowColorClassic 'Information Systäme Somaire'
+ CloseIcon
+ BarUp
+ Frame (0,1)-(68,8),'Ordinateur'
+ Text 2,2,'Nom de l''ordinateur:'
+ Caption String (29,2),50
+ Text 2,3,'Constructeur du Bios:'
+ Caption String (29,3),50
+ Text 2,4,'Processeur principal:'
+ Caption String (29,4),30
+ Text 2,5,'Coprocesseur mathÇmatique:'
+ Caption String (29,5),30
+ Text 2,6,'Adapteur vidÇo:'
+ Caption String (29,6),50
+ Text 2,7,'Type souris:'
+ Caption String (29,7),50
+ ListBox (0,9)-(33,12),'Disques'
+ ListBox (35,9)-(254,12),'Divers'
+ External Preparation
+ KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 161
+   Group Item '^A^fficher','Affichage d''une liste'
+      Item 0F001h, '^T^outes Tables','Affiche toutes les tables de la base de donnÇes courante'
+   End Group
+End
+
+IndexDialog 162
+   Size 36,11
+   WindowColorClassic 'Rectangle'
+   CloseIcon
+   Ln
+   BarUp
+   Text 16,'(X1'
+   Text 24,','
+   Text 27,'Y1)-'
+   Ln
+   Text ' CoordonnÇe de:'
+   Ln
+   Text 16,'-(X2'
+   Text 24,','
+   Text 27,'Y2)'
+   Ln
+   Text ' CoordonnÇe Ö:'
+   Input Real (16,2,22),6
+   Input Real (25,2,31),6
+   Input Real (16,5,22),6
+   Input Real (25,5,31),6
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 163
+   Size 60,22
+   WindowColorClassic 'Information d''Entàte PE'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'GÇnÇral'
+   Frame (0,3)-(58,9),'Information sur le programme'
+   Text 1,4,'Nom du fichier:'
+   Caption String (30,4),80
+   Text 1,5,'Processeur requis:'
+   Caption String (30,5),30
+   Text 1,6,'Nombre de sections:'
+   Caption String (30,6),5
+   Text 1,7,'Temps de crÇation:'
+   Caption String (30,7),30
+   Text 1,8,'Taille d''entàte optionnel:'
+   Caption String (30,8),40
+   Frame (0,10)-(58,17),'CaractÇristiques'
+   Caption String (2,11),38
+   Caption String (2,12),38
+   Caption String (2,13),38
+   Caption String (2,14),38
+   Caption String (2,15),38
+   Caption String (2,16),38
+   Caption String (40,11),38
+   Caption String (40,12),38
+   Caption String (40,13),38
+   Caption String (40,14),38
+   Caption String (40,15),38
+   Caption String (40,16),38
+   TabbedNoteBook 176,'Option'
+   Frame (0,3)-(58,12),'RVA et tailles'
+   Text 1,4,'RVA Image Base:'
+   Caption String (29,4),30
+   Text 1,5,'RVA PE du code:'
+   Caption String (29,5),30
+   Text 1,6,'RVA Code:'
+   Caption String (29,6),50
+   Text 1,7,'Taille du code:'
+   Caption String (29,7),30
+   Text 1,8,'RVA DonnÇes:'
+   Caption String (29,8),50
+   Text 1,9,'Taille des donnÇes:'
+   Caption String (29,9),30
+   Text 1,10,'Taille des variables:'
+   Caption String (29,10),15
+   Text 1,11,'Taille des entàtes:'
+   Caption String (29,11),30
+   Frame (0,13)-(58,16),'Alignement'
+   Text 1,14,'Alignement dans la mÇmoire:'
+   Caption String (29,14),30
+   Text 1,15,'Alignement dans le fichier:'
+   Caption String (29,15),30
+   TabbedNoteBook 192,'Version'
+   Frame (0,3)-(58,8),'Version du systäme d''exploitation'
+   Text 1,4,'Version requise:'
+   Caption String (29,4),30
+   Text 1,5,'Version binaire:'
+   Caption String (29,5),30
+   Text 1,6,'Version Win32 requise:'
+   Caption String (29,6),30
+   Text 1,7,'Sous-systäme requis:'
+   Caption String (29,7),30
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 164
+   Size 60,22
+   WindowColorClassic 'Information GeoWorks'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'GÇnÇral'
+   Frame (0,3)-(58,9),'Information'
+   Text 1,4,'Nom du fichier:'
+   Caption String (30,4),80
+   Text 1,5,'Droit d''auteur:'
+   Caption String (30,5),30
+   Text 1,6,'Classe:'
+   Caption String (30,6),40
+   TabbedNoteBook 192,'Version'
+   Frame (0,3)-(58,8),'Version'
+   Text 1,4,'Version de rÇalisation:'
+   Caption String (29,4),30
+   Text 1,5,'NumÇro de protocole:'
+   Caption String (29,5),30
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexDialog 165
+   Size 36,18
+   WindowColorClassic 'Ligne≥Line'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'Absolue'
+   Text 16,3,'(X1'
+   Text 24,3,','
+   Text 27,3,'Y1)-'
+   Ln
+   Text 1,4,'CoordonnÇe de:'
+   Ln
+   Text 16,6,'-(X2'
+   Text 24,6,','
+   Text 27,6,'Y2)'
+   Ln
+   Text 1,7,'CoordonnÇe Ö:'
+   Input Extern Real (16,4,22),6
+   Input Extern Real (25,4,31),6
+   Input Extern Real (16,7,22),6
+   Input Extern Real (25,7,31),6
+
+   TabbedNoteBook 176,'Polaire'
+   Text 16,3,'(X'
+   Text 24,3,','
+   Text 27,3,'Y)'
+   Ln
+   Text 0,4,'Centre polaire:'
+   Ln
+   Text 0,6,'Rayon:'
+   Ln
+   Text 0,8,'Angle en degrÇ:'
+   Ln
+   Text 1,10,'('') minute(s):'
+   Ln
+   Text 0,12,'(") seconde(s):'
+   Input Extern Real (16,4,22),6
+   Input Extern Real (25,4,31),6
+   Input Extern Real (16,6,22),6
+   Input Extern Word (16,8,22),6
+   Input Extern Word (16,10,22),6
+   Input Extern Word (16,12,22),6
+   External Preparation
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End
+
+IndexMenuContext 166
+   Item 0F001h, '^P^ropriÇtÇ', 'Modifie les propriÇtÇs de l''objet'
+   Item -
+   Item 0F002h, '^S^upprimer', 'Supprime l''objet'
+End
+
+IndexDialog 167
+   Size 70,17
+   WindowColorClassic 'Outil de diagnostic DirectX'
+   CloseIcon
+   BarUp
+   TabbedNoteBook 160,'Systäme'
+   Frame (0,3)-(68,9),'Information systäme'
+   Text 1,4,'Date/heure du jour:'
+   Caption String (30,4),40
+   Text 1,5,'Version DirectX:'
+   Caption String (30,5),15
+   KeyHoriDown 'Correcte|Annuler≥Ok|Cancel'
+End

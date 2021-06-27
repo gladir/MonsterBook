@@ -1,0 +1,153 @@
+00000 Compilation r‚ussit
+00001 ';' attendu
+00002 '{' attendu
+00003 '}' attendu
+00004 '[' attendu
+00005 ']' attendu
+00006 '(' attendu
+00007 ')' attendu
+00008 '*' attendu
+00009 Valeur num‚rique attendu
+00010 '>' attendu
+00011 '"' attendu
+00012 '.' attendu
+00013 num‚ration attendu
+00014 Num‚ro du tableau attendu
+00015 Fin de fonction attendu
+00016 Fin de la source attendu
+00017 Fin de la chaŒne attendu
+00018 Fin du commentaire attendu
+00019 Fin de la commande attendu
+00020 Fin de l'argument attendu
+00021 Type de la variable attendu
+00022 Identificateur de variable attendu
+00023 Commande de directive conditionnel attendu
+00024 Identificateur du type attendu
+00025 Nom du fichier d'inclusion attendu
+00026 Nom de la directive IF attendu
+00027 Nom de la directive IFDEF attendu
+00028 Nom de la directive IFNDEF attendu
+00029 'WHILE' attendu
+00030 Commencement de bloc attendu
+00031 Nom attendu
+00032 Valeur attendu
+00033 Type attendu
+00034 'OF' attendu
+00035 tiquette attendu
+00036 Nom du programme attendu
+00037 Nom d'unit‚ attendu
+00038 Nom de la constante attendu
+00039 Fin de bloc attendu
+00040 ':' attendu
+00041 '=' attendu
+00042 '_CF' attendu
+00043 Identificateur attendu
+00044 '<' attendu
+00045 '+' attendu
+00046 '-' attendu
+00047 ',' attendu
+00048 "THEN" attendu
+00049 Duplication d'expression
+00050 Duplication d'‚num‚ration
+00051 Duplication de structure de variable
+00052 Duplication de d‚finition d'unit‚
+00053 Duplication de variable
+00054 "AS" attendu
+00055 "TO" attendu
+00056 Ctrl+Break enfonc‚
+00057 Variable introuvable!
+00058 NEXT sans FOR
+00059 # attendu
+00060 Appel de fonction invalide
+00061 "$" attendu
+00062 Trop de "GOSUB"
+00063 "RETURN" sans "GOSUB"
+00064 "WHILE" sans "WEND"
+00065 "WEND" mal plac‚
+00066 Image trop grosse
+00067 Duplication d'‚tiquette
+00068 Constante dupliquer
+00069 Erreur #69
+00070 Utilisation d'un mot r‚serv‚ comme variable
+00071 Erreur #71
+00072 Erreur #72
+00073 Erreur #73
+00074 Erreur #74
+00075 Erreur #75
+00076 Erreur #76
+00077 Erreur #77
+00078 Erreur #78
+00079 Erreur #79
+00080 num‚ration vide
+00081 Structure vide
+00082 Erreur #82
+00083 Erreur #83
+00084 Erreur #84
+00085 Erreur #85
+00086 Erreur #86
+00087 Erreur #87
+00088 Erreur #88
+00089 Erreur #89
+00090 Erreur #90
+00091 Erreur #91
+00092 Erreur #92
+00093 Erreur #93
+00094 Erreur #94
+00095 Erreur #95
+00096 Trop de chemin dans l'entˆte
+00097 Trop de message d'attention
+00098 Identificateur inconnu
+00099 Type inconnu
+00100 Erreur de syntaxe
+00101 Syntaxe du nombre incorrecte
+00102 Erreur #102
+00103 Erreur #103
+00104 Erreur #104
+00105 Erreur #105
+00106 Erreur #106
+00107 Erreur #107
+00108 Erreur #108
+00109 Erreur #109
+00110 Erreur #110
+00111 Erreur #111
+00112 Erreur #112
+00113 Erreur #113
+00114 Erreur #114
+00115 Erreur #115
+00116 Erreur #116
+00117 Erreur #117
+00118 Erreur #118
+00119 Erreur #119
+00120 Erreur #120
+00121 Erreur #121
+00122 Erreur #122
+00123 Erreur #123
+00124 "PROGRAM" mal plac‚
+00125 "NEXT" mal plac‚
+00126 'ELSE' mal plac‚
+00127 Instruction de d‚but de bloc mal plac‚
+00128 Directive conditionnel mal plac‚
+00129 Instruction de fin de bloc mal plac‚
+00130 ';' mal plac‚
+00131 'UNIT' mal plac‚
+00132 'USES' mal plac‚
+00133 'INTERFACE' mal plac‚
+00134 'IMPLEMENTATION' mal plac‚
+00135 'INITIALIZATION' mal plac‚
+00136 'FINALIZATION' mal plac‚
+00137 Erreur #137
+00138 Erreur #138
+00139 Trop de boucle
+00140 Nombre trop grop
+00141 Type incompatible
+00150 Code machine r‚clamant au moins un CPU 80186
+00151 Code machine r‚clamant au moins un CPU 80286
+00152 Code machine r‚clamant au moins un CPU 80287
+00153 Code machine r‚clamant au moins un CPU 80386
+00154 Code machine r‚clamant au moins un CPU 80387
+00199 Impossible d'ouvrir le fichier
+00200 Fichier introuvable
+00201 Impossible de cr‚er le fichier
+00202 Erreur de lecture du fichier
+00254 Manque de m‚moire
+00255 Erreur interne du compilateur

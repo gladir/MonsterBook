@@ -1,0 +1,132 @@
+_tesetmo.inc Fixeur de modification du traŒtement de texte
+acsendx.asm Envoie un caractŠre au modem
+acsendx.obj Code binaire d'envoye de caractŠre au modem
+adele.asm Moteur AdŠle: D‚tecteur de configuration
+adele.obj Objet d'AdŠle: D‚tecteur de configuration
+adele.pas D‚marreur de programme ®AdŠle¯
+adele.rll BibliothŠque vid‚o de format AdŠle
+aide-moi.doc Information de base sur l'ensemble Malte Genesis
+animal.pas Programme d'ANImation MALtais
+arcade.pas Effet sp‚ciaux et ‚conomiseur d'‚cran
+basicpro.pas Interpr‚teur de Basic
+ci.asm Teste de performance du CPU
+compiler.pas Outil de compilateur
+damax.pas Base de donn‚es d'information
+dbaseiii.pas Visualisateur de Base de donn‚es
+dialex.pas Structure des fenˆtres de dialogues
+dialplus.pas Suppl‚ment de l'‚diteur
+dials.pas Gestionnaire de boŒte de dialogues
+dlltex.pas Structure des DLL
+dostex.pas Structure du DOS
+drawedit.pas Programme de dessin
+drv.asm D‚marreur de Chantal
+drv.obj Objet de Chantal
+editicon.pas diteur d'Ic“ne
+editor.pas Noyau de l'‚diteur (traŒtement de texte)
+edtblock.pas Outil de gestion de bloc de l'‚diteur
+edtdone.pas Routine de terminaison de l'‚diteur
+edtextra.pas Outils suppl‚mentaire de l'‚diteur
+edtload.pas Chargeur de document du traŒtement de texte
+edtmacro.pas Macro de l'‚diteur
+edtsearc.pas Recherche … effectuer dans l'‚diteur
+filemana.pas Gestionnaire de fichiers
+fm.pas Formule Math‚matique
+fontedt.pas Editeur de police
+fontmana.pas Gestionnaire de polices de caractŠres
+games Des jeux
+goldnaxe.pas Goldnaxe (Vid‚o complexe)
+gpxservi.pas Service du GPX (Dessin d'impression)
+griform.pas BibliothŠque d'information programmeur
+infomemo.pas Dialogue d'information m‚moire
+inssdir.pas Ajustement de r‚pertoire du l'installateur
+install.pas Programme d'installation
+intro.pas D‚mo (Intro)
+isatex.pas Structure d'Isabel (Malte Genesis III)
+lamtex.pas Structure du LAM d'OverCode
+library BibliothŠque de routine, proc‚dures et fonctions
+loader.pas Gestionnaire de menu de programme
+lotus.pas Testeur de tableur
+lptxexst.asm D‚tection de port parallŠle
+makehlp.bat Cr‚ateur d'aide du ®MonsterBook¯
+makemb.bat Cr‚ateur de programme ®MonsterBook¯
+maker Cr‚ateur de donn‚es
+malcalc.pas Tableur du ®MonsterBook¯
+malenv.pas Environnement du ®MonsterBook¯
+mallibra.pas BibliothŠque de routine du ®MonsterBook¯
+malsdir.pas BoŒte de dialogue d'ajustement de r‚pertoire
+malte.pas BibliothŠque ®Malte¯
+manuel.rc Manuel d'instruction du ®MonsterBook¯
+mb.pas Programme ®MonsterBook¯
+mbabout.pas cran de pr‚sentation du ®MonsterBook¯
+mbbudget.pas Budget de ®MonsterBook¯
+mbconfig.pas Outils de configuration pour le ®MonsterBook¯
+mbcortex.pas Structure du ®MonsterBook¯
+mbdebug.pas D‚bogueur du ®MonsterBook¯
+mbdebugt.pas Outils de d‚boguage du ®MonsterBook¯
+mbexit.pas Terminer le ®MonsterBook¯
+mbinitsc.pas cran d'initialisation du ®MonsterBook¯
+mbsearch.pas Recherche … l'int‚rieur du ®MonsterBook¯
+mbshell.pas Shell du ®MonsterBook¯
+mbstart.pas D‚marreur du ®MonterBook¯
+mbw.dsk ®MonsterBook¯ pour Windows - Desktop
+mbw.opt Option du ®MonsterBook¯ pour Windows
+mcat.pas Catalogueur de disquette
+mkintro.bat Cr‚ateur d'Intro
+mouse.pas Gestionnaire de souris
+numerix.pas Utilitaire num‚rique
+os SystŠme d'exploitation
+pack.pas Protocol de communication
+progman.pas Gestionnaire de programmes
+project.pas Gestionnaire de projet
+resource Ressource d'application
+rll BibliothŠque de format RLL
+samples D‚monstrateur
+startup.pas D‚marreur de DPMI
+strings.pas Gestionnaire de chaŒne de caractŠres
+sysinfo.pas SystŠme d'information
+sysinter.pas Service systŠme au niveau interne
+sysplus.pas Unit‚ Suppl‚ment systŠme
+systems.pas Service systŠme
+tmdials.pas Terminal de communication/Modem
+toolcoun.pas Outil de gestion de pays
+tooldsk.pas Outil de manipulation de disque
+toolhead.pas Outil de compr‚hension d'entˆte
+toolinfo.pas Outil d'information
+toolngz.pas Outil de Guide Norton
+toolprn.pas Outil d'imprimante
+tools Outils de programmeurs et techniciens
+tools.pas Outils de base
+toolsoun.pas Outil pour g‚rer le son
+toolterm.pas Outils: Terminal/Shell
+tooltime.pas Outils g‚rant le temps
+toolvid.pas Outil vid‚o
+toolview.pas Visualisateur ASCII / Aide
+trashcan Code source vieux et plus utile...
+trunctxt.pas Tronqueur de texte
+unix.rc Ressource pour Unix
+video.pas Routine vid‚o
+volume.pas Volume Ex‚cutable
+weputchg.inc Affichage de caractŠre typ‚e d'une boŒte de dialogue
+wesetkr.asm D‚finition de couleur des boŒtes de dialogues
+wesetkr.obj Objet de fixeur de couleur
+windos.pas Unit‚ Windows Dos
+winprn.pas Unit‚ Windows d'imprimante
+winprocs.pas Unit‚ Windows de proc‚dures et fonctions
+wintypes.pas Unit‚ Windows de structure
+wordtex.pas Structure des traŒtements de texte
+gallery Gallerie
+bp.dsk Borland Pascal - Desktop
+bp.tp Borland Pascal - Configuration
+c2lam.pas C … LAM
+dos.rc Aide Prompt DOS
+editor.rc Editeur - Table
+edtjust.pas Editeur - Justification
+edtsave.pas Editeur - Sauvegarde
+int01h.asm Interruption de d‚boguage
+test.gat Teste d'orthographe
+app7iles.rc Ressource de dialogue Application Sept-Iles
+app7iles.rll BibliothŠque compiler de ®APP7ILES¯
+assistan.rc Ressource d'Assistant
+descript.ion DESCRIPT.ION
+hex.bas Teste hexad‚cimal
+time.pas Unit‚ de gestion du temps

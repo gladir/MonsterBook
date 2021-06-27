@@ -1,0 +1,27 @@
+CREATE TABLE PCIClass (
+   VID    BYTE PRIMARY KEY,
+   Name   VARCHAR
+);
+
+CREATE INDEX;
+
+INSERT INTO PCIClass VALUES (0x0000,'Ind‚fini');
+INSERT INTO PCIClass VALUES (0x0001,'Stockage');
+INSERT INTO PCIClass VALUES (0x0002,'R‚seau');
+INSERT INTO PCIClass VALUES (0x0003,'Affichage');
+INSERT INTO PCIClass VALUES (0x0004,'Multim‚dia');
+INSERT INTO PCIClass VALUES (0x0005,'M‚moire');
+INSERT INTO PCIClass VALUES (0x0006,'Pont');
+INSERT INTO PCIClass VALUES (0x0007,'Simple Communication');
+INSERT INTO PCIClass VALUES (0x0008,'SystŠme');
+INSERT INTO PCIClass VALUES (0x0009,'Entr‚e');
+INSERT INTO PCIClass VALUES (0x000A,'Docking');
+INSERT INTO PCIClass VALUES (0x000B,'Processeur');
+INSERT INTO PCIClass VALUES (0x000C,'S‚rial');
+INSERT INTO PCIClass VALUES (0x000D,'Wireless');
+INSERT INTO PCIClass VALUES (0x000E,'E/S Intelligente');
+INSERT INTO PCIClass VALUES (0x000F,'Satellite de Communication');
+INSERT INTO PCIClass VALUES (0x0010,'En/Decription');
+INSERT INTO PCIClass VALUES (0x0011,'Donn‚es d''Aquisition et Processeur de Signal');
+
+

@@ -1,0 +1,171 @@
+/* Encodeur GIF */
+
+#include "stdio.h"
+
+#define BINARYSIG      "ALCHBINR"              /* Identification binaire */
+#define largestCode    4095                    /* Plus grand code possible */
+#define tableSize      5003                    /* Dimension de la table */
+#define GIFSIG         "GIF87a"
+
+typedef struct {
+ char Sig[6];
+ unsigned int ScreenWidth,ScreenDepth;
+ unsigned char Flags,Background,Aspect;
+} GIFHEADER;
+
+typedef struct {
+ unsigned int left,top,width,depth;
+ unsigned char flags;
+} IMAGEBLOCK;
+
+typedef struct {
+ char Sign[8];int width,depth,bits;char palette[768];
+} BINARYHEADER;
+
+int getpixel();
+FILE *in,*out;
+BINARYHEADER bh;
+char codeBuffer[259];                                /* Contiendra les codes */
+int oldcode[tableSize],currentcode[tableSize],newcode[tableSize];/* la table */
+int codeSize,clearCode,eofCode,bitOffset,byteOffset,bitsLeft,maxCode,freeCode;
+
+void main(int argc,char *argv[]){
+ char path[81];int n;
+ if(argc<=1) error("Je veux un chemin d'accäs Ö un fichier binaire");
+ strmfe(path,argv[1],"BIN");
+ strupr(path);
+ if((in=fopen(path,"rb"))==NULL) error("Erreur d'ouverture du fichier source");
+ if(fread((char *)&bh,1,sizeof(BINARYHEADER),in)!=sizeof(BINARYHEADER)) error("Erreur de lecture de l'entàte");
+ if(memcpy(bh.Sign,BINARYSIG,8)) error("Ce n'est pas un fichier binaire");
+ strmfe(path,argv[1],"GIF");
+ strupr(path);
+ if((out=fopen(path,"wb"))==NULL) error("Erreur de crÇation du fichier destination");
+ puts("êcriture");
+ n=writeGif(out,getpixel,bh.width,bh.depth,bh.bits,bh.palette);
+ printf("Code de retour: %d",n);
+ fclose(out);
+ fclose(in);
+}
+
+/* êcrit un fichier GIF */
+writeGif(FILE *fp,int (readpixel)(),unsigned int width,unsigned int depth,unsigned int bits,char *palette){
+ if(writeScreenDesc(fp,width,depth,bits,0,palette)) return 1;/* êcrire l'en-tàte */
+ if(writeImageDesc(fp,0,0,width,depth,bits,NULL)) return 2;/* êcrire le descripteur d'image */
+ if(compressImage(fp,readpixel,bits)) return 3;/* êcrire l'image */
+ fputc(';',fp); /* êcrire le terminateur de fin d'image */
+ return ferror(fp);
+}
+
+writeScreenDesc(FILE*fp,unsigned int width,unsigned int depth,unsigned int bits,unsigned int background,char *palette){
+ GIFHEADER gh;
+ /* Remplir l'en-tàte */
+ memset((char *)&gh,0,sizeof(GIFHEADER));
+ memcpy(gh.Sig,GIFSIG,6);
+ gh.ScreenWidth=width,gh.ScreenDepth=depth,gh.Background=background,gh.Aspect=0;
+ /* Affecter le drapeaux glabal */
+ gh.Flags=palette==NULL?((bits-1)&7)<<4:0x80|((bits-1)<<4)|((bits-1)&7);
+ fwrite((char*)&gh,1,sizeof(GIFHEADER),fp); /* êcrire l'entàte */
+ if(palette!=NULL) fwrite(palette,1,3*(1<<bits),fp); /* êcrire la palette */
+ return ferror(fp);
+}
+
+writeImageDesc(FILE *fp,unsigned int left,unsigned int top,unsigned int width,unsigned int depth,unsigned int bits,char *palette){
+ IMAGEBLOCK ib;
+ memset((char*)&ib,0,sizeof(IMAGEBLOCK));
+ /* Remplir la structure ÆIMAGEBLOCKØ */
+ fputc(',',fp);
+ ib.left=left,ib.top=top,ib.width=width,ib.depth=depth;
+ ib.flags=palette==NULL?bits-1:((bits-1)&7)|0x80;/* Affecter le drapeau local */
+ fwrite((char *)&ib,1,sizeof(IMAGEBLOCK),fp); /* êcrire le bloc */
+ /* êcrire la palette de couleurs */
+ if(palette!=NULL) fwrite(palette,1,3*(1<<bits),fp);
+ return ferror(fp);
+}
+
+initTable(int minCodeSize){ /* Initialise la table des codes */
+ int i;
+ codeSize=minCodeSize+1,clearCode=1<<minCodeSize,eofCode=clearCode+1;
+ freeCode=clearCode+2,maxCode=1<<codeSize;
+ for(i=0;i<tableSize;i++) currentcode[i]=0;
+}
+
+void flush(FILE *fp,int n){ fputc(n,fp);fwrite(codeBuffer,1,n,fp);}
+
+writeCode(FILE *fp,int code){ /* êcrit un code dans le tampon de code */
+ long temp;
+ byteOffset=bitOffset>>3,bitsLeft=bitOffset&7;
+ if(byteOffset>=254){
+  flush(fp,byteOffset);
+  codeBuffer[0]=codeBuffer[byteOffset],bitOffset=bitsLeft,byteOffset=0;
+ }
+ if(bitsLeft>0){
+  temp=((long)code<<bitsLeft)|codeBuffer[byteOffset];
+  codeBuffer[byteOffset]=temp,codeBuffer[byteOffset+1]=temp>>8;
+  codeBuffer[byteOffset+2]=temp>>16;
+ }
+  else
+ codeBuffer[byteOffset]=code,codeBuffer[byteOffset+1]=code>>8;
+ bitOffset+=codeSize;
+}
+
+compressImage(FILE *fp,int(*readpixel)(),unsigned int minCodeSize){/* Compresse une image */
+ int prefixCode,suffixChar,hx,d;
+ /* VÇrifier que la taille du code initial est valide */
+ if(minCodeSize<2||minCodeSize>9){
+  /* les images monochrome sont sur 2 bits dans la compression LZW */
+  if(minCodeSize==1) minCodeSize=2; else return EOF;
+ }
+ fputc(minCodeSize,fp); /* êcrire la taille du code initial */
+ /* Initialiser l'encodeur */
+ bitOffset=0;
+ initTable(minCodeSize);
+ writeCode(fp,clearCode);
+ if((suffixChar=(readpixel)())==EOF) return suffixChar;
+ prefixCode=suffixChar;			/* Initialiser le prÇfixe */
+ while((suffixChar=(readpixel)())!=EOF){/* DÇriver un index dans la table des codes */
+  hx=(prefixCode^(suffixChar<<5))&tableSize,d=1;
+  for(;;){ /* Regarder si le code est dans la table */
+   if(currentcode[hx]==0){/* Si non, le mettre ici */
+    writeCode(fp,prefixCode);
+    d=freeCode;
+    /* Trouver le prochain code libre */
+    if(freeCode<=largestCode) oldcode[hx]=prefixCode,newcode[hx]=suffixChar,currentcode[hx]=freeCode++;
+    /* Expandre la taille de code ou vider la table */
+    if(d==maxCode){
+     if(codeSize<12) codeSize++,maxCode<<=1;
+      else
+     {
+      writeCode(fp,clearCode);
+      initTable(minCodeSize);
+     }
+    }
+    prefixCode=suffixChar;
+    break;
+   }
+   if(oldcode[hx]==prefixCode&&newcode[hx]==suffixChar){
+    prefixCode=currentcode[hx];
+    break;
+   }
+   hx+=d,d+=2;
+   if(hx>=tableSize) hx-=tableSize;
+  }
+ }
+ writeCode(fp,prefixCode);                  /* êcrire le code de prÇfixe */
+ writeCode(fp,eofCode);                     /* Et le code de fin de fichier */
+ if(bitOffset>0) flush(fp,(bitOffset+7)/8); /* Vider le tampon */
+ flush(fp,0);                               /* êcrire un bloc de longueur 0 */
+ return ferror(fp);
+}
+
+/* Construit un nom de fichier avec une extension spÇcifique */
+strmfe(char*new,char*old,char*ext){
+ while(*old!=0 && *old!='.') *new++=*old++;
+ *new++='.';
+ while(*ext) *new++=*ext++;
+ *new=0;
+}
+
+/* RÇcupäre un pixel de l'image d'origine */
+getpixel(){ return fgetc(in);}
+
+error(char*s){ puts(s);exit(1);}

@@ -1,0 +1,14 @@
+BOOL        tBool        SizeOf(Boolean)
+BOOLEAN     tBool        SizeOf(Boolean)
+BYTE        tByte        SizeOf(Byte)
+CHAR        tChar        SizeOf(Char)
+CHR         tChar        SizeOf(Char)
+CSTRING     tCString     256
+INTEGER     tInt         SizeOf(Integer)
+LONGINT     tLong        SizeOf(LongInt)
+POINTER     tPtr         SizeOf(Pointer)
+PROCEDURE   tProc        4
+PTR         tPtr         SizeOf(Pointer)
+SHORTINT    tShort       SizeOf(ShortInt)
+STRING      tString      256
+WORD        tWord        SizeOf(Word)

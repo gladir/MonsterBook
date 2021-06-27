@@ -1,0 +1,7 @@
+FOR I TO 12 DO
+   LEFT 30
+   FOR J TO 12 DO
+      FORWARD 20
+      LEFT 30
+   OD
+OD

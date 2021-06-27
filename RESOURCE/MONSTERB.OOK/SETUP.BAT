@@ -1,0 +1,1 @@
+MB.EXE /SETUP /VT:80,25

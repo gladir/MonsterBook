@@ -1,0 +1,53 @@
+//SetDTA.CAS
+
+/*ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                 Malte Genesis/BibliothŠque individuel                 Û
+  ³                    dition Chantal/IV - Version 1.1                   Û
+  ³                             1997/10/12                                Û
+  ³                                                                       Û
+  ³         Tous droits r‚serv‚s par les Chevaliers de Malte (C)          Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Nom des programmeurs
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  Sylvain Maltais
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette inclusion vise  … permettre une universialisation des donn‚es …
+ compiler  ind‚pendament  des conditions  sous  lequel  la fonction est
+ traŒter.  En centralisant toutes les proc‚dures au mˆme point central,
+ on aboutira une technique de ®Croiser¯, celle-ci permet d'‚liminer les
+ bugs par le raisonnement suivant:Maintenant sa fonctionne parfaitement
+ ou sa plante comme jamais avant...
+*/
+
+#ifndef __SetDTA
+ #define __SetDTA
+
+/*ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                       Fonction SetDTA                         Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction fixe l'adresse de la DTA (Disk Transfer Address).
+*/
+
+void SetDTA(char far *dta){
+ asm{
+  PUSH DS
+   MOV AH,01Ah
+   LDS DX,dta
+   INT 021h
+  POP DS
+ }
+}
+
+#endif

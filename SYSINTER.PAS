@@ -1,0 +1,1709 @@
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                                                                         Û
+ ³                Malte Genesis/Module des SystŠmes interne                Û
+ ³                                                                         Û
+ ³           dition Chantal pour Mode R‚el/IV - Version 1.1 &             Û
+ ³             dition AdŠle pour Mode R‚el/V - Version 1.1                Û
+ ³                              1996/10/02                                 Û
+ ³                                                                         Û
+ ³          Tous droits r‚serv‚s par les Chevaliers de Malte (C)           Û
+ ³                                                                         Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Nom du programmeur
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  Sylvain Maltais
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette unit‚  fournit  les routines  internes  pour la  gestion du systŠmes
+ d'exploitation,  elle n'existe  pour ˆtre appel‚  par l'unit‚  ®Systems¯ et
+ ne doit pas ˆtre appel‚ directement pour le programmeur.
+
+
+ Remarque
+ ÍÍÍÍÍÍÍÍ
+
+  ş Voici quelques pr‚cisions sur les directives de compilation conditionnel:
+    ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+    ³ Directive      ³ Description                                         ³
+    ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+    ³ OptionAdlib    ³ Directive donnant  accŠs directement  aux  fonctions³
+    ³                ³ sp‚cifique … la carte de son AdLib.                 ³
+    ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+}
+
+{$I DEF.INC}
+
+Unit SysInter;
+
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+                                 INTERFACE
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+
+{$IFNDEF __Windows__}
+ {$IFDEF VER70}
+  {$IFDEF OptionAdLib}
+   {$UNDEF Debug}
+  {$ENDIF}
+ {$ENDIF}
+{$ENDIF}
+
+{$IFDEF MaxOverlay}
+ {$O+}
+{$ELSE}
+ {$O-}
+{$ENDIF}
+
+Uses
+ Dostex,Systex,Systems
+ {$IFDEF __Windows__}
+  ,WinTex
+ {$ENDIF};
+
+Const
+ {Constante de Ressource m‚moire au niveau interne}
+ irmDsk=0;        { Ressource Disque }
+ irmEms=1;        { Ressource EMS }
+ irmXms=2;        { Ressource XMS }
+ irmVRam=3;       { Ressource Vid‚o }
+ irmExtBios=4;    { Ressource Bios Interruption 15h }
+ irmConvMem=5;    { AccŠs directe en m‚moire conventionnel }
+ irmMax=5;        { Code de ressource maximal }
+
+ OfsBF=12;        { D‚placement de l'offset dans le ®ShortBF¯ }
+
+Type
+ {Structure d'un tampon de la banque de ressource Isabel}
+ VSDataRec=Array[irmDsk..irmExtBios]of Record
+  SizeMem,          { M‚moire total de la ressource }
+  FreeMem,          { M‚moire de libre de la ressource }
+  MaxAddr,          { Adresse maximal de la ressource (surtout pour VRAM)}
+  UsedAddr:LongInt; { M‚moire utilis‚ de la ressource }
+  Ix:ArrayList;     { Liste sym‚trique des blocs r‚serv‚s dans la ressource }
+ End;
+
+ VSIndexRec=Record
+  Lo,Hi{$IFDEF Security}:Long; { Position ou commen‡ent et termine la zone }
+                               { m‚moire }
+  Methode:Byte;                { M‚thode d'accŠs: lecture, ‚criture ou combin‚s}
+  {$ELSE},
+  {$ENDIF}
+  Pos:LongInt;                 { Pointeur de position courante }
+ End;
+ PVSIndex=^VSIndexRec;
+
+Const
+ {Constante du gestionnaire de l'IRQ1 (Interruption 09h)}
+ {$IFNDEF NoInt09h}
+  InIRQ1:Boolean=False;
+ {$ENDIF}
+ {Constante permettant la conversion de touche clavier}
+ ShiftCode:Array['A'..'Z']of Byte=(
+  30, { A }
+  48, { B }
+  46, { C }
+  32, { D }
+  18, { E }
+  33, { F }
+  34, { G }
+  35, { H }
+  23, { I }
+  36, { J }
+  37, { K }
+  38, { L }
+  50, { M }
+  49, { N }
+  24, { O }
+  25, { P }
+  16, { Q }
+  19, { R }
+  31, { S }
+  20, { T }
+  22, { U }
+  47, { V }
+  17, { W }
+  45, { X }
+  21, { Y }
+  44  { Z }
+ );
+
+ dfiAmovible=0;      { Unit‚ amovible }
+ dfiFixed=1;         { Disque dur }
+ dfiNotExist=$80;    { Unit‚ absente }
+ dfiExist=$81;       { Unit‚ existe }
+ dfiMount=$E0;       { Unit‚ monter }
+ dfiHPFS=$E8;        { Partition HPFS }
+ dfiFAT32=$E9;       { Partition FAT32 }
+ dfiUnknown=$FF;     { Etat inconnu }
+
+ DriveFormat:Array[0..25]of Byte=(
+  dfiUnknown,dfiUnknown,dfiUnknown,dfiUnknown,
+  dfiUnknown,dfiUnknown,dfiUnknown,dfiUnknown,
+  dfiUnknown,dfiUnknown,dfiUnknown,dfiUnknown,
+  dfiUnknown,dfiUnknown,dfiUnknown,dfiUnknown,
+  dfiUnknown,dfiUnknown,dfiUnknown,dfiUnknown,
+  dfiUnknown,dfiUnknown,dfiUnknown,dfiUnknown,
+  dfiUnknown,dfiUnknown
+ );
+
+  {Constante permettant d'associ‚e un chemin ou un fichier … une unit‚ }
+ DriveMount:Array[0..25]of PChr=(
+  NIL,NIL,NIL,NIL,NIL,NIL,NIL,NIL,
+  NIL,NIL,NIL,NIL,NIL,NIL,NIL,NIL,
+  NIL,NIL,NIL,NIL,NIL,NIL,NIL,NIL,
+  NIL,NIL
+ );
+
+ {Donn‚e pour la gestion interne des ressources}
+ Xms:Record
+  MaxAddr:LongInt;
+  Handle:Word;
+ End=(
+  MaxAddr:0;
+  Handle:$FFFF
+ );
+
+ Ems:Record
+  MaxAddr:LongInt;
+  Handle:Word;
+ End=(
+  MaxAddr:0;
+  Handle:$FFFF
+ );
+
+ VSExist:Array[irmDsk..irmExtBios]of Boolean=(
+  False,False,False,False,False
+ );
+ VSOptSize:Array[irmDsk..irmExtBios]of Boolean=(
+  True,False,False,False,False
+ );
+
+ {Gestionnaire de Spooler d'imprimante}
+ {$IFNDEF NoSpooler}
+  BufSpool:PTChr=NIL; { Adresse du tampon situ‚ en m‚moire en attente d'impression }
+  HSpool:Hdl=errHdl;  { Handle du Spooler, utilise en permanence ce fichier }
+  FSSpool:LongInt=-1; { Taille du fichier Spooler }
+  PSpool:LongInt=0;   { Position courante de l'impression … l'int‚rieur du fichier Spooler }
+ {$ENDIF}
+
+Var
+ {Banque des sauvegardes d'interruption suppl‚mentaire}
+ {$IFNDEF NoInt09h}OldInt09h,{$ENDIF}
+ {$IFNDEF OldSpooler}OldInt0Fh{$ENDIF}
+ {$IFDEF MaxInt},OldInt17h,OldInt28h:Pointer;{$ENDIF}
+ {Donn‚e g‚n‚ral pour la gestion interne des ressources}
+ DskSwp:Record
+  MaxAddr:LongInt;
+  Handle:Hdl;
+ End;
+ Vram:Record
+  HomeAddr,Memory:LongInt;
+ End;
+ DskP,IOEmsP,VramP,IOXmsP:LongInt;{Position: Disque, EMS, Video RAM, XMS}
+ ConvP:^TByte;
+ VSData:VSDataRec;
+
+{$IFDEF OptionAdLib}
+ AdLibGActVoice:Word;
+ AdLibGT:Array[AdLibGTMin..AdLibGTMax]of AdLibInstrum;
+{$ENDIF}
+
+{$IFDEF OptionAdLib}
+ Procedure ALDirectNoteOn(Voice:Word;Pitch:Integer);
+ Procedure ALDirectNoteOff(Voice:Word);
+ Procedure ALDirectTimbre;
+ Function  ALGetState:Boolean;
+ Procedure ALInitDrv;
+ Procedure ALLoadInstrum(FileSpec:PathStr);
+ Function  ALLoadSong(FileSpec:PathStr):Bool;
+ Function  ALPlayNote(Pitch:Int;LengthNum,LengthDen:Wd):Bool;
+ Function  ALPlayNoteDel(Pitch:Int;LengthNum,LengthDen,DelayNum,DelayDen:Wd):Bool;
+ Procedure ALRelTimeStart(TimeNum,TimeDen:Int);
+ Procedure ALSetActVoice(Var Voice:Wd);
+ Procedure ALSetMode(Var PercussionMode:Int);
+ Function  ALSetPitch(DeltaOctave,DeltaNum,DeltaDen:Int;TimeNum,TimeDen:Wd):Bool;
+ Procedure ALSetState(Var State:Int);
+ Procedure ALSetTickBeat(Var TickBeat:Int);
+ Function  ALSetTempo(Tempo,TimeNum,TimeDen:Int):Bool;
+ Function  ALSetTimbre(TimeNum,TimeDen:Wd):Bool;
+ Function  ALSetVolume(VolNum,VolDen,TimeNum,TimeDen:Int):Bool;
+{$ENDIF}
+{$IFNDEF NotReal}
+ Function EMBHandleInfoXMS(Handle:Word;Var Q:EMBHandleRec):Word;
+{$ENDIF}
+Function  FileSearch(Dest,Name,List:PChr):PChr;
+Function  SearchStartImageDisk(Handle:Hdl;FindFAT:Boolean;Var FileSize,FileStart:LongInt;Var ID:Byte):Boolean;
+Function  FindFirstFile(Path:PChar;Attr:Word;Var F:VariantSearchRec):Integer;
+Function  FindNextFile(Handle:Integer;Var F:VariantSearchRec):LongBool;
+Procedure FSInit(Var Q:FileSystemObject);
+Function  FSOpen(Var Q:FileSystemObject;Const FileImage:String;FindFAT:Boolean):Boolean;
+Procedure FSBootAnalysers(Var Q:FileSystemObject;Const Buffer);
+Procedure FSReadDsk(Var Q:FileSystemObject;LSN,Sects:Word;Var Buffer);
+Procedure FSWriteDsk(Var Q:FileSystemObject;LSN,Sects:Word;Var Buffer);
+{$IFNDEF Win32}
+  {$IFNDEF DPMI}
+   Procedure Int9Bh(Flags,CS,IP,AX,BX,CX,DX,SI,DI,DS,ES,BP:Word);Interrupt;
+   Procedure Int9Ch(_Flags,_CS,_IP,_AX,_BX,_CX,_DX,_SI,_DI,_DS,_ES,_BP:Word);Interrupt;
+ {$ENDIF}
+ Procedure IntBrk;Interrupt;
+{$ENDIF}
+Procedure LoadPathByFileImage(Var Q:BF;Const FileImage:String;Var NmF:Word;Path:String;At:Word);
+Procedure LoadPath(Var Q:BF;Var NmF:Word;Path:String;At:Word);
+{$IFDEF __Windows__}
+ Function CreateFile(lpFileName:PChar;dwDesiredAccess,dwShareMode:Integer;
+                     lpSecurityAttributes:PSecurityAttributes;dwCreationDisposition,dwFlagsAndAttributes:LongInt;
+                     hTemplateFile:Integer):Integer;StdCall;
+ Function GetCurrentDirectory(nBufferLength:LongInt;lpBuffer:PChar):LongInt;StdCall;
+ Function GetDosEnv:PChar;
+ Function GetFileAttributes(lpFileName:PChar):LongInt;StdCall;
+ Function GetKeyboardCodePage:Integer;
+ Function GetKeyboardType(TypeFlag:Integer):Integer;
+ Function GetLastError:LongInt;StdCall;
+ Function GetVersion:Word;
+ Function GetWinFlags:SysFlagsWindows;
+ Function MoveFile(lpExistingFileName,lpNewFileName:PChar):Bool;StdCall;
+ Function SetFileAttributes(lpFileName:PChar;dwFileAttributes:LongInt):LongBool;StdCall;
+ Function _DeleteFile(lpFileName:PChar):Bool;StdCall;
+ Function _FindFirstFile(Path:PChar;Var F:VariantSearchRec):Integer;
+ Function _WClose(Handle:Integer):Integer;
+ Function _WGetRec(FileHandle:Integer;Buffer:PChar;Bytes:Integer):Word;
+ Function _WNew(PathName:PChar;Attr:Integer):Integer;
+ Function _WSetFilePos(Handle:Integer;Ofs:LongInt;Origin:Integer):LongInt;
+ Function _WOpen(PathName:PChar;ReadWrite:Integer):Integer;
+ Function _WSetRec(FileHandle:Integer;Buffer:PChar;Bytes:Integer):Word;
+{$ENDIF}
+
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+                             IMPLEMENTATION
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+
+Uses Adele,Volumex,Disk,Math,Memories;
+
+Type
+ EntreeRepert=Record
+  NomFichier:Array[1..8]of Char;
+  ExtFichier:Array[1..3]of Char;
+  Attr:Byte;
+  Rien:Array[1..10]of Char;
+  Time:LongInt;
+  PremCluster:Word;
+  Size:LongInt;
+ End;
+
+{$IFDEF Windows}
+ Procedure AnsiDosFunc;Assembler;
+ Var
+  TempName:Array[Byte]of Char;
+ ASM
+  PUSH DS
+   PUSH CX
+   PUSH AX
+   MOV SI,DI
+   PUSH ES
+   POP DS
+   LEA DI,TempName
+   PUSH SS
+   POP ES
+   MOV CX,fsPathName
+   CLD
+@@1:
+   LODSB
+   OR  AL,AL
+   JE  @@2
+   STOSB
+   LOOP @@1
+@@2:
+   XOR AL,AL
+   STOSB
+   LEA DI,TempName
+   PUSH SS
+   PUSH DI
+   PUSH SS
+   PUSH DI
+   CALL AnsiToOem
+   POP AX
+   POP CX
+   LEA DX,TempName
+   PUSH SS
+   POP DS
+   INT 21H
+  POP DS
+ END;
+{$ELSE}
+ Procedure AnsiDosFunc;Near;Assembler;ASM
+  PUSH DS
+   MOV DX,DI
+   PUSH ES
+   POP DS
+   INT 21H
+  POP DS
+ END;
+{$ENDIF}
+
+{$IFDEF OptionAdLib}
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                        Proc‚dure ALDirectNoteOff                     Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure arrˆte une note directe dans la voix de la carte de son
+  AdLib en utilisant le pilote branch‚ sur l'interruption.
+ }
+ Procedure ALDirectNoteOff;Assembler;ASM
+  MOV SI,20
+  PUSH SS
+  POP ES
+  MOV BX,Offset Voice
+  INT $65
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                     Proc‚dure ALDirectNoteOn                     Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure envoye une note directe dans la voix de la variable
+  de param‚trage ®Voice¯ … la carte de son AdLib.
+ }
+
+ Procedure ALDirectNoteOn;Assembler;
+ Var
+  T:Record
+   Pitch:Integer;
+   Voice:Word;
+  End;
+ ASM
+  MOV AX,Voice
+  MOV T.Voice,AX
+  MOV AX,Pitch
+  MOV T.Pitch,AX
+  MOV SI,19
+  LES BX,T
+  INC BX
+  INC BX
+  PUSH BP
+   INT $65
+  POP BP
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                         Proc‚dure ALDirectTimbre                     Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure envoye un timbre directement sur la carte de son AdLib.
+ }
+
+ Procedure ALDirectTimbre;
+ Var
+  T:^Integer;
+  V:Word;
+ Begin
+  V:=AdLibGActVoice;T:=@AdLibGT[V];
+  ASM
+   MOV SI,21
+   PUSH SS
+   POP ES
+   MOV BX,Offset V
+   PUSH BP
+    INT $65
+   POP BP
+  END;
+ End;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                   Fonction ALGetState                 Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction retourne l'‚tat de la carte de son AdLib.
+ }
+
+ Function ALGetState;Assembler;
+ Var
+  Buf:Boolean;
+ ASM
+  MOV DI,4
+  PUSH SS
+  POP ES
+  MOV BX,Offset Buf
+  PUSH BP
+   INT $65
+   MOV AX,BP
+  POP BP
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                      Proc‚dure ALInitDrv                    Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure initialise le pilote de la carte de son AdLib.
+ }
+
+ Procedure ALInitDrv;Assembler;ASM
+  XOR SI,SI
+  PUSH BP
+   INT $65
+  POP BP
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                         Proc‚dure ALLoadInstrum                     Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure charge le fichier ®FileSpec¯ contenant les instruments
+  pour la carte de son AdLib dans celle-ci.
+ }
+
+ Procedure ALLoadInstrum;
+ Var
+  Handle:Word; {.INS}
+ Begin
+  If Not FileExist(FileSpec)Then Exit;
+  Handle:=Open(FileSpec,fmRead);
+  If(Handle=errHdl)Then Exit;
+  GetRec(Handle,2,SizeOf(AdLibGT),AdLibGT);
+  _Close(Handle);
+ End;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                        Fonction ALLoadSong                    Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction charge un fichier son dans la carte de son AdLib.
+ }
+
+ Function ALLoadSong;
+ Var
+  nb:Byte;
+  ns:String;
+  ni,ni2,ni3,ni4,BPM,Mode:Integer;
+  I,J,Handle:Word;
+  nr,nr2:Real;
+  fl:Boolean;
+
+  Procedure StringRead(Len:Byte);Begin
+   ns[0]:=Char(Len);
+   _GetRec(Handle,Len,ns[1])
+  End;
+
+  Procedure TempoRead;
+  Var
+   b1,b2,b3,b4:Byte;
+  Begin
+   _GetRec(Handle,4,b1);nb:=b3;
+  End;
+
+  Procedure VolumeRead;
+  Var
+   b1,b2,b3,b4:Byte;
+  Begin
+   _GetRec(Handle,4,b1);nb:=51+Round(b3/2.5)
+  End;
+
+ Begin
+  ALLoadSong:=False;
+  If Not FileExist(FileSpec)Then Exit;
+  ALInitDrv;
+  ALRelTimeStart(0,1);
+  Handle:=Open(FileSpec,fmRead);
+  If(Handle=errHdl)Then Exit;
+  StringRead(44);
+  _GetRec(Handle,2,ni);
+  ALSetTickBeat(ni);
+  _GetRec(Handle,2,ni);
+  BPM:=ni;
+  StringRead(5);
+  _GetRec(Handle,1,nb);
+  Mode:=1;
+  ALSetMode(Mode);
+  StringRead(143);
+  TempoRead;
+  fl:=ALSetTempo(nb,0,1);
+  _GetRec(Handle,2,ni);
+  For I:=1to ni do Begin
+   _GetRec(Handle,2,ni2);
+   TempoRead;
+   fl:=ALSetTempo(nb,ni2,1);
+  End;
+  For I:=0to 10do Begin
+   ALSetActVoice(I);
+   StringRead(15);
+   _GetRec(Handle,2,ni2);
+   J:=0;
+   While(J<ni2)do Begin
+    _GetRec(Handle,2,ni3);
+    _GetRec(Handle,2,ni4);
+    fl:=ALPlayNote(ni3-60,ni4,BPM); Inc(J,ni4);
+   End;
+   StringRead(15);
+   _GetRec(Handle,2,ni2);
+   For J:=1to ni2 do Begin
+    _GetRec(Handle,2,ni3);
+    StringRead(9);
+    nb:=Pos(#0,ns);
+    Delete(ns,nb,Length(ns));
+    ALLoadInstrum(ns+'.INS');
+    fl:=ALSetTimbre(ni3,1);
+    StringRead(1);
+    _GetRec(Handle,2,ni4);
+   End;
+   StringRead(15);
+   _GetRec(Handle,2,ni2);
+   nb:=1;
+   For J:=1to ni2 do Begin
+    _GetRec(Handle,2,ni3);
+    fl:=ALSetVolume(100,nb,ni3,1);
+    VolumeRead;
+    fl:=ALSetVolume(nb,100,ni3,1);
+   End;
+   StringRead(15);
+   _GetRec(Handle,2,ni2);
+   For J:=1to ni2 do Begin
+    _GetRec(Handle,2,ni3);
+    _GetRec(Handle,4,nr);
+    If nr=0Then nr2:=1 Else nr2:=nr;
+   End;
+  End;
+  _Close(Handle);
+  ALLoadSong:=Ya;
+ End;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                            Fonction ALPlayNote                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction entre un note manuellement dans la carte de son AdLib et
+  retourne un ‚tat indiquant si l'op‚ration c'est correctement d‚roul‚e.
+ }
+
+ Function ALPlayNote;Assembler;ASM
+  PUSH SS
+  POP ES
+  MOV BX,Offset Pitch
+  MOV SI,15
+  PUSH BP
+   INT $65
+   MOV AX,BP
+  POP BP
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                         Fonction ALPlayNoteDel                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction entre un note manuellement avec un certain d‚lai dans la
+  carte de son AdLib  et retourne  un ‚tat indiquant  si l'op‚ration c'est
+  correctement d‚roul‚e.
+ }
+
+ Function ALPlayNoteDel;Assembler;ASM
+  PUSH SS
+  POP ES
+  MOV BX,Offset Pitch
+  MOV SI,14
+  PUSH BP
+  INT $65
+  MOV AX,BP
+  POP BP
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                        Fonction ALRelTimeStart                      Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure d‚bute le processus de la musique pour la carte de son
+  AdLib.
+ }
+
+ Procedure ALRelTimeStart;Assembler;ASM
+  LES BX,TimeNum.DWord
+  MOV SI,2
+  PUSH BP
+   INT $65
+  POP BP
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                     Fonction ALSetActVoice                    Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure fixe l'acte d'une voix de la carte de son AdLib.
+ }
+
+ Procedure ALSetActVoice;Assembler;ASM
+  LES BX,Voice
+  MOV AX,ES:[BX]
+  MOV AdLibGActVoice,AX
+  MOV SI,12
+  INT $65
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                           Fonction ALSetMode                      Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure fixe le mode de percussion de la carte de son AdLib.
+ }
+
+ Procedure ALSetMode;Assembler;ASM
+  MOV SI,6
+  LES BX,PercussionMode
+  INT $65
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                          Fonction ALSetPitch                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction fixe la fa‡on de sortir les octaves de la carte de son
+  AdLib par l'entremise du pilote d'interruption.
+ }
+
+ Function ALSetPitch;Assembler;ASM
+  PUSH SS
+  POP ES
+  MOV BX,Offset DeltaOctave
+  MOV SI,16
+  PUSH BP
+   INT $65
+   MOV AX,BP
+  POP BP
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                            Fonction ALSetState                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure fixe l'‚tat de la carte de son AdLib par l'entremise de
+  son pilote d'interruption.
+ }
+
+ Procedure ALSetState;Assembler;ASM
+  MOV SI,3
+  LES BX,State
+  INT $65
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                           Fonction ALSetTempo                        Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction fixe le ®Tempo¯ de la carte de son AdLib par l'entremise
+  de son pilote d'interruption.
+ }
+
+ Function ALSetTempo;Assembler;ASM
+  PUSH SS
+  POP ES
+  MOV BX,Offset Tempo
+  MOV SI,9
+  PUSH BP
+   INT $65
+   MOV AX,BP
+  POP BP
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                        Fonction ALSetTickBeat                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure fixe l'espace des "Tick" du rythme de la musique de la
+  carte de son AdLib par l'entremise du pilote d'interruption.
+ }
+
+ Procedure ALSetTickBeat;Assembler;ASM
+  MOV SI,18
+  LES BX,TickBeat
+  INT $65
+ END;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                        Fonction ALSetTimbre                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction permet de fixe le timbre de la carte de son AdLib par
+  l'entremise du pilote d'interruption.
+ }
+
+ Function ALSetTimbre;
+ Var
+  TD,TN:Word;
+  T:^Integer;
+  c1,c2:Byte;
+ Begin
+  T:=@AdLibGT[AdLibGActVoice];TN:=TimeNum;TD:=TimeDen;
+  ASM
+   MOV SI,16
+   LES BX,T
+   PUSH BP
+    INT $65
+    MOV AX,BP
+   POP BP
+   MOV @Result,AL
+  END;
+ End;
+
+ {ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                         Fonction ALSetVolume                        Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette fonction fixe le volume de la carte de son AdLib par l'entremise
+  du pilote d'interruption.
+ }
+
+ Function ALSetVolume;Assembler;ASM
+  PUSH SS
+  POP ES
+  MOV BX,Offset VolNum
+  MOV SI,8
+  PUSH BP
+   INT $65
+   MOV AX,BP
+  POP BP
+ END;
+{$ENDIF}
+
+Function SearchStartImageDisk(Handle:Hdl;FindFAT:Boolean;Var FileSize,FileStart:LongInt;Var ID:Byte):Boolean;
+Var
+ Buffer:Array[0..511+128]of Byte;
+ WBuffer:Array[0..1]of Word Absolute Buffer;
+ LongPos:LongInt Absolute Buffer;
+ Q:Record
+  Header:DosEmuHeader;
+  Part:PartSecType;
+ End Absolute Buffer;
+ I:Byte;
+Begin
+ SearchStartImageDisk:=False;
+ FileSize:=Systems.FileSize(Handle);
+ FileStart:=0;
+ ID:=0;
+ _GetAbsRec(Handle,0,SizeOf(DosEmuHeader)+SizeOf(PartSecType),Q);
+ If(Buffer[0]=Byte('T'))and(Buffer[1]=Byte('D'))Then Begin { Image TeleDisk? }
+  FileStart:=$3D;
+  SearchStartImageDisk:=True;
+ End
+  Else
+ If(Buffer[0]=$AA)and(Buffer[1]=$59)Then Begin { Fichier image IBM OS/2 }
+  FileStart:=$29;
+  SearchStartImageDisk:=True;
+ End
+  Else
+ If IsMountDrive(Q.Header)Then Begin
+  SearchStartImageDisk:=True;
+  If IsMountDriveDOSEmu(Q.Header)Then FileStart:=SizeOf(DosEmuHeader)
+   Else
+  Begin
+   ID:=vxVirtualPC;
+   _GetAbsRec(Handle,$0600,SizeOf(LongPos),LongPos);
+   SwapByte(Buffer[0],Buffer[1]);
+   SwapByte(Buffer[2],Buffer[3]);
+   SwapWord(WBuffer[0],WBuffer[1]);
+   FileStart:=LongInt(Succ(LongPos))shl 9;
+  End;
+  If(FindFAT)Then For I:=1to 4do Begin
+   If(Q.Part.PartTable[I].PartType)in[1,4]Then Begin { FAT12 ou FAT16?}
+    Inc(FileStart,LongInt((Q.Part.PartTable[I].StartSec.Head*
+                 Q.Header.SectorPerTrack+
+                 Q.Part.PartTable[I].SecOfs)shl 8));
+    Break;
+   End;
+  End;
+ End;
+End;
+
+Procedure FSInit(Var Q:FileSystemObject);Begin
+ FillClr(Q,SizeOf(Q));
+ Q.Handle:=errHdl;
+End;
+
+Procedure FSSelectHardDisk(Var Q:FileSystemObject;HardDisk:Byte);Begin
+ FSInit(Q);
+ If DiskEBIOSExist(HardDisk)Then Q.EBIOS:=True;
+ Q.Dsk:=HardDisk;
+ Q.Method:=1;
+End;
+
+Function FSOpen(Var Q:FileSystemObject;Const FileImage:String;FindFAT:Boolean):Boolean;
+Var
+ Ext:ExtStr;
+Begin
+ FSOpen:=False;
+ FSInit(Q);
+ Q.IsFileImage:=FileImage<>'';
+ If(Q.IsFileImage)Then Begin
+  Q.Handle:=FileOpen(FileImage,fmRead);
+  Ext:=Path2Ext(FileImage);
+  If(Ext='.144')or(Ext='.IMA')or(Ext='.IMG')or(Ext='.DSK')Then Begin
+   Q.FileStart:=0;
+  End
+   Else
+  Begin
+   If Not(SearchStartImageDisk(Q.Handle,FindFAT,Q.FileSize,Q.FileStart,Q.ID))Then Exit;
+  End;
+ End;
+ FSOpen:=True;
+End;
+
+{ Cette fonction permet d'analyser le contenu d'un secteur de d‚marrage
+ et de r‚unir des informations pertinente.
+}
+
+Procedure FSBootAnalysers(Var Q:FileSystemObject;Const Buffer);
+Var
+ Boot:BootRec Absolute Buffer;
+ BBuffer:Array[0..511] of Byte Absolute Buffer;
+ TempLong:LongInt;
+Begin
+ MoveLeft(BBuffer[11],Q,17);
+ If Q.BytesPerSector=0Then Q.BytesPerSector:=512;
+ If Q.NumberOfFATs=0Then Q.NumberOfFATs:=2;
+ Q.NumTotalSector:=Boot.NmTotSec;
+ If Boot.NmTotSec=0Then Q.NumTotalSector:=Boot.HughNmSec;
+ If Boot.BytesPerSec=0Then Q.SizeCluster:=Boot.SecPerCluster*512
+                      Else Q.SizeCluster:=Boot.SecPerCluster*Boot.BytesPerSec;
+ Q.FirstFAT:=Q.SectorsReserved;
+ Q.FirstRoot:=Q.SectorsReserved+(Q.NumberOfFATs*Q.SectorsPerFat);
+ Q.SectorsPerRoot:=(Q.MaxEntry shl 5)div Q.BytesPerSector;
+ Q.FirstSectorData:=Q.FirstRoot+Q.SectorsPerRoot;
+ If(Q.MaxEntry*32)mod Q.BytesPerSector<>0Then Inc(Q.SectorsPerRoot);
+ TempLong:=DivLong(LongInt(Q.NumTotalSector),(LongInt(Q.NumberHeads)*LongInt(Q.SectorsPerTrack)));
+ Q.TotalTrack:=TempLong;
+ If TempLong-Q.TotalTrack>0Then Inc(Q.TotalTrack);
+ TempLong:=(LongInt(Q.NumTotalSector)-LongInt(Q.FirstSectorData))div LongInt(Q.SectorsPerCluster);
+ Q.TotalClusters:=TempLong;
+ Q.ClusterByFatSector:=256;
+ If Q.NumTotalSector>=$FFF8Then Q.FatBits:=32 Else
+ If Q.NumTotalSector>=$FF8Then Q.FatBits:=16
+  Else
+ Begin
+  Q.ClusterByFatSector:=384;
+  Q.FatBits:=12;
+ End;
+End;
+
+Function FSReadSectorPosVirtualPC(Var Q:FileSystemObject;LSN:LongInt):LongInt;Near;
+Var
+ LongPos:LongInt;
+Begin
+ _GetAbsRec(Q.Handle,$0600+(LSN shl 2),SizeOf(LongPos),LongPos);
+ FSReadSectorPosVirtualPC:=LongMotorolaToIntel(LongPos);
+End;
+
+Procedure FSReadDsk(Var Q:FileSystemObject;LSN,Sects:Word;Var Buffer);
+Var
+ BBuffer:Array[0..511]of Byte Absolute Buffer;
+ WBuffer:Array[0..1]of Word Absolute Buffer;
+ LongPos:LongInt Absolute Buffer;
+ Secteur:Byte;
+ Cylindre:Word;
+Begin
+ If(Q.IsFileImage)Then Begin
+  If(Q.ID=vxVirtualPC)Then Begin
+   Systems._GetAbsRec(Q.Handle,LongInt(Succ(FSReadSectorPosVirtualPC(Q,LSN)))shl 9,512,Buffer);
+  End
+   Else
+  Systems._GetAbsRec(Q.Handle,LongInt(LongInt(LSN)shl 9)+LongInt(Q.FileStart),512,Buffer);
+ End
+  Else
+ Begin
+  If Q.Method=1Then Begin
+   If(Q.EBIOS)Then ReadSectorEBIOS(Q.Dsk,LSN,Sects,Buffer)
+    Else
+   Begin
+    {GetSectCyl(LSN,Secteur,Cylindre);
+    ReadSectorBIOS(Q.Dsk,,,Buffer);}
+   End;
+  End
+   Else
+  Systems.ReadDsk(Q.Dsk,LSN,Sects,Buffer);
+ End;
+End;
+
+Procedure FSWriteDsk(Var Q:FileSystemObject;LSN,Sects:Word;Var Buffer);Begin
+ If(Q.IsFileImage)Then Begin
+  If(Q.ID=vxVirtualPC)Then Begin
+   Systems._SetAbsRec(Q.Handle,LongInt(Succ(FSReadSectorPosVirtualPC(Q,LSN)))shl 9,512,Buffer);
+  End
+   Else
+  Systems._SetAbsRec(Q.Handle,LongInt(LongInt(LSN)shl 9)+LongInt(Q.FileStart),512,Buffer);
+ End
+  Else
+ Begin
+  If Q.Method=1Then Begin
+   If(Q.EBIOS)Then WriteSectorEBIOS(Q.Dsk,LSN,Sects,Buffer)
+    Else
+   Begin
+    {WriteSectorBIOS(Q.Dsk,,,Buffer);}
+   End;
+  End
+   Else
+  Systems.WriteDsk(Q.Dsk,LSN,Sects,Buffer);
+ End;
+End;
+
+Function FSGetCluster(Var Q:FileSystemObject;P:Word):Word;Near;
+Var
+ Value:Word;
+Begin
+ If(P shr 9<>Q.CurrSecFat)Then Begin
+  Q.CurrSecFat:=P shr 9;
+  FSReadDsk(Q,Q.StartSecFat+Q.CurrSecFat,1,Q.CurrSectorFAT);
+ End;
+ MoveLeft(Q.CurrSectorFAT[P and 511],Value,SizeOf(Word));
+ FSGetCluster:=Value;
+End;
+
+Function FSGetClusterL(Var Q:FileSystemObject;P:LongInt):Word;Near;
+Var
+ Value:Word;
+Begin
+ If(P shr 9<>Q.CurrSecFat)Then Begin
+  Q.CurrSecFat:=P shr 9;
+  FSReadDsk(Q,Q.StartSecFat+Q.CurrSecFat,1,Q.CurrSectorFAT);
+ End;
+ MoveLeft(Q.CurrSectorFAT[P and 511],Value,SizeOf(Word));
+ FSGetClusterL:=Value;
+End;
+
+Function FSFindNextElementFat(Var Q:FileSystemObject;Cluster:Word):Word;Near;
+Var
+ El,Temp:Word;
+Begin
+ Case(Q.FatBits)of
+  32:FSFindNextElementFat:=FSGetClusterL(Q,LongInt(Cluster)shl 1);
+  16:FSFindNextElementFat:=FSGetCluster(Q,Cluster shl 1);
+  Else Begin
+   Temp:=3*Cluster;
+   El:=FSGetCluster(Q,Temp shr 1);{ SHR = /2 }
+   If Odd(Cluster)Then FSFindNextElementFat:=El shr 4
+                  Else FSFindNextElementFat:=El and $0FFF;
+  End;
+ End;
+End;
+
+Procedure FSDone(Var Q:FileSystemObject);Begin
+ If(Q.IsFileImage)Then FileClose(Q.Handle);
+End;
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                           Proc‚dure _LoadPath                          Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure permet de charger la liste des fichiers sur une partition
+  de format FAT en m‚moire sans passer  par le systŠme d'exploitation DOS ce
+  qui exc‚lŠrent les performances.
+}
+
+Procedure _LoadPath(Var Q:BF;Const FileImage:String;Var NmF:Word;Path:String;At:Word);
+Label Restart,BrkF,Brki2,Skip,NoImage,Xit;
+Var
+ FS:FileSystemObject;
+ Masque:String;
+ Err:Word;
+ Buffer:Array[0..15]of EntreeRepert;
+ FinList:Boolean;
+ i,j,k,l,Secteur:Word;
+ i2:Byte;
+ Sx:String;
+ UnElement:EntreeRepert;
+ Sdc:Byte;
+ Choix:Str12;
+ PremierSect,NbrSect:Word;
+ RootDir:Boolean;
+ Etoile,Point:Byte;
+ Element:Record
+  Data:Record Case Byte of
+   0:(Nom,Ext:{$IFDEF __Windows__}String{$ELSE}Str8{$ENDIF});
+   1:(Raw:Array[0..13]of Char);
+  End;
+ End;
+
+ Procedure Get;
+ Var
+  Buffer:Array[0..511]of Byte;
+ Begin
+  FSReadDsk(FS,0,1,Buffer);
+  If GetSysErr<>0Then Exit;
+  FSBootAnalysers(FS,Buffer);
+  FS.StartSecFat:=FS.FirstFat;
+  FS.MaxSecFat:=FS.SectorsPerFat-1;
+  FS.CurrSecFat:=0;
+ End;
+
+Begin
+ {$IFNDEF Win32}
+  {$IFNDEF DPMI}
+   If(Not FSOpen(FS,FileImage,True))Then Goto NoImage;
+   Path:=FileExpand(Path);
+   Q.SizeFiles:=0;
+   FS.Dsk:=Byte(Path[1])-65;
+   Masque:=Path2NoDir(Path);
+   Path:=Copy(Path2Dir(Path),4,255);
+   If Masque=''Then Masque:='*.*';
+   Masque:=StrUp(Masque);
+   StrPCopy(@Element.Data.Raw,#8'????????'#3'???');
+   Point:=Pos('.',Masque);
+   If Point<>0Then Begin
+    Element.Data.Ext:=Copy(Masque,Point+1,Length(Masque)-Point);
+    If Element.Data.Ext=''Then Element.Data.Ext:='   ';
+    AddStr(Element.Data.Ext,'???');
+    Etoile:=Pos('*',Element.Data.Ext);
+    If Etoile<>0Then For k:=etoile to 3do Element.Data.Ext[k]:='?';
+    Dec(Point);
+   End
+    Else
+   Point:=Length(Masque);
+   Element.Data.Nom:=Left(Masque,Point)+Element.Data.Nom;
+   Etoile:=Pos('*',Element.Data.Nom);
+   If Etoile<>0Then For k:=Etoile to 8do Element.Data.Nom[k]:='?';
+   MoveLeft(Element.Data.Raw[1],Masque[1],12);
+   Masque[9]:='.';
+   {$IFDEF __Windows__}
+    SetLength(Masque,12);
+   {$ELSE}
+    Masque[0]:=#12;
+   {$ENDIF}
+   Get;
+   FSReadDsk(FS,FS.StartSecFat,1,FS.CurrSectorFAT);
+   If GetSysErr<>0Then Goto Xit;
+   PremierSect:=FS.FirstRoot;
+   NbrSect:=FS.SectorsPerRoot;
+   RootDir:=True;
+   Begin
+Restart:
+    Secteur:=PremierSect;Sdc:=0;
+    For i:=0to NbrSect-1do Begin
+     FSReadDsk(FS,Secteur,1,Buffer);
+     If GetSysErr<>0Then Goto Xit;
+     For j:=0to 15do Begin
+      MoveLeft(Buffer[j],UnElement,32);
+      With UnElement do Begin
+       If(NomFichier[1]=#0)and(J=0)and(Sdc=0)Then Goto Xit; { Arrˆter on frappe du beurre!}
+       If NomFichier[1]<>#0Then Begin
+        Choix[0]:=#12;MoveLeft(NomFichier[1],Choix[1],8);
+        Choix[9]:='.';MoveLeft(ExtFichier[1],Choix[10],3);
+        For k:=1to 12do If Masque[k]='?'Then Choix[k]:='?';
+   BrkF:MoveLeft(NomFichier,Sx[1],8);
+        For i2:=8downto 1do If NomFichier[i2]>' 'Then Begin
+         {$IFDEF __Windows__}
+          SetLength(Sx,i2);
+         {$ELSE}
+          Sx[0]:=Chr(i2);
+         {$ENDIF}
+         Break;
+        End;
+        If ExtFichier[1]>' 'Then Begin
+         IncStr(Sx,'.');
+         AddStr(Sx,ExtFichier)
+        End;
+        _DelAllSpcRight(Sx);
+        If((Choix=Masque)and(At and Attr=Attr))or(Attr and At and faDir=faDir)Then If Path=''Then
+        If Not((Attr and faDir=faDir)and(NomFichier[1]='.')and(NomFichier[2]<>'.'))Then
+        Begin
+         If(NomFichier[1]='å')Then Begin
+          If Hi(At)<>$FFThen Goto Skip;
+         End;
+         FillClr(Q.Buffer^[NmF],SizeOf(Q.Buffer^[NmF]));
+         Q.Buffer^[NmF].Name:=Sx;
+         Q.Buffer^[NmF].Size:=Size;
+         Q.Buffer^[NmF].Time:=Time;
+         Q.Buffer^[NmF].Attr:=Attr;
+         Q.Buffer^[NmF].FirstCluster:=PremCluster;
+         Q.Buffer^[NmF].NmCluster:=k;
+         Inc(Q.SizeFiles,Size);
+         Inc(NmF);
+   Skip:End;
+       End;
+       If(Attr and faDir=faDir)and Not(NomFichier[1]in[#0,'.',' ',#$E5])Then Begin
+        For i2:=1to Length(Path)do If Path[i2]='\'Then Goto Brki2;
+  Brki2:If Path[i2]<>'\'Then Inc(i2);
+        If(Left(Path,i2-1)=Sx)Then Begin
+         k:=0;l:=PremCluster;
+         Repeat
+          l:=FSFindNextElementFat(FS,l);
+          If l=0Then FinList:=True
+           Else
+          Begin
+           Inc(k);
+           If k>=$FFF8Then Goto BrkF;
+           If FS.FatBits>=16Then finlist:=l>=$FFF8
+                            Else finlist:=l>=$FF8;
+          End;
+         Until FinList;
+         l:=(PremCluster-2)*FS.SectorsPerCluster+FS.FirstSectorData;
+         k:=k*FS.SectorsPerCluster;
+         Path:=Copy(Path,i2+1,255);
+         PremierSect:=l;NbrSect:=k;RootDir:=False;
+         Goto Restart;
+        End;
+       End;
+      End;
+     End;
+     If(RootDir)Then Inc(Secteur)
+      Else
+     Begin
+      Inc(Sdc);
+      If Sdc>FS.SectorsPerCluster-1Then Begin
+       k:=((LongInt(Secteur)-LongInt(FS.FirstSectorData))div LongInt(FS.SectorsPerCluster)+2);
+       l:=FSFindNextElementFat(FS,k);
+       Secteur:=(l-2)*FS.SectorsPerCluster+FS.FirstSectorData;
+       Sdc:=0;
+      End
+       Else
+      Inc(Secteur);
+     End;
+    End;
+   End;
+Xit:
+   If(FS.IsFileImage)Then NoImage:FileClose(FS.Handle);
+  {$ENDIF}
+ {$ENDIF}
+End;
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                           Proc‚dure LoadPath                           Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette proc‚dure permet de charger la liste des fichiers sur une partition
+  de format FAT en m‚moire sans passer  par le systŠme d'exploitation DOS ce
+  qui exc‚lŠrent les performances.
+}
+
+Procedure LoadPath(Var Q:BF;Var NmF:Word;Path:String;At:Word);Begin
+ _LoadPath(Q,'',NmF,Path,At);
+End;
+
+Procedure LoadPathByFileImage(Var Q:BF;Const FileImage:String;Var NmF:Word;Path:String;At:Word);Begin
+ _LoadPath(Q,FileImage,NmF,Path,At);
+End;
+
+{$IFNDEF OldSpooler}
+ Procedure IRQ7LPT1;Interrupt;Begin
+  _TaskSpooler;
+  Port[$20]:=$20;
+ End;
+{$ENDIF}
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                       Interruption IntBrk                      Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette interruption  est  appel‚e lorsque  l'utilisateur presse la
+  combinaison Ctrl+Break et Ctrl+C (si le raccourci est autoris‚) et
+  place dans une variable nomm‚ ®BrkOn¯ la valeur Vrai.
+}
+
+{$IFNDEF Win32}
+ Procedure IntBrk;Begin
+  {$IFDEF NotReal}
+   WriteLn('Arrˆt par Ctrl+Break!');
+   Halt(255);
+  {$ELSE}
+   BrkOn:=True;
+  {$ENDIF}
+ End;
+{$ENDIF}
+
+{ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+ ³                        Fonction EMBHandleInfoXms                      Û
+ ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+ Description
+ ÍÍÍÍÍÍÍÍÍÍÍ
+
+  Cette fonction permet de connaŒtre divers information relative au Handle
+ EMB du pilote XMS de gestion de m‚moire.
+}
+
+{$IFDEF Real}
+ Function EMBHandleInfoXms(Handle:Word;Var Q:EMBHandleRec):Word;Assembler;ASM
+  MOV XmsErr,080h
+  XOR AX,AX
+  CMP XmsExist,AL
+  JE  @End
+  MOV DI,Offset XMMCtrl
+  MOV DX,Handle
+  MOV AH,0Eh
+  PUSH BP
+   DB 0FFh,01Dh{CALL FAR[DI]}
+  POP BP
+  LES DI,Q
+  XCHG BL,BH
+  MOV Word Ptr ES:[DI],BX{LockCount & FreeHandles}
+  MOV Word Ptr ES:[DI][2],DX{BlockLenKB}
+  MOV XmsErr,0
+ @End:
+ End;
+{$ENDIF}
+
+{$IFNDEF Win32}
+{$IFNDEF DPMI}
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                           Interruption Int9Bh                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette interruption alloue de la m‚moire de  l'ensemble Malte Genesis …
+  des applications externes ou des pilotes divers. Il alloue toujours des
+  zones de m‚moire avec comme Offset 0.
+
+
+  Entr‚e
+  ÍÍÍÍÍÍ
+
+   BX          = Nombre de paragraphe … allouer (1 paragraphe=16 octets)
+
+
+  Sortie
+  ÍÍÍÍÍÍ
+
+   CF          = 1 si une erreur s'est produite, qu'il n'y a pas assez de
+                   m‚moire pour satisfaire la demande.
+
+                 0 si tous va bien et  que la demande  est satisfaite, et
+                   dans cas le registre:
+
+                    AX = Segment de m‚moire attribuer … l'application
+                         externe ou l'application.
+}
+
+Procedure Int9Bh(Flags,CS,IP,AX,BX,CX,DX,SI,DI,DS,ES,BP:Word);
+Var
+ P:Pointer;
+ Size:LongInt;
+Begin
+ ASM
+  AND Flags,0FFFEh;
+ END;
+ Size:=(BX+2)shl 4;
+ P:=MemAlloc(Size);
+ If(P=NIL)Then ASM XOR Flags,1;END
+  Else
+ Begin
+  Inc(PtrRec(P).Seg);
+  ASM
+   LES DI,P
+   MOV ES:[4],DI
+   MOV AX,ES
+   DEC AX
+   MOV ES:[6],AX
+   MOV AX,Word Ptr Size
+   MOV ES:[8],AX
+  END;
+  Inc(PtrRec(P).Seg);
+  AX:=PtrRec(P).Seg;
+ End;
+End;
+
+{ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÜ
+  ³                           Interruption Int9Ch                       Û
+  ÀÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ
+
+
+  Description
+  ÍÍÍÍÍÍÍÍÍÍÍ
+
+   Cette interruption libŠre de la m‚moire de  l'ensemble Malte Genesis …
+  des applications  externes ou  des pilotes divers.  C'est le reverse de
+  l'interruption 9Bh.
+
+
+  Entr‚e
+  ÍÍÍÍÍÍ
+
+   ES          = Segment o— est attribuer la m‚moire.
+
+
+  Sortie
+  ÍÍÍÍÍÍ
+
+   Aucune
+}
+
+Procedure Int9Ch(_Flags,_CS,_IP,_AX,_BX,_CX,_DX,_SI,_DI,_DS,_ES,_BP:Word);Var P:Pointer;Begin
+ ASM
+  MOV AX,_ES
+  DEC AX
+  MOV ES,AX
+  LES DI,ES:[4]
+  MOV Word Ptr P,DI
+  MOV Word Ptr P[2],ES
+ END;
+ FreeMemory(P,MemW[_ES-1:8]);
+End;
+{$ENDIF}
+{$ENDIF}
+
+Function FileSearch{Dest,Name,List:PChr):PChr};Assembler;ASM
+ {$IFNDEF Win32}
+  PUSH DS
+   CLD
+   LDS SI,List
+   LES DI,Dest
+   MOV CX,fsPathName
+@@1:
+   PUSH DS
+   PUSH SI
+   JCXZ @@3
+   LDS SI,Name
+@@2:
+   LODSB
+   OR  AL,AL
+   JE  @@3
+   STOSB
+   LOOP @@2
+@@3:
+   XOR AL,AL
+   STOSB
+   LES DI,Dest
+   MOV AX,4300h
+   CALL AnsiDosFunc
+   POP SI
+   POP DS
+   JC  @@4
+   TEST	CX,18h
+   JE  @@9
+@@4:
+   LES DI,Dest
+   MOV CX,fsPathName
+   XOR AH,AH
+   LODSB
+   OR  AL,AL
+   JE  @@8
+@@5:
+   CMP AL,';'
+   JE  @@7
+   JCXZ	@@6
+   MOV AH,AL
+   STOSB
+   DEC CX
+@@6:
+   LODSB
+   OR  AL,AL
+   JNE @@5
+   DEC SI
+@@7:
+   JCXZ @@1
+   CMP AH,':'
+   JE  @@1
+   MOV AL,'\'
+   CMP AL,AH
+   JE  @@1
+   STOSB
+   DEC CX
+   JMP @@1
+@@8:
+   STOSB
+@@9:
+   MOV AX,Dest.Word[0]
+   MOV DX,Dest.Word[2]
+  POP DS
+{$ENDIF}
+END;
+
+Function FindFirstFile(Path:PChar;Attr:Word;Var F:VariantSearchRec):Integer;
+{$IFDEF Win32}
+ Begin
+  FindFirstFile:=_FindFirstFile(Path,F);
+ End;
+{$ELSE}
+ Assembler;ASM
+  PUSH DS
+   LDS DX,F
+   MOV AH,1Ah
+   INT 21h
+  POP DS
+  LES DI,Path
+  MOV CX,Attr
+  MOV AH,4Eh
+  CALL AnsiDosFunc
+  JC   @@1
+  {$IFDEF Windows}
+   LES DI,F
+   ADD DI,Offset SearchRec.Name
+   PUSH ES
+   PUSH DI
+   PUSH ES
+   PUSH DI
+   CALL OemToAnsi
+  {$ENDIF}
+  XOR AX,AX
+@@1:
+  MOV SysErr,AX
+ END;
+{$ENDIF}
+
+Function FindNextFile(Handle:Integer;Var F:VariantSearchRec):LongBool;
+{$IFDEF Win32}
+ External 'kernel32.dll' Name 'FindNextFileA';
+{$ELSE}
+ Assembler;ASM
+  PUSH DS
+   LDS DX,F
+   MOV AH,1Ah
+   INT 21h
+  POP DS
+  MOV AH,4Fh
+  INT 21h
+  JC  @End
+  {$IFDEF Windows}
+   LES DI,F
+   ADD DI,Offset SearchRec.Name
+   PUSH ES
+   PUSH DI
+   PUSH ES
+   PUSH DI
+   CALL OemToAnsi
+  {$ENDIF}
+  XOR AX,AX
+@End:
+  MOV SysErr,AX
+ END;
+{$ENDIF}
+
+{$IFDEF __Windows__}
+ Function CreateFile;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'CreateFileA';
+ {$ELSE}
+  Begin
+  End;
+ {$ENDIF}
+
+ Function GetCurrentDirectory;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'GetCurrentDirectoryA';
+ {$ELSE}
+  Begin
+  End;
+ {$ENDIF}
+
+ Function GetDosEnv;
+ {$IFDEF Win32}
+  Begin
+  End;
+ {$ELSE}
+  External'KERNEL' Index 131;
+ {$ENDIF}
+
+ Function GetFileAttributes;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'GetFileAttributesA';
+ {$ELSE}
+  Begin
+  End;
+ {$ENDIF}
+
+ Function GetKeyboardCodePage;
+ {$IFDEF Win32}
+   External 'user32.dll' name 'GetKBCodePage';
+ {$ELSE}
+ External'KEYBOARD'Index 132;
+ {$ENDIF}
+
+ Function GetKeyboardType;
+ {$IFDEF Win32}
+  Begin
+  End;
+ {$ELSE}
+  External'KEYBOARD'Index 130;
+ {$ENDIF}
+
+ Function GetLastError;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'GetLastError';
+ {$ELSE}
+  Begin
+  End;
+ {$ENDIF}
+
+ Function GetVersion;
+ {$IFDEF Win32}
+  Begin
+  End;
+ {$ELSE}
+  External'KERNEL' Index 3;
+ {$ENDIF}
+
+ Function GetWinFlags;
+ {$IFDEF Win32}
+  Begin
+   GetWinFlags:=[];
+  End;
+ {$ELSE}
+  External'KERNEL' Index 132;
+ {$ENDIF}
+
+ Function MoveFile;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'MoveFileA';
+ {$ELSE}
+  Begin
+  End;
+ {$ENDIF}
+
+ Function SetFileAttributes(lpFileName:PChar;dwFileAttributes:LongInt):LongBool;StdCall;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'SetFileAttributesA';
+ {$ELSE}
+  Begin
+  End;
+ {$ENDIF}
+
+ Function _DeleteFile;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'DeleteFileA';
+ {$ELSE}
+  Begin
+  End;
+ {$ENDIF}
+
+ Function _FindFirstFile;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'FindFirstFileA';
+ {$ELSE}
+  Begin
+  End;
+ {$ENDIF}
+
+ Function _WClose;
+ {$IFDEF Win32}
+  External 'kernel32.dll' Name 'CloseHandle';
+ {$ELSE}
+  External'KERNEL' Index 81;
+ {$ENDIF}
+
+ Function _WGetRec;
+ {$IFDEF Win32}
+  Begin
+  End;
+ {$ELSE}
+  External'KERNEL' Index 82;
+ {$ENDIF}
+
+ Function _WNew;
+ {$IFDEF Win32}
+  Begin
+  End;
+ {$ELSE}
+  External'KERNEL' Index 83;
+ {$ENDIF}
+
+ Function _WSetFilePos;
+ {$IFDEF Win32}
+  Begin
+  End;
+ {$ELSE}
+  External'KERNEL' Index 84;
+ {$ENDIF}
+
+ Function _WOpen;
+ {$IFDEF Win32}
+  Begin
+  End;
+ {$ELSE}
+  External'KERNEL' Index 85;
+ {$ENDIF}
+
+ Function _WSetRec;
+ {$IFDEF Win32}
+  Begin
+  End;
+ {$ELSE}
+  External'KERNEL' Index 86;
+ {$ENDIF}
+
+{$ENDIF}
+
+END.

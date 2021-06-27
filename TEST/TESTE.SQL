@@ -1,0 +1,1 @@
+SELECT * FROM "CHANTAL:/Modem/Protocol.Dat"

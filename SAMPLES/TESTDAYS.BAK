@@ -1,0 +1,7 @@
+Uses Time;
+
+BEGIN
+ WriteLn('2004-04-01: Nombre de jour: ',DayOfYear(2004,4,1));
+ WriteLn('2002-12-01: Nombre de jour: ',DayOfYear(2002,12,1));
+ WriteLn('2002-12-31: Nombre de jour: ',DayOfYear(2004,12,31));
+END.

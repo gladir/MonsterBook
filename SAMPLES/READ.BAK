@@ -1,0 +1,8 @@
+DATA "Stone"
+10:DATA "Jean",8
+RESTORE 10
+READ A$,I%
+PRINT A$
+PRINT I%
+K%=ReadKey
+A$=FILELISTBOX("","Ouvre")

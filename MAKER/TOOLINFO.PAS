@@ -1,0 +1,20 @@
+Program MakerToolInfo;
+
+Uses Adele,Systex,Systems,SysPlus,ResTex,ResServDataBase,ResSaveDataBase;
+
+Var L:RBuf;
+    Q:DataSet;
+    Code:Word;
+
+BEGIN
+ InitSystems(suIsabel);
+ DelFile('\MALTE\DATA\MATERIEL\VIDCOMPU.DAT');
+ RBLoadFileASCII(L,'\SOURCE\CHANTAL\RESOURCE\HARDWARE\VIDCOMPU.SQL');
+ DBInit(Q,'\MALTE\DATA\MATERIEL\VIDCOMPU.DAT');
+ DBCreateWithSQL(Q,L);
+ DBDone(Q);
+ DelFile('\MALTE\DATA\MATERIEL\VIDEOMOD.DAT');
+ RBLoadFileASCII(L,'\SOURCE\CHANTAL\RESOURCE\HARDWARE\VIDEOMOD.SQL');
+ DBInit(Q,'\MALTE\DATA\MATERIEL\VIDEOMOD.DAT');
+ DBCreateWithSQL(Q,L);
+END.

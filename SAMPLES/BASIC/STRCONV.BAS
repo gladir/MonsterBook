@@ -1,0 +1,3 @@
+PRINT STRCONV("abc",1)
+PRINT YEAR("2003-01-12")
+K%=ReadKey

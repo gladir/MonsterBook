@@ -1,0 +1,692 @@
+{Gestion de la base de donn‚e}
+
+Unit PCBase;
+
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+                                  INTERFACE
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+
+Uses Systex,PCCortex;
+
+Type
+ TempData=Record
+  I:Byte;
+  S,S3:String;
+  FS,FP,NL:Long;
+  UnitList:ArrayList;
+  ProgramFormat:ProgramFormatType;
+  Handle:Hdl;
+  {$IFDEF IDE}
+   XEdt:Pointer;
+  {$ENDIF}
+ End;
+
+Var StackPos,StackParam:Word;VarPosProc:Int;
+    LastNameVar:String;LastUnitNum:Word;LastFP:Long;
+
+Function  AddResWord(Const Name:String;Code:Word):Bool;
+Procedure AddExternProcAddr(UnitNum:Word;FP,Addr:Long;Const Name:String);
+Procedure AddExternVarAddr(UnitNum:Word;FP,Addr:Long;Const Name:String);
+Function  AddJump(Access:AccessType;Off:Word;Const Nom:String):Bool;
+Function  LocalVariable(X:SegDesType;QParam:QParamType):Int;
+Function  GetOffVarGlobal(Const Nom:String):Integer;
+Function  GetOffVarLocal(Const Nom:String):Integer;
+Procedure MakeResWord;
+Function  OpenUnit(Name:String):Hdl;
+Function  PtrProc(Const Name:String):ProcPtr;
+Procedure RestoreData(Const Data:Pointer);
+Function  SaveData:Pointer;
+Function  SearchConstList(Const Name:String;Var Format:CstRec):Boolean;
+Function  SearchJump(Const Nom:String;Access:AccessType):JumpPtr;
+Function  SearchProcList(Const Name:String;Var UnitNum:Word;Var Addr:Long):Boolean;
+Function  SearchVarList(Const Name:String;Var UnitNum:Word;Var Addr:Long):Boolean;
+Function  SearchVarOnUnit(Const Name:String;UnitNum:Word;Var Addr:Long):Boolean;
+Function  SearchTypeList(Const Name:String;Var UnitNum:Word;Var Addr:Long):Boolean;
+Function  SearchPosProc(Const ProcName:String;Var Dupl:Bool):RBP;
+Function  SearchPosConst(Var Dupl:Bool):RBP;
+Function  SearchPosType(Var Dupl:Bool):RBP;
+Procedure SwapString(Var Str1,Str2:String);
+Function  Variable(X:SegDesType):Int;
+
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+                                 IMPLEMENTATION
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+
+Uses Registry,Memories,Systems,PCData,PCUnit;
+
+Function OpenUnit(Name:String):Hdl;
+Var
+ Handle:Hdl;
+ Dir:Record
+  Len:Word;
+  Output:String;
+ End;
+Begin
+ Name:=Path2NoExt(Name);
+ Handle:=FileOpen(Name+ExtFormat[fUnitTiny],{fmRead}fmDef);
+ If(Handle=errHdl)Then Begin
+  Name:=Path2Name(Name);
+  Handle:=FileOpen(Path2Dir(CurrPC.CurrFile)+Name+ExtFormat[fUnitTiny],{fmRead}fmDef);
+  If(Handle=errHdl)Then Begin
+   If ReadMainKey(HKEY_DEVELOPPER,'Software\Compiler\Pascal','Unit',Dir)Then Begin
+    Handle:=OpenSearchPathNDos(Dir.Output,Name+ExtFormat[fUnitTiny],{fmRead}fmDef);
+   End;
+   If(Handle=errHdl)Then Begin
+    If ReadMainKey(HKEY_DEVELOPPER,'Software\Compiler\Pascal','Output',Dir)Then Begin
+     Handle:=OpenSearchPathNDos(Dir.Output,Name+ExtFormat[fUnitTiny],{fmRead}fmDef);
+    End;
+   End;
+  End;
+ End;
+ OpenUnit:=Handle;
+End;
+
+Function LocalVariable(X:SegDesType;QParam:QParamType):Integer;
+Var
+ VP:NoeudVarPasPtr;
+ Present:Boolean;
+Begin
+  { Existe d‚j… ? }
+ ALSetPtr(CurrPC.VarBk,VarPosProc);
+ CurrPC.PVar:=_ALGetCurrBuf(CurrPC.VarBk);
+ While(CurrPC.PVar<>NIL)do Begin
+  If(CurrPC.PVar^.Name=CurrPC.S3)Then Begin
+   LocalVariable:=VarDupl;
+   Exit;
+  End;
+  ALNext(CurrPC.VarBk);
+  CurrPC.PVar:=_ALGetCurrBuf(CurrPC.VarBk);
+ End;
+  { Identifie le type de variable...}
+ LocalVariable:=0;
+ CurrPC.PVar:=ALAdd(CurrPC.VarBk,SizeOf(ProcRec));
+ If(CurrPC.PProc=NIL)Then Begin
+  LocalVariable:=OutOfMemory;
+  Exit;
+ End;
+ CurrPC.PVar^.SegDes:=X;
+ CurrPC.PVar^.Name:=CurrPC.S3;
+ CurrPC.PVar^.Ofs:=StackPos;
+ CurrPC.PVar^.QParam:=QParam;
+ CurrPC.PVar^.Reg:=$FF;
+ CurrPC.PVar^.SizeReg:=0;
+ If CurrPC.S4=''Then Begin
+  CurrPC.PVar^.TypeDef:=tNoType;
+  CurrPC.PVar^.Size:=4;Inc(StackPos,4);
+ End
+  Else
+ Begin
+  VP:=SearchVarPas(CurrPC.S4);
+  If(VP=NIL)Then Begin
+   {Recherche dans l'unit‚/programme courant }
+   SwapString(CurrPC.S3,CurrPC.S4);
+   SearchPosType(Present);
+   SwapString(CurrPC.S3,CurrPC.S4);
+   If(Present)Then Begin
+    CurrPC.PVar^.TypeDef:=tExtern;
+    CurrPC.PVar^.ExternType:=_ALGetCurrBuf(CurrPC.TypeDef);
+    If(CurrPC.PVar^.ExternType^.PointTo)Then CurrPC.PVar^.Size:=4
+                                        Else CurrPC.PVar^.Size:=0;{...}
+    Inc(StackPos,CurrPC.PVar^.Size);
+   End
+    Else
+    {Recherche le type dans les unit‚s sp‚cifier...}
+   If SearchTypeList(CurrPC.S4,CurrPC.PVar^.UnitNum,CurrPC.PVar^.OfsUnit)Then Begin
+    CurrPC.PVar^.Size:=0;{...}
+    Inc(StackPos,CurrPC.PVar^.Size);
+   End
+    Else
+   LocalVariable:=UnknownIdentifier;
+  End
+   Else
+  Begin
+   CurrPC.PVar^.TypeDef:=VP^.TypeDef;
+   If(QParam)in[qVar,qConst]Then Begin
+    CurrPC.PVar^.Size:=4;
+    Inc(StackPos,4)
+   End
+    Else
+   Begin
+    CurrPC.PVar^.Size:=VP^.Size;
+    If VP^.Size<=1Then Inc(StackPos,2)
+                  Else Inc(StackPos,VP^.Size);
+   End;
+  End;
+ End;
+End;
+
+Function GetOffVarGlobal(Const Nom:String):Integer;Begin
+ GetOffVarGlobal:=-1;
+ ALSetPtr(CurrPC.VarBk,0);
+ CurrPC.PVar:=_ALGetCurrBuf(CurrPC.VarBk);
+ While(CurrPC.PVar<>NIL)do Begin
+  If(CurrPC.PVar^.Name=Nom)Then Begin
+   If(ProgramFormat)in[fUnitTiny,fUnitLarge]Then GetOffVarGlobal:=0
+   Else GetOffVarGlobal:=CurrPC.PVar^.Ofs;
+   LastNameVar:=Nom;LastUnitNum:=$FFFF;
+   Exit;
+  End;
+  ALNext(CurrPC.VarBk);
+  CurrPC.PVar:=_ALGetCurrBuf(CurrPC.VarBk)
+ End;
+End;
+
+Function GetOffVarLocal(Const Nom:String):Integer;
+Var
+ Size,Home:Word;
+Begin
+ GetOffVarLocal:=$7FFF;
+ ALSetPtr(CurrPC.PProc^.Param,0);
+ CurrPC.PVar:=_ALGetCurrBuf(CurrPC.PProc^.Param);
+ While(CurrPC.PVar<>NIL)do Begin
+  If(CurrPC.PVar^.Name=Nom)Then Begin
+   If(CurrPC.PProc^.ParamRegister)and(CurrPC.PVar^.Reg<>$FF)Then GetOffVarLocal:=$7FFE
+    Else
+   Begin
+    Size:=CurrPC.PVar^.Size;
+    If Size<=1Then Size:=2;
+    If(CurrPC.PVar^.QParam)in[qConst,qVar]Then Size:=4;
+    If(CurrPC.PVar^.SegDes=vSSParam)Then Begin
+     If(CurrPC.PProc^.CurrPtr=cmwpNear)Then Home:=4 Else Home:=6;
+     GetOffVarLocal:=Home+(StackPos-(CurrPC.PVar^.Ofs+Size))
+    End
+     Else
+    GetOffVarLocal:=2-(CurrPC.PVar^.Ofs+Size);
+   End;
+   Exit;
+  End;
+  ALNext(CurrPC.PProc^.Param);
+  CurrPC.PVar:=_ALGetCurrBuf(CurrPC.PProc^.Param)
+ End;
+End;
+
+Function AddJump(Access:AccessType;Off:Word;Const Nom:String):Boolean;Begin
+ AddJump:=No;
+  { Existe d‚j… ? }
+ If(Access=isLabel)Then Begin
+  ALSetPtr(CurrPC.Jump,0);
+  CurrPC.PJump:=_ALGetCurrBuf(CurrPC.Jump);
+  While(CurrPC.PJump<>NIL)do Begin
+   If(CurrPC.PJump^.Nom=Nom)and(CurrPC.PJump^.Access=isLabel)Then Exit;
+   ALNext(CurrPC.Jump);
+   CurrPC.PJump:=_ALGetCurrBuf(CurrPC.Jump);
+  End;
+ End;
+  { Identifie le type de variable...}
+ CurrPC.PJump:=ALAdd(CurrPC.Jump,SizeOf(JumpRec));
+ If(CurrPC.PJump=NIL)Then Exit;
+ CurrPC.PJump^.Access:=Access;
+ CurrPC.PJump^.Nom:=Nom;
+ CurrPC.PJump^.Off:=Off;
+ CurrPC.PJump^.Setted:=NoSetted;
+ AddJump:=Ya;
+End;
+
+Function SearchJump(Const Nom:String;Access:AccessType):JumpPtr;Var I:Word;TJump:JumpPtr;Begin
+ SearchJump:=NIL;
+ For I:=0to CurrPC.Jump.Count-1do Begin
+  TJump:=_ALGetBuf(CurrPC.Jump,I);
+  If(TJump<>NIL)and(TJump^.Access=Access)and(TJump^.Nom=Nom)Then Begin
+   SearchJump:=TJump;
+   Exit;
+  End;
+ End;
+End;
+
+Function Variable(X:SegDesType):SmallInt;
+Var
+ VP:NoeudVarPasPtr;
+Begin
+  { Existe d‚j… ? }
+ ALSetPtr(CurrPC.VarBk,0);
+ CurrPC.PVar:=_ALGetCurrBuf(CurrPC.VarBk);
+ While(CurrPC.PVar<>NIL)do Begin
+  If(CurrPC.PVar^.Name=CurrPC.S3)Then Begin
+   Variable:=VarDupl;
+   Exit;
+  End;
+  ALNext(CurrPC.VarBk);
+  CurrPC.PVar:=_ALGetCurrBuf(CurrPC.VarBk);
+ End;
+  { Identifie le type de variable...}
+ Variable:=0;CurrPC.PVar:=ALAdd(CurrPC.VarBk,SizeOf(ProcRec));
+ If(CurrPC.PVar=NIL)Then Begin
+  Variable:=OutOfMemory;
+  Exit;
+ End;
+ CurrPC.PVar^.SegDes:=X;
+ CurrPC.PVar^.Name:=CurrPC.S3;
+ CurrPC.PVar^.Ofs:=CurrPC.DP;
+ VP:=SearchVarPas(CurrPC.S4);
+ If(VP=NIL)Then Variable:=UnknownIdentifier
+  Else
+ Begin
+  CurrPC.PVar^.TypeDef:=VP^.TypeDef;
+  CurrPC.PVar^.Size:=VP^.Size;
+  Inc(CurrPC.DP,VP^.Size)
+ End;
+End;
+
+Function SearchPosProc(Const ProcName:String;Var Dupl:Bool):RBP;Var I:RBP;PProc:^ProcRec;Begin
+ Dupl:=No;
+ ALSetPtr(CurrPC.ProcBk,0);
+ If CurrPC.ProcBk.Count=0Then SearchPosProc:=0
+  Else
+ Begin
+  For I:=0to CurrPC.ProcBk.Count-1do Begin
+   PProc:=_ALGetCurrBuf(CurrPC.ProcBk);
+   If(PProc^.Name>ProcName)Then Begin
+    ALPrevious(CurrPC.ProcBk);
+    Dupl:=PProc^.Name=ProcName;
+    SearchPosProc:=I;
+    Exit;
+   End;
+   ALNext(CurrPC.ProcBk);
+  End;
+  SearchPosProc:=I+1;
+ End;
+End;
+
+Function SearchPosConst(Var Dupl:Bool):RBP;
+Var
+ I:RBP;
+ PConst:^CstRec;
+Begin
+ Dupl:=No;
+ ALSetPtr(CurrPC.ReDef,0);
+ If CurrPC.ReDef.Count=0Then SearchPosConst:=0
+  Else
+ Begin
+  For I:=0to CurrPC.ReDef.Count-1do Begin
+   PConst:=_ALGetCurrBuf(CurrPC.ReDef);
+   If(PConst^.Name>CurrPC.S3)Then Begin
+    ALPrevious(CurrPC.ReDef);
+    Dupl:=PConst^.Name=CurrPC.S3;
+    SearchPosConst:=I;
+    Exit;
+   End;
+   ALNext(CurrPC.ReDef);
+  End;
+  SearchPosConst:=I+1;
+ End;
+End;
+
+{ Cette fonction retourne la position o— se situe un type et indique s'il
+ est d‚j… pr‚sent dans la liste.
+}
+
+Function SearchPosType(Var Dupl:Boolean):RBP;
+Var
+ I:RBP;
+ PType:^TypeMainRec;
+Begin
+ Dupl:=False;
+ ALSetPtr(CurrPC.TypeDef,0);
+ If CurrPC.TypeDef.Count=0Then SearchPosType:=0
+  Else
+ Begin
+  For I:=0to CurrPC.TypeDef.Count-1do Begin
+   PType:=_ALGetCurrBuf(CurrPC.TypeDef);
+   If(PType^.Name>=CurrPC.S3)Then Begin
+    ALPrevious(CurrPC.TypeDef);
+    Dupl:=PType^.Name=CurrPC.S3;
+    SearchPosType:=I;
+    Exit;
+   End;
+   ALNext(CurrPC.TypeDef);
+  End;
+  SearchPosType:=I+1;
+ End;
+End;
+
+Function SearchConstList;
+Var
+ I:Integer;
+ PC:PChr;
+ Handle:Hdl;
+ Cst:UnitCstRec;
+ Header:UnitHeaderRec;
+Begin
+ SearchConstList:=False;
+ For I:=CurrPC.UnitList.Count-1downto 0do Begin
+  PC:=_ALGetBuf(CurrPC.UnitList,I);
+  If(PC=NIL)Then Exit;
+  Handle:=OpenUnit(StrPas(PC));
+  If(Handle=errHdl)Then Begin
+   CurrPC.Status:=UnitNotFound;
+   Exit;
+  End;
+  _GetAbsRec(Handle,0,SizeOf(Header),Header);
+  If Header.NmConst>0Then Begin
+   _GetAbsRec(Handle,Header.OffConst,SizeOf(Cst),Cst);
+   While(Name<>Cst.Name)do Begin
+    If(Name<Cst.Name)Then Header.OffConst:=Cst.Gauche Else Header.OffConst:=Cst.Droite;
+    If Header.OffConst=0Then Break;
+    _GetAbsRec(Handle,Header.OffConst,SizeOf(Cst),Cst);
+   End;
+   If(Name=Cst.Name)Then Begin
+    Format.Name:=Name;Format.Q.TypeDef:=Cst.TypeDef;Format.Free:=Ya;
+    _GetAbsRec(Handle,Header.OffConst+SizeOf(UnitCstRec)-255+Length(Cst.Name),
+               SizeOf(XVariant),Format.Q.X);
+    SearchConstList:=True;
+    FileClose(Handle);
+    Exit;
+   End;
+  End;
+  FileClose(Handle);
+ End;
+End;
+
+Function SearchProcList;
+Var
+ I:Integer;
+ PC:PChr;
+ Handle:Hdl;
+ Proc:UnitProcRec;
+ Header:UnitHeaderRec;
+Begin
+ SearchProcList:=No;
+ For I:=CurrPC.UnitList.Count-1downto 0do Begin
+  PC:=_ALGetBuf(CurrPC.UnitList,I);
+  If(PC=NIL)Then Exit;
+  Handle:=OpenUnit(StrPas(PC));
+  If(Handle=errHdl)Then Exit;
+  _GetAbsRec(Handle,0,SizeOf(Header),Header);
+  If Header.NmProc>0Then Begin
+   _GetAbsRec(Handle,Header.OffProc,SizeOf(Proc),Proc);
+   While(Name<>Proc.Name)do Begin
+    If(Name<Proc.Name)Then Header.OffProc:=Proc.Gauche
+                      Else Header.OffProc:=Proc.Droite;
+    If Header.OffProc=0Then Break;
+    _GetAbsRec(Handle,Header.OffProc,SizeOf(Proc),Proc);
+   End;
+   If(Name=Proc.Name)Then Begin
+    UnitNum:=I;
+    Addr:=Header.OffProc;
+    SearchProcList:=True;
+    FileClose(Handle);
+    Exit;
+   End;
+  End;
+  FileClose(Handle);
+ End;
+End;
+
+{ Cette fonction recherche dans les unit‚s le type sp‚cifier et retourne
+ son adresse et son num‚ro d'unit‚.
+}
+
+Function SearchTypeList{Const Name:String;Var UnitNum:Word;Var Addr:Long):Boolean};
+Var
+ I,J:Integer;
+ PC:PChr;
+ Handle:Hdl;
+ _Type:UnitTypeRec;
+ Header:UnitHeaderRec;
+Begin
+ SearchTypeList:=False;
+ For I:=CurrPC.UnitList.Count-1downto 0do Begin
+  PC:=_ALGetBuf(CurrPC.UnitList,I);
+  If(PC=NIL)Then Exit;
+  Handle:=OpenUnit(StrPas(PC));
+  If(Handle=errHdl)Then Exit;
+  _GetAbsRec(Handle,0,SizeOf(Header),Header);
+  If Header.NmType>0Then Begin
+   _GetAbsRec(Handle,Header.OffType,SizeOf(_Type),_Type);
+   While(Name<>_Type.Name)do Begin
+    If(Name<_Type.Name)Then Header.OffType:=_Type.Gauche
+                       Else Header.OffType:=_Type.Droite;
+    If Header.OffType=0Then Break;
+    _GetAbsRec(Handle,Header.OffType,SizeOf(_Type),_Type);
+   End;
+   If(Name=_Type.Name)Then Begin
+    UnitNum:=I;
+    Addr:=Header.OffType;
+    SearchTypeList:=True;
+    FileClose(Handle);
+    Exit;
+   End;
+  End;
+  FileClose(Handle);
+ End;
+End;
+
+Function SearchVarList;
+Var
+ I,J:Integer;
+ PC:PChr;
+ Handle:Hdl;
+ _Var:UnitVarRec;
+ Header:UnitHeaderRec;
+Begin
+ SearchVarList:=False;
+ For I:=CurrPC.UnitList.Count-1downto 0do Begin
+  PC:=_ALGetBuf(CurrPC.UnitList,I);
+  If(PC=NIL)Then Exit;
+  Handle:=OpenUnit(StrPas(PC));
+  If(Handle=errHdl)Then Exit;
+  _GetAbsRec(Handle,0,SizeOf(Header),Header);
+  If Header.NmVar>0Then Begin
+   For J:=0to Header.NmVar-1do Begin
+    _GetAbsRec(Handle,Header.OffVar,SizeOf(_Var),_Var);
+    If(Name=_Var.Name)Then Begin
+     UnitNum:=I;
+     Addr:=Header.OffVar;
+     SearchVarList:=True;
+     FileClose(Handle);
+     Exit;
+    End;
+    Header.OffVar:=_Var.Suivant;
+    If Header.OffVar=0Then Break;
+   End;
+  End;
+  FileClose(Handle);
+ End;
+End;
+
+Function SearchVarOnUnit;
+Var
+ PC:PChr;
+ Handle:Hdl;
+ _Var:UnitVarRec;
+ Header:UnitHeaderRec;
+Begin
+ SearchVarOnUnit:=False;
+ Handle:=OpenUnit(GetUnitName(UnitNum));
+ If(Handle=errHdl)Then Exit;
+ _GetAbsRec(Handle,0,SizeOf(Header),Header);
+ If Header.NmVar>0Then Begin
+  For CurrPC.I:=0to Header.NmVar-1do Begin
+   _GetAbsRec(Handle,Header.OffVar,SizeOf(_Var),_Var);
+   If(Name=_Var.Name)Then Begin
+    Addr:=Header.OffVar;
+    SearchVarOnUnit:=True;
+    FileClose(Handle);
+    Exit;
+   End;
+   Header.OffVar:=_Var.Suivant;
+   If Header.OffVar=0Then Break;
+  End;
+ End;
+ FileClose(Handle);
+End;
+
+Procedure AddExternProcAddr;
+Var
+ I:RBP;
+ PX:^ExternProcRec;
+ L:^Long;
+Begin
+ If CurrPC.ExternProc.Count>0Then Begin
+  ALSetPtr(CurrPC.ExternProc,0);
+  For I:=0to CurrPC.ExternProc.Count-1do Begin
+   PX:=_ALGetCurrBuf(CurrPC.ExternProc);
+   If(PX<>NIL)Then Begin
+    If(PX^.UnitNum=UnitNum)and(PX^.ProcName=Name)Then Begin
+     L:=ALAdd(PX^.BankAddr,SizeOf(Long));
+     If(L=NIL)Then Exit;
+     L^:=Addr;
+     Exit;
+    End;
+   End;
+   ALNext(CurrPC.ExternProc);
+  End;
+ End;
+ PX:=ALAdd(CurrPC.ExternProc,SizeOf(ExternProcRec));
+ If(PX=NIL)Then Exit;
+ PX^.UnitNum:=UnitNum;PX^.ProcName:=Name;PX^.FP:=FP;
+ ALInit(PX^.BankAddr);
+ L:=ALAdd(PX^.BankAddr,SizeOf(Long));
+ If(L=NIL)Then Exit;
+ L^:=Addr;
+End;
+
+Procedure AddExternVarAddr;
+Var
+ I:RBP;
+ PX:^ExternVarRec;
+ L:^Long;
+Begin
+ If CurrPC.ExternVar.Count>0Then Begin
+  ALSetPtr(CurrPC.ExternVar,0);
+  For I:=0to CurrPC.ExternVar.Count-1do Begin
+   PX:=_ALGetCurrBuf(CurrPC.ExternVar);
+   If(PX<>NIL)Then Begin
+    If(PX^.UnitNum=UnitNum)and(PX^.VarName=Name)Then Begin
+     L:=ALAdd(PX^.BankAddr,SizeOf(Long));
+     If(L=NIL)Then Exit;
+     L^:=Addr;
+     Exit;
+    End;
+   End;
+   ALNext(CurrPC.ExternVar);
+  End;
+ End;
+ PX:=ALAdd(CurrPC.ExternVar,SizeOf(ExternVarRec));
+ If(PX=NIL)Then Exit;
+ PX^.UnitNum:=UnitNum;PX^.VarName:=Name;PX^.FP:=FP;
+ ALInit(PX^.BankAddr);
+ L:=ALAdd(PX^.BankAddr,SizeOf(Long));
+ If(L=NIL)Then Exit;
+ L^:=Addr;
+End;
+
+Function AddResWord(Const Name:String;Code:Word):Boolean;Begin
+ AddResWord:=False;
+ ALAddStrWord(CurrPC.ResWordBk,Name,Code);
+ AddResWord:=Ya;
+End;
+
+Function PtrProc;
+Var
+ PProc:ProcPtr;
+Begin
+ ALSetPtr(CurrPC.ProcBk,0);
+ PProc:=_ALGetCurrBuf(CurrPC.ProcBk);
+ While(PProc<>NIL)do Begin
+  If(PProc^.Name=Name)Then Break;
+  ALNext(CurrPC.ProcBk);
+  PProc:=_ALGetCurrBuf(CurrPC.ProcBk);
+ End;
+ PtrProc:=PProc;
+End;
+
+Procedure RestoreData(Const Data:Pointer);
+Var
+ P:^TempData Absolute Data;
+Begin
+ CurrPC.S:=P^.S;
+ CurrPC.S3:=P^.S3;
+ CurrPC.FS:=P^.FS;
+ CurrPC.I:=P^.I;
+ CurrPC.FP:=P^.FP;
+ CurrPC.NL:=P^.NL;
+ CurrPC.UnitList:=P^.UnitList;
+ ProgramFormat:=P^.ProgramFormat;
+ CurrPC.Handle:=P^.Handle;
+ CurrPC.XEdt:=P^.XEdt;
+ FreeMem(Data,SizeOf(TempData));
+End;
+
+Function SaveData:Pointer;
+Var
+ P:^TempData;
+Begin
+ P:=MemAlloc(SizeOf(TempData));
+ If(P=NIL)Then Exit;
+ P^.S:=CurrPC.S;
+ P^.S3:=CurrPC.S3;
+ P^.FS:=CurrPC.FS;
+ P^.I:=CurrPC.I;
+ P^.FP:=CurrPC.FP;
+ P^.NL:=CurrPC.NL;
+ P^.UnitList:=CurrPC.UnitList;
+ P^.ProgramFormat:=ProgramFormat;
+ P^.Handle:=CurrPC.Handle;
+ P^.XEdt:=CurrPC.XEdt;
+ SaveData:=P;
+End;
+
+Procedure SwapString(Var Str1,Str2:String);
+Var
+ T:String;
+Begin
+ T:=Str1;Str1:=Str2;Str2:=T;
+End;
+
+Procedure MakeResWord;
+Var
+ Handle:Hdl;
+Type
+ TBool=Array[0..65520]of Bool;
+Var
+ M,I:Word;
+ S:String;
+ Free:^TBool;
+ FP:LongInt;
+
+ Function GetLine(Min,Max:Word):Word;
+ Var
+  X,MyPos:Word;
+  P:^StrWordRec;
+  Data:Record
+   Code:Byte;
+   Gauche,Droite:Word;
+  End;
+ Begin
+  X:=((Max-Min)shr 1)+Min;
+  If(Not(Free^[X]))and(Min<=Max)and(X<CurrPC.ResWordBk.Count)Then Begin
+   P:=_ALGetBuf(CurrPC.ResWordBk,X);
+   S:=StrPas(P^.PChr);Free^[X]:=Ya;
+   GetLine:=FP;
+   _SetAbsRec(Handle,FP,Succ(Length(S)),S);
+   Inc(FP,Succ(Length(S)));
+   MyPos:=FP;
+   Inc(FP,SizeOf(Data));
+   Data.Gauche:=GetLine(Min,X-1);
+   Data.Droite:=GetLine(X+1,Max);
+   _SetAbsRec(Handle,MyPos,SizeOf(Data),Data);
+  End
+   Else
+  GetLine:=0;
+ End;
+
+Begin
+ Handle:=FileCreateAndBackup('DATA.$$$');
+ If(Handle<>errHdl)Then Begin
+  CurrPC.ResWordDef:=Ya;
+  SetFilePos(Handle,0);
+  Free:=MemNew(CurrPC.ResWordBk.Count);
+  FP:=0;
+  GetLine(0,CurrPC.ResWordBk.Count-1);
+  FreeMem(Free,CurrPC.ResWordBk.Count);
+  FileClose(Handle);
+  CurrPC.NmResWord:=CurrPC.ResWordBk.Count;
+  CurrPC.SizeResWord:=GetFileSize('DATA.$$$');
+  ALDone(CurrPC.ResWordBk);
+  ALInit(CurrPC.ResWordBk);
+ End;
+End;
+
+{ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ}
+END.
