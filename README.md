@@ -11,6 +11,8 @@ A l'origine, j'utilisais le titre Chevaliers de Malte, plutôt que Gladir.com.
 
 Le programme principale est MB.PAS
 
+Le code MB.PAS est situé dans le dossier "\Source\Chantal\" et est la racine projet. Il n'est pas compilable en dehors de ce dossier.
+
 <h3>Auteur</h3>
 
 Sylvain Maltais
