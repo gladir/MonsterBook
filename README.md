@@ -6,6 +6,8 @@ Il s'agit d'un environnement graphique avec des applications intégrés, tableur
 
 ![GAT](https://github.com/gladir/MonsterBook/assets/11842176/1a92685b-779e-41ca-98e0-cfef6ba5d7e6)
 
+![EXPLORDB](https://github.com/gladir/MonsterBook/assets/11842176/034892d0-f6cf-4571-b511-2c31f0d7c4f2)
+
 ![Asm](https://github.com/gladir/MonsterBook/assets/11842176/3976fe3e-833e-45e3-b6c9-66536b7ae43e)
 
 ![LOGO](https://github.com/gladir/MonsterBook/assets/11842176/312f5035-b6ca-4cf0-8a72-81b51d5a8c64)
