@@ -4,8 +4,15 @@ Le progiciel MonsterBook (L'oeuvre inhumaine) est un logiciel que j'ai développ
 Il ne fonctionne qu'en mode réel du 8086 et n'est compilable qu'avec le Turbo Pascal 7 en mode protégé.
 Il s'agit d'un environnement graphique avec des applications intégrés, tableur, traitement de texte, dessin en bitmap, dessin en fil de fer, interpréteur BASIC, terminal avec les commandes DOS, UNIX, ...
 
+![GAT](https://github.com/gladir/MonsterBook/assets/11842176/1a92685b-779e-41ca-98e0-cfef6ba5d7e6)
+
+![Asm](https://github.com/gladir/MonsterBook/assets/11842176/3976fe3e-833e-45e3-b6c9-66536b7ae43e)
+
+![LOGO](https://github.com/gladir/MonsterBook/assets/11842176/312f5035-b6ca-4cf0-8a72-81b51d5a8c64)
+
 ![image](https://user-images.githubusercontent.com/11842176/123555177-171d0500-d752-11eb-926f-2e3c47487d62.png)
 
+![VECTOR](https://github.com/gladir/MonsterBook/assets/11842176/45397379-2e8a-42e2-b817-2a73499174d8)
 
 J'ai mis une licence MIT avec le projet. Fait des fork, autant que voulez, le projet est dépassez maintenant. Mais il peut être fort instructif.
 Il y a du code de cacher, comme mon arbre généalogique, car je voulais être certain que le code me serait pas volé. Mais les choses ont changés, et je ne crois plus poursuivre son projet pour le moment.
