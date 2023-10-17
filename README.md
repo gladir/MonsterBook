@@ -2,7 +2,7 @@
 
 Le progiciel MonsterBook (L'oeuvre inhumaine) est un logiciel que j'ai développé de 1991 à 2007 sur AMD 386, 40 Mhz sous DR DOS 7 et MS DOS 5, MS DOS 6.
 Il ne fonctionne qu'en mode réel du 8086 et n'est compilable qu'avec le Turbo Pascal 7 en mode protégé.
-Il s'agit d'un environnement graphique avec des applications intégrés, tableur, traitement de texte, base de données, dessin en bitmap, dessin en fil de fer, interpréteur BASIC et LOGO, terminal avec les commandes DOS, UNIX, ...
+Il s'agit d'un environnement graphique avec des applications intégrés, tableur, traitement de texte, base de données, dessin en bitmap, dessin en fil de fer, interpréteur BASIC et LOGO, gestionnaire de fichiers, terminal avec les commandes DOS, UNIX, ...
 
 ![GAT](https://github.com/gladir/MonsterBook/assets/11842176/1a92685b-779e-41ca-98e0-cfef6ba5d7e6)
 
@@ -15,6 +15,8 @@ Il s'agit d'un environnement graphique avec des applications intégrés, tableur
 ![image](https://user-images.githubusercontent.com/11842176/123555177-171d0500-d752-11eb-926f-2e3c47487d62.png)
 
 ![VECTOR](https://github.com/gladir/MonsterBook/assets/11842176/45397379-2e8a-42e2-b817-2a73499174d8)
+
+![filemanager3](https://github.com/gladir/MonsterBook/assets/11842176/451c95c0-712a-43b3-a03b-6c74c26de382)
 
 ![Calendar](https://github.com/gladir/MonsterBook/assets/11842176/525ee318-6600-4eae-9fb2-c82c23eb033d)
 
