@@ -1,6 +1,6 @@
 # MonsterBook
 
-Le progiciel MonsterBook (L'oeuvre inhumaine) est un logiciel que j'ai développé de 1991 à 2007 sur AMD 386, 40 Mhz sous DR DOS 7 et MS DOS 5, MS DOS 6.
+Le progiciel MonsterBook (L'oeuvre inhumaine) est un logiciel (application DOS) que j'ai développé de 1991 à 2007 sur AMD 386, 40 Mhz sous DR DOS 7 et MS DOS 5, MS DOS 6.
 Il ne fonctionne qu'en mode réel du 8086 et n'est compilable qu'avec le Turbo Pascal 7 en mode protégé.
 Il s'agit d'un environnement graphique avec des applications intégrés, tableur, traitement de texte, base de données, dessin en bitmap, dessin en fil de fer, interpréteur BASIC et LOGO, gestionnaire de fichiers, terminal avec les commandes DOS, UNIX, ...
 
